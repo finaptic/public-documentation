@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package thebaasco.tenant.referencedata.v1;
+
+option go_package = "proto/tenant/referencedata/v1";
+
+/*******************************************
+        Reference Data Service
+********************************************/
+message ValidateReferenceDataRequest{
+}
+
+message ValidateReferenceDataResponse{
+}
+
+message ReferenceData{
+  string data_type = 1;
+  string code = 2;
+  string value = 3;
+  string locale = 4;
+}
+
+message ReferenceDataResponse{
+  repeated ReferenceData data = 1;
+  string search_token = 2;
+}
+
+message GetReferenceDataByTypeRequest{
+  string data_type = 1;
+  string locale = 2; // e.g. EN_CA, FR_CA
+  int32 page_size = 3;
+  string page_number = 4;
+}
+
+service ReferenceDataService{
+  rpc ValidateReferenceData(ValidateReferenceDataRequest) returns (ValidateReferenceDataResponse){
+  }
+
+  rpc GetReferenceDataByType(GetReferenceDataByTypeRequest) returns (ReferenceDataResponse){
+  }
+}
