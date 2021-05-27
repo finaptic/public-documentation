@@ -1,10 +1,12 @@
 site_name: Finaptic Documentation
+site_url: https://docs.finaptic.com
+remote_branch: gh-pages
 theme:
   name: material
   font:
     text: Assistant
     code: Roboto Mono
-  logo: images/logo.png
+  logo: images/FinapticLogo_F_White.png
   favicon: images/logo.png
   language: en
   palette:
