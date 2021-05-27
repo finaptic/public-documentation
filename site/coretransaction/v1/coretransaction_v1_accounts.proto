@@ -1,0 +1,38 @@
+syntax = "proto3";
+package thebaasco.tenant.coretransaction.v1;
+
+import "validate/validate.proto";
+import "types/balance.proto";
+
+option go_package = "proto/tenant/coretransaction/v1";
+
+service Accounts {
+    rpc ListAccounts(ListAccountsRequest) returns (ListAccountsResponse) {
+    }
+  
+    rpc GetAccount(GetAccountRequest) returns (Account) {
+    }
+  };
+  
+  message Account {
+    string id = 1 [(validate.rules).string.uuid = true];
+    thebaasco.types.Balance balance = 2 [(validate.rules).message.required = true];
+    string name = 3;
+    repeated string customers = 4 [(validate.rules).repeated = { min_items:1, items: { string: {uuid: true}}}]; //TODO: PB-3374 - review concept for customers/authorized users/owners
+    string source_domain = 5 [(validate.rules).string.min_len = 1];
+  }
+  
+  message ListAccountsRequest {
+    string user_id = 1[(validate.rules).string.uuid = true];
+    int32 page_size = 2[(validate.rules).int32.gt = 1];
+    string page_token = 3;
+  }
+  
+  message GetAccountRequest {
+    string account_id = 1[(validate.rules).string.uuid = true];
+  }
+  
+  message ListAccountsResponse {
+    repeated Account accounts = 1;
+    string next_page_token = 2;
+  }

@@ -1,0 +1,51 @@
+syntax = "proto3";
+package thebaasco.tenant.corecard.v1;
+
+import "google/protobuf/timestamp.proto";
+import "validate/validate.proto";
+import "types/options.proto";
+
+option go_package = "proto/tenant/corecard/v1";
+
+message TransactionDetails{
+
+    //Unique identifier that represents this single financial transaction (operation).
+    string transaction_id = 1[(validate.rules).string.uuid = true];
+    
+    //Unique identifier that represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...)
+    //(there might be multiple unique "transaction_id" for a single "lifecycle_transaction_id")
+    string lifecycle_transaction_id = 2[(validate.rules).string.uuid = true];
+    
+    int32 merchant_type = 3; 
+    //DE-018-The classification of the merchant’s type of business product or service //
+
+    string card_acceptor_terminal_identification = 4;
+    // DE-041-A unique code identifying a terminal at the card acceptor location
+    // This is 8 digit alpha numeric value //
+    
+    string card_acceptor_identification_code = 5; 
+    // DE-042-A code identifying the card acceptor that defines the point of the
+    // transaction in both local and interchange environments. This is a 15 digit alpha numeric value.//
+
+    string card_acceptor_name_location = 6;
+    //DE-043 This field contains the name and location of the card acceptor (merchant),
+    //including the city name, state and country code.
+  
+    google.protobuf.Timestamp transaction_time = 7; //UTC timestamp for the transaction
+    // source data comes from DE-007
+
+    string mti = 8;
+    // String representation of the originating message type (e.g. "0100", "0400", ... )
+}
+
+message TransactionDetailsCreatedEvent {
+    option (thebaasco.types.topic) = "thebaasco.core-card.transaction-details-created-event";
+    //Identifies this event uniquely, to ensure it's processed only 1 time
+    string event_id = 1[(validate.rules).string.uuid = true];
+
+    TransactionDetails details = 2 [(validate.rules).message.required = true];
+
+    int32 tenant_id = 3 [(validate.rules).int32 = {gte: 1, lte: 9999}];
+
+    //No timestamp in this event, since `details` will contain the transaction timestamp
+}

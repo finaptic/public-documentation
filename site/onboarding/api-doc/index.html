@@ -1,0 +1,2126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Protocol Documentation - Finaptic Documentation</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Finaptic Documentation</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Welcome to MkDocs</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Clientprofile <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../clientprofile/api-doc/" class="dropdown-item">Protocol Documentation</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Corebanking <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../corebanking/api-doc/" class="dropdown-item">Protocol Documentation</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Corecard <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../corecard/api-doc/" class="dropdown-item">Protocol Documentation</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Coretransaction <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../coretransaction/api-doc/" class="dropdown-item">Protocol Documentation</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Coretransfer <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../coretransfer/api-doc/" class="dropdown-item">Protocol Documentation</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Interac <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../interac/api-doc/" class="dropdown-item">Protocol Documentation</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Onboarding <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Protocol Documentation</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Persfinmngt <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../persfinmngt/api-doc/" class="dropdown-item">Protocol Documentation</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Referencedata <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../referencedata/api-doc/" class="dropdown-item">Protocol Documentation</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../interac/api-doc/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../persfinmngt/api-doc/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#protocol-documentation" class="nav-link">Protocol Documentation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#table-of-contents" class="nav-link">Table of Contents</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#onboarding_v1proto" class="nav-link">onboarding_v1.proto</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#onboarding_v1_fileuploadproto" class="nav-link">onboarding_v1_fileupload.proto</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#scalar-value-types" class="nav-link">Scalar Value Types</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="protocol-documentation">Protocol Documentation</h1>
+<p><a name="top"></a></p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li>
+<p><a href="#onboarding_v1.proto">onboarding_v1.proto</a></p>
+<ul>
+<li><a href="#thebaasco.tenant.onboarding.v1.AcceptApplicationRequest">AcceptApplicationRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.AcceptApplicationResponse">AcceptApplicationResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.AccountUsageDetails">AccountUsageDetails</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.Address">Address</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.Consent">Consent</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.ContactDetails">ContactDetails</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.CustomerResidency">CustomerResidency</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.Disclosure">Disclosure</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.DocumentInfo">DocumentInfo</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.Employment">Employment</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateCustomerRequest">FinalizeApplicationCreateCustomerRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateCustomerResponse">FinalizeApplicationCreateCustomerResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateProductRequest">FinalizeApplicationCreateProductRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateProductResponse">FinalizeApplicationCreateProductResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.GetApplicationStatusRequest">GetApplicationStatusRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.GetApplicationStatusResponse">GetApplicationStatusResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.InitiateApplicationRequest">InitiateApplicationRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.InitiateApplicationResponse">InitiateApplicationResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.OnboardedProduct">OnboardedProduct</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.OnboardingApplication">OnboardingApplication</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.OnboardingApplicationCustomerOnboardedEvent">OnboardingApplicationCustomerOnboardedEvent</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.OnboardingApplicationDataConfirmedEvent">OnboardingApplicationDataConfirmedEvent</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.OnboardingApplicationProductOnboardedEvent">OnboardingApplicationProductOnboardedEvent</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.OtherResidence">OtherResidence</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.PersonalDetails">PersonalDetails</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateAccountDetailsRequest">UpdateAccountDetailsRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateAccountDetailsResponse">UpdateAccountDetailsResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateAddressesRequest">UpdateAddressesRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateAddressesResponse">UpdateAddressesResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateCommunicationPreferencesRequest">UpdateCommunicationPreferencesRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateCommunicationPreferencesResponse">UpdateCommunicationPreferencesResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateConsentsRequest">UpdateConsentsRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateConsentsResponse">UpdateConsentsResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateContactDetailsRequest">UpdateContactDetailsRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateContactDetailsResponse">UpdateContactDetailsResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateCustomerResidencyRequest">UpdateCustomerResidencyRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateCustomerResidencyResponse">UpdateCustomerResidencyResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateDisclosuresRequest">UpdateDisclosuresRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateDisclosuresResponse">UpdateDisclosuresResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateEmploymentRequest">UpdateEmploymentRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdateEmploymentResponse">UpdateEmploymentResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdatePersonalDetailsRequest">UpdatePersonalDetailsRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.UpdatePersonalDetailsResponse">UpdatePersonalDetailsResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.ValidateApplicationRequest">ValidateApplicationRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.ValidateApplicationResponse">ValidateApplicationResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.ValidateDocumentsRequest">ValidateDocumentsRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.ValidateDocumentsResponse">ValidateDocumentsResponse</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.ValidateSelfieRequest">ValidateSelfieRequest</a></li>
+<li>
+<p><a href="#thebaasco.tenant.onboarding.v1.ValidateSelfieResponse">ValidateSelfieResponse</a></p>
+</li>
+<li>
+<p><a href="#thebaasco.tenant.onboarding.v1.Onboarding">Onboarding</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="#onboarding_v1_fileupload.proto">onboarding_v1_fileupload.proto</a></p>
+<ul>
+<li><a href="#thebaasco.tenant.onboarding.v1.CreateFileUploadUrlRequest">CreateFileUploadUrlRequest</a></li>
+<li><a href="#thebaasco.tenant.onboarding.v1.CreateFileUploadUrlResponse">CreateFileUploadUrlResponse</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#scalar-value-types">Scalar Value Types</a></p>
+</li>
+</ul>
+<p><a name="onboarding_v1.proto"></a></p>
+<p align="right"><a href="#top">Top</a></p>
+
+<h2 id="onboarding_v1proto">onboarding_v1.proto</h2>
+<p><a name="thebaasco.tenant.onboarding.v1.AcceptApplicationRequest"></a></p>
+<h3 id="acceptapplicationrequest">AcceptApplicationRequest</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.AcceptApplicationResponse"></a></p>
+<h3 id="acceptapplicationresponse">AcceptApplicationResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.AccountUsageDetails"></a></p>
+<h3 id="accountusagedetails">AccountUsageDetails</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_purpose</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Required, &#34;Accepted values are defined at https://thebaasco.atlassian.net/browse/PB-706&#34;</td>
+</tr>
+<tr>
+<td>primary_source_of_funds</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td>required, Accepted Values are here – https://thebaasco.atlassian.net/browse/PB-707&#34;</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.Address"></a></p>
+<h3 id="address">Address</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Required, HOME or WORK. Will be validated based on reference data values</td>
+</tr>
+<tr>
+<td>organization</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>line_1</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>line_2</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>line_3</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>line_4</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>line_5</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>line_6</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>line_7</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>line_8</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>locality</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>City</td>
+</tr>
+<tr>
+<td>dependent_locality</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>double_dependent_locality</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>administrative_area</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sub_administrative_area</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>area</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>State</td>
+</tr>
+<tr>
+<td>postal_code</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>country</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.Consent"></a></p>
+<h3 id="consent">Consent</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>consent_type</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Required, &#34;values for each consent type here - https://thebaasco.atlassian.net/browse/PB-741&#34;</td>
+</tr>
+<tr>
+<td>consent_timestamp</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>document_name_and_version</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Required, URL, Somehow we must store the document version of each type of consent</td>
+</tr>
+<tr>
+<td>view_timestamp</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ContactDetails"></a></p>
+<h3 id="contactdetails">ContactDetails</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>phone_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customer_email</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>required, should reject if Email&#39; field does not contain &#39;@&#39;, &#39;.com&#39;, &#39;.biz’, &#39;.ca&#39; or any other type of standard email format</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.CustomerResidency"></a></p>
+<h3 id="customerresidency">CustomerResidency</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>is_canadian_tax_resident</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td>Are you resident of Canada?</td>
+</tr>
+<tr>
+<td>other_residences</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OtherResidence">OtherResidence</a></td>
+<td>repeated</td>
+<td>US PB-705</td>
+</tr>
+<tr>
+<td>sin_token</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Allow empty and only store UUID token to avoid storing PII</td>
+</tr>
+<tr>
+<td>citizenship</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>US PB-703 - select</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.Disclosure"></a></p>
+<h3 id="disclosure">Disclosure</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>disclosure_type</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>required, &#34;Enumerated values https://thebaasco.atlassian.net/browse/PB-745&#34;</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>document_name_and_version</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.DocumentInfo"></a></p>
+<h3 id="documentinfo">DocumentInfo</h3>
+<p>Request/Response Messages</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>document_type</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>document_country</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>front_image_file_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Google cloud storage file name; max image size for Acuant has to be &lt;4MB.</td>
+</tr>
+<tr>
+<td>back_image_file_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Google cloud storage file name; max image size for Acuant has to be &lt;4MB.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.Employment"></a></p>
+<h3 id="employment">Employment</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>employment_status</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>required: &#34; Values defined here – https://thebaasco.atlassian.net/browse/PB-645&#34;</td>
+</tr>
+<tr>
+<td>employer_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Required for 0-2 status , length 50, sql injection validation/policies</td>
+</tr>
+<tr>
+<td>industry</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Required for 0-2 status</td>
+</tr>
+<tr>
+<td>occupation</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>startDate</td>
+<td><a href="#google.type.Date">google.type.Date</a></td>
+<td></td>
+<td>format Month/year</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td><a href="#google.type.Date">google.type.Date</a></td>
+<td></td>
+<td>format Month/year</td>
+</tr>
+<tr>
+<td>work_address</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Address">Address</a></td>
+<td></td>
+<td>Required for 0-2 status</td>
+</tr>
+<tr>
+<td>work_phone_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Required for 0-2</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateCustomerRequest"></a></p>
+<h3 id="finalizeapplicationcreatecustomerrequest">FinalizeApplicationCreateCustomerRequest</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateCustomerResponse"></a></p>
+<h3 id="finalizeapplicationcreatecustomerresponse">FinalizeApplicationCreateCustomerResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateProductRequest"></a></p>
+<h3 id="finalizeapplicationcreateproductrequest">FinalizeApplicationCreateProductRequest</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateProductResponse"></a></p>
+<h3 id="finalizeapplicationcreateproductresponse">FinalizeApplicationCreateProductResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>products</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardedProduct">OnboardedProduct</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.GetApplicationStatusRequest"></a></p>
+<h3 id="getapplicationstatusrequest">GetApplicationStatusRequest</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.GetApplicationStatusResponse"></a></p>
+<h3 id="getapplicationstatusresponse">GetApplicationStatusResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.InitiateApplicationRequest"></a></p>
+<h3 id="initiateapplicationrequest">InitiateApplicationRequest</h3>
+<p>InitiateApplication</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>customer_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bundle_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.InitiateApplicationResponse"></a></p>
+<h3 id="initiateapplicationresponse">InitiateApplicationResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardedProduct"></a></p>
+<h3 id="onboardedproduct">OnboardedProduct</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>product_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>source_domain</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingApplication"></a></p>
+<h3 id="onboardingapplication">OnboardingApplication</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bundle_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customer_personal_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.PersonalDetails">PersonalDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customer_contact_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.ContactDetails">ContactDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>account_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.AccountUsageDetails">AccountUsageDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customer_employment</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Employment">Employment</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+<tr>
+<td>customer_residency</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.CustomerResidency">CustomerResidency</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>consents</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Consent">Consent</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+<tr>
+<td>disclosures</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Disclosure">Disclosure</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+<tr>
+<td>customer_residence_address</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Address">Address</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+<tr>
+<td>customer_identification_documents</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.DocumentInfo">DocumentInfo</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+<tr>
+<td>customer_communication_pref</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationCustomerOnboardedEvent"></a></p>
+<h3 id="onboardingapplicationcustomeronboardedevent">OnboardingApplicationCustomerOnboardedEvent</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationDataConfirmedEvent"></a></p>
+<h3 id="onboardingapplicationdataconfirmedevent">OnboardingApplicationDataConfirmedEvent</h3>
+<p>This event is emitted once a new customer is onboarded. As part of PB-3330, this
+event will also be emitted when onboarding a new product for an existing customer</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>application</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingApplication">OnboardingApplication</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationProductOnboardedEvent"></a></p>
+<h3 id="onboardingapplicationproductonboardedevent">OnboardingApplicationProductOnboardedEvent</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>products</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardedProduct">OnboardedProduct</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails"></a></p>
+<h3 id="onboardingoperationresponsedetails">OnboardingOperationResponseDetails</h3>
+<p>Generic Create/Update message type</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>onboarding_application_status</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>request_status</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>request_status_reason</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>is_retry_operation_restricted</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>remaining_allowed_retries</td>
+<td><a href="#int64">int64</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OtherResidence"></a></p>
+<h3 id="otherresidence">OtherResidence</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>other_residence_country</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tin_token</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Allow empty and only store UUID token to avoid storing PII</td>
+</tr>
+<tr>
+<td>citizenship</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Required if us or canada</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.PersonalDetails"></a></p>
+<h3 id="personaldetails">PersonalDetails</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>first_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>required maxlen=50 AN characters, hyphen (-), apostrophe, (&#39;), French accents, numbers (0-9)</td>
+</tr>
+<tr>
+<td>middle_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>not required maxlen=50 AN characters, hyphen (-), apostrophe, (&#39;), French accents, numbers (0-9)</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>required maxlen=50 AN characters, hyphen (-), apostrophe, (&#39;), French accents, numbers (0-9)</td>
+</tr>
+<tr>
+<td>date_of_birth</td>
+<td><a href="#google.type.Date">google.type.Date</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateAccountDetailsRequest"></a></p>
+<h3 id="updateaccountdetailsrequest">UpdateAccountDetailsRequest</h3>
+<p>UpdateAccountDetails</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>account_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.AccountUsageDetails">AccountUsageDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateAccountDetailsResponse"></a></p>
+<h3 id="updateaccountdetailsresponse">UpdateAccountDetailsResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateAddressesRequest"></a></p>
+<h3 id="updateaddressesrequest">UpdateAddressesRequest</h3>
+<p>UpdateAddresses</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>addresses</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Address">Address</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateAddressesResponse"></a></p>
+<h3 id="updateaddressesresponse">UpdateAddressesResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateCommunicationPreferencesRequest"></a></p>
+<h3 id="updatecommunicationpreferencesrequest">UpdateCommunicationPreferencesRequest</h3>
+<p>UpdateCommunicationPreferences</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customer_communication_pref</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateCommunicationPreferencesResponse"></a></p>
+<h3 id="updatecommunicationpreferencesresponse">UpdateCommunicationPreferencesResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateConsentsRequest"></a></p>
+<h3 id="updateconsentsrequest">UpdateConsentsRequest</h3>
+<p>UpdateConsents</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>consents</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Consent">Consent</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateConsentsResponse"></a></p>
+<h3 id="updateconsentsresponse">UpdateConsentsResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateContactDetailsRequest"></a></p>
+<h3 id="updatecontactdetailsrequest">UpdateContactDetailsRequest</h3>
+<p>UpdateContactDetails</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customer_contact_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.ContactDetails">ContactDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateContactDetailsResponse"></a></p>
+<h3 id="updatecontactdetailsresponse">UpdateContactDetailsResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateCustomerResidencyRequest"></a></p>
+<h3 id="updatecustomerresidencyrequest">UpdateCustomerResidencyRequest</h3>
+<p>UpdateCustomerResidency</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>residency</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.CustomerResidency">CustomerResidency</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateCustomerResidencyResponse"></a></p>
+<h3 id="updatecustomerresidencyresponse">UpdateCustomerResidencyResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateDisclosuresRequest"></a></p>
+<h3 id="updatedisclosuresrequest">UpdateDisclosuresRequest</h3>
+<p>UpdateDisclosures</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>disclosures</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Disclosure">Disclosure</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateDisclosuresResponse"></a></p>
+<h3 id="updatedisclosuresresponse">UpdateDisclosuresResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateEmploymentRequest"></a></p>
+<h3 id="updateemploymentrequest">UpdateEmploymentRequest</h3>
+<p>UpdateEmployment</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>employment_info</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Employment">Employment</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateEmploymentResponse"></a></p>
+<h3 id="updateemploymentresponse">UpdateEmploymentResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdatePersonalDetailsRequest"></a></p>
+<h3 id="updatepersonaldetailsrequest">UpdatePersonalDetailsRequest</h3>
+<p>UpdatePersonalDetails</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>customer_personal_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.PersonalDetails">PersonalDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdatePersonalDetailsResponse"></a></p>
+<h3 id="updatepersonaldetailsresponse">UpdatePersonalDetailsResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ValidateApplicationRequest"></a></p>
+<h3 id="validateapplicationrequest">ValidateApplicationRequest</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ValidateApplicationResponse"></a></p>
+<h3 id="validateapplicationresponse">ValidateApplicationResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ValidateDocumentsRequest"></a></p>
+<h3 id="validatedocumentsrequest">ValidateDocumentsRequest</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>document_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.DocumentInfo">DocumentInfo</a></td>
+<td>repeated</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ValidateDocumentsResponse"></a></p>
+<h3 id="validatedocumentsresponse">ValidateDocumentsResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ValidateSelfieRequest"></a></p>
+<h3 id="validateselfierequest">ValidateSelfieRequest</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>file_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ValidateSelfieResponse"></a></p>
+<h3 id="validateselfieresponse">ValidateSelfieResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.Onboarding"></a></p>
+<h3 id="onboarding">Onboarding</h3>
+<p>Service Operations</p>
+<table>
+<thead>
+<tr>
+<th>Method Name</th>
+<th>Request Type</th>
+<th>Response Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GetApplicationStatus</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.GetApplicationStatusRequest">GetApplicationStatusRequest</a></td>
+<td><a href="#thebaasco.tenant.onboarding.v1.GetApplicationStatusResponse">GetApplicationStatusResponse</a></td>
+<td>In order to support non-authenticated users&#39; interrupted sessions, this method will return app ID and status of the application</td>
+</tr>
+<tr>
+<td>CreateFileUploadURL</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.CreateFileUploadUrlRequest">CreateFileUploadUrlRequest</a></td>
+<td><a href="#thebaasco.tenant.onboarding.v1.CreateFileUploadUrlResponse">CreateFileUploadUrlResponse</a></td>
+<td>CreateFileUploadUrl is used as an initial step for the upload of a customer KYC document 1. The UI will call this operation to generate upload-ready url for each file needed 2. The UI will perform the upload of each file 3. The UI will call UploadValidateDocument including file_name of each document along with its corresponding meta-data filename will be used to match the document&#39;s meta-data with the uploaded content in step 2</td>
+</tr>
+</tbody>
+</table>
+<p><a name="onboarding_v1_fileupload.proto"></a></p>
+<p align="right"><a href="#top">Top</a></p>
+
+<h2 id="onboarding_v1_fileuploadproto">onboarding_v1_fileupload.proto</h2>
+<p><a name="thebaasco.tenant.onboarding.v1.CreateFileUploadUrlRequest"></a></p>
+<h3 id="createfileuploadurlrequest">CreateFileUploadUrlRequest</h3>
+<p>CreateFileUploadUrlRequest is used to ask the server for a url to use for file upload
+The urls are expected to be ready to use for file uploads, different mechanisms could be used to that end e.g. signed urls in GCS</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.CreateFileUploadUrlResponse"></a></p>
+<h3 id="createfileuploadurlresponse">CreateFileUploadUrlResponse</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filename</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>upload_url</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="scalar-value-types">Scalar Value Types</h2>
+<table>
+<thead>
+<tr>
+<th>.proto Type</th>
+<th>Notes</th>
+<th>C++</th>
+<th>Java</th>
+<th>Python</th>
+<th>Go</th>
+<th>C#</th>
+<th>PHP</th>
+<th>Ruby</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a name="double" /> double</td>
+<td></td>
+<td>double</td>
+<td>double</td>
+<td>float</td>
+<td>float64</td>
+<td>double</td>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td><a name="float" /> float</td>
+<td></td>
+<td>float</td>
+<td>float</td>
+<td>float</td>
+<td>float32</td>
+<td>float</td>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td><a name="int32" /> int32</td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="int64" /> int64</td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="uint32" /> uint32</td>
+<td>Uses variable-length encoding.</td>
+<td>uint32</td>
+<td>int</td>
+<td>int/long</td>
+<td>uint32</td>
+<td>uint</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="uint64" /> uint64</td>
+<td>Uses variable-length encoding.</td>
+<td>uint64</td>
+<td>long</td>
+<td>int/long</td>
+<td>uint64</td>
+<td>ulong</td>
+<td>integer/string</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sint32" /> sint32</td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sint64" /> sint64</td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="fixed32" /> fixed32</td>
+<td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+<td>uint32</td>
+<td>int</td>
+<td>int</td>
+<td>uint32</td>
+<td>uint</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="fixed64" /> fixed64</td>
+<td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+<td>uint64</td>
+<td>long</td>
+<td>int/long</td>
+<td>uint64</td>
+<td>ulong</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="sfixed32" /> sfixed32</td>
+<td>Always four bytes.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sfixed64" /> sfixed64</td>
+<td>Always eight bytes.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="bool" /> bool</td>
+<td></td>
+<td>bool</td>
+<td>boolean</td>
+<td>boolean</td>
+<td>bool</td>
+<td>bool</td>
+<td>boolean</td>
+<td>TrueClass/FalseClass</td>
+</tr>
+<tr>
+<td><a name="string" /> string</td>
+<td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+<td>string</td>
+<td>String</td>
+<td>str/unicode</td>
+<td>string</td>
+<td>string</td>
+<td>string</td>
+<td>String (UTF-8)</td>
+</tr>
+<tr>
+<td><a name="bytes" /> bytes</td>
+<td>May contain any arbitrary sequence of bytes.</td>
+<td>string</td>
+<td>ByteString</td>
+<td>str</td>
+<td>[]byte</td>
+<td>ByteString</td>
+<td>string</td>
+<td>String (ASCII-8BIT)</td>
+</tr>
+</tbody>
+</table></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

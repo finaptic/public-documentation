@@ -1,0 +1,387 @@
+syntax = "proto3";
+
+package thebaasco.tenant.onboarding.v1;
+option go_package = "proto/tenant/onboarding/v1";
+import "validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
+import "types/options.proto";
+import "onboarding_v1_fileupload.proto";
+
+
+message Address{
+  string type = 1 [(validate.rules).string.min_len = 1]; // Required, HOME or WORK. Will be validated based on reference data values
+  string organization = 2 [(validate.rules).string = {ignore_empty: true, max_len: 300}]; 
+  string line_1 = 3 [(validate.rules).string = {min_len : 1, max_len: 300}];
+  string line_2 = 4 [(validate.rules).string = {ignore_empty: true, max_len: 300}];
+  string line_3 = 5 [(validate.rules).string = {ignore_empty: true, max_len: 300}];
+  string line_4 = 6 [(validate.rules).string = {ignore_empty: true, max_len: 300}];
+  string line_5 = 7 [(validate.rules).string = {ignore_empty: true, max_len: 300}];
+  string line_6 = 8 [(validate.rules).string = {ignore_empty: true, max_len: 300}];
+  string line_7 = 9 [(validate.rules).string = {ignore_empty: true, max_len: 300}];
+  string line_8 = 10 [(validate.rules).string = {ignore_empty: true, max_len: 300}];
+  string locality = 11 [(validate.rules).string = {ignore_empty: true, max_len: 150}]; // City
+  string dependent_locality = 12 [(validate.rules).string = {ignore_empty: true,max_len: 150}];
+  string double_dependent_locality = 13 [(validate.rules).string = {ignore_empty: true,max_len: 150}];
+  string administrative_area = 14 [(validate.rules).string = {ignore_empty: true,max_len: 150}];
+  string sub_administrative_area =15 [(validate.rules).string = {ignore_empty: true,max_len: 150}];
+  string area = 16 [(validate.rules).string = {min_len: 1, max_len: 150}]; // State
+  string postal_code = 17 [(validate.rules).string = {min_len: 1, max_len: 150}];
+  string country = 18 [(validate.rules).string = {min_len: 1, max_len: 50}];
+}
+
+
+message Employment{
+  string employment_status = 1 [(validate.rules).string.min_len = 1]; // required: " Values defined here –    https://thebaasco.atlassian.net/browse/PB-645"
+  string employer_name = 2 [(validate.rules).string = {ignore_empty: true, max_len: 50}]; // Required for 0-2 status , length 50, sql injection validation/policies
+  string industry = 3 [(validate.rules).string = {ignore_empty: true, max_len: 50}];  // Required for 0-2 status
+  string occupation = 4 [(validate.rules).string = {ignore_empty: true, max_len: 50}];
+  google.type.Date startDate = 5 ; // format Month/year
+  google.type.Date endDate = 6; // format Month/year
+  Address work_address = 7; //Required for 0-2 status
+  string work_phone_number = 8 [(validate.rules).string = { ignore_empty: true, pattern: '\\+(9[976]\\d|8[987530]\\d|6[987]\\d|5[90]\\d|42\\d|3[875]\\d|2[98654321]\\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\\d{1,14}$' }]; //Required for 0-2
+}
+
+message CustomerResidency {
+  bool is_canadian_tax_resident = 1; // Are you resident of Canada?
+  repeated OtherResidence other_residences = 2; //US PB-705
+  string sin_token = 3 [(validate.rules).string = {ignore_empty: true, uuid: true}]; // Allow empty and only store UUID token to avoid storing PII
+  string citizenship = 4; // US PB-703 - select
+}
+
+message OtherResidence{
+  string other_residence_country = 1 [(validate.rules).string = {max_len: 50}];
+  string tin_token = 2 [(validate.rules).string = {ignore_empty: true, uuid: true}]; // Allow empty and only store UUID token to avoid storing PII
+  string citizenship = 3 [(validate.rules).string = {ignore_empty: true,max_len: 50}]; // Required if us or canada
+}
+
+message Consent{
+  string consent_type = 1 [(validate.rules).string.min_len = 1]; // Required, "values for each consent type here - https://thebaasco.atlassian.net/browse/PB-741"
+  google.protobuf.Timestamp consent_timestamp = 2 [(validate.rules).timestamp.required = true]; 
+  string document_name_and_version = 3 [(validate.rules).string.uri = true]; // Required, URL, Somehow we must store the document version of each type of consent
+  google.protobuf.Timestamp view_timestamp = 4 [(validate.rules).timestamp.required = true]; 
+}
+
+message Disclosure{
+  string disclosure_type = 1 [(validate.rules).string.min_len = 1]; //required, "Enumerated values  https://thebaasco.atlassian.net/browse/PB-745"
+  google.protobuf.Timestamp timestamp = 2 [(validate.rules).timestamp.required = true]; 
+  string document_name_and_version = 3 [(validate.rules).string.uri = true]; 
+}
+
+message PersonalDetails {
+  string first_name = 1 [(validate.rules).string = {min_len: 1, max_len: 50}]; //required maxlen=50 AN characters, hyphen (-), apostrophe, ('), French accents, numbers (0-9)
+  string middle_name = 2 [(validate.rules).string = {ignore_empty: true, max_len: 50}]; // not required maxlen=50 AN characters, hyphen (-), apostrophe, ('), French accents, numbers (0-9)
+  string last_name = 3 [(validate.rules).string = {min_len: 1, max_len: 50}]; //required maxlen=50 AN characters, hyphen (-), apostrophe, ('), French accents, numbers (0-9)
+  google.type.Date date_of_birth = 4;
+}
+
+message AccountUsageDetails {
+  string account_purpose = 1 [(validate.rules).string.min_len = 1]; // Required, "Accepted values are defined  at    https://thebaasco.atlassian.net/browse/PB-706"
+  repeated string primary_source_of_funds = 2 [(validate.rules).repeated = {min_items: 1, items: {string: {min_len: 1}}}]; // required, Accepted Values are here –    https://thebaasco.atlassian.net/browse/PB-707"
+}
+
+message ContactDetails {
+  string phone_number = 1 [(validate.rules).string = { ignore_empty: true, pattern: '\\+(9[976]\\d|8[987530]\\d|6[987]\\d|5[90]\\d|42\\d|3[875]\\d|2[98654321]\\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\\d{1,14}$' }];
+  string customer_email = 2 [(validate.rules).string.email = true]; // required, should reject if Email' field does not contain '@', '.com', '.biz’, '.ca' or any other type of standard email format
+}
+
+message OnboardingApplication {
+  string application_id = 1 [(validate.rules).string.uuid = true];
+  string customer_id = 2 [(validate.rules).string.uuid = true];
+  string bundle_id = 3 [(validate.rules).string.min_len = 1];
+  string status = 4 [(validate.rules).string.min_len = 1]; 
+  PersonalDetails customer_personal_details = 5;
+  ContactDetails customer_contact_details = 6;
+  AccountUsageDetails account_details = 7;
+  repeated Employment customer_employment = 8;
+  CustomerResidency customer_residency = 9 [(validate.rules).message.required = true];
+  repeated Consent consents = 10 [(validate.rules).repeated.min_items = 1];  
+  repeated Disclosure disclosures = 11;
+  repeated Address customer_residence_address = 12;
+  repeated DocumentInfo customer_identification_documents =13;
+  string customer_communication_pref = 14;
+}
+
+/*******************************************
+        Request/Response Messages
+********************************************/
+message DocumentInfo {
+  string document_type = 1 [(validate.rules).string.min_len = 1];   
+  string document_country = 2 [(validate.rules).string.min_len = 1]; 
+  string front_image_file_name = 3 [(validate.rules).string.min_len = 1]; // Google cloud storage file name; max image size for Acuant has to be <4MB.
+  string back_image_file_name = 4 [(validate.rules).string = {ignore_empty: true, min_len: 1}]; // Google cloud storage file name; max image size for Acuant has to be <4MB.
+}
+
+//Generic Create/Update message type
+message OnboardingOperationResponseDetails {
+  string application_id = 1 [(validate.rules).string.uuid = true];
+  string onboarding_application_status = 2 [(validate.rules).string.min_len = 1];
+  string request_status = 3 [(validate.rules).string.min_len = 1];
+  string request_status_reason = 4 [(validate.rules).string.min_len = 1];
+  bool is_retry_operation_restricted = 5;
+  int64 remaining_allowed_retries = 6 [(validate.rules).int64.gte = 0];
+}
+
+//InitiateApplication
+message InitiateApplicationRequest {
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.initiate-application-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.initiate-application-response";
+
+  string customer_id = 1 [(validate.rules).string = {ignore_empty: true, uuid: true}];
+  string bundle_id = 2 [(validate.rules).string = {ignore_empty: true, min_len: 1}];
+}
+message InitiateApplicationResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+//UpdatePersonalDetails
+message UpdatePersonalDetailsRequest {
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.update-personal-details-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.update-personal-details-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+  PersonalDetails customer_personal_details = 2  [(validate.rules).message.required = true];
+}
+message UpdatePersonalDetailsResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+//UpdateContactDetails
+message UpdateContactDetailsRequest {
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.update-contact-details-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.update-contact-details-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+  ContactDetails customer_contact_details = 2  [(validate.rules).message.required = true];
+}
+message UpdateContactDetailsResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+//UpdateAccountDetails
+message UpdateAccountDetailsRequest {
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.update-account-details-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.update-account-details-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+  AccountUsageDetails account_details = 2  [(validate.rules).message.required = true];
+}
+message UpdateAccountDetailsResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+//UpdateEmployment
+message UpdateEmploymentRequest {
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.update-employment-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.update-employment-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+  Employment employment_info = 2  [(validate.rules).message.required = true];
+}
+message UpdateEmploymentResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+//UpdateCustomerResidency
+message UpdateCustomerResidencyRequest {
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.update-customer-residency-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.update-customer-residency-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+  CustomerResidency residency = 2 [(validate.rules).message.required = true];
+}
+message UpdateCustomerResidencyResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+//UpdateConsents
+message UpdateConsentsRequest {
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.update-consents-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.update-consents-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+  repeated Consent consents = 2 [(validate.rules).repeated.min_items = 1];
+}
+message UpdateConsentsResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+//UpdateDisclosures
+message UpdateDisclosuresRequest {
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.update-disclosures-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.update-disclosures-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+  repeated Disclosure disclosures = 2 [(validate.rules).repeated.min_items = 1];
+}
+message UpdateDisclosuresResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+//UpdateAddresses
+message UpdateAddressesRequest {
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.update-addresses-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.update-addresses-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+  repeated Address addresses = 2 [(validate.rules).repeated.min_items = 1];
+}
+message UpdateAddressesResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+//UpdateCommunicationPreferences
+message UpdateCommunicationPreferencesRequest {
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.update-communication-preferences-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.update-communication-preferences-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+  string customer_communication_pref = 2 [(validate.rules).string.min_len = 1];
+}
+message UpdateCommunicationPreferencesResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+message ValidateDocumentsRequest {
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.validate-documents-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.validate-documents-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+  repeated DocumentInfo document_details = 2 [(validate.rules).repeated.min_items = 1];
+}
+
+message ValidateSelfieRequest{
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.validate-selfie-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.validate-selfie-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+  string file_name = 2 [(validate.rules).string.min_len = 1];
+}
+
+message ValidateApplicationRequest{
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.validate-application-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.validate-application-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+}
+
+message ValidateDocumentsResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+message ValidateSelfieResponse {
+  OnboardingOperationResponseDetails basic_details =1 [(validate.rules).message.required = true];
+}
+
+message ValidateApplicationResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+message AcceptApplicationRequest{
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.accept-application-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.accept-application-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+}
+message AcceptApplicationResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+message FinalizeApplicationCreateCustomerRequest{
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.create-customer-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.create-customer-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+}
+message FinalizeApplicationCreateCustomerResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+  string customer_id = 2[(validate.rules).string.uuid = true];
+}
+
+message FinalizeApplicationCreateProductRequest{
+
+  option (thebaasco.types.topic) = "thebaasco.onboarding.create-product-command";
+  option (thebaasco.types.response_topic) = "thebaasco.onboarding.create-product-response";
+
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+}
+message FinalizeApplicationCreateProductResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+  repeated OnboardedProduct products = 2 [(validate.rules).repeated.min_items = 1];
+}
+
+message GetApplicationStatusRequest {
+  string application_id = 1 [(validate.rules).string.uuid = true];
+}
+
+message GetApplicationStatusResponse {
+  OnboardingOperationResponseDetails basic_details = 1 [(validate.rules).message.required = true];
+}
+
+message OnboardingApplicationCustomerOnboardedEvent {
+  option (thebaasco.types.topic) = "thebaasco.onboarding.application-customer-onboarded";
+
+  string event_id=1 [(validate.rules).string.min_len = 1];
+  string application_id=2 [(validate.rules).string.uuid = true];
+  int32 tenant_id = 4[(validate.rules).int32 = {gte: 1, lte: 9999}];
+  google.protobuf.Timestamp event_time = 5 [(validate.rules).timestamp.required = true];
+}
+
+message OnboardedProduct {
+  string product_id=2 [(validate.rules).string.uuid = true];
+  string source_domain=3 [(validate.rules).string.min_len = 1];
+}
+
+message OnboardingApplicationProductOnboardedEvent {
+  option (thebaasco.types.topic) = "thebaasco.onboarding.application-product-onboarded";
+
+  string event_id=1 [(validate.rules).string.min_len = 1];
+  string application_id=2 [(validate.rules).string.uuid = true];
+  repeated OnboardedProduct products=3 [(validate.rules).repeated.min_items = 1];
+  int32 tenant_id=4[(validate.rules).int32 = {gte: 1, lte: 9999}];
+  google.protobuf.Timestamp event_time=5[(validate.rules).timestamp.required = true];
+}
+
+
+// This event is emitted once a new customer is onboarded. As part of PB-3330, this
+// event will also be emitted when onboarding a new product for an existing customer
+message OnboardingApplicationDataConfirmedEvent {
+  option (thebaasco.types.topic) = "thebaasco.onboarding.application-data-confirmed";
+
+  string event_id=1 [(validate.rules).string.min_len = 1];
+  OnboardingApplication application=2 [(validate.rules).message.required = true];
+  int32 tenant_id=3[(validate.rules).int32 = {gte: 1, lte: 9999}];
+  google.protobuf.Timestamp event_time=4 [(validate.rules).timestamp.required = true];
+}
+
+/*
+  Service Operations
+ */
+service Onboarding{
+  //In order to support non-authenticated users' interrupted sessions, this method will return app ID and status of the application
+  rpc GetApplicationStatus(GetApplicationStatusRequest) returns (GetApplicationStatusResponse){
+  }
+
+  //CreateFileUploadUrl is used as an initial step for the upload of a customer KYC document
+  //1. The UI will call this operation to generate upload-ready url for each file needed
+  //2. The UI will perform the upload of each file
+  //3. The UI will call UploadValidateDocument including file_name of each document along with its corresponding meta-data
+  // filename will be used to match the document's meta-data with the uploaded content in step 2
+  rpc CreateFileUploadURL (CreateFileUploadUrlRequest) returns (CreateFileUploadUrlResponse) {
+  }
+}

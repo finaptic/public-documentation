@@ -1,0 +1,46 @@
+syntax = "proto3";
+package thebaasco.tenant.coretransfer.v1;
+
+import "validate/validate.proto";
+import "types/options.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "proto/tenant/coretransfer/v1";
+
+service Routing {
+  rpc GetAccountRouting(GetAccountRoutingRequest) returns (AccountRouting) {
+
+  }
+};
+
+message GetAccountRoutingRequest {
+  string account_id = 1[(validate.rules).string.uuid = true];
+}
+
+message CreateAccountRoutingRequest {
+  option (thebaasco.types.topic) = "thebaasco.core-transfer.create-account-routing-info-command";
+  option (thebaasco.types.response_topic) = "thebaasco.core-transfer.create-account-routing-info-response";
+
+  string account_id = 1[(validate.rules).string.uuid = true];
+}
+
+message CreateAccountRoutingResponse {
+  string account_id = 1[(validate.rules).string.uuid = true];
+  AccountRouting account_routing = 2[(validate.rules).message.required = true];
+}
+
+message AccountRoutingLinkedEvent {
+  option (thebaasco.types.topic) = "thebaasco.core-transfer.account-routing-info-linked-event";
+
+  string event_id = 1[(validate.rules).string.uuid = true];
+  string account_id = 2[(validate.rules).string.uuid = true];
+  AccountRouting account_routing = 3[(validate.rules).message.required = true];
+  int32 tenant_id = 4[(validate.rules).int32 = {gte: 1, lte: 9999}];
+  google.protobuf.Timestamp account_routing_linked_time = 5[(validate.rules).timestamp.required = true];
+}
+
+message AccountRouting {
+  int32 transit_number = 1 [(validate.rules).int32 = {gte: 1, lte: 99999}];
+  int32 institution_number = 2 [(validate.rules).int32 = {gte: 1, lte: 999}];
+  int64 account_number = 3 [(validate.rules).int64 = {gte: 1, lte: 999999999999}];
+}

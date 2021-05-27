@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package thebaasco.tenant.onboarding.v1;
+
+option go_package = "proto/tenant/onboarding/v1";
+
+import "validate/validate.proto";
+
+//CreateFileUploadUrlRequest is used to ask the server for a url to use for file upload
+//The urls are expected to be ready to use for file uploads, different mechanisms could be used to that end e.g. signed urls in GCS
+message CreateFileUploadUrlRequest {
+  string onboarding_application_id = 1 [(validate.rules).string.uuid = true];
+}
+
+message CreateFileUploadUrlResponse {
+  string filename = 1 [(validate.rules).string.min_len = 1];
+  string upload_url = 2 [(validate.rules).string.uri = true];
+}

@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package thebaasco.tenant.interac.v1;
+
+option go_package = "proto/tenant/interac/v1";
+
+import "validate/validate.proto";
+import "google/protobuf/timestamp.proto";
+import "types/options.proto";
+
+message CreateRegistrationRequest {
+  option (thebaasco.types.topic) = "thebaasco.tenant.interac.create-registration";
+  option (thebaasco.types.response_topic) = "thebaasco.tenant.interac.create-registration-response";
+  Registration registration = 1[(validate.rules).message.required = true];
+}
+
+message CreateRegistrationResponse {
+  Registration registration = 1[(validate.rules).message.required = true];
+}
+
+message Registration {
+  //Output only
+  string registration_id = 1;
+  //Output only. Alias cannot be used passed this timestamp
+  google.protobuf.Timestamp expiry_date = 2;
+  string account_id = 3[(validate.rules).string.uuid = true];
+  oneof account_alias {
+    string alias_email = 4 [(validate.rules).string.email = true];
+    PhoneNumber alias_phone_number = 5;
+  }
+}
+
+message InteracRegistrationCompletedEvent {
+  string event_id = 1[(validate.rules).string.uuid = true];
+  string registration_id = 2 [(validate.rules).string.uuid = true];
+  string individual_party_id = 3 [(validate.rules).string.uuid = true];
+  google.protobuf.Timestamp expiry_date = 4;
+  string account_id = 5[(validate.rules).string.uuid = true];
+  oneof account_alias {
+    string alias_email = 6 [(validate.rules).string.email = true];
+    PhoneNumber alias_phone_number = 7;
+  }
+}
+
+message PhoneNumber {
+  string phone_number = 1 [(validate.rules).string = {min_len: 1, max_len: 30, pattern: "\\+[0-9]{1,3}-[0-9()+\\-]{1,30}"}];
+}

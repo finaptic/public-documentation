@@ -1,1 +1,26 @@
 site_name: Finaptic Documentation
+theme:
+  name: material
+  font:
+    text: Assistant
+    code: Roboto Mono
+  logo: images/logo.png
+  favicon: images/logo.png
+  language: en
+  palette:
+    scheme: finaptic
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+markdown_extensions:
+  - toc:
+      permalink: true
+extra:
+  homepage: https://finaptic.com
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/finaptic
+
+extra_css:
+  - stylesheets/extra.css
