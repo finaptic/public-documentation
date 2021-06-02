@@ -1,75 +1,8 @@
 # Protocol Documentation
 <a name="top"></a>
 
-## Table of Contents
-
-- [onboarding_v1.proto](#onboarding_v1.proto)
-    - [AcceptApplicationRequest](#thebaasco.tenant.onboarding.v1.AcceptApplicationRequest)
-    - [AcceptApplicationResponse](#thebaasco.tenant.onboarding.v1.AcceptApplicationResponse)
-    - [AccountUsageDetails](#thebaasco.tenant.onboarding.v1.AccountUsageDetails)
-    - [Address](#thebaasco.tenant.onboarding.v1.Address)
-    - [Consent](#thebaasco.tenant.onboarding.v1.Consent)
-    - [ContactDetails](#thebaasco.tenant.onboarding.v1.ContactDetails)
-    - [CustomerResidency](#thebaasco.tenant.onboarding.v1.CustomerResidency)
-    - [Disclosure](#thebaasco.tenant.onboarding.v1.Disclosure)
-    - [DocumentInfo](#thebaasco.tenant.onboarding.v1.DocumentInfo)
-    - [Employment](#thebaasco.tenant.onboarding.v1.Employment)
-    - [FinalizeApplicationCreateCustomerRequest](#thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateCustomerRequest)
-    - [FinalizeApplicationCreateCustomerResponse](#thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateCustomerResponse)
-    - [FinalizeApplicationCreateProductRequest](#thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateProductRequest)
-    - [FinalizeApplicationCreateProductResponse](#thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateProductResponse)
-    - [GetApplicationStatusRequest](#thebaasco.tenant.onboarding.v1.GetApplicationStatusRequest)
-    - [GetApplicationStatusResponse](#thebaasco.tenant.onboarding.v1.GetApplicationStatusResponse)
-    - [InitiateApplicationRequest](#thebaasco.tenant.onboarding.v1.InitiateApplicationRequest)
-    - [InitiateApplicationResponse](#thebaasco.tenant.onboarding.v1.InitiateApplicationResponse)
-    - [OnboardedProduct](#thebaasco.tenant.onboarding.v1.OnboardedProduct)
-    - [OnboardingApplication](#thebaasco.tenant.onboarding.v1.OnboardingApplication)
-    - [OnboardingApplicationCustomerOnboardedEvent](#thebaasco.tenant.onboarding.v1.OnboardingApplicationCustomerOnboardedEvent)
-    - [OnboardingApplicationDataConfirmedEvent](#thebaasco.tenant.onboarding.v1.OnboardingApplicationDataConfirmedEvent)
-    - [OnboardingApplicationProductOnboardedEvent](#thebaasco.tenant.onboarding.v1.OnboardingApplicationProductOnboardedEvent)
-    - [OnboardingOperationResponseDetails](#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails)
-    - [OtherResidence](#thebaasco.tenant.onboarding.v1.OtherResidence)
-    - [PersonalDetails](#thebaasco.tenant.onboarding.v1.PersonalDetails)
-    - [UpdateAccountDetailsRequest](#thebaasco.tenant.onboarding.v1.UpdateAccountDetailsRequest)
-    - [UpdateAccountDetailsResponse](#thebaasco.tenant.onboarding.v1.UpdateAccountDetailsResponse)
-    - [UpdateAddressesRequest](#thebaasco.tenant.onboarding.v1.UpdateAddressesRequest)
-    - [UpdateAddressesResponse](#thebaasco.tenant.onboarding.v1.UpdateAddressesResponse)
-    - [UpdateCommunicationPreferencesRequest](#thebaasco.tenant.onboarding.v1.UpdateCommunicationPreferencesRequest)
-    - [UpdateCommunicationPreferencesResponse](#thebaasco.tenant.onboarding.v1.UpdateCommunicationPreferencesResponse)
-    - [UpdateConsentsRequest](#thebaasco.tenant.onboarding.v1.UpdateConsentsRequest)
-    - [UpdateConsentsResponse](#thebaasco.tenant.onboarding.v1.UpdateConsentsResponse)
-    - [UpdateContactDetailsRequest](#thebaasco.tenant.onboarding.v1.UpdateContactDetailsRequest)
-    - [UpdateContactDetailsResponse](#thebaasco.tenant.onboarding.v1.UpdateContactDetailsResponse)
-    - [UpdateCustomerResidencyRequest](#thebaasco.tenant.onboarding.v1.UpdateCustomerResidencyRequest)
-    - [UpdateCustomerResidencyResponse](#thebaasco.tenant.onboarding.v1.UpdateCustomerResidencyResponse)
-    - [UpdateDisclosuresRequest](#thebaasco.tenant.onboarding.v1.UpdateDisclosuresRequest)
-    - [UpdateDisclosuresResponse](#thebaasco.tenant.onboarding.v1.UpdateDisclosuresResponse)
-    - [UpdateEmploymentRequest](#thebaasco.tenant.onboarding.v1.UpdateEmploymentRequest)
-    - [UpdateEmploymentResponse](#thebaasco.tenant.onboarding.v1.UpdateEmploymentResponse)
-    - [UpdatePersonalDetailsRequest](#thebaasco.tenant.onboarding.v1.UpdatePersonalDetailsRequest)
-    - [UpdatePersonalDetailsResponse](#thebaasco.tenant.onboarding.v1.UpdatePersonalDetailsResponse)
-    - [ValidateApplicationRequest](#thebaasco.tenant.onboarding.v1.ValidateApplicationRequest)
-    - [ValidateApplicationResponse](#thebaasco.tenant.onboarding.v1.ValidateApplicationResponse)
-    - [ValidateDocumentsRequest](#thebaasco.tenant.onboarding.v1.ValidateDocumentsRequest)
-    - [ValidateDocumentsResponse](#thebaasco.tenant.onboarding.v1.ValidateDocumentsResponse)
-    - [ValidateSelfieRequest](#thebaasco.tenant.onboarding.v1.ValidateSelfieRequest)
-    - [ValidateSelfieResponse](#thebaasco.tenant.onboarding.v1.ValidateSelfieResponse)
-  
-    - [Onboarding](#thebaasco.tenant.onboarding.v1.Onboarding)
-  
-- [onboarding_v1_fileupload.proto](#onboarding_v1_fileupload.proto)
-    - [CreateFileUploadUrlRequest](#thebaasco.tenant.onboarding.v1.CreateFileUploadUrlRequest)
-    - [CreateFileUploadUrlResponse](#thebaasco.tenant.onboarding.v1.CreateFileUploadUrlResponse)
-  
-- [Scalar Value Types](#scalar-value-types)
-
-
-
-<a name="onboarding_v1.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
 
 ## onboarding_v1.proto
-
 
 
 <a name="thebaasco.tenant.onboarding.v1.AcceptApplicationRequest"></a>
