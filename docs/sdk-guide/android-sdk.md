@@ -223,7 +223,9 @@ if (response.basicDetails.requestStatus != "OK") {
 ```
  
 ### updateAccountDetails
+
 Fetch account purpose and source of funds values from [reference data client](#referencedataclient).
+
 - `dataType = ReferenceDataTypes.ACCOUNT_PURPOSE`
 - `dataType = ReferenceDataTypes.SOURCE_OF_FUNDS`
  
@@ -323,7 +325,9 @@ if (response.basicDetails.requestStatus != "OK") {
 ```
  
 ### updateEmployment
+
 Fetch employment status from [reference data client](#referencedataclient).
+
 - `dataType = ReferenceDataTypes.OCCUPATION`
 - `dataType = ReferenceDataTypes.EMPLOYMENT_STATUS`
  

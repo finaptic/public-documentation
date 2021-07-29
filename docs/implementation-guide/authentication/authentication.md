@@ -6,7 +6,6 @@ Application Security is a top priority for Finaptic. To ensure we protect our cl
 
 Auth0 is an easy to implement, flexible authentication and authorization platform which is SOC2, ISO 27001, ISO 27018, and PCI DSS compliant. It uses industry standards for authentication such as OIDC, OAuth 2.0, and SAML.
 
-
 ![](images/overview.png)
 
 ## The Basic Overview of Authentication Flow
@@ -111,7 +110,10 @@ Keychain biometric protection: The long-term session credentials must be protect
 
 Integrating with Finaptic and Auth0 will depend heavily on your use case and application design.
 
-As part of the Finaptic SDK we provide the necessary APIs and configurations to integrate with Auth0 and recommend you use our SDK. You can also use any of the Auth0 native SDKs that provide support for mobile (Android, iOS). Finally, it&#39;s also possible to use any Vendor agnostic OpenID Connect library in your implementation.
+As part of the Finaptic SDK we provide the necessary configurations to integrate with Auth0 and recommend you use our SDK. You can also use any of the Auth0 native SDKs that provide support for mobile (Android, iOS). Finally, it&#39;s also possible to use any Vendor agnostic OpenID Connect library in your implementation.
+
+Please refer to Auth0's documentation for [details on the API contract](https://auth0.com/docs/api/authentication#introduction). You can also refer to our [SDK](../../mobile/android-sdk/#authenticationclient) for details on the authentication client for Auth0. 
+
 
 ## Links and other references
 

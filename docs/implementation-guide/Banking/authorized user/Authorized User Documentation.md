@@ -3,13 +3,13 @@
 Welcome to Finaptic's Authorized User Service. We make it simple to share your account and finances with family members, loved ones and employees; and all done digitally. This documentation includes comprehensive information to arm you with an understanding of Finaptic's Authorized User offering.
 
 
-#### **THIS GUIDE WILL**
+#### **This guide will**
 
 1. Educate you on Finaptic's Authorized User Service
 2. Guide you on Experience
 
 
-#### WHAT IS AN AUTHORIZED USER?
+#### What is an Authorized User?
 
 An Authorized User is a person allowed to manage your account.
 For Deposit accounts, Authorized Users are usually family members, such as a child or a spouse and they do not have account decision making permissions.
@@ -19,7 +19,7 @@ Authorized Users **<u>are not</u>** Primary Account Holders and their Account le
 ![authuser-icons.png](images/authuser-icons.png)
 
 
-#### WHAT TO EXPECT IN OUR INITIAL RELEASE?
+#### What to expect in our Initial Release?
 In the <u>Initial release</u>, an Authorized User <u>will be</u> granted account privileges similar to a Primary Holder
 
 |                                 **   | PRIVILEGES                                            | PRIMARY ACCOUNT HOLDER | AUTHORIZED USER **|
@@ -32,14 +32,17 @@ In the <u>Initial release</u>, an Authorized User <u>will be</u> granted account
 |                                    | **Notifications, Alerts & Statements**                | **YES**                | **YES**         |
 
 
-#### VISUALIZING THE AUTHORIZED USER ARCHITECTURE
+#### Visualizing the Authorized User Architecture
 
 ![authuser-arch.png](images/authuser-arch.png)
 
 
-#### VISUALIZING THE EXPERIENCE OF INVITING, ADDING & ONBOARDING AN AUTHORIZED USER.
+#### Visualizing the Experience of Inviting, Adding & Onboarding an Authorized User
 
 ![authuser-invite.png](images/authuser-invite.png)
 
 ![authuser-flow.png](images/authuser-flow.png)
 **Note: Push Invitation is a future state experience**
+
+## Link to API specifications
+[Onboarding API Specification](../../api_specifications/onboarding/)
