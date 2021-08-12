@@ -1,7 +1,9 @@
-## Deposits Account Overview
+# Deposits Account Overview
+
 Welcome to Finaptic’s Core Banking Product that offers flexible solutions for everyday transactions. This documentation includes comprehensive information for delivering compliant Core Banking products and integrating with Finaptic’s Core Banking Product Service.
 
-## This guide will
+## Guide Purpose
+**This guide will**
 - Educate you on Finaptic’s Core Banking Service
 - Arm you with an API specifications for effective integration
 
@@ -22,13 +24,13 @@ The Canada Deposit Insurance Corporation is a Canadian federal Crown Corporation
 
 ---
 
-#### Finaptic delivers a wholesome & customizable deposit account offering
+#### Finaptic delivers a customizable deposit account offering
 ![](https://lh6.googleusercontent.com/v85dohdPKoVZzgmAqiHgk2TvVhpjgyVFk-TqbEK65_eQ9xRz-AFQGly0NDaluGFvX9AxoGSZcnp9GEx-j0sjm93cNLcr7Z02l_UHAWK6il4f_1AbTluUnvK1DIlpD5-iAtz16F41)
 
 #### What to expect in our Initial Release?
-In the <u>Initial Release</u>, a Deposit Account will enjoy the below benefits
+In the Initial Release, a Deposit Account will enjoy the below benefits
 
-| Feature Category    | Feature Set                              | Inital Release | Future Release   |
+| **Feature Category    | Feature Set                              | Inital Release | Future Release **  |
 | ------------------- | ---------------------------------------- |:--------------:|:----------------:|
 | **Deposit Account** | **Depost Account**                       | **Yes**        | ***NA***         |
 |                     | **Pre-Paid MasterCard**                  | **Yes**        | -                |
@@ -73,4 +75,4 @@ Additional Account Creation is the creation of deposit accounts <u>post</u> the 
 ---
 
 ## Link to API specifications
-[Core Banking API Specification](../../api_specifications/corebanking/)
+[Core Banking API Specification](/../../API-Specifications/corebanking/)

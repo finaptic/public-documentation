@@ -1,4 +1,5 @@
 # Client Profile API (Draft)
+
 **This is a draft API specification that is subject to change**
 
 ## API Specific Types
@@ -754,4 +755,3 @@ Relationships provides a way to retrieve relationships for an IndividualParty
 | <a name="bool" /> bool |  | bool | boolean | boolean | bool | bool | boolean | TrueClass/FalseClass |
 | <a name="string" /> string | A string must always contain UTF-8 encoded or 7-bit ASCII text. | string | String | str/unicode | string | string | string | String (UTF-8) |
 | <a name="bytes" /> bytes | May contain any arbitrary sequence of bytes. | string | ByteString | str | []byte | ByteString | string | String (ASCII-8BIT) |
-

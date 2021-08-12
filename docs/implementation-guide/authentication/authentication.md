@@ -112,7 +112,7 @@ Integrating with Finaptic and Auth0 will depend heavily on your use case and app
 
 As part of the Finaptic SDK we provide the necessary configurations to integrate with Auth0 and recommend you use our SDK. You can also use any of the Auth0 native SDKs that provide support for mobile (Android, iOS). Finally, it&#39;s also possible to use any Vendor agnostic OpenID Connect library in your implementation.
 
-Please refer to Auth0's documentation for [details on the API contract](https://auth0.com/docs/api/authentication#introduction). You can also refer to our [SDK](../../mobile/android-sdk/#authenticationclient) for details on the authentication client for Auth0. 
+Please refer to Auth0's documentation for [details on the API contract](https://auth0.com/docs/api/authentication#introduction). You can also refer to our [SDK](/../../SDK-Guide/android-sdk/#authenticationclient) for details on the authentication client for Auth0. 
 
 
 ## Links and other references

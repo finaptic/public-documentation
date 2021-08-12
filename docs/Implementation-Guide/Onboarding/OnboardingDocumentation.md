@@ -1,8 +1,10 @@
-# Onboarding Functional Overview
+# Onboarding Overview
 
 Welcome to Finaptic's end-to-end Onboarding Service. We make it simple to build trust in a digital world and easy to welcome new customers. This documentation includes comprehensive information for building a compliant customer onboarding experience and integrating with Finaptic's Onboarding Service.
 
-#### **This guide will**
+
+## Guide Purpose
+**This guide will**
 1. Educate you on Finaptic's Onboarding Service
 2. Guide you on frontend design
 3. Arm you with an API Guide for effective integration

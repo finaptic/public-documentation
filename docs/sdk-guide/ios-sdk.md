@@ -498,6 +498,7 @@ sdk.onboardingClient.finalizeApplicationCreateProduct(request: request) { result
 ## ReferenceDataClient
  
 ReferenceDataTypes:
+
 - addressType
 - consentType
 - disclosureType
@@ -509,6 +510,7 @@ ReferenceDataTypes:
 - onboardingStatus
 - country
 - occupation
+  
 ```
 let request = GetReferenceDataByTypeRequest(dataType: ReferenceDataTypes.accountPurpose,
                                                locale: "EN_CA")
@@ -611,6 +613,72 @@ sdk.authenticationClient.signOut() { error in
    print("Signed out")
 }
 ```
+
+## CoreBankingClient
+
+### getAccountDetails
+```
+let request = GetAccountDetailsRequest(accountId: accountId)
+sdk.coreBankingClient.getAccountDetails(request: request) { result in
+   switch result {
+   case .success(let response):
+       print(response.status)
+       print(response.accruedInterest)
+  
+   case .failure(let error):
+       print("Get account details error: \(error)")
+   }
+}
+```
+
+## CoreCardClient
+ 
+### getCard
+```
+let request = GetCardRequest(cardId: cardId)
+sdk.coreCardClient.getCard(request: request) { result in
+   switch result {
+   case .success(let response):
+       print(response.description)
+  
+   case .failure(let error):
+       print("Get card error: \(error)")
+   }
+}
+```
+  
+### listCards
+```
+let request = ListCardsRequest(
+           pageSize: 10,
+           pageToken: nil
+        )
+sdk.coreCardClient.listCards(request: request) { result in
+   switch result {
+   case .success(let response):
+       print(response.cards.count)
+       print(response.nextPageToken)
+  
+   case .failure(let error):
+       print("List cards error: \(error)")
+   }
+}
+```
+
+### createCardSDKSignOnToken
+```
+let request = CreateCardSDKSignOnTokenRequest(cardId: cardId)
+sdk.coreCardClient.createCardSDKSignOnToken(request: request) { result in
+   switch result {
+   case .success(let response):
+       print(response.token)
+  
+   case .failure(let error):
+       print("Create card SDK sign on token error: \(error)")
+   }
+}
+```
+
 ## Errors
  
 Most callable methods from the SDK potentially can fail with a FinapticError, which contains "code", "message" and "cause" attributes.

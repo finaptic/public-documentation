@@ -497,6 +497,7 @@ if (response.basicDetails.requestStatus != "OK") {
 ## ReferenceDataClient
 
 ReferenceDataTypes:
+
 - ADDRESS_TYPE
 - CONSENT_TYPE
 - DISCLOSURE_TYPE
@@ -565,6 +566,47 @@ val currentState = sdk.authenticationClient.refreshAuthState()
 sdk.authenticationClient.signOut()
 ```
  
+## CoreBankingClient
+
+### getAccountDetails
+```
+val request = GetAccountDetailsRequest(accountId)
+val response = sdk.coreBankingClient.getAccountDetails(request)
+
+val status = response.status
+val accruedInterest = response.accruedInterest
+```
+
+## CoreCardClient
+ 
+### getCard
+
+```
+val request = GetCardRequest(cardId = cardId)
+val response = sdk.coreCardClient.getCard(request)
+```
+
+### listCards
+```
+val request = ListCardsRequest(
+           pageSize = 10,
+           pageToken = null
+        )
+val response = sdk.coreCardClient.listCards(request)
+   
+val cards = response.cards
+val nextPageToken = response.nextPageToken
+```
+
+### createCardSDKSignOnToken
+```
+val request = CreateCardSDKSignOnTokenRequest(cardId)
+val response = sdk.coreCardClient.createCardSDKSignOnToken(request)
+
+val token = response.token
+```
+
+
 ## Exceptions
 
 Every callable method from the SDK potentially throws a FinapticException, which is a regular Java/Kotlin exception with an extra "code" attribute. 

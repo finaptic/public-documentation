@@ -1,7 +1,9 @@
-## Personal Financial Management Overview
-Welcome to Finaptic’s Personal Financial Management Service that will help you deliver timely, relevant, contextialized and actionable digital-first communications. 
+# PFM Overview
 
-## This guide will
+Welcome to Finaptic’s Personal Financial Management (PFM) Service that will help you deliver timely, relevant, contextialized and actionable digital-first communications. 
+
+## Guide Purpose
+**This guide will**
 - Educate you on Finaptic’s Personal Financial Management Service
 
 ---
@@ -9,7 +11,7 @@ Welcome to Finaptic’s Personal Financial Management Service that will help you
 #### What is Personal Financial Management or PFM?
 PFM is the concept of enhancing account level monitoring and enabling better control of your everyday banking. This service is developed to help customers gain insights and better manage both money-in & money-out transactions. A customer will be able to track finances in real time, giving them a view of their past transactions while protecting them under layers of security and keeping your personal information secure. 
 
-#### Finaptic delivers a wholesome offering
+#### Finaptic delivers a customizable offering
 We believe that Personal Financial Management should ***inform***, ***guide*** and ***empower*** customers to stay on top of their finances.
 
 ![pfm1.png](images/pfm1.png)

@@ -1,4 +1,4 @@
-# Customer Service
+# Customer Support Overview
 
 As a Banking as a Service platform we want to provide customer support to our tenant’s customers. Our goal is to provide this service as cost effectively as possible and reduce human-to-human touch points as much as possible. End users should feel they are interacting with the partners directly and do not need to be aware of Finaptic. Finally, customer data is critical, and employee fraud is a trust buster for both our relationship with partners and their relationship with their customers. 
 

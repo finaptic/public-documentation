@@ -1,4 +1,4 @@
-# Core-Banking API
+# Core Banking API
 
 ## API Specific Types
 
