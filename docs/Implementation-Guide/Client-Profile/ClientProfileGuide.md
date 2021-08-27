@@ -8,6 +8,7 @@ Finaptic recommends partners collect their own demographic information, with pro
 ## Client Profile Field Change Guide
 
 The APIs provided by the customer profile domain can be used to provide the functionality to your customers to update their demographic information when it is related to their financial products. For example, if they change primary residences, telephone numbers, or employment. Certain information on the customer profile can not be changed directly as it requires going through the KYC process, such as ID verification. A re-verification will have to be triggered through the onboarding APIs when an ID, Name or Date Of Birth needs to be updated.
+
 | Field Name                          | Requires KYC / Re-onboarding steps to change field | Requires KYC / Re-onboarding steps to add an additional fields. (N/A means only one exists on a profile) |
 | ----------------------------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | First Name, Middle Name, Last Name  | Yes                                                | N/A                                                                                                      |
@@ -19,11 +20,14 @@ The APIs provided by the customer profile domain can be used to provide the func
 | Add/Remove Other Tax Residence      | No                                                 | No                                                                                                       |
 | Address (Primary)                   | Yes                                                | N/A                                                                                                      |
 | Identity Document Details           | Yes                                                | Yes                                                                                                      |
+
+
 ## Links
 
 * [Customer Profile API Specification](../../../API-Specifications/clientinformation/)
 
 * [Onboarding API Specification](../../API-Specifications/onboarding/)
+
 * [Onboarding API Specification](../../../API-Specifications/onboarding/)
 
 * Fintrac Suspicious Transaction report batch [specification](https://www.fintrac-canafe.gc.ca/reporting-declaration/batch-lots/mod2-eng) and [guide](https://www.fintrac-canafe.gc.ca/guidance-directives/transaction-operation/Guide3/str-eng).
