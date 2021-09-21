@@ -26,11 +26,14 @@ Finaptic's Onboarding Service processes high volumes of identity checks annually
 
 ## **Pillar 1 | Customer Information**
 
-In order to satisfy regulatory obligations such as Know Your Customer (KYC) and Account Opening requirements there are 4 categories of information type that must be collected from the applicant. In total, there are about 15-17 data fields or questions to complete.
+In order to satisfy regulatory obligations such as Know Your Customer (KYC) and Account Opening requirements there are 4 categories of information type that must be collected from the applicant. In total, there are about 15-20 data fields or questions to complete.
 
-| PERSONAL                                                                                                          | TAX RESIDENCY                                                                                                                                                                                                                                                                       | PROFESSIONAL                                                                                                                                                 | ACCOUNT OPENING - PRODUCT DEPENDANT                     |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
-| - Full Legal Name<br/>- Middle Name is Optional<br/>- Residential Address <br/>- Date of Birth<br/>- Phone Number | - Canadian Tax Residency Status<br/>- US Citizen<br/>- Another Country Tax Residency Status<br/>*If the applicant is a tax resident of Another Country (including the US), or a US Citizen, then the tax identification number for that country and Canadian SIN must be collected* | - Employment Status<br/>- Employment Occupation<br/>- Employer Name<br/>- Employer Address<br/>- Employer Phone Number<br/>- Employed Since Date is Optional | - Account Opening Purpose<br/>- Account Source of Funds |
+| CATEGORIES                               | RATIONALE                                                                  | FIELDS                                                                                                                                                                                                                                                                              | API CALLS                                                                                                                                                                                                                |
+| ---------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **PERSONAL**                             | Collect basic applicant information for communication & vetting purposes   | - Full Legal Name<br/>- Middle Name *(optional)*<br/>- Residential Address <br/>- Date of Birth<br/>- Phone Number<br/>- Phone Number Type (Mobile or Landline) <br/>- Email Address<br/>- Alias *(optional)*<br/>- Social Insurance Number *(Interest bearing products only)*<br/> | [Personal Details](/../../API-Specifications/onboarding/#personaldetails)<br/>[Contact Details](/../../API-Specifications/onboarding/#contactdetails) <br/>[Address](/../../API-Specifications/onboarding/#address)<br/> |
+| **TAX** **RESIDENCY**                    | Identifying tax residency during account opening to comply with regulation | - Canadian Tax Residency Status<br/>- US Citizen<br/>- Another Country Tax Residency Status<br/>*If the applicant is a tax resident of Another Country (including the US), or a US Citizen, then the tax identification number for that country and Canadian SIN must be collected* | [Tax Residency](/../../API-Specifications/onboarding/#customerresidency)<br/>[Other Residency](/../../API-Specifications/onboarding/#customerresidency)                                                                  |
+| **EMPLOYMENT**                           | Support with Anti-Money Laundering filtering                               | - Employment Status<br/>- Employment Occupation<br/>- Employer Name<br/>- Employer Address<br/>- Employer Phone Number<br/>- Employed Since Date *(optional)*<br/>- Income *(optional)*<br/>                                                                                        | [Employment](/../../API-Specifications/onboarding/#employment)                                                                                                                                                           |
+| **ACCOUNT PURPOSE** *(Deposit Products)* | Support with Anti-Money Laundering filtering                               | - Account Opening Purpose<br/>- Account Source of Funds<br/>- Third Party Declaration<br/>                                                                                                                                                                                          | [Account Purpose](/../../API-Specifications/onboarding/#accountusagedetails)                                                                                                                                             |
 
 ## **Pillar 2 | Digital ID Verification**
 
@@ -65,6 +68,8 @@ An applicant will not be permitted to re-apply if the reason for a decline is Fr
 ### **Visualizing Digital ID Verification**
 
 ![](images/idvflow.png)
+
+The [**DocumentInfo**](/../../API-Specifications/onboarding/#documentinfo) **API** is a message containing the details of an onboarding document collected from the customer to prove identity.
 
 ### **Accepted forms of identity documentation for Digital ID Verification**
 
@@ -126,6 +131,12 @@ Finaptic's Onboarding Service is ready to onboard minors and is subject to Finap
 
 In addition to the agreements presented to your customer to upload your app, such as an End User License Agreement and Terms of Use, your customer must read and agree to a number of additional agreements before being able to proceed with the application. As part of Onboarding, these include the Electronic Communications Agreement and Privacy Policy. Documents that are presented later in the app, and that are related to your specific use case, including product disclosures, product applications and agreements are covered under the product sections of this guide.
 
+There are 2 notable APIs to refer to:
+
+1. The [**Consent**](/../../API-Specifications/onboarding/#consent) **API** is a message indicating the receipt of a requested customer Consent.
+
+2. The [**Disclosure**](/../../API-Specifications/onboarding/#disclosure) **API** is a message indicating the receipt of a requested customer Disclosure.
+
 ### **The Agreements**
 
 #### **Electronic Communications Agreement**
@@ -136,6 +147,6 @@ Your customer must consent to an Electronic Communications Agreement at the begi
 
 Your customer must also consent to the Privacy Policy at the beginning of Onboarding so that they provide permission for the collection, use and sharing of their personal information. The Privacy Policy must explain why their personal information is being collected, used and shared, and what will happen to their personal information when your relationship ends.
 
-### **Making the agreement available within your app**
+### **Making the agreement available within your app; [SDK Guide](/../../sdk-guide)**
 
 Customers must be able to easily access each agreement from your app. Best practice is to send the agreement to the customer's in app Message Centre noting their consent. You must also have the most recent version of the agreement displayed in the "Legal" section of the app or other obvious section that can be easily found.
