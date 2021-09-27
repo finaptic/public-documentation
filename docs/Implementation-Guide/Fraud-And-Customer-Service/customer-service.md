@@ -12,13 +12,23 @@ Self-serve is defined by services and questions that are resolvable through the 
 
 The partner is responsible for providing a contact point for all first interactions. Support either by call center with a live agent, chat with a live agent or chat bot.
 
-### Level 2 - Finaptic 
+### Level 2 - Finaptic
 
-Finaptic is responsible for providing assistance if level 1 support is unable to provide resolution when it related to banking specific issues. Escalation will will be initiated by the level 1 customer support agent through the in-app secure chat API.
+Finaptic is responsible for providing assistance if level 1 support is unable to provide resolution when it related to banking specific issues. Escalation will will be initiated by the level 1 customer support agent through the in-app secure chat API. These could include, but are not limited to:
+
+* Customer transaction disputes
+* Customer reporting fraudulent transactions
+* Incorrect balances or missing transactions
+* Issues in which Finaptic APIs return errors or incorrect information
+
 
 ### Level 3 - Finaptic (Fraud Operations)
 
 Finaptic is responsible for suspected fraud and transaction dispute investigations. These will be escalated internally at Finaptic through the level 2 support agent.
+
+## Finaptic support for Partner Contact
+
+Finaptic provides a [customer service portal](https://thebaasco.atlassian.net/servicedesk/customer/portal/3) for partners to contact Finaptic directly. This portal should be used to contact Finaptic with technical questions, report issues, or report customer complaints.
 
 ## References
 - [Customer support implementation guide.](../customer_support_guide/)
