@@ -31,15 +31,13 @@ The Canada Deposit Insurance Corporation is a Canadian federal Crown Corporation
 
 #### Finaptic delivers a customizable deposit account offering
 
-![](https://lh6.googleusercontent.com/v85dohdPKoVZzgmAqiHgk2TvVhpjgyVFk-TqbEK65_eQ9xRz-AFQGly0NDaluGFvX9AxoGSZcnp9GEx-j0sjm93cNLcr7Z02l_UHAWK6il4f_1AbTluUnvK1DIlpD5-iAtz16F41)
-
-#### What to expect in our Initial Release?
+##### What to expect in our Initial Release?
 
 In the Initial Release, a Deposit Account will enjoy the below benefits
 
 | Feature Category    | Feature Set                              | Inital Release | Future Release   |
 | ------------------- | ---------------------------------------- |:--------------:|:----------------:|
-| **Deposit Account** | **Depost Account**                       | **Yes**        | ***NA***         |
+| **Deposit Account** | **Depost Account**                       | **Yes**        | -                |
 |                     | **Pre-Paid MasterCard**                  | **Yes**        | -                |
 |                     | **Earn Interest**                        | -              | **Yes**          |
 |                     | **Foreign Currency Account**             | **-**          | **Yes**          |
@@ -49,10 +47,10 @@ In the Initial Release, a Deposit Account will enjoy the below benefits
 |                     |                                          |                |                  |
 | **Relationship**    | **Authorized User**                      | **Yes**        | -                |
 |                     |                                          |                |                  |
-| **Money Movement**  | **Internal Transfers**                   | -              | **Yes**          |
+| **Money Movement**  | **Internal Transfers**                   | **Yes**        | **-**            |
 |                     | **Email Money Transfer**                 | **Yes**        | -                |
 |                     | **Interac Receive**                      | **Yes**        | -                |
-|                     | **Interac Send**                         | **Yes**        | -                |
+|                     | **Interac Send**                         | -              | **Yes**          |
 |                     | **International Money Transfer**         | -              | **Yes**          |
 |                     | **Mobile Remote Cheque Deposit Capture** | -              | **Yes**          |
 |                     | **ATM Withdrawals**                      | -              | **Yes**          |
@@ -62,6 +60,13 @@ In the Initial Release, a Deposit Account will enjoy the below benefits
 |                     | **Transaction History**                  | **Yes**        | **Enhancements** |
 |                     | **Transaction Filtering**                | **Yes**        | **Enhancements** |
 |                     | **Statements**                           | -              | **Yes**          |
+|                     | **In-App Event**                         | **Yes**        | **Enhancements** |
+
+
+
+
+
+
 
 ---
 

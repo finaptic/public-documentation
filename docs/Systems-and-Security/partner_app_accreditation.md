@@ -16,9 +16,10 @@ This document describes the steps in the accredidation process.
 | 1| Finaptic and Partner to review that SDLC (Software Development Life Cycle) process must be confirmed to meet the requirements described in this document. Action items for review will be reviewed again later. |  Kickoff week        |
 | 2| Partner must document all external dependencies (software/libraries and vendors) and their purpose, and communicate the list to Finaptic as early as possible. | Kickoff + 1 month         |
 | 3| Partner must ensure the application has the required controls, listed in this document, implemented.           | Before security testing          |
-| 4| A third party must perform a "penetration test" of the application before go-live. Finaptic will review the scope as well as the results                | Go Live - One Month         |
-| 5| Functional testing results are reviewed by Finaptic               | Go Live - One Week         |
-| 6| Findings deemed critical in the testing must be fixed before go-live.                                          | Before go-live         |
+| 4| Partner must provide source code of application to Finaptic for code review purposes | Before penetration testing | 
+| 5| A third party must perform a "penetration test" of the application before go-live. Finaptic will review the scope as well as the results                | Go Live - One Month         |
+| 6| Functional testing results are reviewed by Finaptic               | Go Live - One Week         |
+| 7| Findings deemed critical in the testing must be fixed before go-live.                                          | Before go-live         |
 
 
 
@@ -69,6 +70,7 @@ The current mobile app requirements and recommendations are valid for both iOS a
 | Communication from the app must be done over encrypted protocols only. While Finaptic APIs are only accessible over HTTPS, other destinations being used over HTTP would put the integrity of communications at risk and could allow someone to exploit flaws in the application itself. If exceptions are needed, they must be documented, communicated to Finaptic and use `NSexceptionDomains` on iOS.                                                                        |      |
 | Certificate authority pinning must be done to prevent breaking TLS communications. While pinning the certificates used by Finaptic is the safest, pinning the certificate authority, and allowing rotation in the future, is very secure and much easier to manage.                                                                                                                                                                                                               |      |
 | Ensure that only strong TLS ciphers can be used in the application, by explicitly enabling `NSExceptionRequiresForwardSecrecy` and `NSRequiresCertificateTransparency` at least towards Finaptic APIs and authentication provider.                                                                                                                                                                                                                                                |      |
+| The Finaptic SDK must be use as a library within partner application | | 
 | If "long sessions" are provided, so the user does not have to enter credentials when opening the application, those sessions must be protected by biometrics. For iOS, this means ensuring `kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly` is configured (a device without a passcode can't have biometric), and this ensures this credential won't be usable through keychain syncing. `kSecAccessControlBiometryAny` must also be configured for keychain stored credentials.  |      |
 | Sessions not protected by biometrics should not last for more than 15 minutes of inactivity, and a `Log Out` button should be available to the end-user.                                                                                                                                                                                                                                                                                                                           |      |
 | Sensitive data fields (passwords, PII entry) must be tagged in order to avoid 3rd party keyboards being usable on them.                                                                                                                                                                                                                                                                                                                                                            |      |
@@ -85,10 +87,14 @@ The current mobile app requirements and recommendations are valid for both iOS a
 TBD 
 
 
-### Step 4: Security Testing (Penetration test, Code Audit, etc.)
+### Step 4: Partner to provide source code to Finaptic for code review
+
+* Source code must be provided to Finaptic for internal code review, prior to external security testing.
+
+### Step 5: Security Testing (Penetration test, Code Audit, etc.)
 Finaptic requires that partners test their applications which leverage Finaptic APIs or SDKs.
 
-* Testing must be done **at least once a year** as well as when **major changes are performed.
+* Testing must be done **at least once a year** as well as when **major changes are performed**.
 * Testing must be done by a third party company that specializes in security testing, unless partner has an internal team dedicated to offensive security.
 * The scope of the tests must be the entire mobile application. 
 * The format of testing is up to the partner - very open testing techniques such as a code audit are acceptable, and completely advanced knowledge free penetration testing is acceptable as well. We recommend using many techniques over time.
@@ -104,7 +110,7 @@ If vulnerabilities are found on the SDK itself during the application test, Fina
 #### Web application with Finaptic APIs
 Not supported at this time.
 
-### Step 5: User Acceptance Testing (UAT) by Finaptic
+### Step 6: User Acceptance Testing (UAT) by Finaptic
 One week before go-live, as well as before major changes, the application will be manually reviewed by Finaptic, focusing on:
 
 * Functional testing
@@ -115,7 +121,7 @@ One week before go-live, as well as before major changes, the application will b
 
 **This process will be detailed further in a future version of this document.**
 
-### Step 6: Findings deemed critical in the testing must be fixed before go-live.
+### Step 7: Findings deemed critical in the testing must be fixed before go-live.
 Findings discovered in Step 4 deemed to be critical to fix before go-live must now be fixed, and re-tested by the vendor used in Step 4.
 
 #### Critical vulnerability

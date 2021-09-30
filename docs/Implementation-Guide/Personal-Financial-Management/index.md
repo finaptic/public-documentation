@@ -7,6 +7,8 @@ Welcome to Finaptic’s Personal Financial Management (PFM) Service that will he
 **This guide will**
 
 - Educate you on Finaptic’s Personal Financial Management Service
+- Highlight our Release Plan
+- Bridge to our API specifications
 
 ---
 
@@ -36,7 +38,7 @@ We believe that Personal Financial Management should ***inform***, ***guide*** a
 #### What to expect in our Initial Release?
 
 | Category          | Feature                       | Initial Release | Future Release |
-| ----------------- | ----------------------------- | --------------- | -------------- |
+| ----------------- | ----------------------------- |:---------------:|:--------------:|
 | **Transactions**  | **Notifications<sup>1</sup>** | -               | **Yes**        |
 |                   | **History<sup>2</sup>**       | **Yes**         | **Enhanced**   |
 |                   | **Filtering<sup>3</sup>**     | **Yes**         | **Enhanced**   |
@@ -47,6 +49,7 @@ We believe that Personal Financial Management should ***inform***, ***guide*** a
 |                   | **SMS Notifications**         | -               | **Yes**        |
 |                   | **Email Notifications**       | -               | **Yes**        |
 |                   | **Notifications Off**         | -               | **Yes**        |
+|                   | **In-App Event**              | **Yes**         | -              |
 
 *<sup>1</sup>Transaction Notifications: Allows the customer to receive a push notification every time a transaction affects the balance of their account. For the initial release the customers will only be notified for the following transaction types: Credits, Debits, and Refunds.*
 

@@ -7,8 +7,7 @@ Welcome to Finaptic's end-to-end Onboarding Service. We make it simple to build 
 **This guide will**
 
 1. Educate you on Finaptic's Onboarding Service
-2. Guide you on frontend design
-3. Arm you with an API Guide for effective integration
+2. Arm you with an API Guide for effective integration
 
 ## **What is Onboarding?**
 
@@ -26,14 +25,43 @@ Finaptic's Onboarding Service processes high volumes of identity checks annually
 
 ## **Pillar 1 | Customer Information**
 
-In order to satisfy regulatory obligations such as Know Your Customer (KYC) and Account Opening requirements there are 4 categories of information type that must be collected from the applicant. In total, there are about 15-20 data fields or questions to complete.
+In order to satisfy regulatory obligations such as **Know Your Customer** (KYC) and Account Opening requirements there are 4 categories of information type that must be collected from the applicant. In total, there are about 15-24 data fields or questions to complete.
 
-| CATEGORIES                               | RATIONALE                                                                  | FIELDS                                                                                                                                                                                                                                                                              | API CALLS                                                                                                                                                                                                                |
-| ---------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **PERSONAL**                             | Collect basic applicant information for communication & vetting purposes   | - Full Legal Name<br/>- Middle Name *(optional)*<br/>- Residential Address <br/>- Date of Birth<br/>- Phone Number<br/>- Phone Number Type (Mobile or Landline) <br/>- Email Address<br/>- Alias *(optional)*<br/>- Social Insurance Number *(Interest bearing products only)*<br/> | [Personal Details](/../../API-Specifications/onboarding/#personaldetails)<br/>[Contact Details](/../../API-Specifications/onboarding/#contactdetails) <br/>[Address](/../../API-Specifications/onboarding/#address)<br/> |
-| **TAX** **RESIDENCY**                    | Identifying tax residency during account opening to comply with regulation | - Canadian Tax Residency Status<br/>- US Citizen<br/>- Another Country Tax Residency Status<br/>*If the applicant is a tax resident of Another Country (including the US), or a US Citizen, then the tax identification number for that country and Canadian SIN must be collected* | [Tax Residency](/../../API-Specifications/onboarding/#customerresidency)<br/>[Other Residency](/../../API-Specifications/onboarding/#customerresidency)                                                                  |
-| **EMPLOYMENT**                           | Support with Anti-Money Laundering filtering                               | - Employment Status<br/>- Employment Occupation<br/>- Employer Name<br/>- Employer Address<br/>- Employer Phone Number<br/>- Employed Since Date *(optional)*<br/>- Income *(optional)*<br/>                                                                                        | [Employment](/../../API-Specifications/onboarding/#employment)                                                                                                                                                           |
-| **ACCOUNT PURPOSE** *(Deposit Products)* | Support with Anti-Money Laundering filtering                               | - Account Opening Purpose<br/>- Account Source of Funds<br/>- Third Party Declaration<br/>                                                                                                                                                                                          | [Account Purpose](/../../API-Specifications/onboarding/#accountusagedetails)                                                                                                                                             |
+| CATEGORIES                               | RATIONALE                                                                  | FIELDS                                                                                                                                                                                                                                                                                                                                                    | API CALLS                                                                                                                                                                                                           |
+| ---------------------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **PERSONAL**                             | Collect basic applicant information for communication & vetting purposes   | - Full Legal Name<br/>- Middle Name *(optional)*<br/>- Alias<sup>1</sup> *(optional)*<br/>- Residential Address <br/>- Date of Birth<br/>- Phone Number<br/>- Phone Number Type<sup>2</sup> (Mobile or Landline) <br/>- Email Address<br/>- Language Preferences<sup>2</sup><br/>- Social Insurance Number<sup>3</sup> *(Interest bearing products only)* | [Personal Details](/../../API-Specifications/onboarding/#personaldetails)<br/>[Contact Details](/../../API-Specifications/onboarding/#contactdetails) <br/>[Address](/../../API-Specifications/onboarding/#address) |
+| **TAX** **RESIDENCY**                    | Identifying tax residency during account opening to comply with regulation | - Canadian Tax Residency Status<br/>- US Citizen<br/>- Another Country Tax Residency Status<br/>*If the applicant is a tax resident of Another Country (including the US), or a US Citizen, then the tax identification number for that country and Canadian SIN must be collected*                                                                       | [Tax Residency](/../../API-Specifications/onboarding/#customerresidency)<br/>[Other Residency](/../../API-Specifications/onboarding/#customerresidency)                                                             |
+| **EMPLOYMENT**                           | Support with Anti-Money Laundering filtering                               | - Employment Status<br/>- Employment Occupation<br/>- Industry<br/>- Employer Name<br/>- Employer Address<br/>- Employer Phone Number<br/>- Employed Since Date *(optional)*<br/>- Income *(optional)*                                                                                                                                                    | [Employment](/../../API-Specifications/onboarding/#employment)                                                                                                                                                      |
+| **ACCOUNT PURPOSE** *(Deposit Products)* | Support with Anti-Money Laundering filtering                               | - Account Opening Purpose<br/>- Account Source of Funds<br/>- Third Party Declaration                                                                                                                                                                                                                                                                     | [Account Purpose](/../../API-Specifications/onboarding/#accountusagedetails)                                                                                                                                        |
+
+<sup>1</sup> "Alias" as a field will be released in December 2021
+
+<sup>2</sup> "Phone Number Type" and "Language Preferences" as fields will be released in November 2021
+<sup>3</sup> "Social Insurance Number" as a field will be released in January 2022
+
+### Onboarding a Sole Proprietor
+
+A Sole Proprietor is also governed by the same "Know Your Client" regulations; and what may appear as an outlier field like "Residential Address" is required. Below is a breakdown of fields required for a Sole Proprietor.
+
+| CATEGORIES                               | RATIONALE                                                                  | FIELDS                                                                                                                                                                                                                                                                              | API CALLS                                                                                                                                                                                                           |
+| ---------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **PERSONAL**                             | Collect basic applicant information for communication & vetting purposes   | - Full Legal Name<br/>- Middle Name *(optional)*<br/>- Alias<sup>1</sup> *(optional)*<br/>- Residential Address <br/>- Date of Birth<br/>- Phone Number<br/>- Phone Number Type<sup>2</sup> (Mobile or Landline) <br/>- Email Address<br/>- Language Preferences<sup>2</sup>        | [Personal Details](/../../API-Specifications/onboarding/#personaldetails)<br/>[Contact Details](/../../API-Specifications/onboarding/#contactdetails) <br/>[Address](/../../API-Specifications/onboarding/#address) |
+| **TAX** **RESIDENCY**                    | Identifying tax residency during account opening to comply with regulation | - Canadian Tax Residency Status<br/>- US Citizen<br/>- Another Country Tax Residency Status<br/>*If the applicant is a tax resident of Another Country (including the US), or a US Citizen, then the tax identification number for that country and Canadian SIN must be collected* | [Tax Residency](/../../API-Specifications/onboarding/#customerresidency)<br/>[Other Residency](/../../API-Specifications/onboarding/#customerresidency)                                                             |
+| **EMPLOYMENT**                           | Support with Anti-Money Laundering filtering                               | - Employment Status<br/>- Employment Occupation<br/>- Industry<br/>- Employer Name<br/>- Business Address<br/>- Employer Phone Number<br/>- Employed Since Date *(optional)*                                                                                                        | [Employment](/../../API-Specifications/onboarding/#employment)                                                                                                                                                      |
+| **ACCOUNT PURPOSE** *(Deposit Products)* | Support with Anti-Money Laundering filtering                               | - Account Purpose<br/>- Account Source of Funds<br/>- Third Party Declaration                                                                                                                                                                                               | [Account Purpose](/../../API-Specifications/onboarding/#accountusagedetails)                                                                                                                                        |
+
+<sup>1</sup> "Alias" as a field will be released in December 2021
+
+<sup>2</sup> "Phone Number Type" and "Language Preferences" as fields will be released in November 2021 
+
+#### List of options that make-up for "Employment Status", "Primary Account Usage", "Primary Source of Funds" and "OCCUPATION" & "INDUSTRY"
+
+| CATEGORIES                  | LIST OF OPTIONS PRESENTED                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **EMPLOYMENT STATUS**       | - Employed<br/>- Unemployed<br/>- Retired<br/>- Student-Unemployed<br/>- Student-Employed<br/>- Self-employed <br/>- Homemaker                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **PRIMARY ACCOUNT USAGE**   | - Everyday transactions<br/>- Everyday Business transactions (for Sole Proprietors only)<br/>- Paying for school<br/>- Travelling<br/>- Buying property/Renovations<br/>- Buying a car<br/>- Savings<br/>- Other                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **PRIMARY SOURCE OF FUNDS** | - Employment Income (Salary / Self-employment Income) <br/>- Sale of Assets/Capital Gains (House, Car, etc.) <br/>- Trust / Inheritance/ Family income <br/>- Loans <br/>- Government Payments / Social Assistance <br/>- Support Payments <br/>- Grants/Scholarships or Bursaries <br/>- Work-Related Retirement or Disability Pension <br/>- Rental Income <br/>- Investment Income - Savings (Dividends / Interest) <br/>- Royalty Income<br/>- Tips/Commissions<br/>- Gifts <br/>- Insurance Claims / Payments <br/>- Pension / Retirement Income <br/>- Windfall (Lottery winnings, casino, etc.)                                                                                                                                                                                         |
+| **OCCUPATION<br/>INDUSTRY** | The “Occupation” and “Industry” fields are required to comply with Anti-Money Laundering and Anti-Terrorist Financing regulations.<br/>We use the National Occupational Classification (NOC) list for **Occupations** [National Occupational Classification - Canada.ca](https://noc.esdc.gc.ca/) and the North American Industry Classification System (Canada) (NAICS) for **Industries** [Industry classifications](https://www.statcan.gc.ca/eng/concepts/industry). <br/>The NOC list may not include newer titles such as “influencer”, “brand ambassador”, or “social media guru”, however, the traditional classification of “publicist” or “professional in marketing” would be an equivalent or a close enough approximation that customers can select to identify their occupation. |
 
 ## **Pillar 2 | Digital ID Verification**
 
@@ -48,18 +76,18 @@ Working in real time, we will eliminate manual screening errors, speed up the do
 #### **Requirements for Digital ID Verification**
 
 1. The identification document has to be authentic, valid, and original.
-2. A valid (unexpired) identification document as listed in the "Accepted Forms of Identity Documentation for Digital Identification Verification" section.
+2. A valid (unexpired) identification document as listed in the [Accepted Forms of Identity Documentation for Digital Identification Verification](/../../Implementation-Guide/onboarding/OnboardingDocumentation/#accepted-forms-of-identity-documentation-for-digital-id-verification) section.
 3. A mobile device with a functional camera for a selfie.
 
 #### **Digital ID Verification Decision Making**
 
-Finaptic will render a decision of either Approved or Declined within 90 seconds from application submission.
+Finaptic will render a decision of either Approved or Declined within 90 seconds from the point of application submission.
 
-During those 90 seconds, Finaptic will complete the following process to screen for bad actors and potential fraud with every applicant
+During those 90 seconds, Finaptic will complete the following process to screen for bad actors and potential fraud with every applicant:
 
-1. Cross referenced against up-to-date Sanctions lists, Politically Exposed Persons, Watchlists
+1. Cross referenced against up-to-date Sanctions lists, Politically Exposed Persons, and other Watchlists
 2. Validate for potential device & IP level fraud
-3. Facial Recognition Match will include a liveness test. A liveness test ensures that there is a real person present instead of a photo, video playback or even a mask.
+3. Facial Recognition Match will include a liveness test. A liveness test ensures that there is a real person present instead of a photo, video playback or even a mask
 
 An applicant will be permitted up to 3 retries for common applicant error types (ex. name mismatch, incorrect date of birth, etc.).
 
@@ -71,6 +99,10 @@ An applicant will not be permitted to re-apply if the reason for a decline is Fr
 
 The [**DocumentInfo**](/../../API-Specifications/onboarding/#documentinfo) **API** is a message containing the details of an onboarding document collected from the customer to prove identity.
 
+**TIP |**
+
+As a Partner, you can re-brand the Digital ID Verification experience to reflect your brand's colour & tone; with the exeption of when your camera is attempting to take a picture. 
+
 ### **Accepted forms of identity documentation for Digital ID Verification**
 
 At this moment, Finaptic will accept select Valid (unexpired) Government issued identification.
@@ -79,7 +111,7 @@ Note, damaged and worn identification documents will not be accepted.
 #### **Valid (unexpired) Government Issued Identification**
 
 * Canadian Passport
-* Canadian Permanent resident card Canada
+* Canadian Permanent Resident Card Canada
 * Canadian Citizenship card (issued prior to 2012) Canada
 
 #### **Valid (unexpired) Canadian Government Driver's Licence Identification**
@@ -112,7 +144,7 @@ Note, damaged and worn identification documents will not be accepted.
 * New Brunswick Photo ID Card New Brunswick, Canada
 * Nova Scotia Identification Card Nova Scotia, Canada
 * Prince Edward Island Voluntary ID Prince Edward Island, Canada
-* Newfoundland and Labrador Photo Identification Card Newfoundland and Labrador, * Canada
+* Newfoundland and Labrador Photo Identification Card Newfoundland and Labrador, Canada
 * Northwest Territories General Identification Card Northwest Territories, Canada
 * Nunavut General Identification Card Nunavut, Canada
 
@@ -120,12 +152,36 @@ Note, damaged and worn identification documents will not be accepted.
 
 Finaptic's Onboarding Service is ready to onboard minors and is subject to Finaptic ID Verification Policies listed below.
 
-| AGE BRACKET                                                                                                                                                                                                                                            | FINAPTIC POLICY                                         |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
-| Aged 0-11 years old                                                                                                                                                                                                                                    | Finaptic will not ID Verify a minor aged 0-11 years old |
-| We will ID Verify Parent/Guardian<br>Details below:<br><br>- Parent/Guardian ID must be verified <br>- If Parent/Guardian is already verified and on-file then ID will not not be re-verified and Finaptic will capture parent/guardian acknowledgment |                                                         |
-| Aged 12-15 years old                                                                                                                                                                                                                                   | Same as above                                           |
-| Aged 16+                                                                                                                                                                                                                                               | Must ID Verify similar to an adult                      |
+| AGE BRACKET                                                                                                                                                                                                                                        | FINAPTIC POLICY                                         |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| Aged 0-11 years old                                                                                                                                                                                                                                | Finaptic will not ID Verify a minor aged 0-11 years old |
+| We will ID Verify Parent/Guardian<br>Details below:<br>- Parent/Guardian ID must be verified <br>- If Parent/Guardian is already verified and on-file then ID will not not be re-verified and Finaptic will capture parent/guardian acknowledgment |                                                         |
+| Aged 12-15 years old                                                                                                                                                                                                                               | Same as above                                           |
+| Aged 16+                                                                                                                                                                                                                                           | Must ID Verify similar to an adult                      |
+
+### Data Retention Guidelines
+
+**For how long are the Personal Identity and Selfie information stored?**
+
+Our third party vendor, Acuant, which receives the selfie and and Personal ID is permitted to store the photo and ID solely for the purposes of verifying the identity of the applicant and verifying that the identification document is authentic, valid and current, and for providing us the information extracted from the personal identification. `Acuant expunges the selfie and the personal identification from their system within **24 hours**.` 
+
+If the applicant is approved to open an account, Finaptic receives the following information regarding the identification document used to verify the applicant’s identification, which Finaptic will store for `7 years after the customer’s account is closed`; retained data points include
+
+- Person’s Name
+
+- Date on which the person’s identity was verified
+
+- Type of document used (for example, driver's licence, passport, etc.)
+
+- Unique identifying number of the document used
+
+- Jurisdiction (province or state) and country of issue of the document
+
+- Expiry date of the document, if available (if this information appears on the document or card, we must record it)
+
+In case of a malfunction in the onboarding process or the user doesn’t complete the process, a garbage collection will delete picture within 24 hours.
+
+`All retained data is stored in the Google Cloud Platform's GCS Encrypted buckets.`
 
 ## **Pillar 3 | Onboarding Agreements**
 
@@ -139,14 +195,16 @@ There are 2 notable APIs to refer to:
 
 ### **The Agreements**
 
-#### **Electronic Communications Agreement**
+There are 4 primary agreement types with each tailored to the partner agreement.
 
-Your customer must consent to an Electronic Communications Agreement at the beginning of Onboarding so that financial products and services can be provided to them electronically. This includes their agreement to the delivery of certain regulatory information, which under federal regulations must be delivered in writing, to be delivered electronically to them. It will also allow your customer to enter into other agreements electronically through your app, rather than having to provide "wet signatures".
+1. [Finaptic Account Fee Guide and Agreement](/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_account_fee_guide_and_agreement)
 
-#### **Privacy Policy**
+2. [Finaptic App Terms of User](/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_app_terms_of_use)
 
-Your customer must also consent to the Privacy Policy at the beginning of Onboarding so that they provide permission for the collection, use and sharing of their personal information. The Privacy Policy must explain why their personal information is being collected, used and shared, and what will happen to their personal information when your relationship ends.
+3. [Finaptic Electronic Communications Agreement](/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_electronic_communications_agreement)
 
-### **Making the agreement available within your app; [SDK Guide](/../../sdk-guide)**
+4. [Finaptic Privacy Policy](/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_privacy_policy/)
+
+### **Making the agreement available within your app; [SDK Guides](/../../sdk-guide/android-sdk)**
 
 Customers must be able to easily access each agreement from your app. Best practice is to send the agreement to the customer's in app Message Centre noting their consent. You must also have the most recent version of the agreement displayed in the "Legal" section of the app or other obvious section that can be easily found.
