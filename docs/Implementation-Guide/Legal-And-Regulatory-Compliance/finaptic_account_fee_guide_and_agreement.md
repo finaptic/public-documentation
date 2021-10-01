@@ -4,7 +4,7 @@
 
 Last Updated August 27, 2021
 
-Issuing institution: National Bank of Canada 600, de la Gauchetière Ouest, Montréal, province of Québec.
+Issuing institution: NATSOLUTION, 600, de la Gauchetière Ouest, Montréal, province of Québec.
 
 ### Information about your Finaptic Account
 
@@ -58,7 +58,7 @@ If there is a conflict between the terms of this Agreement and any other agreeme
 
 Not all features described in this Agreement may be available when you open a Finaptic Account. 
 
-The Finaptic Account and associated card is issued by National Bank of Canada and distributed by Finaptic Technologies Inc. 
+The Finaptic Account and associated card is issued by NATSOLUTION and distributed by Finaptic Technologies Inc. 
 
 ### How to use your Finaptic Account
 
@@ -77,7 +77,7 @@ Money in your account does not earn interest. You must load money to your accoun
 
 **a. Mobile access**
 
-You can access your Account and carry out transactions through the Finaptic App. National Bank of Canada does not provide the services on the Finaptic mobile application and is not responsible for them, or any loss, harm or damage of any kind you may suffer as a result of using the Finaptic App and associated services.
+You can access your Account and carry out transactions through the Finaptic App. NATSOLUTION does not provide the services on the Finaptic mobile application and is not responsible for them, or any loss, harm or damage of any kind you may suffer as a result of using the Finaptic App and associated services.
 
 **b. Card access**
 
@@ -301,7 +301,7 @@ In case of death, the Account is blocked until a legal representative is designa
 
 #### Privacy Policy of Issuing Financial Institution
 
-National Bank of Canada’s privacy (or protection of personal information) policy as well as your rights concerning access to your personal information held by National Bank is available at all times at nbc.ca.
+NATSOLUTION'S privacy (or protection of personal information) policy as well as your rights concerning access to your personal information held by NATSOLUTION is available at all times at nbc.ca.
 
 #### Governing law
 
@@ -327,8 +327,6 @@ If your concern is not resolved to your satisfaction, you may escalate your comp
 
 **Step Two:** If Finaptic has not resolved your complaint to your satisfaction, you may then contact the 
 
-
-
 Ombudsman for Banking Services and Investments (OBSI). The OBSI is an independent external body that may review your complaint after you have received a final response in Step One.
 
 **Ombudsman for Banking Services and Investments (OBSI)**
@@ -339,7 +337,7 @@ P.O. Box 8, Toronto, ON M5H 3R3
 
 www.obsi.ca
 
-Consumer complaints may also be made to the Financail Consumer Agency of Canada (FCAC). The FCAC will determine whether the financial institution is in compliance. It does not resolve individual consumer complaints.
+Consumer complaints may also be made to the Financial Consumer Agency of Canada (FCAC). The FCAC will determine whether the financial institution is in compliance with federal consumer protection regulations. It does not resolve individual consumer complaints.
 
 **The Financial Consumer Agency of Canada (FCAC)**
 
@@ -387,7 +385,7 @@ Website: http://www.bankofcanada.ca/unclaimed-balances/ Email: info@bankofcanada
 
 **b. Deposit insurance**
 
-National Bank of Canada is a member of the Canada Deposit Insurance Corporation. Your deposits will be protected under the Canada Deposit Insurance Corporation Act if they meet certain requirements. For more information, contact us or:
+NATSOLUTION is a member of the Canada Deposit Insurance Corporation. Your deposits will be protected under the Canada Deposit Insurance Corporation Act if they meet certain requirements. For more information, contact us or:
 
 Canada Deposit Insurance Corporation
 
@@ -401,7 +399,7 @@ Website: www.cdic.ca
 
 Email: info@cdic.ca
 
-Natcan Trust Company and National Bank Trust Inc. are authorized to receive deposits under the Deposit Insurance Act (Quebec). Your deposits will be protected under this law if they meet certain requirements. For more information, contact us or:
+NATSOLUTION is authorized to receive deposits under the Deposit Insurance Act (Quebec). Your deposits will be protected under this law if they meet certain requirements. For more information, contact us or:
 
 Autorité des marchés financiers
 
@@ -411,8 +409,8 @@ P.O. Box 246, Tour de la Bourse Montreal, Quebec H4Z 1G3
 
 Telephone: 1-877-525-0337 Website: lautorite.qc.ca
 
-® Mastercard, Mastercard Worldwide, Cirrus and the circles design are registered trademarks of Mastercard International Incorporated, used under licence by National Bank of Canada.
+® Mastercard, Mastercard Worldwide, Cirrus and the circles design are registered trademarks of Mastercard International Incorporated, used under licence by NatCan Trust Company.
 
-® National Bank is a registered trademark of National Bank of Canada.
+® NATSOLUTION is a registered trademark of NatCan Trust Company.
 
-® Interac e-Transfer is a trademark of Interac Inc., used under licence by National Bank of Canada.
+® *Interac* e-Transfer is a trademark of Interac Inc., used under licence by NatCan Trust Company.

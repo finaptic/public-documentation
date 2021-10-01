@@ -47,20 +47,19 @@ In the Initial Release, a Deposit Account will enjoy the below benefits
 |                     |                                          |                |                  |
 | **Relationship**    | **Authorized User**                      | **Yes**        | -                |
 |                     |                                          |                |                  |
-| **Money Movement**  | **Internal Transfers**                   | **Yes**        | **-**            |
+| **Money Movement**  | **Internal Transfers**                   | **Yes**        | -                |
 |                     | **Email Money Transfer**                 | **Yes**        | -                |
 |                     | **Interac Receive**                      | **Yes**        | -                |
 |                     | **Interac Send**                         | -              | **Yes**          |
 |                     | **International Money Transfer**         | -              | **Yes**          |
 |                     | **Mobile Remote Cheque Deposit Capture** | -              | **Yes**          |
-|                     | **ATM Withdrawals**                      | -              | **Yes**          |
-|                     | **ATM Cheque Deposits**                  | -              | **Yes**          |
+|                     | **ATM Withdrawals/Cheque Deposits**      | -              | **Yes**          |
+|                     | **Request For Money - Receiving/Sending Account Number Routing (ANR)**                  | **Yes**              | -          |
 |                     |                                          |                |                  |
 | **Notifications**   | **Transaction Notifications**            | -              | **Yes**          |
 |                     | **Transaction History**                  | **Yes**        | **Enhancements** |
 |                     | **Transaction Filtering**                | **Yes**        | **Enhancements** |
 |                     | **Statements**                           | -              | **Yes**          |
-|                     | **In-App Event**                         | **Yes**        | **Enhancements** |
 
 
 
