@@ -30,9 +30,9 @@ You can read their official documentation [here](https://github.com/Acuant/iOSSD
      - Run `pod init && pod install`
      - Open {ProjectName}.xcworkspace
    
-2. Copy **Finaptic.xcframework** and **gRPC-Swift.podspec** files to the root folder of your project.
+2. Copy **Finaptic.xcframework**, **MCPSDK.xcframework**, **TrustKit.xcframework** and **gRPC-Swift.podspec** files to the root folder of your project.
  
-3. Drag **Finaptic.xcframework** to your project's **{ProjectName}/Frameworks** group and select **Add to targets**.
+3. Drag **Finaptic.xcframework**, **MCPSDK.xcframework** and **TrustKit.xcframework** to your project's **{ProjectName}/Frameworks** group and select **Add to targets**.
  
 4. Add Finaptic dependencies to your **Podfile**.
  
@@ -41,24 +41,67 @@ You can read their official documentation [here](https://github.com/Acuant/iOSSD
         pod 'Firebase/Core', '~> 8.3'
         pod 'Firebase/Auth', '~> 8.3'
         pod 'Firebase/Firestore', '~> 8.3'
-        pod 'Auth0', '~> 1.0'
-
-        # Acuant dependencies (dynamically linked)
-        pod 'AcuantiOSSDKV11/AcuantCamera', '11.4.9'
-        pod 'AcuantiOSSDKV11/AcuantFaceCapture', '11.4.9'
-        pod 'AcuantiOSSDKV11/AcuantImagePreparation', '11.4.9'
-        pod 'AcuantiOSSDKV11/AcuantDocumentProcessing', '11.4.9'
-        pod 'AcuantiOSSDKV11/AcuantPassiveLiveness', '11.4.9'
-        pod 'AcuantiOSSDKV11/AcuantFaceMatch', '11.4.9'
-        pod 'AcuantiOSSDKV11/AcuantCommon', '11.4.9'
+        pod 'Firebase/RemoteConfig', '~> 8.3'
+        pod 'Auth0', '~> 1.34.0'
+        
+        # Acuant dependencies
+        pod 'AcuantiOSSDKV11/AcuantCommon', '11.5.1'
+        pod 'AcuantiOSSDKV11/AcuantCamera', '11.5.1'
+        pod 'AcuantiOSSDKV11/AcuantFaceCapture', '11.5.1'
+        pod 'AcuantiOSSDKV11/AcuantImagePreparation', '11.5.1'
+        pod 'AcuantiOSSDKV11/AcuantDocumentProcessing', '11.5.1'
 
 
 5. Add the following hooks to your **Podfile**.
  
-        dynamic_frameworks = ['AcuantiOSSDKV11']
         pre_install do |installer|
+            static_frameworks = [
+            'Auth0',
+            'BoringSSL-GRPC',
+            'CGRPCZlib',
+            'CNIOAtomics',
+            'CNIOBoringSSL',
+            'CNIOBoringSSLShims',
+            'CNIODarwin',
+            'CNIOHTTPParser',
+            'CNIOLinux',
+            'CNIOWindows',
+            'Firebase',
+            'FirebaseABTesting',
+            'FirebaseAnalytics',
+            'FirebaseAuth',
+            'FirebaseCore',
+            'FirebaseCoreDiagnostics',
+            'FirebaseFirestore',
+            'FirebaseInstallations',
+            'FirebaseRemoteConfig',
+            'GTMSessionFetcher',
+            'GoogleAppMeasurement',
+            'GoogleDataTransport',
+            'GoogleUtilities',
+            'JWTDecode',
+            'Logging',
+            'PromisesObjC',
+            'SimpleKeychain',
+            'SwiftNIO',
+            'SwiftNIOConcurrencyHelpers',
+            'SwiftNIOExtras',
+            'SwiftNIOFoundationCompat',
+            'SwiftNIOHPACK',
+            'SwiftNIOHTTP1',
+            'SwiftNIOHTTP2',
+            'SwiftNIOSSL',
+            'SwiftNIOTLS',
+            'SwiftNIOTransportServices',
+            'SwiftProtobuf',
+            'abseil',
+            'gRPC-C++',
+            'gRPC-Core',
+            'gRPC-Swift',
+            'leveldb-library',
+            'nanopb']
             installer.pod_targets.each do |pod|
-                if !dynamic_frameworks.include?(pod.name)
+                if static_frameworks.include?(pod.name)
                     def pod.static_framework?;
                         true
                     end
@@ -67,23 +110,24 @@ You can read their official documentation [here](https://github.com/Acuant/iOSSD
         end
 
         post_install do |installer|
-            installer.pods_project.targets.each do |target|
-                if ['gRPC-Swift', 'SwiftNIO', 'SwiftNIOConcurrencyHelpers', 'SwiftNIOExtras', 'SwiftNIOFoundationCompat', 'SwiftNIOHPACK', 'SwiftNIOHTTP1', 'SwiftNIOHTTP2', 'SwiftNIOSSL', 'SwiftNIOTLS', 'SwiftNIOTransportServices'].include? target.name
-                    target.build_configurations.each do |config|
-                        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
-                        config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'NO'
-                    end
-                else
-                    target.build_configurations.each do |config|
-                        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
-                        config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
-                    end
-                end
+        installer.pods_project.targets.each do |target|
+            if ['gRPC-Swift', 'SwiftNIO', 'SwiftNIOConcurrencyHelpers', 'SwiftNIOExtras', 'SwiftNIOFoundationCompat', 'SwiftNIOHPACK', 'SwiftNIOHTTP1', 'SwiftNIOHTTP2', 'SwiftNIOSSL', 'SwiftNIOTLS', 'SwiftNIOTransportServices'].include? target.name
+            target.build_configurations.each do |config|
+                config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'NO'
             end
+            else if ['Auth0', 'SwiftProtobuf', 'AcuantiOSSDKV11', 'Socket.IO-Client-Swift', 'Starscream'].include? target.name
+                target.build_configurations.each do |config|
+                config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+                end
+              end
+            end
+          end
         end
 
 
- 6. Run `pod install` to downloads and install the pods.
+
+
+ 1. Run `pod install` to downloads and install the pods.
  
 ## Initialization
 The SDK must be initialized before you can make any call. The FinapticSDK.init method must be invoked.
