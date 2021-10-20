@@ -33,8 +33,10 @@ You can read their official documentation [here](https://github.com/Acuant/iOSSD
 2. Copy **Finaptic.xcframework**, **MCPSDK.xcframework**, **TrustKit.xcframework** and **gRPC-Swift.podspec** files to the root folder of your project.
  
 3. Drag **Finaptic.xcframework**, **MCPSDK.xcframework** and **TrustKit.xcframework** to your project's **{ProjectName}/Frameworks** group and select **Add to targets**.
+   
+4. Select **General** tab of your **Target** and under ***Frameworks, Libraries, and Embedded Content*** set **Embed Without Signing** for **MCPSDK.xcframework** and **TrustKit.xcframework**.
  
-4. Add Finaptic dependencies to your **Podfile**.
+5. Add Finaptic dependencies to your **Podfile**.
  
         # Finaptic dependencies (statically linked)
         pod 'gRPC-Swift', :podspec => 'gRPC-Swift.podspec'
@@ -52,7 +54,7 @@ You can read their official documentation [here](https://github.com/Acuant/iOSSD
         pod 'AcuantiOSSDKV11/AcuantDocumentProcessing', '11.5.1'
 
 
-5. Add the following hooks to your **Podfile**.
+6. Add the following hooks to your **Podfile**.
  
         pre_install do |installer|
             static_frameworks = [
