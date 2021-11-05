@@ -35,37 +35,31 @@ The Canada Deposit Insurance Corporation is a Canadian federal Crown Corporation
 
 In the Initial Release, a Deposit Account will enjoy the below benefits
 
-| Feature Category    | Feature Set                              | Inital Release | Future Release   |
-| ------------------- | ---------------------------------------- |:--------------:|:----------------:|
-| **Deposit Account** | **Depost Account**                       | **Yes**        | -                |
-|                     | **Pre-Paid MasterCard**                  | **Yes**        | -                |
-|                     | **Earn Interest**                        | -              | **Yes**          |
-|                     | **Foreign Currency Account**             | **-**          | **Yes**          |
-|                     | **Set Transaction Limits**               | -              | **Yes**          |
-|                     | **Set Minimum Balance**                  | -              | **Yes**          |
-|                     | **Set Account Level Fees**               | -              | **Yes**          |
-|                     |                                          |                |                  |
-| **Relationship**    | **Authorized User**                      | **Yes**        | -                |
-|                     |                                          |                |                  |
-| **Money Movement**  | **Internal Transfers**                   | **Yes**        | -                |
-|                     | **Email Money Transfer**                 | **Yes**        | -                |
-|                     | **Interac Receive**                      | **Yes**        | -                |
-|                     | **Interac Send**                         | -              | **Yes**          |
-|                     | **International Money Transfer**         | -              | **Yes**          |
-|                     | **Mobile Remote Cheque Deposit Capture** | -              | **Yes**          |
-|                     | **ATM Withdrawals/Cheque Deposits**      | -              | **Yes**          |
-|                     | **Request For Money - Receiving/Sending Account Number Routing (ANR)**                  | **Yes**              | -          |
-|                     |                                          |                |                  |
-| **Notifications**   | **Transaction Notifications**            | -              | **Yes**          |
-|                     | **Transaction History**                  | **Yes**        | **Enhancements** |
-|                     | **Transaction Filtering**                | **Yes**        | **Enhancements** |
-|                     | **Statements**                           | -              | **Yes**          |
-
-
-
-
-
-
+| Feature Category    | Feature Set                                                            | Inital Release | Future Release   |
+| ------------------- | ---------------------------------------------------------------------- |:--------------:|:----------------:|
+| **Deposit Account** | **Depost Account**                                                     | **Yes**        | -                |
+|                     | **Pre-Paid MasterCard**                                                | **Yes**        | -                |
+|                     | **Earn Interest**                                                      | -              | **Yes**          |
+|                     | **Foreign Currency Account**                                           | **-**          | **Yes**          |
+|                     | **Set Transaction Limits**                                             | -              | **Yes**          |
+|                     | **Set Minimum Balance**                                                | -              | **Yes**          |
+|                     | **Set Account Level Fees**                                             | -              | **Yes**          |
+|                     |                                                                        |                |                  |
+| **Relationship**    | **Authorized User**                                                    | **Yes**        | -                |
+|                     |                                                                        |                |                  |
+| **Money Movement**  | **Internal Transfers**                                                 | **Yes**        | -                |
+|                     | **Email Money Transfer**                                               | **Yes**        | -                |
+|                     | **Interac Receive**                                                    | **Yes**        | -                |
+|                     | **Interac Send**                                                       | -              | **Yes**          |
+|                     | **International Money Transfer**                                       | -              | **Yes**          |
+|                     | **Mobile Remote Cheque Deposit Capture**                               | -              | **Yes**          |
+|                     | **ATM Withdrawals/Cheque Deposits**                                    | -              | **Yes**          |
+|                     | **Request For Money - Receiving/Sending Account Number Routing (ANR)** | **Yes**        | -                |
+|                     |                                                                        |                |                  |
+| **Notifications**   | **Transaction Notifications**                                          | -              | **Yes**          |
+|                     | **Transaction History**                                                | **Yes**        | **Enhancements** |
+|                     | **Transaction Filtering**                                              | **Yes**        | **Enhancements** |
+|                     | **Statements**                                                         | -              | **Yes**          |
 
 ---
 
@@ -134,3 +128,7 @@ Additional Account Creation is the creation of deposit accounts <u>post</u> the 
 ![additionalaccountcreation.svg](images/additionalaccountcreation.svg)
 
 ---
+
+#### API Overview
+
+An overview of our Core Banking API types are discoverable on the [Core Banking API Specification](/../../API-Specifications/corebanking/) section.

@@ -9,6 +9,12 @@ Welcome to Finaptic's Authorized User Service. We make it simple to share your a
 1. Educate you on Finaptic's Authorized User Service
 2. Guide you on Experience
 
+**Links to related Authorized User topics**
+
+1. [Onboarding Sequence Diagram](/../../Implementation-Guide/Onboarding/OnboardingSequenceDoc/)
+2. [Onboarding Overview](/../../Implementation-Guide/Onboarding/OnboardingDocumentation/)
+3. [Productless Onboarding Architecture](/../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/) to Onboard an Authorized User
+
 ----
 
 #### What is an Authorized User?
@@ -46,12 +52,12 @@ KYC/AML regulations guide the onboarding of an Authorized User with 2 variables 
 
 ##### List of fields to collect when Onboarding an Authorized User
 
-| CATEGORIES            | RATIONALE                                                                  | FIELDS                                                                                                                                                                                                                                                                              | APPLIES TO                           |
-| --------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| **PERSONAL**          | Collect basic applicant information for communication & vetting purposes   | - Full Legal Name<br/>- Middle Name *(optional)*<br/>- Alias<sup>1</sup> *(optional)*<br/>- Residential Address <br/>- Date of Birth<br/>- Phone Number<br/>- Phone Number Type<sup>2</sup> (Mobile or Landline) <br/>- Email Address<br/>- Language Preferences<sup>2</sup>        | All Product-types<br/>All Age groups |
-| **TAX** **RESIDENCY** | Identifying tax residency during account opening to comply with regulation | - Canadian Tax Residency Status<br/>- US Citizen<br/>- Another Country Tax Residency Status<br/>*If the applicant is a tax resident of Another Country (including the US), or a US Citizen, then the tax identification number for that country and Canadian SIN must be collected* | Deposit Products only                |
-| **EMPLOYMENT**        | Support with Anti-Money Laundering filtering                               | - Employment Status<br/>- Employment Occupation<br/>- Industry<br/>- Employer Name<br/>- Business Address<br/>- Employer Phone Number<br/>- Employed Since Date *(optional)*                                                                                                        | Deposit Products only                |
-| **ACCOUNT PURPOSE**   | Support with Anti-Money Laundering filtering                               | - Account Purpose<br/>- Account Source of Funds                                                                                                                                                                                               | Deposit Products only                |
+| CATEGORIES            | RATIONALE                                                                  | FIELDS                                                                                                                                                                                                                                                                              | APPLIES TO                                 |
+| --------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| **PERSONAL**          | Collect basic applicant information for communication & vetting purposes   | - Full Legal Name<br/>- Middle Name *(optional)*<br/>- Alias<sup>1</sup> *(optional)*<br/>- Residential Address <br/>- Date of Birth<br/>- Phone Number<br/>- Phone Number Type<sup>2</sup> (Mobile or Landline) <br/>- Email Address<br/>- Language Preferences<sup>2</sup>        | All Product-types<br/>All age groups       |
+| **TAX** **RESIDENCY** | Identifying tax residency during account opening to comply with regulation | - Canadian Tax Residency Status<br/>- US Citizen<br/>- Another Country Tax Residency Status<br/>*If the applicant is a tax resident of Another Country (including the US), or a US Citizen, then the tax identification number for that country and Canadian SIN must be collected* | Deposit Products only<br/>16+ years of age |
+| **EMPLOYMENT**        | Support with Anti-Money Laundering filtering                               | - Employment Status<br/>- Employment Occupation<br/>- Industry<br/>- Employer Name<br/>- Business Address<br/>- Employer Phone Number<br/>- Employed Since Date *(optional)*                                                                                                        | Deposit Products only<br/>16+ years of age |
+| **ACCOUNT PURPOSE**   | Support with Anti-Money Laundering filtering                               | - Account Purpose<br/>- Account Source of Funds                                                                                                                                                                                                                                     | Deposit Products only<br/>All age groups   |
 
 <sup>1</sup> "Alias" as a field will be released in December 2021
 
@@ -59,14 +65,20 @@ KYC/AML regulations guide the onboarding of an Authorized User with 2 variables 
 
 #### What to expect in our Releases?
 
-|                                    | PRIVILEGES                                            | PRIMARY ACCOUNT HOLDER | AUTHORIZED USER<br/>*`(September 2021 Release)`* | AUTHORIZED USER <br/>*`(December 2021 Release)`* |
-|:---------------------------------- | ----------------------------------------------------- |:----------------------:|:------------------------------------------------:|:------------------------------------------------:|
-| **As per regulatory requirements** | **Add/Remove an Authorized User**                     | **YES**                | **YES**                                          | **NO**                                           |
-|                                    | **Close the Account**                                 | **YES**                | **YES**                                          | **NO**                                           |
-| **Configurable**                   | **Move Money (Interac)**                              | **YES**                | **YES**                                          | **NO**                                           |
-|                                    | **Move Money (Between Accounts they have access to)** | **YES**                | **YES**                                          | **YES**                                          |
-|                                    | **View Primary Account Holder Txns**                  | **YES**                | **YES**                                          | **NO**                                           |
-|                                    | **Notifications, Alerts & Statements**                | **YES**                | **YES**                                          | **LIMITED TO THEIR CARD**                        |
+|                                         | PRIVILEGES                                                   | A PRIMARY ACCOUNT HOLDER CAN | AN AUTHORIZED USER CAN<br/>*`(September 2021 Release)`* | AN AUTHORIZED USER CAN <br/>*`(Future Release)`* |
+|:--------------------------------------- | ------------------------------------------------------------ |:----------------------------:|:-------------------------------------------------------:|:------------------------------------------------:|
+| **Add, Remove or View Account Holders** | **Add or Remove an Authorized User**                         | **YES**                      | **YES**                                                 | **NO**                                           |
+|                                         | **View a list of other Account Holders**                     | **YES**                      | **YES**                                                 | **CONFIGURABLE**                                 |
+| **Statements & Transactions**           | **View other Account Holders Transactions**                  | **YES**                      | **YES**                                                 | **CONFIGURABLE**                                 |
+|                                         | **View other Account Holders Statements**                    | **YES**                      | **YES**                                                 | **CONFIGURABLE**                                 |
+|                                         | **Receive Account Level Alerts**                             | -                            | -                                                       | **CONFIGURABLE**                                 |
+|                                         | **Receive Transactions Alerts**                              | -                            | -                                                       | **CONFIGURABLE**                                 |
+| **Move Money**                          | **Send or Receive Money using Interac**                      | **YES**                      | **YES**                                                 | **CONFIGURABLE**                                 |
+|                                         | **Move Money (Between Accounts they have access to)**        | **YES**                      | **YES**                                                 | **CONFIGURABLE**                                 |
+|                                         | **Add, Remove or Change other account holders auto-deposit** | **YES**                      | **YES**                                                 | **CONFIGURABLE**                                 |
+| **Account Changes & Disputes**          | **Close an Account**                                         | **YES**                      | **YES**                                                 | **NO**                                           |
+|                                         | **Apply for an Overdraft on behalf of the Primary Holder**   | -                            | -                                                       | **NO**                                           |
+|                                         | **Dispute a Primary or Other Auth Users transactions**       | **YES**                      | **YES**                                                 | **NO**                                           |
 
 ----
 
@@ -81,7 +93,14 @@ KYC/AML regulations guide the onboarding of an Authorized User with 2 variables 
 ![authuser-flow.png](images/authuser-flow.png)
 **Note: Push Invitation is a future state experience**
 
-____
+#### Onboarding without a Product
+An Authorized User is onboarded to the platform via the Productless Onboarding Flow; Technical Implementation below.
+
+A detailed overview of our Productless Onboarding can be found in the [Productless Onboarding](/../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/) section. 
+
+![ ](images/productless-onboarding-arch.svg)
+
+---
 
 #### API Overview
 

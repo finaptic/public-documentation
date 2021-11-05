@@ -246,7 +246,8 @@ let request = UpdateAccountDetailsRequest(
    onboardingApplicationId: applicationId,
    accountDetails: AccountUsageDetails(
        accountPurpose: accountPurpose.code,
-       primarySourceOfFunds: [sourceOfFunds.code])
+       primarySourceOfFunds: [sourceOfFunds.code]),
+        authorizedThirdPartyUsage = authorizedThirdPartyUsage
 )
 sdk.onboardingClient.updateAccountDetails(request: request) { result in
    switch result {

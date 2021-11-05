@@ -6,8 +6,16 @@ Welcome to Finaptic's end-to-end Onboarding Service. We make it simple to build 
 
 **This guide will**
 
-1. Educate you on Finaptic's Onboarding Service
+1. Educate you on Finaptic's Onboarding Service for a **`Primary Account Holder`**
 2. Arm you with an API Guide for effective integration
+
+**Links to related Onboarding topics**
+
+1. [Onboarding Sequence Diagram](/../../Implementation-Guide/Onboarding/OnboardingSequenceDoc/)
+2. [Finaptic's Authorized User Policies](/../../Implementation-Guide/Banking/AuthorizedUserDocumentation/)
+3. [Productless Onboarding Architecture](/../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/) to Onboard an Authorized User
+
+---
 
 ## **What is Onboarding?**
 
@@ -22,6 +30,8 @@ Finaptic's Onboarding Service processes high volumes of identity checks annually
 * Pillar 1 Customer Information
 * Pillar 2 Digital ID Verification
 * Pillar 3 Onboarding Agreements
+
+---
 
 ## **Pillar 1 | Customer Information**
 
@@ -39,7 +49,7 @@ In order to satisfy regulatory obligations such as **Know Your Customer** (KYC) 
 <sup>2</sup> "Phone Number Type" and "Language Preferences" as fields will be released in November 2021
 <sup>3</sup> "Social Insurance Number" as a field will be released in January 2022
 
-### Onboarding a Sole Proprietor
+#### Onboarding a Sole Proprietor
 
 A Sole Proprietor is also governed by the same "Know Your Client" regulations; and what may appear as an outlier field like "Residential Address" is required. Below is a breakdown of fields required for a Sole Proprietor.
 
@@ -48,20 +58,22 @@ A Sole Proprietor is also governed by the same "Know Your Client" regulations; a
 | **PERSONAL**                             | Collect basic applicant information for communication & vetting purposes   | - Full Legal Name<br/>- Middle Name *(optional)*<br/>- Alias<sup>1</sup> *(optional)*<br/>- Residential Address <br/>- Date of Birth<br/>- Phone Number<br/>- Phone Number Type<sup>2</sup> (Mobile or Landline) <br/>- Email Address<br/>- Language Preferences<sup>2</sup>        | [Personal Details](/../../API-Specifications/onboarding/#personaldetails)<br/>[Contact Details](/../../API-Specifications/onboarding/#contactdetails) <br/>[Address](/../../API-Specifications/onboarding/#address) |
 | **TAX** **RESIDENCY**                    | Identifying tax residency during account opening to comply with regulation | - Canadian Tax Residency Status<br/>- US Citizen<br/>- Another Country Tax Residency Status<br/>*If the applicant is a tax resident of Another Country (including the US), or a US Citizen, then the tax identification number for that country and Canadian SIN must be collected* | [Tax Residency](/../../API-Specifications/onboarding/#customerresidency)<br/>[Other Residency](/../../API-Specifications/onboarding/#customerresidency)                                                             |
 | **EMPLOYMENT**                           | Support with Anti-Money Laundering filtering                               | - Employment Status<br/>- Employment Occupation<br/>- Industry<br/>- Employer Name<br/>- Business Address<br/>- Employer Phone Number<br/>- Employed Since Date *(optional)*                                                                                                        | [Employment](/../../API-Specifications/onboarding/#employment)                                                                                                                                                      |
-| **ACCOUNT PURPOSE** *(Deposit Products)* | Support with Anti-Money Laundering filtering                               | - Account Purpose<br/>- Account Source of Funds<br/>- Third Party Declaration                                                                                                                                                                                               | [Account Purpose](/../../API-Specifications/onboarding/#accountusagedetails)                                                                                                                                        |
+| **ACCOUNT PURPOSE** *(Deposit Products)* | Support with Anti-Money Laundering filtering                               | - Account Purpose<br/>- Account Source of Funds<br/>- Third Party Declaration                                                                                                                                                                                                       | [Account Purpose](/../../API-Specifications/onboarding/#accountusagedetails)                                                                                                                                        |
 
 <sup>1</sup> "Alias" as a field will be released in December 2021
 
 <sup>2</sup> "Phone Number Type" and "Language Preferences" as fields will be released in November 2021 
 
-#### List of options that make-up for "Employment Status", "Primary Account Usage", "Primary Source of Funds" and "OCCUPATION" & "INDUSTRY"
+#### Reference data sets for select fields
 
-| CATEGORIES                  | LIST OF OPTIONS PRESENTED                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **EMPLOYMENT STATUS**       | - Employed<br/>- Unemployed<br/>- Retired<br/>- Student-Unemployed<br/>- Student-Employed<br/>- Self-employed <br/>- Homemaker                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **PRIMARY ACCOUNT USAGE**   | - Everyday transactions<br/>- Everyday Business transactions (for Sole Proprietors only)<br/>- Paying for school<br/>- Travelling<br/>- Buying property/Renovations<br/>- Buying a car<br/>- Savings<br/>- Other                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **PRIMARY SOURCE OF FUNDS** | - Employment Income (Salary / Self-employment Income) <br/>- Sale of Assets/Capital Gains (House, Car, etc.) <br/>- Trust / Inheritance/ Family income <br/>- Loans <br/>- Government Payments / Social Assistance <br/>- Support Payments <br/>- Grants/Scholarships or Bursaries <br/>- Work-Related Retirement or Disability Pension <br/>- Rental Income <br/>- Investment Income - Savings (Dividends / Interest) <br/>- Royalty Income<br/>- Tips/Commissions<br/>- Gifts <br/>- Insurance Claims / Payments <br/>- Pension / Retirement Income <br/>- Windfall (Lottery winnings, casino, etc.)                                                                                                                                                                                         |
-| **OCCUPATION<br/>INDUSTRY** | The “Occupation” and “Industry” fields are required to comply with Anti-Money Laundering and Anti-Terrorist Financing regulations.<br/>We use the National Occupational Classification (NOC) list for **Occupations** [National Occupational Classification - Canada.ca](https://noc.esdc.gc.ca/) and the North American Industry Classification System (Canada) (NAICS) for **Industries** [Industry classifications](https://www.statcan.gc.ca/eng/concepts/industry). <br/>The NOC list may not include newer titles such as “influencer”, “brand ambassador”, or “social media guru”, however, the traditional classification of “publicist” or “professional in marketing” would be an equivalent or a close enough approximation that customers can select to identify their occupation. |
+| CATEGORIES                  | LIST OF OPTIONS PRESENTED                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **EMPLOYMENT STATUS**       | - Employed<br/>- Unemployed<br/>- Retired<br/>- Student-Unemployed<br/>- Student-Employed<br/>- Self-employed <br/>- Homemaker                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **PRIMARY ACCOUNT USAGE**   | - Everyday transactions<br/>- Everyday Business transactions (for Sole Proprietors only)<br/>- Paying for school<br/>- Travelling<br/>- Buying property/Renovations<br/>- Buying a car<br/>- Savings<br/>- Other                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **PRIMARY SOURCE OF FUNDS** | - Employment Income (Salary / Self-employment Income) <br/>- Sale of Assets/Capital Gains (House, Car, etc.) <br/>- Trust / Inheritance/ Family income <br/>- Loans <br/>- Government Payments / Social Assistance <br/>- Support Payments <br/>- Grants/Scholarships or Bursaries <br/>- Work-Related Retirement or Disability Pension <br/>- Rental Income <br/>- Investment Income - Savings (Dividends / Interest) <br/>- Royalty Income<br/>- Tips/Commissions<br/>- Gifts <br/>- Insurance Claims / Payments <br/>- Pension / Retirement Income <br/>- Windfall (Lottery winnings, casino, etc.)                                                                                                                                                                                                   |
+| **OCCUPATION<br/>INDUSTRY** | The “Occupation” and “Industry” fields are required to comply with Anti-Money Laundering and Anti-Terrorist Financing regulations.<br/><br/>We use the National Occupational Classification (NOC) list for **Occupations** [National Occupational Classification - Canada.ca](https://noc.esdc.gc.ca/) and the North American Industry Classification System (Canada) (NAICS) for **Industries** [Industry classifications](https://www.statcan.gc.ca/eng/concepts/industry). <br/><br/>The NOC list may not include newer titles such as “influencer”, “brand ambassador”, or “social media guru”, however, the traditional classification of “publicist” or “professional in marketing” would be an equivalent or a close enough approximation that customers can select to identify their occupation. |
+
+---
 
 ## **Pillar 2 | Digital ID Verification**
 
@@ -103,18 +115,18 @@ The [**DocumentInfo**](/../../API-Specifications/onboarding/#documentinfo) **API
 
 As a Partner, you can re-brand the Digital ID Verification experience to reflect your brand's colour & tone; with the exeption of when your camera is attempting to take a picture. 
 
-### **Accepted forms of identity documentation for Digital ID Verification**
+#### **Accepted forms of identity documentation for Digital ID Verification**
 
 At this moment, Finaptic will accept select Valid (unexpired) Government issued identification.
 Note, damaged and worn identification documents will not be accepted.
 
-#### **Valid (unexpired) Government Issued Identification**
+##### **Valid (unexpired) Government Issued Identification**
 
 * Canadian Passport
 * Canadian Permanent Resident Card Canada
 * Canadian Citizenship card (issued prior to 2012) Canada
 
-#### **Valid (unexpired) Canadian Government Driver's Licence Identification**
+##### **Valid (unexpired) Canadian Government Driver's Licence Identification**
 
 * British Columbia Driver's License British Columbia, Canada
 * Alberta Driver's License Alberta, Canada
@@ -130,11 +142,11 @@ Note, damaged and worn identification documents will not be accepted.
 * Northwest Territories Driver's License Northwest Territories, Canada
 * Nunavut Driver's License Nunavut, Canada
 
-#### **Valid (unexpired) Canadian Provincial services cards**
+##### **Valid (unexpired) Canadian Provincial services cards**
 
 * British Columbia Services Card British Columbia, Canada
 
-#### **Valid (unexpired) Canadian Provincial or territorial identity cards**
+##### **Valid (unexpired) Canadian Provincial or territorial identity cards**
 
 * British Columbia Enhanced ID British Columbia, Canada
 * Alberta Photo Identification Card Alberta, Canada
@@ -152,12 +164,13 @@ Note, damaged and worn identification documents will not be accepted.
 
 Finaptic's Onboarding Service is ready to onboard minors and is subject to Finaptic ID Verification Policies listed below.
 
-| AGE BRACKET                                                                                                                                                                                                                                        | FINAPTIC POLICY                                         |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| Aged 0-11 years old                                                                                                                                                                                                                                | Finaptic will not ID Verify a minor aged 0-11 years old |
-| We will ID Verify Parent/Guardian<br>Details below:<br>- Parent/Guardian ID must be verified <br>- If Parent/Guardian is already verified and on-file then ID will not not be re-verified and Finaptic will capture parent/guardian acknowledgment |                                                         |
-| Aged 12-15 years old                                                                                                                                                                                                                               | Same as above                                           |
-| Aged 16+                                                                                                                                                                                                                                           | Must ID Verify similar to an adult                      |
+| **Age Brackets**         | **FINTRAC Requirement**            | **Finaptic Technology Policy**                                                                                                                                                                                                               |
+| ------------------------ | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **0 - 11 years of age**  | ID Verification is <u>Optional</u> | Don't ID Verify Child <br>Must ID Verify Parent/Guardian<br><br><u>Details below</u>:<br>Parent/Guardian ID must be verified *(ID does not be re-verified if on file but parent/guardian should be authenticated or provide acknowledgment)* |
+| **12 - 15 years of age** | ID Verification is <u>Optional</u> | Same as above; *0-11 years of age*                                                                                                                                                                                                           |
+| **16+ years of age**     | ID Verification is <u>Required</u> | Must ID Verify like an Adult                                                                                                                                                                                                                 |
+
+---
 
 ### Data Retention Guidelines
 
@@ -183,6 +196,8 @@ In case of a malfunction in the onboarding process or the user doesn’t complet
 
 `All retained data is stored in the Google Cloud Platform's GCS Encrypted buckets.`
 
+---
+
 ## **Pillar 3 | Onboarding Agreements**
 
 In addition to the agreements presented to your customer to upload your app, such as an End User License Agreement and Terms of Use, your customer must read and agree to a number of additional agreements before being able to proceed with the application. As part of Onboarding, these include the Electronic Communications Agreement and Privacy Policy. Documents that are presented later in the app, and that are related to your specific use case, including product disclosures, product applications and agreements are covered under the product sections of this guide.
@@ -197,14 +212,14 @@ There are 2 notable APIs to refer to:
 
 There are 4 primary agreement types with each tailored to the partner agreement.
 
-1. [Finaptic Account Fee Guide and Agreement](/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_account_fee_guide_and_agreement)
+1. [Finaptic Account Fee Guide and Agreement](/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_account_fee_guide_and_agreement/)
 
-2. [Finaptic App Terms of User](/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_app_terms_of_use)
+2. [Finaptic App Terms of User](/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_app_terms_of_use/)
 
-3. [Finaptic Electronic Communications Agreement](/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_electronic_communications_agreement)
+3. [Finaptic Electronic Communications Agreement](/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_electronic_communications_agreement/)
 
 4. [Finaptic Privacy Policy](/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_privacy_policy/)
 
-### **Making the agreement available within your app; [SDK Guides](/../../sdk-guide/android-sdk)**
+### **Making the agreement available within your app; [SDK Guides](/../../sdk-guide/index/)**
 
 Customers must be able to easily access each agreement from your app. Best practice is to send the agreement to the customer's in app Message Centre noting their consent. You must also have the most recent version of the agreement displayed in the "Legal" section of the app or other obvious section that can be easily found.

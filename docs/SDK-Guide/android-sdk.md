@@ -235,7 +235,8 @@ val response = sdk.onboardingClient.updateAccountDetails(
        onboardingApplicationId = applicationId,
        accountDetails = AccountUsageDetails(
            accountPurpose = accountPurposeCode,
-           primarySourceOfFunds = listOf(sourceOfFundsCode)
+           primarySourceOfFunds = listOf(sourceOfFundsCode),
+           authorizedThirdPartyUsage = authorizedThirdPartyUsage
        )
    )
 )
