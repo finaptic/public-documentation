@@ -145,11 +145,16 @@ You can now start to use the SDK through multiple clients.
  
 ## OnboardingClient
 
-Onboarding flow consist of initiate, update, validate and finalize calls.
+Onboarding flow consist of initiate, get, update, validate and finalize calls.
  
 1. Initiate application
       - [initiateApplication](#initiateapplication)
-2. Update information
+2. Get information
+      - [getConsentElectronicCommunication](#getconsentelectroniccommunication)
+      - [getConsentPrivacyPolicy](#getconsentprivacypolicy)
+      - [getConsentTermsOfUse](#getconsenttermsofuse)
+      - [getConsentProductAgreement](#getconsentproductagreement)
+3. Update information
       - [updatePersonalDetails](#updatepersonaldetails)
       - [updateContactDetails](#updatecontactdetails)
       - [updateAccountDetails](#updateaccountdetails)
@@ -159,15 +164,15 @@ Onboarding flow consist of initiate, update, validate and finalize calls.
       - [updateDisclosures](#updatedisclosures)
       - [updateEmployment](#updateemployment)
       - [updateCommunicationPreferences](#updatecommunicationpreferences)
-3. Validate application
+4. Validate application
       - [validateDocuments](#validatedocuments)
       - [validateSelfie](#validateselfie)
       - [validateApplication](#validateapplication)
       - [acceptApplication](#acceptapplication)
-4. Finalize application
+5. Finalize application
       - [finalizeApplicationCreateCustomer](#finalizeapplicationcreatecustomer)
       - [finalizeApplicationCreateProduct](#finalizeapplicationcreateproduct)
- 
+
 ### initiateApplication
  
 This is the only call that must be executed prior any other one when processing an onboarding application.
@@ -184,9 +189,32 @@ if (response.basicDetails.requestStatus != "OK") {
 }
 val applicationId = response.basicDetails.applicationId
 ```
- 
+
+ The returned application CONSENT TYPE and DOCUMENT NAME AND VERSION are required in consent update request.
+### getConsentElectronicCommunication
+
+```
+    val response = sdk.onboardingClient.getConsentElectronicCommunication()
+```
+### getConsentTermsOfUse
+
+```
+    val response = sdk.onboardingClient.getConsentTermsOfUse()
+```
+### getConsentProductAgreement
+
+```
+    val response = sdk.onboardingClient.getConsentProductAgreement()
+```
+### getConsentPrivacyPolicy
+
+```
+    val response = sdk.onboardingClient.getConsentPrivacyPolicy()
+```
+
 The returned application ID is required in every other request.
 ### updatePersonalDetails
+
 ```
 val response = sdk.onboardingClient.updatePersonalDetails(
    UpdatePersonalDetailsRequest(

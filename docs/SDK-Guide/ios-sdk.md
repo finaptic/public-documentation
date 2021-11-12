@@ -156,7 +156,12 @@ Onboarding flow consists of initiate, update, validate and finalize calls.
 
 1. Initiate application
      - [initiateApplication](#initiateapplication)
-2. Update information
+2. Get information
+      - [getConsentElectronicCommunication](#getconsentelectroniccommunication)
+      - [getConsentPrivacyPolicy](#getconsentprivacypolicy)
+      - [getConsentTermsOfUse](#getconsenttermsofuse)
+      - [getConsentProductAgreement](#getconsentproductagreement)
+3. Update information
      - [updatePersonalDetails](#updatepersonaldetails)
      - [updateContactDetails](#updatecontactdetails)
      - [updateAccountDetails](#updateaccountdetails)
@@ -166,14 +171,15 @@ Onboarding flow consists of initiate, update, validate and finalize calls.
      - [updateDisclosures](#updatedisclosures)
      - [updateEmployment](#updateemployment)
      - [updateCommunicationPreferences](#updatecommunicationpreferences)
-3. Validate application
+4. Validate application
      - [validateDocuments](#validatedocuments)
      - [validateSelfie](#validateselfie)
      - [validateApplication](#validateapplication)
      - [acceptApplication](#acceptapplication)
-4. Finalize application
+5. Finalize application
      - [finalizeApplicationCreateCustomer](#finalizeapplicationcreatecustomer)
      - [finalizeApplicationCreateProduct](#finalizeapplicationcreateproduct)
+     
 ### initiateApplication
 This is the only call that must be executed prior any other one when processing an onboarding application.
 ```
@@ -191,6 +197,28 @@ sdk.onboardingClient.initiateApplication(request: request) { result in
    }
 }
 ```
+ The returned application CONSENT TYPE and DOCUMENT NAME AND VERSION are required in consent update request.
+### getConsentElectronicCommunication
+
+```
+    let response = sdk.onboardingClient.getConsentElectronicCommunication()
+```
+### getConsentTermsOfUse
+
+```
+    let response = sdk.onboardingClient.getConsentTermsOfUse()
+```
+### getConsentProductAgreement
+
+```
+    let response = sdk.onboardingClient.getConsentProductAgreement()
+```
+### getConsentPrivacyPolicy
+
+```
+    let response = sdk.onboardingClient.getConsentPrivacyPolicy()
+```
+
 The returned application ID is required in every other request.
 ### updatePersonalDetails
 ```
