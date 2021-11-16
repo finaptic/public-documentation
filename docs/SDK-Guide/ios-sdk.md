@@ -45,6 +45,10 @@ You can read their official documentation [here](https://github.com/Acuant/iOSSD
         pod 'Firebase/Firestore', '~> 8.3'
         pod 'Firebase/RemoteConfig', '~> 8.3'
         pod 'Auth0', '~> 1.34.0'
+        pod 'AWSCore', '~> 2.26'
+        pod 'AWSConnect', '~> 2.26'
+        pod 'AWSConnectParticipant', '~> 2.26'
+        pod 'Starscream', '~> 3.1'
         
         # Acuant dependencies
         pod 'AcuantiOSSDKV11/AcuantCommon', '11.5.1'
@@ -689,6 +693,26 @@ sdk.authenticationClient.signOut() { error in
 }
 ```
 
+### getUserInfo
+
+On success, **getUserInfo** will return **AuthUserInfo**.
+```
+authenticationClient.getUserInfo { result in
+    switch result {
+    case .failure(let error):
+        print("Get user info error: \(error)")
+        
+    case .success(let authUserInfo):
+        print("Get user info success: \(authUserInfo))
+    }
+}
+```
+
+#### AuthUserInfo
+- ***username***
+- ***email***
+- ***isEmailVerified***
+
 ## CoreBankingClient
 
 ### getAccountDetails
@@ -753,6 +777,251 @@ sdk.coreCardClient.createCardSDKSignOnToken(request: request) { result in
    }
 }
 ```
+
+## HelpCenter
+
+The help center adds the ability to connect a Finaptic Customer Service agent for L2+ escalations. We provide APIs to integrate existing customer service chat / threaded conversations into your client application. The expectation is that a new chat should be triggered by an L1 customer support agent, while customers should be able to resume existing threads to provide additional information or view responses from Finaptic.
+
+- Start customer support chat
+- List chat threads
+- Get a chat thread's history
+
+### startChat
+
+Create ***StartChatRequest***.
+
+- ***displayName*** can be username. You can get it from AuthenticationClient's [getUserInfo](#getuserinfo).
+- ***subject*** provided by the customer when starting a new chat or from [ChatThread](#chatthread).
+- ***contactCaseId*** is used to resume a thread. Use ***nil*** to start a new one.
+
+```
+let request = StartChatRequest(displayName: displayName,
+                                subject: subject,
+                                contactCaseId: nil)
+```
+
+Calling **startChat** will try to connect and return [ChatClient](#chatclient).
+```
+sdk.helpCenter.startChat(request: request) { result in
+    switch result {
+    case .failure(let error):
+        print("Start chat error: \(error)")
+
+    case .success(let chatClient):
+        print("Start chat success")
+        self.chatClient = chatClient
+    }
+}
+```
+
+### listChatThreads
+
+**Note:** This method can be called after [Customer is created](#finalizeapplicationcreatecustomer).
+
+
+Create ***ListChatThreadsRequest***.
+
+- ***nextToken*** is provided by [ListChatThreadsResponse](#listchatthreadsresponse) and can be used to get next page. 
+
+```
+let request = ListChatThreadsRequest(nextToken: nil)
+```
+
+On success, **listChatThreads** will return [ListChatThreadsResponse](#listchatthreadsresponse).
+```
+sdk.helpCenter.listChatThreads(request: request) { result in
+    switch result {
+    case .failure(let error):
+        print("List chat threads failed: \(error)")
+
+    case .success(let response):
+        print("List chat threads success: \(response.items.count)")
+    }
+}
+```
+
+#### ListChatThreadsResponse
+
+- ***nextToken*** can be used to fetch next page.
+- ***items*** is an array of [ChatThread](#chatthread)
+
+#### ChatThread
+
+- ***id***
+- ***lastUpdated*** is a Date.
+- ***status*** is [ChatThreadStatus](#chatthreadstatus-enum).
+- ***subject*** provided by the customer when starting a new chat.
+- ***createdAt*** is a Date.
+- ***customerId***
+
+#### ChatThreadStatus enum
+
+- **waitingForAgent**
+- **waitingForCustomer** when an agent has responded and needs more information from the customer. Waiting for customer should indicate there is an unread message.
+- **resolved**
+  
+### listChatHistory
+
+**Note:** This method can be called after [Customer is created](#finalizeapplicationcreatecustomer).
+
+
+Create ***ListChatHistoryRequest***.
+
+- ***contactId*** is the **id** of [ChatThread](#chatthread).
+- ***nextToken*** is provided by [ListChatHistoryResponse](#listchathistoryresponse) and can be used to get next page. 
+
+
+```
+let request = ListChatHistoryRequest(contactId: contactId, nextToken: nil)
+```
+
+
+On success, **listChatHistory** will return [ListChatHistoryResponse](#listchathistoryresponse).
+```
+sdk.helpCenter.listChatHistory(request: request) { result in
+    switch result {
+    case .failure(let error):
+        print("List chat history failed: \(error)")
+
+    case .success(let response):
+        print("List chat history success: \(response.items.count)")
+    }
+}
+```
+
+
+#### ListChatHistoryResponse
+
+- ***nextToken*** used to fetch next page.
+- ***items*** is an array of [ChatMessage](#chatmessage)
+
+
+## ChatClient
+
+### sendMessage
+```
+let request = SendMessageRequest(messageContent: "Text message")
+            
+chatClient.sendMessage(request: request) { error in
+    guard error == nil else {
+        print("Send chat message failed: \(error!)")
+        return
+    }
+
+    print("Chat message sent.")
+}
+```
+
+### messages
+
+Message history in **descending** order. It's an array of [ChatMessage](#chatmessage).
+
+### receiveMessage
+
+Subscribing to **receiveMessage** publisher will deliver sequence of [ChatMessage](#chatmessage) over time.
+
+```
+private var subscriptions = Set<AnyCancellable>()
+
+private func subscribeToMessages() {
+    chatClient
+        .receiveMessage()
+        .sink { message in
+
+            print("On new message: \(String(describing: message))")
+
+        }.store(in: &subscriptions)
+}
+```
+
+### receiveEvent
+
+Subscribing to **receiveEvent** publisher will deliver sequence of [ChatEvent](#chatevent) over time.
+
+```
+private var subscriptions = Set<AnyCancellable>()
+
+private func subscribeToEvents() {
+    chatClient
+        .receiveEvent()
+        .sink { event in
+
+            print("On new event: \(String(describing: event))")
+
+        }.store(in: &subscriptions)
+}
+```
+
+### connectionStatus
+
+Subscribing to **connectionStatus** publisher will deliver sequence of [ChatConnectionStatus](#chatconnectionstatus-enum) over time.
+
+```
+private var subscriptions = Set<AnyCancellable>()
+
+private func subscribeToConnectionStatusChanges() {
+    chatClient
+        .connectionStatus()
+        .sink { connectionStatus in
+
+            print("Connection status changed: \(connectionStatus)")
+
+        }.store(in: &subscriptions)
+}
+```
+
+You can get the current status at any time by calling connectionStatus().**value**.
+```
+let connectionStatus = chatClient.connectionStatus().value
+```
+
+### stopContact
+
+Stops the chat, but threads are not deleted. They will show up in the help center listChatHistory API call after ~3 minutes.
+
+```
+chatClient.stopContact { error in
+    guard error == nil else {
+        print("Stop contact error: \(error!)")
+        return
+    }
+    
+    print("Stop contract success")
+}
+```
+
+#### ChatConnectionStatus enum
+
+- ***connecting*** when ChatClient is connecting or reconnecing after connection loss.
+- ***connected***
+- ***ended*** when [stopContact](#stopcontact) is called or agent closes the case.
+
+#### ChatMessage
+
+- ***id***
+- ***participantRole*** is [ParticipantRole](#participantrole-enum) enum.
+- ***displayName***
+- ***content*** is the text message.
+- ***timestamp*** is a Date.
+  
+#### ParticipantRole enum
+
+- ***customer***
+- ***systemMessage***
+- ***agent***
+  
+#### ChatEvent
+
+- ***id***
+- **type** is [ChatEventType](#chateventtype-enum) enum.
+- **timestamp** is a Date.
+- **displayName**
+
+#### ChatEventType enum
+
+- ***joined*** when agent joined the chat.
+- ***typing*** when agent is typing.
+
 
 ## Errors
  
