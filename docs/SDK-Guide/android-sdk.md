@@ -358,6 +358,7 @@ if (response.basicDetails.requestStatus != "OK") {
 Fetch employment status from [reference data client](#referencedataclient).
 
 - `dataType = ReferenceDataTypes.OCCUPATION`
+- `dataType = ReferenceDataTypes.INDUSTRY`
 - `dataType = ReferenceDataTypes.EMPLOYMENT_STATUS`
  
 ```
@@ -368,7 +369,7 @@ val response = sdk.onboardingClient.updateEmployment(
            employmentStatus = employmentStatus.code,
            employerName = "Finaptic",
            occupation = occupation.code,
-           industry = "Finances",
+           industry = industry.code,
            workAddress = address,
            workPhoneNumber = "+14507654321",
            startDate = LocalDate.of(2019, 1, 1),
@@ -434,7 +435,23 @@ if (response.basicDetails.requestStatus != "OK") {
 if (response.basicDetails.onboardingApplicationStatus == ApplicationStatus.dataCollection ||
     response.basicDetails.onboardingApplicationStatus == ApplicationStatus.kycFailed ||
     response.basicDetails.onboardingApplicationStatus == ApplicationStatus.kycRejected ) {
-    // The user was not approved during validation. You may ask the user to check his info, retake the images and update/validate again.
+        
+    // The user was not approved during validation. 
+    // You may ask the user to check his info, retake the images and update/validate again.
+
+    val failureStatusCodes = response.basicDetails.failureStatusCodes
+    if (failureStatusCodes.isNotEmpty()) {
+        // The list of codes explaining the reason of the request outcome.
+        // This list will only be populated when request status is "KYC Failed", "KYC Rejected", or "Application Rejected".
+        // The list will otherwise be empty. The value stored here is one of the code values retrieved from the
+        // ReferenceDataService with dataType set to ReferenceDataService.FAILURE_CODE.
+
+        // You can't retry after getting one of the following error codes:
+        // FAILURE_CODE_DEFAULT
+        // FAILURE_CODE_AGE_OF_MAJORITY
+
+        Log.d(TAG, "failureStatusCodes: $failureStatusCodes")
+    }
 }
 ```
  
@@ -455,7 +472,23 @@ if (response.basicDetails.requestStatus != "OK") {
 if (response.basicDetails.onboardingApplicationStatus == ApplicationStatus.dataCollection ||
     response.basicDetails.onboardingApplicationStatus == ApplicationStatus.kycFailed ||
     response.basicDetails.onboardingApplicationStatus == ApplicationStatus.kycRejected ) {
-    // The user was not approved during validation. You may ask the user to check his info, retake the images and update/validate again.
+
+    // The user was not approved during validation. 
+    // You may ask the user to check his info, retake the images and update/validate again.
+
+    val failureStatusCodes = response.basicDetails.failureStatusCodes
+    if (failureStatusCodes.isNotEmpty()) {
+        // The list of codes explaining the reason of the request outcome.
+        // This list will only be populated when request status is "KYC Failed", "KYC Rejected", or "Application Rejected".
+        // The list will otherwise be empty. The value stored here is one of the code values retrieved from the
+        // ReferenceDataService with dataType set to ReferenceDataService.FAILURE_CODE.
+
+        // You can't retry after getting one of the following error codes:
+        // FAILURE_CODE_DEFAULT
+        // FAILURE_CODE_AGE_OF_MAJORITY
+
+        Log.d(TAG, "failureStatusCodes: $failureStatusCodes")
+    }
 }
 ```
  
@@ -476,7 +509,23 @@ if (response.basicDetails.requestStatus != "OK") {
 if (response.basicDetails.onboardingApplicationStatus == ApplicationStatus.dataCollection ||
     response.basicDetails.onboardingApplicationStatus == ApplicationStatus.kycFailed ||
     response.basicDetails.onboardingApplicationStatus == ApplicationStatus.kycRejected ) {
-    // The user was not approved during validation. You may ask the user to check his info, retake the images and update/validate again.
+        
+    // The user was not approved during validation. 
+    // You may ask the user to check his info, retake the images and update/validate again.
+
+    val failureStatusCodes = response.basicDetails.failureStatusCodes
+    if (failureStatusCodes.isNotEmpty()) {
+        // The list of codes explaining the reason of the request outcome.
+        // This list will only be populated when request status is "KYC Failed", "KYC Rejected", or "Application Rejected".
+        // The list will otherwise be empty. The value stored here is one of the code values retrieved from the
+        // ReferenceDataService with dataType set to ReferenceDataService.FAILURE_CODE.
+
+        // You can't retry after getting one of the following error codes:
+        // FAILURE_CODE_DEFAULT
+        // FAILURE_CODE_AGE_OF_MAJORITY
+
+        Log.d(TAG, "failureStatusCodes: $failureStatusCodes")
+    }
 }
 ```
  
@@ -538,6 +587,9 @@ ReferenceDataTypes:
 - ONBOARDING_STATUS
 - COUNTRY
 - OCCUPATION
+- INDUSTRY
+- LANGUAGE
+- FAILURE_CODE
  
 ```
 val accountPurposes = sdk.referenceDataClient
@@ -594,6 +646,14 @@ val currentState = sdk.authenticationClient.refreshAuthState()
 ```
 sdk.authenticationClient.signOut()
 ```
+
+### resetPassword
+```
+val email = "sample@finaptic.com"
+       
+sdk.authenticationClient.resetPassword(request = ResetRequest(email = email))
+```
+ 
  
 ## CoreBankingClient
 

@@ -386,6 +386,7 @@ sdk.onboardingClient.updateDisclosures(request: request) { result in
 Fetch employment status from [reference data client](#referencedataclient).
 
 - `dataType: ReferenceDataTypes.occupation`
+- `dataType: ReferenceDataTypes.industry`
 - `dataType: ReferenceDataTypes.employmentStatus`
   
 ```
@@ -394,7 +395,7 @@ let request = UpdateEmploymentRequest(
    employmentInfo: Employment(
        employmentStatus: employment.code,
        employerName: "Finaptic",
-       industry: "Finances",
+       industry: industry.code,
        occupation: occupation.code,
        startDate: Calendar.current.date(from: DateComponents(year: 2019, month: 1, day: 1)),
        endDate: Calendar.current.date(from: DateComponents(year: 2020, month: 12, day: 31)),
@@ -473,7 +474,23 @@ sdk.onboardingClient.validateDocuments(request: request) { result in
        if (response.basicDetails.onboardingApplicationStatus == ApplicationStatus.dataCollection ||
            response.basicDetails.onboardingApplicationStatus == ApplicationStatus.kycFailed ||
            response.basicDetails.onboardingApplicationStatus == ApplicationStatus.kycRejected) {
-           // The user was not approved during validation. You may ask the user to check his info, retake the images and update/validate again.
+
+           // The user was not approved during validation. 
+           // You may ask the user to check his info, retake the images and update/validate again.
+                      
+           let failureStatusCodes = details.failureStatusCodes
+           if (!failureStatusCodes.isEmpty) {
+                // The list of codes explaining the reason of the request outcome.
+                // This list will only be populated when request status is "KYC Failed", "KYC Rejected", or "Application Rejected".
+                // The list will otherwise be empty. The value stored here is one of the code values retrieved from the
+                // ReferenceDataService with dataType set to ReferenceDataService.failureCode.
+
+                // You can't retry after getting one of the following error codes:
+                // FAILURE_CODE_DEFAULT
+                // FAILURE_CODE_AGE_OF_MAJORITY
+
+                print("failureStatusCodes: \(failureStatusCodes)")
+           }
        }
  
    case .failure(let error):
@@ -498,7 +515,23 @@ sdk.onboardingClient.validateSelfie(request: request) { result in
        if (response.basicDetails.onboardingApplicationStatus == ApplicationStatus.dataCollection ||
            response.basicDetails.onboardingApplicationStatus == ApplicationStatus.kycFailed ||
            response.basicDetails.onboardingApplicationStatus == ApplicationStatus.kycRejected) {
-           // The user was not approved during validation. You may ask the user to check his info, retake the images and update/validate again.
+
+           // The user was not approved during validation. 
+           // You may ask the user to check his info, retake the images and update/validate again.
+                      
+           let failureStatusCodes = details.failureStatusCodes
+           if (!failureStatusCodes.isEmpty) {
+                // The list of codes explaining the reason of the request outcome.
+                // This list will only be populated when request status is "KYC Failed", "KYC Rejected", or "Application Rejected".
+                // The list will otherwise be empty. The value stored here is one of the code values retrieved from the
+                // ReferenceDataService with dataType set to ReferenceDataService.failureCode.
+
+                // You can't retry after getting one of the following error codes:
+                // FAILURE_CODE_DEFAULT
+                // FAILURE_CODE_AGE_OF_MAJORITY
+
+                print("failureStatusCodes: \(failureStatusCodes)")
+           }
        }
  
    case .failure(let error):
@@ -520,7 +553,23 @@ sdk.onboardingClient.validateApplication(request: request) { result in
        if (response.basicDetails.onboardingApplicationStatus == ApplicationStatus.dataCollection ||
            response.basicDetails.onboardingApplicationStatus == ApplicationStatus.kycFailed ||
            response.basicDetails.onboardingApplicationStatus == ApplicationStatus.kycRejected) {
-           // The user was not approved during validation. You may ask the user to check his info, retake the images and update/validate again.
+
+           // The user was not approved during validation. 
+           // You may ask the user to check his info, retake the images and update/validate again.
+                      
+           let failureStatusCodes = details.failureStatusCodes
+           if (!failureStatusCodes.isEmpty) {
+                // The list of codes explaining the reason of the request outcome.
+                // This list will only be populated when request status is "KYC Failed", "KYC Rejected", or "Application Rejected".
+                // The list will otherwise be empty. The value stored here is one of the code values retrieved from the
+                // ReferenceDataService with dataType set to ReferenceDataService.failureCode.
+
+                // You can't retry after getting one of the following error codes:
+                // FAILURE_CODE_DEFAULT
+                // FAILURE_CODE_AGE_OF_MAJORITY
+
+                print("failureStatusCodes: \(failureStatusCodes)")
+           }
        }
  
    case .failure(let error):
@@ -589,6 +638,9 @@ ReferenceDataTypes:
 - onboardingStatus
 - country
 - occupation
+- industry
+- language
+- failureCode
   
 ```
 let request = GetReferenceDataByTypeRequest(dataType: ReferenceDataTypes.accountPurpose,
@@ -691,6 +743,20 @@ sdk.authenticationClient.signOut() { error in
    }
    print("Signed out")
 }
+```
+### resetPassword
+```
+let request = ResetRequest(email: "sample@finaptic.com")
+
+sdk.authenticationClient.resetPassword(request: request){
+    result in switch result{
+        case .success(_):
+        print("Success Reset Password")
+            
+        case .failure(let error):
+        print("Reset Password error: \(error)")
+        }
+    }
 ```
 
 ### getUserInfo
