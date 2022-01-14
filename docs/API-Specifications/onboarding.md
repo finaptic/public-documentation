@@ -72,6 +72,23 @@ Errors:
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | invitation_id | [string](#string) |  | The ID of the invitation to accept. This must be a valid UUID, and represent a valid invitation that was issued to the current user. |
+| invitation_metadata | [AcceptAuthorizedUserInvitationRequest.InvitationMetadataEntry](#thebaasco.tenant.onboarding.v1.AcceptAuthorizedUserInvitationRequest.InvitationMetadataEntry) | repeated | Optional. Additional metadata to attach to the response to the invitation, for the consumption by inviter before confirming the invitation. |
+
+
+
+
+
+
+<a name="thebaasco.tenant.onboarding.v1.AcceptAuthorizedUserInvitationRequest.InvitationMetadataEntry"></a>
+
+#### AcceptAuthorizedUserInvitationRequest.InvitationMetadataEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -104,6 +121,23 @@ AuthorizedUserInvitation is the message that provides information on invitations
 | status | [AuthorizedUserInvitationStatus](#thebaasco.tenant.onboarding.v1.AuthorizedUserInvitationStatus) |  | The current status of the invitation. Refer to AuthorizedUserInvitationStatus enumeration for details on statuses and meaning. |
 | creation_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The time at which the invitation was issued. |
 | expiration_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | ExpirationTime is the time at which it will no longer be possible for the invited customer to Accept the invitation. |
+| invitation_metadata | [AuthorizedUserInvitation.InvitationMetadataEntry](#thebaasco.tenant.onboarding.v1.AuthorizedUserInvitation.InvitationMetadataEntry) | repeated | Additional metadata that has been attached to the invitation. This will contain the metadata specified by the last operation on the invitation. |
+
+
+
+
+
+
+<a name="thebaasco.tenant.onboarding.v1.AuthorizedUserInvitation.InvitationMetadataEntry"></a>
+
+#### AuthorizedUserInvitation.InvitationMetadataEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -224,6 +258,23 @@ Errors:
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | invitation_id | [string](#string) |  | The ID of the invitation to decline. This must be a valid UUID, and represent a valid invitation that was issued to the current user. |
+| invitation_metadata | [DeclineAuthorizedUserInvitationRequest.InvitationMetadataEntry](#thebaasco.tenant.onboarding.v1.DeclineAuthorizedUserInvitationRequest.InvitationMetadataEntry) | repeated | Optional. Additional metadata to attach to the response to the invitation, for the consumption by inviter when reviewing invitation status. |
+
+
+
+
+
+
+<a name="thebaasco.tenant.onboarding.v1.DeclineAuthorizedUserInvitationRequest.InvitationMetadataEntry"></a>
+
+#### DeclineAuthorizedUserInvitationRequest.InvitationMetadataEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -293,6 +344,23 @@ Errors:
 | ----- | ---- | ----- | ----------- |
 | invited_customer_identifier | [string](#string) |  | The identifier to be used to lookup for the invited customer. This can either the username, or the email address of the customer to invite. If the identifier does not map to any known user, the operation will succeed, if this occurs the invitation will expire automatically after a period of time, without having been accepted or declined. |
 | account_id | [string](#string) |  | The ID of the account on which an authorized user is to be added. This must be a valid UUID, and represent an existing account. In addition, the customer issuing the request must be an Owner for the account. |
+| invitation_metadata | [InviteAuthorizedUserRequest.InvitationMetadataEntry](#thebaasco.tenant.onboarding.v1.InviteAuthorizedUserRequest.InvitationMetadataEntry) | repeated | Optional. Additional metadata to attach to the invitation, to be consumed by the invited user before accepting the invitation. |
+
+
+
+
+
+
+<a name="thebaasco.tenant.onboarding.v1.InviteAuthorizedUserRequest.InvitationMetadataEntry"></a>
+
+#### InviteAuthorizedUserRequest.InvitationMetadataEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
 
 
 
@@ -488,8 +556,9 @@ ContactDetails is a message for providing the contact details for a customer.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| phone_number | [string](#string) |  | The contact phone number. This value is optional and must be in a valid phone number format. |
+| phone_number | [string](#string) |  | **Deprecated.** The contact phone number. Deprecated in favor of ContactPhoneNumber. If both are specified in a request, preference will be given to ContactPhoneNumber. In responses and events, if only PhoneNumber was specified, ContactPhoneNumber will assume SMS compatible to be false. |
 | customer_email | [string](#string) |  | The contact email address. This value is required and must be in a valid email address format. |
+| contact_phone_number | [thebaasco.types.PhoneNumber](#thebaasco.types.PhoneNumber) |  | The contact phone number. See PhoneNumber type for more details. |
 
 
 
@@ -575,6 +644,7 @@ collected from the customer to prove identity.
 | document_country | [string](#string) |  | The country the document was issued for. |
 | front_image_file_name | [string](#string) |  | The cloud storage file nme of the image taken of the front of the document. (required, file size <4MB) |
 | back_image_file_name | [string](#string) |  | The cloud storage file nme of the image taken of the back of the document. (file size <4MB) |
+| document_state | [string](#string) |  | The state issuing the document used to identify the applicant. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'STATE_' concatenate with country code retrieved from data_type set to 'COUNTRY'. e.g. 'STATE_CA' will retrieve all states from Canada ('BC', 'AB', 'QC'...) |
 
 
 
@@ -596,7 +666,8 @@ Employment defines the details of Employment for the customer being onboarded.
 | startDate | [google.type.Date](#google.type.Date) |  | The month and year the customer started this position. |
 | endDate | [google.type.Date](#google.type.Date) |  | The month and year the customer no longer held this position. |
 | work_address | [Address](#thebaasco.tenant.onboarding.v1.Address) |  | The Address of the employer. The 'type' field must be set to 'WORK'. Required. |
-| work_phone_number | [string](#string) |  | The phone number of the employer. Required. |
+| work_phone_number | [string](#string) |  | **Deprecated.** The phone number of the employer. Deprecated in favor of PhoneNumber. If both are specified in a request, preference will be given to PhoneNumber. In responses and events, if only WorkPhoneNumber was specified, PhoneNumber will assume SMS compatible to be false. |
+| phone_number | [thebaasco.types.PhoneNumber](#thebaasco.types.PhoneNumber) |  | The phone number of the employer. See PhoneNumber for more details. |
 
 
 
@@ -719,6 +790,7 @@ IdentificationDocument contains information about the ID document provided durin
 | expiry_date | [thebaasco.types.ProtectedDate](#thebaasco.types.ProtectedDate) |  | The expiry date of the document used to identify the applicant, tokenized before being produced. If expiration date could not be retrieved from the provided ID document, this field will be absent. |
 | document_type | [string](#string) |  | The type of document used for identification. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'DOCUMENT_TYPE'. e.g. 'DOCUMENT_TYPE_CANADIAN_DRIVERS_LICENSE' or 'DOCUMENT_TYPE_CANADIAN_PASSPORT' |
 | document_country | [string](#string) |  | The country issuing the document used to identify the applicant. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'COUNTRY'. e.g. 'CA' |
+| document_state | [string](#string) |  | The state issuing the document used to identify the applicant. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'STATE_' concatenate with country code retrieved from data_type set to 'COUNTRY'. e.g. 'STATE_CA' will retrieve all states from Canada ('BC', 'AB', 'QC'...) |
 
 
 
@@ -753,7 +825,7 @@ InitiateApplicationRequest.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | basic_details | [OnboardingOperationResponseDetails](#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails) |  | The basic details of the onboarding application response. See OnboardingOperationResponseDetails. |
-| is_kyc_needed | [bool](#bool) |  | If true validation of customer data (KYC) is needed as part of this onboarding application. If false, customer data has already been validated, and needs to be bypassed ( go straight to AcceptApplicationRequest). |
+| is_kyc_needed | [bool](#bool) |  | **Deprecated.** If true validation of customer data (KYC) is needed as part of this onboarding application. If false, customer data has already been validated, and needs to be bypassed ( go straight to AcceptApplicationRequest). Deprecated, use OnboardingOperationResponseDetails.verification_needed instead |
 
 
 
@@ -866,6 +938,28 @@ when a product is created with the FinalizeApplicationCreateProductRequest.
 
 
 
+<a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationRejectedEvent"></a>
+
+#### OnboardingApplicationRejectedEvent
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| event_id | [string](#string) |  | The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID. |
+| application_id | [string](#string) |  | The UUID of the onboarding application. |
+| tenant_id | [int32](#int32) |  | The ID to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants. |
+| event_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The UTC timestamp when this event was issued. |
+| rejection_status_codes | [string](#string) | repeated | Acuant's rejection reasons |
+| image_selfie | [thebaasco.types.ProtectedBlob](#thebaasco.types.ProtectedBlob) |  | Selfie, tokenized before being produced |
+| document_image_front | [thebaasco.types.ProtectedBlob](#thebaasco.types.ProtectedBlob) |  | Front document image, tokenized before being produced |
+| document_image_back | [thebaasco.types.ProtectedBlob](#thebaasco.types.ProtectedBlob) |  | Back document image, tokenized before being produced |
+
+
+
+
+
+
 <a name="thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails"></a>
 
 #### OnboardingOperationResponseDetails
@@ -882,6 +976,23 @@ onboarding application create or update message.
 | is_retry_operation_restricted | [bool](#bool) |  | This is for internal use only. Do not use. |
 | remaining_allowed_retries | [int64](#int64) |  | The remaining KYC retries allowed. |
 | failure_status_codes | [string](#string) | repeated | The list of codes explaining the reason of the request outcome. This list will only be populated when request status is "KYC Failed", "KYC Rejected", or "Application Rejected". The list will otherwise be empty. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'FAILURE_STATUS'. |
+| verification_needed | [OnboardingVerification](#thebaasco.tenant.onboarding.v1.OnboardingVerification) | repeated | The array of verifications that will be needed be performed in order to complete the application. |
+
+
+
+
+
+
+<a name="thebaasco.tenant.onboarding.v1.OnboardingVerification"></a>
+
+#### OnboardingVerification
+OnboardingVerification is a Verification needed for an onboarding application
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The name of the OnboardingVerification 'KYC' means this application will perform KYC validation during the validate phase ( ValidateDocumentsRequest, ValidateSelfieRequest and ValidateApplicationRequest) before being able to complete onboarding application. 'ProfileCreation' means that this application requires input of basic customer information, without doing full KYC, before being able to complete onboarding application. 'AccountUsage' means that this application needs to collect Account Usage information using UpdateAccountDetailsRequest before being able to complete onboarding application. |
+| required_updates | [string](#string) | repeated | The list of all Update request that are required as part of this verification (eg : [UpdateAccountDetailsRequest, UpdateConsentsRequest]) |
 
 
 
@@ -917,6 +1028,7 @@ PersonalDetails defines a message containing the customer's personal details.
 | middle_name | [string](#string) |  | The customer middle name. This value is optional and has a maximum of 50 characters. Accepted characters: -, ', French accents, 0-9. |
 | last_name | [string](#string) |  | The customer last name. This value is required and has a maximum of 50 characters. Accepted characters: -, ', French accents, 0-9. |
 | date_of_birth | [google.type.Date](#google.type.Date) |  | The customer's date of birth. |
+| alias | [string](#string) |  | The customer alias. This value is optional and has a maximum of 20 characters. Accepts alphanumeric input without special characters. |
 
 
 
@@ -1363,6 +1475,13 @@ See ValidateSelfieRequest for details.
 ### ProtectedString
 
 [Global types / Protected String](../Global-types/protectedtypes/#protectedstring)
+
+<a name="thebaasco.types.PhoneNumber"></a>
+
+### PhoneNumber
+
+[Global types / Phone Number](../Global-types/phonenumber/#phonenumber)
+
 
 ## Scalar Value Types
 

@@ -71,10 +71,11 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| phone_number | [string](#string) |  |  |
+| phone_number | [string](#string) |  | **Deprecated.** The contact phone number. Deprecated in favor of ContactPhoneNumber. If both are specified in a request, preference will be given to ContactPhoneNumber. In responses and events, if only PhoneNumber was specified, ContactPhoneNumber will assume SMS compatible to be false. |
 | customer_email | [string](#string) |  |  |
 | customer_communication_language | [string](#string) |  |  |
 | customer_communication_pref | [string](#string) |  |  |
+| contact_phone_number | [thebaasco.types.PhoneNumber](#thebaasco.types.PhoneNumber) |  | The contact phone number. See PhoneNumber type for more details. |
 
 
 
@@ -144,7 +145,8 @@
 | start_date | [google.type.Date](#google.type.Date) |  | not required, format Month/year |
 | end_date | [google.type.Date](#google.type.Date) |  | not required, format Month/year |
 | work_address | [Address](#thebaasco.tenant.clientprofile.v1.Address) |  | Required for 0-2 status |
-| work_phone_number | [string](#string) |  |  |
+| work_phone_number | [string](#string) |  | **Deprecated.** The phone number of the employer. Deprecated in favor of PhoneNumber. If both are specified in a request, preference will be given to PhoneNumber. In responses and events, if only WorkPhoneNumber was specified, PhoneNumber will assume SMS compatible to be false. |
+| phone_number | [thebaasco.types.PhoneNumber](#thebaasco.types.PhoneNumber) |  | The phone number of the employer. See PhoneNumber for more details. |
 
 
 
@@ -185,6 +187,7 @@ Please update
 | customer_residence_address | [Address](#thebaasco.tenant.clientprofile.v1.Address) | repeated |  |
 | individual_party_id | [string](#string) |  | Output only |
 | kycDone | [bool](#bool) |  | This boolean field is used to indicate if the customer has been validated through the onboarding KYC process |
+| alias | [string](#string) |  | The customer alias. This value is optional and has a maximum of 20 characters. Accepts alphanumeric input without special characters. |
 
 
 
@@ -209,6 +212,24 @@ Please update
 
 
 
+<a name="thebaasco.tenant.clientprofile.v1.IndividualPartyUpdatedEvent"></a>
+
+#### IndividualPartyUpdatedEvent
+IndividualPartyUpdatedEvent is raised when an IndividualParty is updated.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| event_id | [string](#string) |  | The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID. |
+| individual_party | [IndividualParty](#thebaasco.tenant.clientprofile.v1.IndividualParty) |  | The IndividualParty that will be updated to. |
+| tenant_id | [int32](#int32) |  | The tenant ID, to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants. |
+| event_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The UTC timestamp at which the IndividualParty was updated. |
+
+
+
+
+
+
 <a name="thebaasco.tenant.clientprofile.v1.OtherResidence"></a>
 
 #### OtherResidence
@@ -225,7 +246,50 @@ Please update
 
 
 
+
+<a name="thebaasco.tenant.clientprofile.v1.UpdateIndividualPartyRequest"></a>
+
+#### UpdateIndividualPartyRequest
+UpdateIndividualPartyRequest is the message used to perform the asynchronous operation of updating an Individual Party.
+Performing this operation will generate an asynchronous response of type UpdateIndividualPartyResponse, on the response topic.
+The operation will override all information previously stored with that provided in the request object. A user can only
+update their own IndividualParty.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| individual_party | [IndividualParty](#thebaasco.tenant.clientprofile.v1.IndividualParty) |  | The individual party that will be updated to as the result of the operation. |
+
+
+
+
+
+
+<a name="thebaasco.tenant.clientprofile.v1.UpdateIndividualPartyResponse"></a>
+
+#### UpdateIndividualPartyResponse
+UpdateIndividualPartyResponse is the response to UpdateIndividualPartyRequest. It contains the updated IndividualParty.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| individual_party | [IndividualParty](#thebaasco.tenant.clientprofile.v1.IndividualParty) |  | The updated IndividualParty. |
+
+
+
+
+
  <!-- end messages -->
+
+
+
+## Shared types
+
+<a name="thebaasco.types.PhoneNumber"></a>
+
+### PhoneNumber
+
+[Global types / Phone Number](../Global-types/phonenumber/#phonenumber)
 
 
 ## Scalar Value Types
