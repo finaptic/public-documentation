@@ -4,7 +4,7 @@ The Finaptic Android SDK provides a way to consume Finaptic APIs from your Andro
  
 Note that the Finaptic APIs are strictly accessed through the SDK because it hides the underlying implementation that could change in the future.
 
-Android API version 26 or newer is required.
+Android API version 27 or newer is required.
 
 ## Sample application
 
@@ -196,6 +196,8 @@ OnboardingOperationResponseDetails are the common response fields for an onboard
 - ***remainingAllowedRetries***: The remaining KYC retries allowed.
 - ***failureStatusCodes***: The list of codes explaining the reason of the request outcome. This list will only be populated when request status is **"KYC Failed"**, **"KYC Rejected"**, or **"Application Rejected"**. The list will otherwise be empty. The value stored here is one of the code values retrieved from the [ReferenceDataClient](#referencedataclient) with ***dataType*** set to ***ReferenceDataTypes.FAILURE_CODE***.
 - ***verificationNeeded***: The list of verifications that will be needed be performed in order to complete the application. See [OnboardingVerification](#onboardingverification).
+- ***consents***: The list of Consents required as part of this onboarding application. See [TermsAndConditions](#termsandconditions).
+- ***disclosures***: The list of Consents required as part of this onboarding application. See [TermsAndConditions](#termsandconditions).
 
 #### OnboardingVerification
 
@@ -206,6 +208,14 @@ Verification needed for an onboarding application
     - **"ProfileCreation"** means that this application requires input of basic customer information, without doing full KYC, before being able to complete onboarding application.
     - **"AccountUsage"** means that this application needs to collect Account Usage information using UpdateAccountDetailsRequest before being able to complete onboarding application.
 - ***requiredUpdates***: The list of all Update request that are required as part of this verification (eg : [UpdateAccountDetailsRequest, UpdateConsentsRequest]).
+
+#### TermsAndConditions
+
+TermsAndConditions is either a consent or a disclosure.
+
+- ***documentType***: The type of the terms and conditions. The value stored here is one of the code values retrieved from the [ReferenceDataClient](#referencedataclient) with ***dataType*** set to **ReferenceDataTypes.CONSENT_TYPE** or **ReferenceDataTypes.DISCLOSURE_TYPE**.
+- ***documentNameAndVersion***: The URL of the versioned terms and conditions document the customer needs to review and accept.
+- ***neededBeforeValidation***: Whether or not the terms and conditions need to be accepted before calling any of the validate requests.
 
 ### initiateApplication
  
@@ -231,6 +241,11 @@ initiateApplicationResponse.basicDetails.verificationNeeded.forEach {
 
 #### InitiateApplicationRequest
 - ***bundleId***: The unique identifier of the bundle being applied for.
+    - **"despositV1"**: Deposit account without card.
+    - **"prepaidV1"**: Account and prepaid-card.
+    - **"creditcardV1"**: Account with credit card.
+    - **"productlessV1"**: Onboard a customer and **do not** validate his identity.
+    - **"kycV1"**: Onboard a customer, but **do validate** his identity.
 
 #### InitiateApplicationResponse
 - ***basicDetails***: The basic details of the onboarding application response. See [OnboardingOperationResponseDetails](#onboardingoperationresponsedetails).
@@ -297,12 +312,13 @@ Used to update the customer personal details in the onboarding application.
 ### updateContactDetails
  
 ```
+val contactPhoneNumber = PhoneNumber(smsCompatible = true, number = "+15141234567")
 val response = sdk.onboardingClient.updateContactDetails(
    UpdateContactDetailsRequest(
        onboardingApplicationId = applicationId,
        customerContactDetails = ContactDetails(
            customerEmail = "john.miller@mail.com",
-           phoneNumber = "+15141234567"
+           contactPhoneNumber = contactPhoneNumber
        )
    )
 )
@@ -323,7 +339,7 @@ Used to update the customer contact details in the onboarding application.
 - ***basicDetails***: The basic details of the onboarding application response. See [OnboardingOperationResponseDetails](#onboardingoperationresponsedetails).
 
 #### ContactDetails
-- ***phoneNumber***: The contact phone number. This value is optional and must be in a valid phone number format.
+- ***contactPhoneNumber***: The contact phone number. This value is optional and must be in a valid phone number format.
 - ***customerEmail***: The contact email address. This value is required and must be in a valid email address format.
 
 ### updateAccountDetails
@@ -550,6 +566,7 @@ Fetch employment status from [reference data client](#referencedataclient).
 - `dataType = ReferenceDataTypes.EMPLOYMENT_STATUS`
  
 ```
+val phoneNumber =  PhoneNumber(smsCompatible = true,number = "+14507654321")
 val response = sdk.onboardingClient.updateEmployment(
    UpdateEmploymentRequest(
        onboardingApplicationId = applicationId,
@@ -559,7 +576,7 @@ val response = sdk.onboardingClient.updateEmployment(
            occupation = occupation.code,
            industry = industry.code,
            workAddress = address,
-           workPhoneNumber = "+14507654321",
+           phoneNumber = phoneNumber,
            startDate = LocalDate.of(2019, 1, 1),
            endDate = LocalDate.of(2020, 12, 31)
        )
@@ -591,7 +608,7 @@ Employment defines the details of Employment for the customer being onboarded.
 - ***startDate***: The month and year the customer started this position.
 - ***endDate***: The month and year the customer no longer held this position.
 - ***workAddress***: The 'type' field must be set to 'WORK'. Required. See [Address](#address).
-- ***workPhoneNumber***: The phone number of the employer. Required.
+- ***phoneNumber***: The phone number of the employer. Required.
 
 ### updateCommunicationPreferences
 Fetch communication preferences from [reference data client](#referencedataclient) with `dataType = ReferenceDataTypes.COMMUNICATION_PREFERENCE`.
@@ -920,6 +937,7 @@ Used to perform operation of inviting a user to join an account as an authorized
 
 - ***invitedCustomerIdentifier***: The identifier to be used to lookup for the invited customer. This can either the username, or the email address of the customer to invite. If the identifier does not map to any known user, the operation will succeed, if this occurs the invitation will expire automatically after a period of time, without having been accepted or declined.
 - ***accountId***: The ID of the account on which an authorized user is to be added. The customer issuing the request must be an Owner for the account. 
+- ***invitationMetadata***: Optional. Additional metadata to attach to the invitation, to be consumed by the invited user before accepting the invitation.
 
 #### InviteAuthorizedUserResponse
 - ***invitation***: The resulting invitation created by the InviteAuthorizedUserRequest. See [AuthorizedUserInvitation](#authorizeduserinvitation) for details.
@@ -939,6 +957,7 @@ Errors:
 - ***status***: The current status of the invitation. Refer to [AuthorizedUserInvitationStatus](#authorizeduserinvitationstatus-enum) enumeration for details on statuses and meaning.
 - ***creationTime***: The time at which the invitation was issued.
 - ***expirationTime***: Time at which it will no longer be possible for the invited customer to Accept the invitation.
+- ***invitationMetadata***: Additional metadata that has been attached to the invitation. This will contain the metadata specified by the last operation on the invitation.
 
 #### AuthorizedUserInvitationStatus enum
 - ***pending***: Represents an invitation that is waiting for an accept or decline response from the invited user.
@@ -962,7 +981,8 @@ try {
 
 Used to perform operation of accepting an invitation issued to the user to join an account as an authorized user. 
 
-- ***invitationId***: The ID of the invitation to accept. This must represent a valid invitation that was issued to the current user. 
+- ***invitationId***: The ID of the invitation to accept. This must represent a valid invitation that was issued to the current user.
+- ***invitationMetadata***: Optional. Additional metadata to attach to the response to the invitation, for the consumption by inviter before confirming the invitation.
 
 #### AcceptAuthorizedUserInvitationResponse
 *Response intentionally left without fields.*
@@ -985,7 +1005,8 @@ try {
 ```
 
 #### DeclineAuthorizedUserInvitationRequest
-- ***invitationId***: The ID of the invitation to decline. This must represent a valid invitation that was issued to the current user. 
+- ***invitationId***: The ID of the invitation to decline. This must represent a valid invitation that was issued to the current user.
+- ***invitationMetadata***: Optional. Additional metadata to attach to the response to the invitation, for the consumption by inviter when reviewing invitation status.
 
 #### DeclineAuthorizedUserInvitationResponse
 *Response intentionally left without fields.*
@@ -1020,6 +1041,39 @@ Errors:
 
 - If the current user is not the issuer of the invitation, then the operation will fail with a **FinapticExceptionCode.PERMISSION_DENIED**  code, and provide a message indicating the reason for the conflict.
 - If the invitation is not in the Accepted status, the operation will fail with a **FinapticExceptionCode.FAILED_PRECONDITION**  code, and provide a message indicating that status was invalid.
+
+### RemoveAuthorizedUser
+```
+try {
+    val request = RemoveAuthorizedUserRequest(
+                accountId = invitation.accountId,
+                authorizedUser = invitation.invitedCustomerId)
+    sdk.onboardingClient.removeAuthorizedUser(request)
+    Log.d(TAG, "Removed authorized user")
+} catch (e: FinapticException) {
+    Log.e(TAG, "Remove authorized user error:", e)
+}
+```
+
+A user can remove an authorized user only if they have completed the step up authentication with a scope set to **"remove:authorized_user"**.
+```
+try {
+    val request = SignInRequest(credential = credential, scope = "remove:authorized_user")
+    sdk.authenticationClient.signIn(request)
+} catch(e: FinapticException) {
+    Log.e(TAG, "Sign in error:", e)
+}
+```
+
+#### RemoveAuthorizedUserRequest
+
+Used to remove an authorized user from the provided Account.
+
+- ***accountId***: The ID of the Account where the authorized is removed from. 
+- ***authorizedUser***:  The ID of the authorized user to add to the Account.
+
+#### RemoveAuthorizedUserResponse
+- ***authorizedUsers***: The resulting list of authorized users of the Account.
 
 ### GetInvitations
 
@@ -1160,12 +1214,15 @@ sdk.authenticationClient.signOut()
 
 ### resetPassword
 
-If the call is successful, the user receives a password reset email.
+If the call is successful and the email is registered, the user receives a password reset email.
 
 ```
-val email = "sample@finaptic.com"
-       
-sdk.authenticationClient.resetPassword(request = ResetRequest(email = email))
+try {
+    val email = "sample@finaptic.com"
+    sdk.authenticationClient.resetPassword(request = ResetRequest(email = email))
+} catch (e: FinapticException) {
+    Log.d( TAG, "Reset Password error", e)
+}
 ```
  
  
@@ -1234,7 +1291,8 @@ try {
 
 #### TransactionCreatedEvent
 
-For each Transaction, a push notification will be sent with the following data.
+For each Transaction, a push notification will be sent with the following data. You can call [getTransaction](#gettransaction) to get more details.
+
 
 ```
 {
@@ -1245,6 +1303,7 @@ For each Transaction, a push notification will be sent with the following data.
     "actualBalance": "100.00",
     "transactionTime": "2021-12-17 12:34:56.793213 +0000 UTC",
 }
+```
 
 ## InteracClient
 
@@ -1329,13 +1388,201 @@ try {
 #### ListAutodepositRegistrationsResponse
 - ***registrations***: The requested list of [Registrations](#registration).
 
+### updateRegistration
+
+When updating the account alias registration, minimal changes are allowed, notably it is meant to change the target account linked to the alias. Notice that it is not possible to change the account alias handle itself (e.g. email/phone number). If more important changes are needed, the customer could always use the delete registration service and start a new account alias from scratch after that.
+
+```
+try {
+    val request = UpdateRegistrationRequest(
+        registrationId = registrationId,
+        accountId = accountId)
+    val response = sdk.interacClient.updateRegistration(request)
+    Log.d(TAG, "Update registration success ${response.registration}")
+} catch (e: FinapticException) {
+    when (e.code) {
+        FinapticExceptionCode.UNAVAILABLE ->
+            Log.e(TAG, "Check your internet connection and try again", e)
+        FinapticExceptionCode.DEADLINE_EXCEEDED ->
+            Log.e(TAG, "Operation couldn't complete in the default timeout. Try again.", e)
+
+        FinapticExceptionCode.TRANS_INTERAC_INVALID_ACCOUNT ->
+            Log.e(TAG, "Invalid account.", e)
+        FinapticExceptionCode.UNAUTHORIZED ->
+            Log.e(TAG, "Registration ID passed as argument is not owned by the current user.", e)
+
+        else ->
+            Log.e(TAG, "Update autodeposit registration error", e)
+    }
+}
+```
+
+#### UpdateRegistrationRequest
+
+Used to initiate the update of an existing Interac account alias registration.
+
+- ***registrationId***: The ID of the Registration to update.
+- ***accountId***: The ID of the Account.
+
+#### UpdateRegistrationResponse
+- ***registration***: See [Registration](#registration).
+
+Errors:
+
+- **FinapticExceptionCode.INVALID_ARGUMENT**: if the account ID passed as argument is not owned or authorized for the current user.
+- **FinapticExceptionCode.UNAUTHORIZED**: if the registration ID passed as argument is not owned by the current user.
+- **FinapticExceptionCode.INTERNAL**: if there is an unexpected error while processing the request.
+
+### deleteRegistration
+
+Deleting an account alias registration will invalidate/inactivate the link between an account alias handle (email/phone) and an account, so that the account will no longer receive deposits automatically when sent using the given alias. At that moment, the customer is free to use the same alias handle to create a new registration pointing to the same or a different account.
+
+```
+try {
+    val request = DeleteRegistrationRequest (registrationId = registrationId)
+    val response = sdk.interacClient.deleteRegistration(request)
+    Log.d(TAG, "Delete autodeposit registration success ${response.registration}")
+} catch (e: FinapticException) {
+    when(e.code) {
+        FinapticExceptionCode.UNAVAILABLE ->
+            Log.e(TAG, "Check your internet connection and try again", e)
+        FinapticExceptionCode.DEADLINE_EXCEEDED ->
+            Log.e(TAG, "Operation couldn't complete in the default timeout. Try again.", e)
+        
+        FinapticExceptionCode.UNAUTHORIZED ->
+            Log.e(TAG, "Registration ID passed as argument is not owned by the current user.", e)
+
+        else ->
+            Log.e(TAG, "Delete autodeposit registration error", e)
+    }
+}
+```
+
+#### DeleteRegistrationRequest
+
+Used to initiate the deletion/deactivation of an existing Interac account alias registration.
+
+- ***registrationId***: The ID of the Registration to delete.
+
+#### UpdateRegistrationResponse
+- ***registration***: See [Registration](#registration).
+
+Errors:
+
+- **FinapticExceptionCode.UNAUTHORIZED**: if the registration ID passed as argument is not owned by the current user.
+- **FinapticExceptionCode.INTERNAL**: if there is an unexpected error while processing the request.
+
+## CoreTransactionClient
+
+### listAccounts
+
+Lists all accounts on which the current user is the owner, or an authorized user. Uses pagination to allow listing accounts in smaller, easy to manage, chunks.
+
+```
+try {
+    val request = ListAccountsRequest(pageSize = 10)
+    val response = sdk.coreTransactionClient.listAccounts(request)
+    Log.d(TAG, "List accounts success")
+    response.accounts.forEach { Log.d(TAG, "Account with id ${it.id.toString()}") }
+} catch (e: FinapticException) {
+    Log.e(TAG, "List accounts error", e)
+}
+```
+
+#### ListAccountsRequest
+- ***pageSize***:  The maximum number of Accounts to retrieve as part of this request. This value needs to be superior, or equal to 1.
+- ***pageToken***:  When retrieving a page other than the initial page, the value for the ***pageToken*** must be specified, and taken from the previous page's ***nextPageToken*** value (see [ListAccountsResponse](#listaccountsresponse)). When no value is specified, then the initial page will be returned.
+
+#### ListAccountsResponse
+- ***accounts***:  The requested list of Accounts.
+- ***nextPageToken***:  The token to be used to retrieve the next page of data. Must be passed in the ***pageToken*** field of the next request (see [ListAccountsRequest](#listaccountsrequest)). When no value is returned in this field, then no further data exists to be listed.
+
+### getAccount
+
+```
+try {
+    val request = GetAccountRequest(accountId)
+    val response = sdk.coreTransactionClient.getAccount(request)
+    Log.d(TAG, "Get account success with id ${response.id.toString()}")
+} catch (e: FinapticException) {
+    Log.e(TAG, "Get account error", e)
+}
+```
+
+#### GetAccountRequest
+- ***accountId***: The ID of the Account to retrieve.
+
+### listAuthorizedUsers
+
+Lists all authorized users of an account.
+
+```
+try {
+    val request = ListAuthorizedUsersRequest(accountId)
+    val response = sdk.coreTransactionClient.listAuthorizedUsers(request)
+    Log.d(TAG, "List authorized users success")
+    response.authorizedUsers.forEach { Log.d(TAG, "Authorized user with id $it") }
+} catch (e: FinapticException) {
+    Log.e(TAG, "List authorized users error", e)
+}
+
+```
+
+#### ListAuthorizedUsersRequest
+- ***accountId***:  The ID of the Account for which the authorized users are to be listed.
+
+#### ListAuthorizedUsersResponse
+- ***authorizedUsers***: The requested list of authorized users ids.
+
+### listOwners
+
+Lists all owners of an account if the caller as the access rights.
+
+```
+try {
+    val response = sdk.coreTransactionClient.listOwners(request)
+    Log.d(TAG, "List owners success")
+    response.owners.forEach { Log.d(TAG, "Owner with id $it") }
+} catch (e: FinapticException) {
+    Log.e(TAG, "List owners error", e)
+}
+```
+
+### listTransactions
+
+Lists Transactions associated to the Account specified using pagination. Transactions are sorted in descending order of Transaction time.
+
+```
+try {
+    val request = ListTransactionsRequest(
+        accountId = accountId,
+        pageSize = 10)
+    val response = sdk.coreTransactionClient.listTransactions(request)
+    Log.d(TAG, "List transactions success")
+    response.transactions.forEach { Log.d(TAG, "Transaction with id ${it.transactionId.toString()}") }
+} catch (e: FinapticException) {
+    Log.e(TAG, "List transactions error", e)
+}
+```
+
+#### ListTransactionsRequest
+- ***accountId***: The ID of the Account to list Transactions for.
+- ***from***: The UTC timestamp from which to list Transactions.
+- ***to***: The UTC timestamp until which to list Transactions.
+- ***pageSize***: The maximum number of Transactions to retrieve as part of this request. This value needs to be superior, or equal to 1.
+- ***pageToken***: When retrieving page other than the initial page, the value for the ***pageToken*** must be specified, and taken from the previous page's ***nextPageToken*** value (see [ListTransactionsResponse](#listtransactionsresponse)). When no value is specified, then the initial page will be returned.
+
+##### ListTransactionsResponse
+- ***transactions***: The requested list of Transactions.
+- ***nextPageToken***: The token to be used to retrieve the next page of data. Must be passed in the ***pageToken*** field of the next request (see [ListTransactionsRequest](#listtransactionsrequest)). When no value is returned in this field, then no further data exists to be listed.
+- 
 ## CoreTransferClient
 
 Exposes endpoints related to the retrieval of transfers data.
 
 ### getTransferDetails
 
-Returns the latest state of a transfer by a given transaction ID.
+Returns the latest state of a transfer by a given transaction ID. See [TransferTransactionDetails](#transfertransactiondetails) for more details.
 
 ```
 try {
@@ -1346,9 +1593,48 @@ try {
 }
 ```
 
+#### GetTransferDetailsRequest
+- ***transactionId***: The ID of the transaction to get details for.
+
 Errors
 - ***FinapticExceptionCode.TRANS_INVALID_TRANSACTION***: If a transaction ID is provided that is not found or resolves to an unauthorized account
 - ***FinapticExceptionCode.INTERNAL***: If an unexpected error occurs while processing the request. The error will include a RefNumber which Finaptic can use to investigate the cause.
+
+### initiateTransfer
+
+Create a transfer fund request between accounts owned by current customer.
+
+```
+try {
+    val amount = Amount(amount = BigDecimal("0.01"), currency = "CAD")
+    val request = InitiateTransferRequest(
+        sourceAccountId = sourceAccountId,
+        destinationAccountId = destinationAccountId,
+        fundTransfer = amount
+    )
+    val response = sdk.coreTransferClient.initiateTransfer(request)
+
+    if (response.reason.isNotEmpty()) {
+        Log.d(TAG, "Initiate transfer failed with reason: ${response.reason}")
+        return
+    }
+
+    val transfer = response.details
+    Log.d(TAG, "Initiate transfer success: $transfer")
+
+} catch (e: FinapticException) {
+    Log.d(TAG, "Get Transaction Details error", e)
+}
+```
+
+#### InitiateTransferRequest
+- ***sourceAccountId***: Represents the source account ID. Current customer needs to be owner or authorized user of the source account. Source account needs to have sufficient available balance and actual balance to be able to initiate the transfer.
+- ***destinationAccountId***: Represents the destination account ID. Current customer needs to be owner or authorized user of the destination account.
+- ***fundTransfer***: The amount of the fund transfer. The amount should be always positive.
+
+#### InitiateTransferResponse
+- ***details***: Details of the transaction with its status (whether the transaction is [TransferStatus.completed](#transferstatus-enum) or [TransferStatus.declined](#transferstatus-enum)). See [TransferTransactionDetails](#transfertransactiondetails) for more details.
+- ***reason***: Empty when status is [TransferStatus.completed](#transferstatus-enum). Reason why transfer is declined.
 
 #### TransferTransactionDetails
 - ***transactionId***: Represents this single financial transaction (operation).
@@ -1577,6 +1863,24 @@ try {
 - ***transactions***:  The requested list of [Transactions](#transaction).
 - ***nextPageToken***: The token to be used to retrieve the next page of data. Must be passed in the ***pageToken*** field of the next request (see [GetTransactionsRequest]($gettransactionsrequest)). When no value is returned in this field, then no further data exists to be listed.
 - ***sortOrder***: The order the Transactions are listed in. See [TransactionOrder](#transactionorder-enum).
+
+### getTransaction
+```
+try {
+    val request = GetTransactionRequest(transactionId = transactionId)
+    val response = sdk.personalFinanceManagementClient.getTransaction(request)
+    Log.d(TAG, "Get transaction success with id: ${response.transaction.transactionId}")
+} catch (e: FinapticException) {
+    Log.e(TAG, "Get transaction error", e)
+}
+```
+
+#### GetTransactionRequest
+- ***transactionId***: Transaction id.
+
+#### GetTransactionResponse
+- ***transaction***: See [Transactions](#transaction).
+
 
 #### TransactionOrder enum
 - ***ORDER_UNSPECIFIED***: Should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes. Trying to make a request with this type will result in an error.
