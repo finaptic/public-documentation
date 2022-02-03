@@ -52,13 +52,11 @@ There are 5 core Interac features that support *money movement*.
 
 #### 
 
-
-
 #### What is Finaptic referred to as when selecting a Financial Institution to e-Transfer money to?
 
 Within Interac, Finaptic Technologies is referred to as **`NatSolutions`**; example visual below.
 
-![NatSolutionSelection.png](/Users/sidgupta/Documents/GitHub/public-documentation/docs/Implementation-Guide/Transfers/Interac/Images/NatSolutionSelection.png)
+![NatSolutionSelection.png](Images/NatSolutionSelection.png)
 
 ----
 
