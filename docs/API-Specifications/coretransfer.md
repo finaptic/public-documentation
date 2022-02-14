@@ -51,9 +51,28 @@ When creating the account alias registration, the information contained in the C
 populate customer profile information created at Interac, e.g. Legal name, address, etc.
 Different errors can arise when creating account alias registrations. For details see [ErrorCodes](#thebaasco.tenant.interac.v1.ErrorCodes)
 
+##### DeleteRegistration
 
+> **rpc** DeleteRegistration([DeleteRegistrationRequest](#thebaasco.tenant.interac.v1.DeleteRegistrationRequest))
+[DeleteRegistrationResponse](#thebaasco.tenant.interac.v1.DeleteRegistrationResponse)
+
+DeleteRegistration is an asynchronous function used to initiate the deletion/deactivation of an existing Interac account alias registration.
+Performing this operation will generate an asynchronous response of type DeleteRegistrationResponse on the asynchronous command's response topic.
+Deleting an account alias registration will invalidate/inactivate the link between an account alias handle (email/phone) and an account, so that
+the account will no longer receive deposits automatically when sent using the given alias.
+At that moment, the customer is free to use the same alias handle to create a new registration pointing to the same or a different account.
+
+##### UpdateRegistration
+
+> **rpc** UpdateRegistration([UpdateRegistrationRequest](#thebaasco.tenant.interac.v1.UpdateRegistrationRequest))
+[UpdateRegistrationResponse](#thebaasco.tenant.interac.v1.UpdateRegistrationResponse)
+
+UpdateRegistration is an asynchronous function used to initiate the update of an existing Interac account alias registration.
+Performing this operation will generate an asynchronous response of type UpdateRegistrationResponse on the response topic.
+When updating the account alias registration, minimal changes are allowed, notably it is meant to change the target account linked to the alias.
+Notice that it is not possible to change the account alias handle itself (e.g. email/phone number). If more important changes are needed, the customer
+could always use the delete registration service and start a new account alias from scratch after that.
  <!-- end services -->
-
 
 
 ### Enums
@@ -110,6 +129,35 @@ CreateRegistrationResponse is a wrapper model used to contain the result of a cr
 | registration | [Registration](#thebaasco.tenant.interac.v1.Registration) |  | Registration is the newly created registration, returned to the consumer for reference of the registration's current status and expiration date In case some feedback message needs to be presented to the user with that information |
 
 
+<a name="thebaasco.tenant.interac.v1.DeleteRegistrationRequest"></a>
+
+#### DeleteRegistrationRequest
+DeleteRegistrationRequest is message used to initiate the deletion/deactivation of an existing Interac account alias registration.
+Performing this operation will generate an asynchronous response of type DeleteRegistrationResponse on the response topic.
+Deleting an account alias registration will invalidate/inactivate the link between an account alias handle (email/phone) and an account, so that
+the account will no longer receive deposits automatically when sent using the given alias.
+At that moment, the customer is free to use the same alias handle to create a new registration pointing to the same or a different account.
+Errors, for more details see [ErrorCodes](#thebaasco.tenant.interac.v1.ErrorCodes)
+- AppError: code=TRANS_INTERAC_INVALID_ACCOUNT if the account ID passed as argument is not owned or authorized for the current user.
+- AppError: type=codes.Unauthorized if the registration ID passed as argument is not owned by the current user.
+- AppError: type codes.Internal, code=GEN_INTERNAL if there is an unexpected error while processing the request, e.g. the execution of the operation on Interac's systems returns an unexpected error.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| registration_id | [string](#string) |  |  |
+
+
+
+<a name="thebaasco.tenant.interac.v1.DeleteRegistrationResponse"></a>
+
+#### DeleteRegistrationResponse
+DeleteRegistrationResponse is a wrapper model used to contain the result of a delete account alias registration operation
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| registration | [Registration](#thebaasco.tenant.interac.v1.Registration) |  |  |
 
 
 
@@ -129,6 +177,7 @@ Business event produced when an Interac account alias registration is created
 | account_id | [string](#string) |  | Account for which the alias was created |
 | alias_email | [string](#string) |  |  |
 | alias_phone_number | [PhoneNumber](#thebaasco.tenant.interac.v1.PhoneNumber) |  |  |
+| event_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The UTC timestamp when this event was issued. |
 
 
 
@@ -194,6 +243,36 @@ Model that contains the data of an Interac account alias registration
 | alias_email | [string](#string) |  |  |
 | alias_phone_number | [PhoneNumber](#thebaasco.tenant.interac.v1.PhoneNumber) |  |  |
 
+
+<a name="thebaasco.tenant.interac.v1.UpdateRegistrationRequest"></a>
+
+#### UpdateRegistrationRequest
+UpdateRegistrationRequest is message used to initiate the update of an existing Interac account alias registration.
+Performing this operation will generate an asynchronous response of type UpdateRegistrationResponse on the response topic.
+When updating the account alias registration, minimal changes are allowed, notably it is meant to change the target account linked to the alias.
+Notice that it is not possible to change the account alias handle itself (e.g. email/phone number). If more important changes are needed, the customer
+could always use the delete registration service and start a new account alias from scratch after that.
+Errors, for more details see [ErrorCodes](#thebaasco.tenant.interac.v1.ErrorCodes)
+- AppError: type=codes.InvalidArgument, code=TRANS_INTERAC_INVALID_ACCOUNT if the account ID passed as argument is not owned or authorized for the current user.
+- AppError: type=codes.Unauthorized if the registration ID passed as argument is not owned by the current user.
+- AppError: type codes.Internal, code=GEN_INTERNAL if there is an unexpected error while processing the request, e.g. the execution of the operation on Interac's systems returns an unexpected error.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| registration_id | [string](#string) |  |  |
+| account_id | [string](#string) |  |  |
+
+
+<a name="thebaasco.tenant.interac.v1.UpdateRegistrationResponse"></a>
+
+#### UpdateRegistrationResponse
+UpdateRegistrationResponse is a wrapper model used to contain the result of an update account alias registration operation
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| registration | [Registration](#thebaasco.tenant.interac.v1.Registration) |  |  |
 
 
 
