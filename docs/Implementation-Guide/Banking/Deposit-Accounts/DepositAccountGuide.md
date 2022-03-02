@@ -21,12 +21,6 @@ A bank account with a financial institution to let you deposit, transfer and wit
 
 Deposit Accounts offer high liquidity. Your money is always available offering the convenience to pay bills, deposit paychecks and transfer money between deposit accounts; and there are no penalties for early withdrawal to worry about.
 
-#### How safe is your money?
-
-Deposits made are eligible for Canada Deposit Insurance Corporation (CDIC) protection upto $100,000 per insured category per depositor. 
-
-The Canada Deposit Insurance Corporation is a Canadian federal Crown Corporation created by Parliament in 1967 to provide deposit insurance to depositors in Canadian commercial banks and savings institutions. CDIC insures Canadians' deposits held at Canadian banks up to C$100,000 in case of a bank failure.
-
 ---
 
 #### Finaptic delivers a customizable deposit account offering
@@ -35,31 +29,31 @@ The Canada Deposit Insurance Corporation is a Canadian federal Crown Corporation
 
 In the Initial Release, a Deposit Account will enjoy the below benefits
 
-| Feature Category    | Feature Set                                                            | Inital Release | Future Release   |
-| ------------------- | ---------------------------------------------------------------------- |:--------------:|:----------------:|
-| **Deposit Account** | **Depost Account**                                                     | **Yes**        | -                |
-|                     | **Pre-Paid MasterCard**                                                | **Yes**        | -                |
-|                     | **Earn Interest**                                                      | -              | **Yes**          |
-|                     | **Foreign Currency Account**                                           | **-**          | **Yes**          |
-|                     | **Set Transaction Limits**                                             | -              | **Yes**          |
-|                     | **Set Minimum Balance**                                                | -              | **Yes**          |
-|                     | **Set Account Level Fees**                                             | -              | **Yes**          |
-|                     |                                                                        |                |                  |
-| **Relationship**    | **Authorized User**                                                    | **Yes**        | -                |
-|                     |                                                                        |                |                  |
-| **Money Movement**  | **Internal Transfers**                                                 | **Yes**        | -                |
-|                     | **Email Money Transfer**                                               | **Yes**        | -                |
-|                     | **Interac Receive**                                                    | **Yes**        | -                |
-|                     | **Interac Send**                                                       | -              | **Yes**          |
-|                     | **International Money Transfer**                                       | -              | **Yes**          |
-|                     | **Mobile Remote Cheque Deposit Capture**                               | -              | **Yes**          |
-|                     | **ATM Withdrawals/Cheque Deposits**                                    | -              | **Yes**          |
-|                     | **Request For Money - Receiving/Sending Account Number Routing (ANR)** | **Yes**        | -                |
-|                     |                                                                        |                |                  |
-| **Notifications**   | **Transaction Notifications**                                          | -              | **Yes**          |
-|                     | **Transaction History**                                                | **Yes**        | **Enhancements** |
-|                     | **Transaction Filtering**                                              | **Yes**        | **Enhancements** |
-|                     | **Statements**                                                         | -              | **Yes**          |
+| Feature Category    | Feature Set                                                            | Available |
+| ------------------- | ---------------------------------------------------------------------- |:---------:|
+| **Deposit Account** | **Depost Account**                                                     | **Yes**   |
+|                     | **Pre-Paid MasterCard**                                                | **Yes**   |
+|                     | **Earn Interest**                                                      | -         |
+|                     | **Foreign Currency Account**                                           | **-**     |
+|                     | **Set Transaction Limits**                                             | -         |
+|                     | **Set Minimum Balance**                                                | -         |
+|                     | **Set Account Level Fees**                                             | -         |
+|                     |                                                                        |           |
+| **Relationship**    | **Authorized User**                                                    | **Yes**   |
+|                     |                                                                        |           |
+| **Money Movement**  | **Internal Transfers**                                                 | **Yes**   |
+|                     | **Email Money Transfer**                                               | **Yes**   |
+|                     | **Interac Receive**                                                    | **Yes**   |
+|                     | **Interac Send**                                                       | -         |
+|                     | **International Money Transfer**                                       | -         |
+|                     | **Mobile Remote Cheque Deposit Capture**                               | -         |
+|                     | **ATM Withdrawals/Cheque Deposits**                                    | -         |
+|                     | **Request For Money - Receiving/Sending Account Number Routing (ANR)** |           |
+|                     |                                                                        |           |
+| **Notifications**   | **Transaction Notifications**                                          | -         |
+|                     | **Transaction History**                                                | **Yes**   |
+|                     | **Transaction Filtering**                                              | **Yes**   |
+|                     | **Statements**                                                         | -         |
 
 ---
 
@@ -112,14 +106,6 @@ Exposes specific operations related to deposit accounts to retrieve general info
 ____
 
 #### Visualizing Critical Experiences
-
-##### Internal Transfers
-
-Defined as the ability to move money between owned deposit accounts. Below is a visualization of **Internal Transfers Money Movement**.
-
-![internaltransfer2.0.svg](images/internaltransfer2.0.svg)
-
-#### 
 
 ##### Additional Account Creation
 

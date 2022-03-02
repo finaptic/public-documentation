@@ -1,14 +1,14 @@
 # Onboarding Sequence Diagram <br/>
 
-## This guide will
+#### This guide will
 
 1. Provide an overview of the Onboarding Architecture
 
-2. ## Links to related Onboarding topics
-
-3. [Finaptic's Authorized User Policies](/../../Implementation-Guide/Banking/AuthorizedUserDocumentation/)
-
-4. [Productless Onboarding Architecture](/../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/) to Onboard an Authorized User
+2. Links to related Onboarding topics
+   
+   - [Finaptic's Authorized User Policies](/../../Implementation-Guide/Banking/Authorized-User/AuthorizedUserDocumentation/)
+   
+   - [Productless Onboarding Architecture](/../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/) to Onboard an Authorized User
 
 ---
 
@@ -18,4 +18,4 @@ A **sequence diagram** shows object interactions arranged in time sequence. It
 
 A sequence diagram shows, as parallel vertical lines (*lifelines*), different processes or objects that live simultaneously, and, as horizontal arrows, the messages exchanged between them, in the order in which they occur. This allows the specification of simple runtime scenarios in a graphical manner.
 
-![Onboarding Sequence Diagram](images/Onboarding_Sequence_ext.svg) 
+![Onboarding Sequence Diagram](images/Onboarding_Sequence_Feb162022.svg) 

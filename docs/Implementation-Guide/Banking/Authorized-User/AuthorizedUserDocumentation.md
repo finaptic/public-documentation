@@ -36,49 +36,37 @@ KYC/AML regulations guide the onboarding of an Authorized User with 2 variables 
 
 ##### Onboarding an Authorized User by Product-type
 
-| Product Type                           | ID Verify an Authorized User |
-|:-------------------------------------- |:----------------------------:|
-| **Deposit**<br/>*Non-Interest Earning* | Yes                          |
-| **Deposit**<br/>*Interest Earning*     | Yes                          |
-| **Credit Card**                        | No                           |
+| Product Type                           | ID Verify an Authorized User   |
+|:-------------------------------------- |:------------------------------:|
+| **Deposit**<br/>*Non-Interest Earning* | Yes for anybody aged 16 & over |
+| **Deposit**<br/>*Interest Earning*     | Yes for anybody aged 16 & over |
+| **Credit Card**                        | No                             |
 
 ##### Onboarding an Authorized User by Age
 
-| **Age Brackets**         | **FINTRAC Requirement**            | **Finaptic Technology Policy**                                                                                                                                                                                                               |
-| ------------------------ | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **0 - 11 years of age**  | ID Verification is <u>Optional</u> | Don't ID Verify Child <br>Must ID Verify Parent/Guardian<br><br><u>Details below</u>:<br>Parent/Guardian ID must be verified *(ID does not be re-verified if on file but parent/guardian should be authenticated or provide acknowledgment)* |
-| **12 - 15 years of age** | ID Verification is <u>Optional</u> | Same as above; *0-11 years of age*                                                                                                                                                                                                           |
-| **16+ years of age**     | ID Verification is <u>Required</u> | Must ID Verify like an Adult                                                                                                                                                                                                                 |
+| **Age Brackets**         | **FINTRAC Requirement**            | **Finaptic Technology Policy**                                                                                                                                                                                                               | Available |
+| ------------------------ | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| **0 - 11 years of age**  | ID Verification is <u>Optional</u> | Don't ID Verify Child <br>Must ID Verify Parent/Guardian<br><br><u>Details below</u>:<br>Parent/Guardian ID must be verified *(ID does not be re-verified if on file but parent/guardian should be authenticated or provide acknowledgment)* | **Yes**   |
+| **12 - 15 years of age** | ID Verification is <u>Optional</u> | Same as above; *0-11 years of age*                                                                                                                                                                                                           | **Yes**   |
+| **16+ years of age**     | ID Verification is <u>Required</u> | Must ID Verify like an Adult                                                                                                                                                                                                                 | **No**    |
 
-##### List of fields to collect when Onboarding an Authorized User
+##### List of fields to collect when Onboarding an Authorized User aged 15 years of age & younger
 
-| CATEGORIES            | RATIONALE                                                                  | FIELDS                                                                                                                                                                                                                                                                              | APPLIES TO                                 |
-| --------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| **PERSONAL**          | Collect basic applicant information for communication & vetting purposes   | - Full Legal Name<br/>- Middle Name *(optional)*<br/>- Alias<sup>1</sup> *(optional)*<br/>- Residential Address <br/>- Date of Birth<br/>- Phone Number<br/>- Phone Number Type<sup>2</sup> (Mobile or Landline) <br/>- Email Address<br/>- Language Preferences<sup>2</sup>        | All Product-types<br/>All age groups       |
-| **TAX** **RESIDENCY** | Identifying tax residency during account opening to comply with regulation | - Canadian Tax Residency Status<br/>- US Citizen<br/>- Another Country Tax Residency Status<br/>*If the applicant is a tax resident of Another Country (including the US), or a US Citizen, then the tax identification number for that country and Canadian SIN must be collected* | Deposit Products only<br/>16+ years of age |
-| **EMPLOYMENT**        | Support with Anti-Money Laundering filtering                               | - Employment Status<br/>- Employment Occupation<br/>- Industry<br/>- Employer Name<br/>- Business Address<br/>- Employer Phone Number<br/>- Employed Since Date *(optional)*                                                                                                        | Deposit Products only<br/>16+ years of age |
-| **ACCOUNT PURPOSE**   | Support with Anti-Money Laundering filtering                               | - Account Purpose<br/>- Account Source of Funds                                                                                                                                                                                                                                     | Deposit Products only<br/>All age groups   |
+| CATEGORIES   | RATIONALE                                                                | FIELDS                                                                    | APPLIES TO                           |
+| ------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------- | ------------------------------------ |
+| **PERSONAL** | Collect basic applicant information for communication & vetting purposes | - Full Legal Name<br/>- Middle Name *(optional)*<br/>- Email Address<br/> | All Product-types<br/>All age groups |
 
-<sup>1</sup> "Alias" as a field will be released in December 2021
+#### Account Privileges by Relationship Type
 
-<sup>2</sup> "Phone Number Type" and "Language Preferences" as fields will be released in November 2021
-
-#### What to expect in our Releases?
-
-|                                         | PRIVILEGES                                                   | A PRIMARY ACCOUNT HOLDER CAN | AN AUTHORIZED USER CAN<br/>*`(September 2021 Release)`* | AN AUTHORIZED USER CAN <br/>*`(Future Release)`* |
-|:--------------------------------------- | ------------------------------------------------------------ |:----------------------------:|:-------------------------------------------------------:|:------------------------------------------------:|
-| **Add, Remove or View Account Holders** | **Add or Remove an Authorized User**                         | **YES**                      | **YES**                                                 | **NO**                                           |
-|                                         | **View a list of other Account Holders**                     | **YES**                      | **YES**                                                 | **CONFIGURABLE**                                 |
-| **Statements & Transactions**           | **View other Account Holders Transactions**                  | **YES**                      | **YES**                                                 | **CONFIGURABLE**                                 |
-|                                         | **View other Account Holders Statements**                    | **YES**                      | **YES**                                                 | **CONFIGURABLE**                                 |
-|                                         | **Receive Account Level Alerts**                             | -                            | -                                                       | **CONFIGURABLE**                                 |
-|                                         | **Receive Transactions Alerts**                              | -                            | -                                                       | **CONFIGURABLE**                                 |
-| **Move Money**                          | **Send or Receive Money using Interac**                      | **YES**                      | **YES**                                                 | **CONFIGURABLE**                                 |
-|                                         | **Move Money (Between Accounts they have access to)**        | **YES**                      | **YES**                                                 | **CONFIGURABLE**                                 |
-|                                         | **Add, Remove or Change other account holders auto-deposit** | **YES**                      | **YES**                                                 | **CONFIGURABLE**                                 |
-| **Account Changes & Disputes**          | **Close an Account**                                         | **YES**                      | **YES**                                                 | **NO**                                           |
-|                                         | **Apply for an Overdraft on behalf of the Primary Holder**   | -                            | -                                                       | **NO**                                           |
-|                                         | **Dispute a Primary or Other Auth Users transactions**       | **YES**                      | **YES**                                                 | **NO**                                           |
+|                                         | PRIVILEGES                                                   | A PRIMARY ACCOUNT HOLDER CAN | AN AUTHORIZED USER CAN |
+|:--------------------------------------- | ------------------------------------------------------------ |:----------------------------:|:----------------------:|
+| **Add, Remove or View Account Holders** | **Add or Remove an Authorized User**                         | **YES**                      | **YES**                |
+|                                         | **View a list of other Account Holders**                     | **YES**                      | **YES**                |
+| **Statements & Transactions**           | **View other Account Holders Transactions**                  | **YES**                      | **YES**                |
+|                                         | **Receive Transactions Alerts**                              | **YES**                      | -                      |
+| **Move Money**                          | **Send or Receive Money using Interac**                      | **YES**                      | **YES**                |
+|                                         | **Move Money (Between Accounts they have access to)**        | **YES**                      | **YES**                |
+|                                         | **Add, Remove or Change other account holders auto-deposit** | **YES**                      | **YES**                |
 
 ----
 
@@ -88,12 +76,12 @@ KYC/AML regulations guide the onboarding of an Authorized User with 2 variables 
 
 #### Visualizing the Experience of Inviting, Adding & Onboarding an Authorized User
 
-![authuser-invite.png](images/authuser-invite.png)
+[View it in Miro](https://miro.com/app/board/uXjVOMPHP5M=/?invite_link_id=7415608430)
 
-![authuser-flow.png](images/authuser-flow.png)
-**Note: Push Invitation is a future state experience**
+![authuser-arch.png](images/AuthUserInviteFlow_Feb2022.png)
 
 #### Onboarding without a Product
+
 An Authorized User is onboarded to the platform via the Productless Onboarding Flow; Technical Implementation below.
 
 A detailed overview of our Productless Onboarding can be found in the [Productless Onboarding](/../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/) section. 
