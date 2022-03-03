@@ -12,7 +12,7 @@ Welcome to Finaptic's end-to-end Onboarding Service. We make it simple to build 
 **Links to related Onboarding topics**
 
 1. [Onboarding Sequence Diagram](/../../Implementation-Guide/Onboarding/OnboardingSequenceDoc/)
-2. [Finaptic's Authorized User Policies](/../../Implementation-Guide/Banking/AuthorizedUserDocumentation/)
+2. [Finaptic's Authorized User Policies](/../../Implementation-Guide/Banking/Authorized-User/AuthorizedUserDocumentation/)
 3. [Productless Onboarding Architecture](/../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/) to Onboard an Authorized User
 
 ---
@@ -61,8 +61,6 @@ A Sole Proprietor is also governed by the same "Know Your Client" regulations; a
 | **ACCOUNT PURPOSE** *(Deposit Products)* | Support with Anti-Money Laundering filtering                               | - Account Purpose<br/>- Account Source of Funds<br/>- Third Party Declaration                                                                                                                                                                                                       | [Account Purpose](/../../API-Specifications/onboarding/#accountusagedetails)                                                                                                                                        |
 
 <sup>2</sup> Note, at this time we do not support ID verification for Canadian Residents who are also Tax Residents of another country
-
-
 
 #### Reference data sets for select fields
 

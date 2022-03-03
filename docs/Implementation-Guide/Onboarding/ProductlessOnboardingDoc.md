@@ -12,7 +12,7 @@
 
 1. [Onboarding Overview](/../../Implementation-Guide/Onboarding/OnboardingDocumentation/)
 2. [Onboarding Sequence Diagram](/../../Implementation-Guide/Onboarding/OnboardingSequenceDoc/)
-3. [Finaptic's Authorized User Policies](/../../Implementation-Guide/Banking/AuthorizedUserDocumentation/)
+3. [Finaptic's Authorized User Policies](/../../Implementation-Guide/Banking/Authorized-User/AuthorizedUserDocumentation/)
 
 ---
 
