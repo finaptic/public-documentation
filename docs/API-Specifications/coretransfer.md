@@ -381,6 +381,249 @@ UnstructuredRemittance data is comprised of up to 3 sender-provided strings with
 
  <!-- end messages -->
 
+<a name="coretransfer_v1_incoming_interac_transfer.proto"></a>
+
+## coretransfer_v1_incoming_interac_transfer.proto
+
+
+
+### Services
+
+<a name="thebaasco.tenant.coretransfer.interac.v1.IncomingInteracTransfers"></a>
+
+#### IncomingInteracTransfers
+IncomingInteracTransfers service exposes synchronous endpoints used to retrieve details of an incoming Q&A transfer and to authenticate the transfer
+This service must be called with a valid user authentication
+Unauthenticated calls will generate an error with status code UNAUTHENTICATED
+
+##### GetIncomingTransferDetails
+
+> **rpc** GetIncomingTransferDetails([GetIncomingTransferDetailsRequest](#thebaasco.tenant.coretransfer.interac.v1.GetIncomingTransferDetailsRequest))
+[GetIncomingTransferDetailsResponse](#thebaasco.tenant.coretransfer.interac.v1.GetIncomingTransferDetailsResponse)
+
+GetIncomingTransferDetails retrieves the details and state of an incoming Interac Q&A transfer
+
+An error with error code TRANS_INTERAC_INVALID_TRANSFER desc: "payment number is invalid" will be generated in the following scenarios:
+- calls made with a non-existent interac_payment_number
+  An error with error code TRANS_INTERAC_INCONSISTENT_CUSTOMER desc: "Transfer was previously authenticated with a different customer ID" will be generated when:
+- calls made with a different customer than was previously authenticated
+
+
+ <!-- end services -->
+
+
+
+### Enums
+
+<a name="thebaasco.tenant.coretransfer.interac.v1.HashAlgorithm"></a>
+
+#### HashAlgorithm
+HashAlgorithm represents the algorithm that must be used when hashing a security answer
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| HASH_ALGORITHM_UNSPECIFIED | 0 | INCOMING_TRANSFER_STATUS_UNSPECIFIED is reserved for error detection purposes. It should not be used directly. |
+| SHA256 | 1 | SHA256 - The SHA-256 hash algorithm. |
+
+
+
+<a name="thebaasco.tenant.coretransfer.interac.v1.IncomingTransferErrorCodes"></a>
+
+#### IncomingTransferErrorCodes
+A Domain-specific list of error codes (For Transfers/Interac) documenting the error situations that could arrive while consuming synchronous or asynchronous APIs
+In all cases these error codes will be communicated to the consumer in a structured manner within an instance of AppError (see https://github.com/thebaasco/api-contracts/tree/master/proto/types/errordetails)
+that will be included within the error status response: status.Status.Details
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UNSPECIFIED | 0 | UNSPECIFIED should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes. |
+| TRANS_INTERAC_INVALID_TRANSFER | 1 | TRANS_INTERAC_INVALID_TRANSFER - Transfer does not exist. gRPC Code=InvalidArgument. Returned when an Interac payment number passed as argument for a given operation does not resolve to a transfer or, in the case of a `complete transfer` operation, the user does not have access to the target account. |
+| TRANS_INTERAC_ALREADY_CANCELLED | 2 | TRANS_INTERAC_ALREADY_CANCELLED - Operation cannot be performed due to state of the transfer. gRPC Code==FailedPrecondition. Returned when attempting to authenticate a transfer that has already been canceled. |
+| TRANS_INTERAC_ALREADY_ACCEPTED | 3 | TRANS_INTERAC_ALREADY_ACCEPTED - Operation cannot be performed due to the state of the transfer. gRPC Code==FailedPrecondition. Returned when attempting to authenticate a transfer that has already been accepted. |
+| TRANS_INTERAC_PREVIOUS_TRANSFER_IN_PROGRESS | 4 | TRANS_INTERAC_PREVIOUS_TRANSFER_IN_PROGRESS - A previous transaction between this sender and recipient has not been completed. gRPC Code==FailedPrecondition. Returned when there already exists a transfer between sender and recipient that has not been completed or canceled. |
+| TRANS_INTERAC_INCONSISTENT_CUSTOMER | 5 | TRANS_INTERAC_INCONSISTENT_CUSTOMER - Transfer was previously authenticated with a different customer ID. gRPC Code==InvalidArgument. Returned when performing any operation a transfer has been authenticated by different customer ID. |
+| TRANS_INTERAC_TRANSFER_LIMITS_EXCEEDED | 6 | TRANS_INTERAC_TRANSFER_LIMITS_EXCEEDED - Rolling or per-transaction limits exceeded . gRPC Code==FailedPrecondition. Returned when the current transfer exceeds the rolling or per-transaction limits configured in the Interac system |
+| TRANS_INTERAC_AUTHENTICATION_REQUIRED | 7 | TRANS_INTERAC_AUTHENTICATION_REQUIRED - Authentication required for transfer . gRPC Code==FailedPrecondition. Returned when attempting to complete an incoming Q&A transfer whose authentication step has not yet been completed successfully. E.g. the user has not provided the correct answer to the security question. |
+
+
+
+<a name="thebaasco.tenant.coretransfer.interac.v1.IncomingTransferStatus"></a>
+
+#### IncomingTransferStatus
+IncomingTransferStatus represents the state of the transfer.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| INCOMING_TRANSFER_STATUS_UNSPECIFIED | 0 | INCOMING_TRANSFER_STATUS_UNSPECIFIED is reserved for error detection purposes. It should not be used directly. |
+| AVAILABLE | 1 | AVAILABLE represents that a transfer has not been processed and is in a valid state to be authorized. |
+| AUTHORIZED | 2 | AUTHORIZED represents that a transfer has been authorized and is in a valid state to be accepted or declined. |
+| ACCEPTED | 3 | ACCEPTED represents that a transfer has been accepted. The transfer is complete and deposited into the target account. |
+| CANCELED | 4 | CANCELED represents that a transfer is complete and not deposited to an account. Ways to achieve this state are: if the transfer is canceled by the sender, if the receiver declines the transfer, the transfer has expired, the receiver is unable to authenticate the transfer within the allotted attempts. |
+
+
+ <!-- end enums -->
+
+
+### API-specific types
+
+<a name="thebaasco.tenant.coretransfer.interac.v1.AuthenticateIncomingTransferRequest"></a>
+
+#### AuthenticateIncomingTransferRequest
+AuthenticateIncomingTransferRequest is a message used to authenticate an inbound Interac transfer.
+Performing this operation will generate an asynchronous response of type AuthenticateIncomingTransferResponse, on the response topic.
+Different errors can arise when completing an incoming transfer. For details see [ErrorCodes](#thebaasco.core-transfer.interac.v1.IncomingTransferErrorCodes)
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| interac_payment_number | [string](#string) |  | The payment number, as provided by Interac, which this request authenticates |
+| security_answer | [string](#string) |  | The answer to the security question (as provided by the customer) with the following algorithm performed: - leading and trailing whitespace removed - converted to upper case - appended with the hash salt specified in hash_salt received from GetIncomingTransferDetailsRequest - encoded to ISO-8859-1 - hashed with the algorithm specified in hash_algorithm received from GetIncomingTransferDetailsRequest |
+
+
+
+
+
+
+<a name="thebaasco.tenant.coretransfer.interac.v1.AuthenticateIncomingTransferResponse"></a>
+
+#### AuthenticateIncomingTransferResponse
+AuthenticateIncomingTransferResponse is a wrapper model used to contain the result of a authenticate incoming transfer operation
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| interac_payment_number | [string](#string) |  | The payment number, as provided by Interac, which this authentication response pertains to |
+| success | [bool](#bool) |  | Indicates if the provided response was correct |
+| retry_allowed | [bool](#bool) |  | In case of an incorrect response (success=false), indicates if the user can try again providing a new answer. |
+
+
+
+
+
+
+<a name="thebaasco.tenant.coretransfer.interac.v1.CompleteIncomingTransferRequest"></a>
+
+#### CompleteIncomingTransferRequest
+CompleteIncomingTransferRequest is a message used to complete the deposit of an inbound Interac transfer.
+Performing this operation will generate an asynchronous response of type CompleteIncomingTransferResponse, on the response topic.
+When completing the deposit, information contained in the Client-Profile domain for the current user will be used to
+enrich information sent to Interac to complete the transfer.
+Different errors can arise when completing an incoming transfer. For details see [ErrorCodes](#thebaasco.core-transfer.interac.v1.IncomingTransferErrorCodes)
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| interac_payment_number | [string](#string) |  | The payment number, as provided by Interac, for which the deposit is being completed |
+| target_account_id | [string](#string) |  | Unique identifier that represents the target account ID: - Current customer needs to be the owner or authorized user of the target account. - Target account must be a deposit account. |
+| recipient_memo | [string](#string) |  | An optional memo provided by the recipient. This memo will be sent to the sender |
+
+
+
+
+
+
+<a name="thebaasco.tenant.coretransfer.interac.v1.CompleteIncomingTransferResponse"></a>
+
+#### CompleteIncomingTransferResponse
+CompleteIncomingTransferResponse is a wrapper model used to contain the result of a complete incoming transfer operation
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| interac_payment_number | [string](#string) |  | The payment number, as provided by Interac, for which the transfer is being completed |
+| transaction_id | [string](#string) |  | Unique identifier that represents this single financial transaction (operation). This ID is stable across all domains for a given transaction. |
+| lifecycle_transaction_id | [string](#string) |  | Unique identifier that represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...). |
+
+
+
+
+
+
+<a name="thebaasco.tenant.coretransfer.interac.v1.DeclineIncomingTransferRequest"></a>
+
+#### DeclineIncomingTransferRequest
+DeclineIncomingTransferRequest is a message used to decline the deposit of an inbound Interac transfer.
+Performing this operation will generate an asynchronous response of type DeclineIncomingTransferResponse, on the response topic.
+Different errors can arise when declining an incoming transfer. For details see [ErrorCodes](#thebaasco.core-transfer.interac.v1.IncomingTransferErrorCodes)
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| interac_payment_number | [string](#string) |  | The payment number, as provided by Interac, for which the transfer is being declined |
+| recipient_memo | [string](#string) |  | An optional memo provided by the recipient. This memo will be sent to the sender |
+
+
+
+
+
+
+<a name="thebaasco.tenant.coretransfer.interac.v1.DeclineIncomingTransferResponse"></a>
+
+#### DeclineIncomingTransferResponse
+DeclineIncomingTransferResponse is a wrapper model used to contain the result of a decline incoming transfer operation
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| interac_payment_number | [string](#string) |  | The payment number, as provided by Interac, for which the transfer is being declined |
+
+
+
+
+
+
+<a name="thebaasco.tenant.coretransfer.interac.v1.GetIncomingTransferDetailsRequest"></a>
+
+#### GetIncomingTransferDetailsRequest
+GetIncomingTransferDetailsRequest is a message passed as argument to the GetIncomingTransferDetails operation.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| interac_payment_number | [string](#string) |  | The payment number, as provided by Interac, for which to return the details of the transfer |
+
+
+
+
+
+
+<a name="thebaasco.tenant.coretransfer.interac.v1.GetIncomingTransferDetailsResponse"></a>
+
+#### GetIncomingTransferDetailsResponse
+GetIncomingTransferDetailsResponse is a message returned in response to the GetIncomingTransferDetails operation.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| transfer_details | [IncomingTransferDetails](#thebaasco.tenant.coretransfer.interac.v1.IncomingTransferDetails) |  | Details of the current state of an incoming transfer |
+
+
+
+
+
+
+<a name="thebaasco.tenant.coretransfer.interac.v1.IncomingTransferDetails"></a>
+
+#### IncomingTransferDetails
+IncomingTransferDetails message contains details about a given inbound Interac transfer.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| interac_payment_number | [string](#string) |  | The payment number, as provided by Interac, which the details of the transfer will be returned for |
+| transfer_status | [IncomingTransferStatus](#thebaasco.tenant.coretransfer.interac.v1.IncomingTransferStatus) |  | The current status of the transfer |
+| transfer_amount | [thebaasco.types.Amount](#thebaasco.types.Amount) |  | The amount of the transfer. The amount should be always positive. |
+| expiry_date | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The UTC timestamp when this transfer will expire. |
+| initiator_name | [string](#string) |  | The name of who initiated the transfer |
+| authentication_required | [bool](#bool) |  | Indicates if this transfer requires that the recipient provide a security answer before depositing the transfer into the account |
+| security_question | [string](#string) |  | If authentication_required is true, the field contains the security question that the user must provide the answer to in order to deposit the transfer |
+| sender_memo | [string](#string) |  | An optional memo provided by the sender |
+| hash_salt | [string](#string) |  | The salt which will be appended in Authentication. Will be provided only if authentication_required = true. |
+| hash_algorithm | [HashAlgorithm](#thebaasco.tenant.coretransfer.interac.v1.HashAlgorithm) |  | The algorithm which must be used when hashing the security answer for Authentication. Will be provided only if authentication_required = true. |
+
+
+ <!-- end messages -->
+
 
 
 <a name="coretransfer_v1_routinginformation.proto"></a>
