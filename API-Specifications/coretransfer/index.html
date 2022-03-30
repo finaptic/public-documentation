@@ -1,0 +1,4914 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.finaptic.dev/API-Specifications/coretransfer/">
+      
+      <link rel="icon" href="../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
+    
+    
+      
+        <title>Core Transfers API - Finaptic Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.644de097.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Assistant:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Assistant";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="finaptic" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#core-transfers-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://finaptic.com" title="Finaptic Documentation" class="md-header__button md-logo" aria-label="Finaptic Documentation" data-md-component="logo">
+      
+  <img src="../../images/FinapticLogo_F_White.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Finaptic Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Core Transfers API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Introduction & Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../clientinformation/" class="md-tabs__link md-tabs__link--active">
+        API Specifications
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../FAQs/" class="md-tabs__link">
+        FAQs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Implementation-Guide/" class="md-tabs__link">
+        Implementation Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../SDK-Guide/" class="md-tabs__link">
+        SDK Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Systems-and-Security/" class="md-tabs__link">
+        Systems and Security
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://finaptic.com" title="Finaptic Documentation" class="md-nav__button md-logo" aria-label="Finaptic Documentation" data-md-component="logo">
+      
+  <img src="../../images/FinapticLogo_F_White.png" alt="logo">
+
+    </a>
+    Finaptic Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction & Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          API Specifications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Specifications" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          API Specifications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clientinformation/" class="md-nav__link">
+        Client Profile API (Draft)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corebanking/" class="md-nav__link">
+        Core Banking API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corecard/" class="md-nav__link">
+        Core Card API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coretransaction/" class="md-nav__link">
+        Core Transaction API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Core Transfers API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Core Transfers API
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#coretransfer_v1_interacregistrationproto" class="md-nav__link">
+    coretransfer_v1_interacregistration.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransfer_v1_interacregistration.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autodepositregistrations" class="md-nav__link">
+    AutodepositRegistrations
+  </a>
+  
+    <nav class="md-nav" aria-label="AutodepositRegistrations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listautodepositregistrations" class="md-nav__link">
+    ListAutodepositRegistrations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autodepositregistrationscommands" class="md-nav__link">
+    AutodepositRegistrationsCommands
+  </a>
+  
+    <nav class="md-nav" aria-label="AutodepositRegistrationsCommands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#createregistration" class="md-nav__link">
+    CreateRegistration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleteregistration" class="md-nav__link">
+    DeleteRegistration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateregistration" class="md-nav__link">
+    UpdateRegistration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums" class="md-nav__link">
+    Enums
+  </a>
+  
+    <nav class="md-nav" aria-label="Enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#errorcodes" class="md-nav__link">
+    ErrorCodes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#createregistrationrequest" class="md-nav__link">
+    CreateRegistrationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createregistrationresponse" class="md-nav__link">
+    CreateRegistrationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleteregistrationrequest" class="md-nav__link">
+    DeleteRegistrationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleteregistrationresponse" class="md-nav__link">
+    DeleteRegistrationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interacregistrationcompletedevent" class="md-nav__link">
+    InteracRegistrationCompletedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listautodepositregistrationsrequest" class="md-nav__link">
+    ListAutodepositRegistrationsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listautodepositregistrationsresponse" class="md-nav__link">
+    ListAutodepositRegistrationsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phonenumber" class="md-nav__link">
+    PhoneNumber
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registration" class="md-nav__link">
+    Registration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateregistrationrequest" class="md-nav__link">
+    UpdateRegistrationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateregistrationresponse" class="md-nav__link">
+    UpdateRegistrationResponse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coretransfer_v1_remittanceproto" class="md-nav__link">
+    coretransfer_v1_remittance.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransfer_v1_remittance.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_1" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remittanceinformation" class="md-nav__link">
+    RemittanceInformation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structured" class="md-nav__link">
+    Structured
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstructured" class="md-nav__link">
+    Unstructured
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coretransfer_v1_incoming_interac_transferproto" class="md-nav__link">
+    coretransfer_v1_incoming_interac_transfer.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransfer_v1_incoming_interac_transfer.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_1" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incominginteractransfers" class="md-nav__link">
+    IncomingInteracTransfers
+  </a>
+  
+    <nav class="md-nav" aria-label="IncomingInteracTransfers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getincomingtransferdetails" class="md-nav__link">
+    GetIncomingTransferDetails
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums_1" class="md-nav__link">
+    Enums
+  </a>
+  
+    <nav class="md-nav" aria-label="Enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hashalgorithm" class="md-nav__link">
+    HashAlgorithm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incomingtransfererrorcodes" class="md-nav__link">
+    IncomingTransferErrorCodes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incomingtransferstatus" class="md-nav__link">
+    IncomingTransferStatus
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_2" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authenticateincomingtransferrequest" class="md-nav__link">
+    AuthenticateIncomingTransferRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticateincomingtransferresponse" class="md-nav__link">
+    AuthenticateIncomingTransferResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completeincomingtransferrequest" class="md-nav__link">
+    CompleteIncomingTransferRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completeincomingtransferresponse" class="md-nav__link">
+    CompleteIncomingTransferResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declineincomingtransferrequest" class="md-nav__link">
+    DeclineIncomingTransferRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declineincomingtransferresponse" class="md-nav__link">
+    DeclineIncomingTransferResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getincomingtransferdetailsrequest" class="md-nav__link">
+    GetIncomingTransferDetailsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getincomingtransferdetailsresponse" class="md-nav__link">
+    GetIncomingTransferDetailsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incomingtransferdetails" class="md-nav__link">
+    IncomingTransferDetails
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coretransfer_v1_routinginformationproto" class="md-nav__link">
+    coretransfer_v1_routinginformation.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransfer_v1_routinginformation.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_2" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    Routing
+  </a>
+  
+    <nav class="md-nav" aria-label="Routing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getaccountrouting" class="md-nav__link">
+    GetAccountRouting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_3" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accountrouting" class="md-nav__link">
+    AccountRouting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accountroutinglinkedevent" class="md-nav__link">
+    AccountRoutingLinkedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createaccountroutingrequest" class="md-nav__link">
+    CreateAccountRoutingRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createaccountroutingresponse" class="md-nav__link">
+    CreateAccountRoutingResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getaccountroutingrequest" class="md-nav__link">
+    GetAccountRoutingRequest
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coretransfer_v1_transactionproto" class="md-nav__link">
+    coretransfer_v1_transaction.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransfer_v1_transaction.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_3" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transfers" class="md-nav__link">
+    Transfers
+  </a>
+  
+    <nav class="md-nav" aria-label="Transfers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gettransferdetails" class="md-nav__link">
+    GetTransferDetails
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums_2" class="md-nav__link">
+    Enums
+  </a>
+  
+    <nav class="md-nav" aria-label="Enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customerrole" class="md-nav__link">
+    CustomerRole
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfererrorcodes" class="md-nav__link">
+    TransferErrorCodes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transferstatus" class="md-nav__link">
+    TransferStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfertype" class="md-nav__link">
+    TransferType
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_4" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#counterparty" class="md-nav__link">
+    Counterparty
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettransferdetailsrequest" class="md-nav__link">
+    GetTransferDetailsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initiatetransferrequest" class="md-nav__link">
+    InitiateTransferRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initiatetransferresponse" class="md-nav__link">
+    InitiateTransferResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfertransactiondetails" class="md-nav__link">
+    TransferTransactionDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfertransactiondetailscreatedevent" class="md-nav__link">
+    TransferTransactionDetailsCreatedEvent
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-types" class="md-nav__link">
+    Shared types
+  </a>
+  
+    <nav class="md-nav" aria-label="Shared types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amount" class="md-nav__link">
+    Amount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apperror" class="md-nav__link">
+    AppError
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalar-value-types" class="md-nav__link">
+    Scalar Value Types
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distribution/" class="md-nav__link">
+        Distribution API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding/" class="md-nav__link">
+        Onboarding API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payments/" class="md-nav__link">
+        Payments API (Experimental)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persfinmngt/" class="md-nav__link">
+        Personal Finance Management API (Draft)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_10">
+          Global types
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Global types" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          Global types
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/amount/" class="md-nav__link">
+        Amount
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/balance/" class="md-nav__link">
+        Balance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/errordetails/" class="md-nav__link">
+        Cross-domain error model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/phonenumber/" class="md-nav__link">
+        Phone Number
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/protectedtypes/" class="md-nav__link">
+        Protected types
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          FAQs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FAQs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          FAQs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQs/" class="md-nav__link">
+        Frequently Asked Questions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Interac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Interac" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Interac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQs/Interac/help/" class="md-nav__link">
+        Help
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Implementation Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Implementation Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Implementation Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/" class="md-nav__link">
+        Implementation Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Authentication
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Authentication" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Authentication
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Authentication/authentication/" class="md-nav__link">
+        Authentication Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Banking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Banking" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Banking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_1" type="checkbox" id="__nav_4_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_1">
+          Authorized User
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Authorized User" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Authorized User
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Banking/Authorized-User/AuthorizedUserDocumentation/" class="md-nav__link">
+        Authorized User Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_2" type="checkbox" id="__nav_4_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_2">
+          Deposit Accounts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Deposit Accounts" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Deposit Accounts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Banking/Deposit-Accounts/DepositAccountGuide/" class="md-nav__link">
+        Deposits Account Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Cards
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cards" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Cards
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Cards/corecard/" class="md-nav__link">
+        Cards Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_5">
+          Client Profile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Client Profile" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          Client Profile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Client-Profile/ClientProfileGuide/" class="md-nav__link">
+        Client Profile Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6" type="checkbox" id="__nav_4_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_6">
+          Fraud And Customer Service
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Fraud And Customer Service" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_6">
+          <span class="md-nav__icon md-icon"></span>
+          Fraud And Customer Service
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/complaints/" class="md-nav__link">
+        Complaint Handling Policy and Procedures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/customer-service/" class="md-nav__link">
+        Customer Support Inquiry Flow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/customer_support_guide/" class="md-nav__link">
+        Customer Support Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/disputes/" class="md-nav__link">
+        Customer Initiated Transaction Disputes
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_7" type="checkbox" id="__nav_4_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_7">
+          Legal And Regulatory Compliance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Legal And Regulatory Compliance" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          Legal And Regulatory Compliance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/" class="md-nav__link">
+        Legal and Regulatory Compliance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/financial_services_regulations/" class="md-nav__link">
+        Financial Services Regulations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_account_fee_guide_and_agreement/" class="md-nav__link">
+        Finaptic Account Fee Guide and Agreement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_app_terms_of_use/" class="md-nav__link">
+        Finaptic App Terms of Use
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_electronic_communications_agreement/" class="md-nav__link">
+        Finaptic electronic communications agreement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_privacy_policy/" class="md-nav__link">
+        Finaptic Privacy Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/legal_compliance_on_screen/" class="md-nav__link">
+        Legal and Compliance On Screen Requirements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/restricted_industries/" class="md-nav__link">
+        Restricted industries
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_8" type="checkbox" id="__nav_4_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_8">
+          Onboarding
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Onboarding" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_8">
+          <span class="md-nav__icon md-icon"></span>
+          Onboarding
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingDocumentation/" class="md-nav__link">
+        Onboarding Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingSequenceDoc/" class="md-nav__link">
+        Onboarding Sequence Diagram
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingTestProfiles/" class="md-nav__link">
+        Test profiles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/" class="md-nav__link">
+        Productless Onboarding
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_9" type="checkbox" id="__nav_4_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_9">
+          Personal Financial Management
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Personal Financial Management" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_9">
+          <span class="md-nav__icon md-icon"></span>
+          Personal Financial Management
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Personal-Financial-Management/" class="md-nav__link">
+        PFM Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_10" type="checkbox" id="__nav_4_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_10">
+          Transactions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transactions" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_10">
+          <span class="md-nav__icon md-icon"></span>
+          Transactions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transactions/transactions/" class="md-nav__link">
+        Transactions Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11" type="checkbox" id="__nav_4_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11">
+          Transfers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transfers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_11">
+          <span class="md-nav__icon md-icon"></span>
+          Transfers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_1" type="checkbox" id="__nav_4_11_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_1">
+          EFT
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="EFT" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_1">
+          <span class="md-nav__icon md-icon"></span>
+          EFT
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/EFT/electronicfundstransfer/" class="md-nav__link">
+        Electronic Funds Transfer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_2" type="checkbox" id="__nav_4_11_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_2">
+          Interac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Interac" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_2">
+          <span class="md-nav__icon md-icon"></span>
+          Interac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/Interac/autodeposit/" class="md-nav__link">
+        Auto-Deposit Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_3" type="checkbox" id="__nav_4_11_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_3">
+          Internal Transfers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Internal Transfers" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_3">
+          <span class="md-nav__icon md-icon"></span>
+          Internal Transfers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/Internal%20Transfers/Internal%20Transfers/" class="md-nav__link">
+        Internal Transfers Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          SDK Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SDK Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          SDK Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/" class="md-nav__link">
+        SDK Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/android-sdk/" class="md-nav__link">
+        Finaptic Android SDK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/ios-sdk/" class="md-nav__link">
+        Finaptic iOS SDK
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Systems and Security
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Systems and Security" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Systems and Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/" class="md-nav__link">
+        Systems and Security Requirements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/partner_app_accreditation/" class="md-nav__link">
+        Partner Application Accreditation Process and App Security Checklist
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/security_requirements/" class="md-nav__link">
+        Security Requirements for Partners
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/vulnerability_disclosure/" class="md-nav__link">
+        Vulnerability Disclosure
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#coretransfer_v1_interacregistrationproto" class="md-nav__link">
+    coretransfer_v1_interacregistration.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransfer_v1_interacregistration.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autodepositregistrations" class="md-nav__link">
+    AutodepositRegistrations
+  </a>
+  
+    <nav class="md-nav" aria-label="AutodepositRegistrations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listautodepositregistrations" class="md-nav__link">
+    ListAutodepositRegistrations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autodepositregistrationscommands" class="md-nav__link">
+    AutodepositRegistrationsCommands
+  </a>
+  
+    <nav class="md-nav" aria-label="AutodepositRegistrationsCommands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#createregistration" class="md-nav__link">
+    CreateRegistration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleteregistration" class="md-nav__link">
+    DeleteRegistration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateregistration" class="md-nav__link">
+    UpdateRegistration
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums" class="md-nav__link">
+    Enums
+  </a>
+  
+    <nav class="md-nav" aria-label="Enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#errorcodes" class="md-nav__link">
+    ErrorCodes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#createregistrationrequest" class="md-nav__link">
+    CreateRegistrationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createregistrationresponse" class="md-nav__link">
+    CreateRegistrationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleteregistrationrequest" class="md-nav__link">
+    DeleteRegistrationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleteregistrationresponse" class="md-nav__link">
+    DeleteRegistrationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interacregistrationcompletedevent" class="md-nav__link">
+    InteracRegistrationCompletedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listautodepositregistrationsrequest" class="md-nav__link">
+    ListAutodepositRegistrationsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listautodepositregistrationsresponse" class="md-nav__link">
+    ListAutodepositRegistrationsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phonenumber" class="md-nav__link">
+    PhoneNumber
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#registration" class="md-nav__link">
+    Registration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateregistrationrequest" class="md-nav__link">
+    UpdateRegistrationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateregistrationresponse" class="md-nav__link">
+    UpdateRegistrationResponse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coretransfer_v1_remittanceproto" class="md-nav__link">
+    coretransfer_v1_remittance.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransfer_v1_remittance.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_1" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remittanceinformation" class="md-nav__link">
+    RemittanceInformation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structured" class="md-nav__link">
+    Structured
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unstructured" class="md-nav__link">
+    Unstructured
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coretransfer_v1_incoming_interac_transferproto" class="md-nav__link">
+    coretransfer_v1_incoming_interac_transfer.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransfer_v1_incoming_interac_transfer.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_1" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incominginteractransfers" class="md-nav__link">
+    IncomingInteracTransfers
+  </a>
+  
+    <nav class="md-nav" aria-label="IncomingInteracTransfers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getincomingtransferdetails" class="md-nav__link">
+    GetIncomingTransferDetails
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums_1" class="md-nav__link">
+    Enums
+  </a>
+  
+    <nav class="md-nav" aria-label="Enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hashalgorithm" class="md-nav__link">
+    HashAlgorithm
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incomingtransfererrorcodes" class="md-nav__link">
+    IncomingTransferErrorCodes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incomingtransferstatus" class="md-nav__link">
+    IncomingTransferStatus
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_2" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authenticateincomingtransferrequest" class="md-nav__link">
+    AuthenticateIncomingTransferRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticateincomingtransferresponse" class="md-nav__link">
+    AuthenticateIncomingTransferResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completeincomingtransferrequest" class="md-nav__link">
+    CompleteIncomingTransferRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completeincomingtransferresponse" class="md-nav__link">
+    CompleteIncomingTransferResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declineincomingtransferrequest" class="md-nav__link">
+    DeclineIncomingTransferRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declineincomingtransferresponse" class="md-nav__link">
+    DeclineIncomingTransferResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getincomingtransferdetailsrequest" class="md-nav__link">
+    GetIncomingTransferDetailsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getincomingtransferdetailsresponse" class="md-nav__link">
+    GetIncomingTransferDetailsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#incomingtransferdetails" class="md-nav__link">
+    IncomingTransferDetails
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coretransfer_v1_routinginformationproto" class="md-nav__link">
+    coretransfer_v1_routinginformation.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransfer_v1_routinginformation.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_2" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routing" class="md-nav__link">
+    Routing
+  </a>
+  
+    <nav class="md-nav" aria-label="Routing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getaccountrouting" class="md-nav__link">
+    GetAccountRouting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_3" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accountrouting" class="md-nav__link">
+    AccountRouting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accountroutinglinkedevent" class="md-nav__link">
+    AccountRoutingLinkedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createaccountroutingrequest" class="md-nav__link">
+    CreateAccountRoutingRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createaccountroutingresponse" class="md-nav__link">
+    CreateAccountRoutingResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getaccountroutingrequest" class="md-nav__link">
+    GetAccountRoutingRequest
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coretransfer_v1_transactionproto" class="md-nav__link">
+    coretransfer_v1_transaction.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransfer_v1_transaction.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_3" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transfers" class="md-nav__link">
+    Transfers
+  </a>
+  
+    <nav class="md-nav" aria-label="Transfers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gettransferdetails" class="md-nav__link">
+    GetTransferDetails
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums_2" class="md-nav__link">
+    Enums
+  </a>
+  
+    <nav class="md-nav" aria-label="Enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customerrole" class="md-nav__link">
+    CustomerRole
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfererrorcodes" class="md-nav__link">
+    TransferErrorCodes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transferstatus" class="md-nav__link">
+    TransferStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfertype" class="md-nav__link">
+    TransferType
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_4" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#counterparty" class="md-nav__link">
+    Counterparty
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gettransferdetailsrequest" class="md-nav__link">
+    GetTransferDetailsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initiatetransferrequest" class="md-nav__link">
+    InitiateTransferRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initiatetransferresponse" class="md-nav__link">
+    InitiateTransferResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfertransactiondetails" class="md-nav__link">
+    TransferTransactionDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfertransactiondetailscreatedevent" class="md-nav__link">
+    TransferTransactionDetailsCreatedEvent
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-types" class="md-nav__link">
+    Shared types
+  </a>
+  
+    <nav class="md-nav" aria-label="Shared types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amount" class="md-nav__link">
+    Amount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apperror" class="md-nav__link">
+    AppError
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalar-value-types" class="md-nav__link">
+    Scalar Value Types
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="core-transfers-api">Core Transfers API<a class="headerlink" href="#core-transfers-api" title="Permanent link">&para;</a></h1>
+<p><a name="top"></a></p>
+<p><a name="coretransfer_v1_interacregistration.proto"></a></p>
+<h2 id="coretransfer_v1_interacregistrationproto">coretransfer_v1_interacregistration.proto<a class="headerlink" href="#coretransfer_v1_interacregistrationproto" title="Permanent link">&para;</a></h2>
+<h3 id="services">Services<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.interac.v1.AutodepositRegistrations"></a></p>
+<h4 id="autodepositregistrations">AutodepositRegistrations<a class="headerlink" href="#autodepositregistrations" title="Permanent link">&para;</a></h4>
+<p>AutodepositRegistrations service exposes synchronous endpoints used to list/retrieve Autodeposit Account Alias Registrations
+This service must be called with a valid user authentication
+Unauthenticated calls will generate an error with status code UNAUTHENTICATED</p>
+<h5 id="listautodepositregistrations">ListAutodepositRegistrations<a class="headerlink" href="#listautodepositregistrations" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> ListAutodepositRegistrations(<a href="#thebaasco.tenant.interac.v1.ListAutodepositRegistrationsRequest">ListAutodepositRegistrationsRequest</a>)
+    <a href="#thebaasco.tenant.interac.v1.ListAutodepositRegistrationsResponse">ListAutodepositRegistrationsResponse</a></p>
+</blockquote>
+<p>ListRegistrations lists all Autodeposit Registrations for a given account 
+enforcing that the authorized user has permissions to see them. For illustration purposes, 
+users with permissions to see autodeposit registrations include the account owner and possibly the authorized users of that account</p>
+<p>The function returns an empty list if no registrations are found that match the conditions above
+Calls made with a non-existent account ID or unauthorized account ID, generate an error with status code INVALID_ARGUMENT desc: "account number is invalid"</p>
+<p><a name="thebaasco.tenant.interac.v1.AutodepositRegistrationsCommands"></a></p>
+<h4 id="autodepositregistrationscommands">AutodepositRegistrationsCommands<a class="headerlink" href="#autodepositregistrationscommands" title="Permanent link">&para;</a></h4>
+<p>AutodepositRegistrationsCommands is a key component of Core Transfers API that exposes asynchronous operations that alter the state of a Interac autodeposit registrations.
+It is not directly accessible by consumers as a gRPC service, it instead uses Google PubSub as delivery mechanism for requests and responses.
+We include it in the documentation as a reference for a better understanding of the responsibilities and API surface of this domain</p>
+<h5 id="createregistration">CreateRegistration<a class="headerlink" href="#createregistration" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> CreateRegistration(<a href="#thebaasco.tenant.interac.v1.CreateRegistrationRequest">CreateRegistrationRequest</a>)
+    <a href="#thebaasco.tenant.interac.v1.CreateRegistrationResponse">CreateRegistrationResponse</a></p>
+</blockquote>
+<p>CreateRegistration is an asynchronous function used to create a new Interac account alias registration.
+An account alias registration allows a customer to receive direct deposits to a selected account given an alias that can be an email or phone number.
+Performing this operation will generate an asynchronous response of type CreateRegistrationResponse, on the asynchronous command's response topic.
+When creating the account alias registration, the information contained in the Client-Profile domain for the current user will be used to
+populate customer profile information created at Interac, e.g. Legal name, address, etc.
+Different errors can arise when creating account alias registrations. For details see <a href="#thebaasco.tenant.interac.v1.ErrorCodes">ErrorCodes</a></p>
+<h5 id="deleteregistration">DeleteRegistration<a class="headerlink" href="#deleteregistration" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> DeleteRegistration(<a href="#thebaasco.tenant.interac.v1.DeleteRegistrationRequest">DeleteRegistrationRequest</a>)
+<a href="#thebaasco.tenant.interac.v1.DeleteRegistrationResponse">DeleteRegistrationResponse</a></p>
+</blockquote>
+<p>DeleteRegistration is an asynchronous function used to initiate the deletion/deactivation of an existing Interac account alias registration.
+Performing this operation will generate an asynchronous response of type DeleteRegistrationResponse on the asynchronous command's response topic.
+Deleting an account alias registration will invalidate/inactivate the link between an account alias handle (email/phone) and an account, so that
+the account will no longer receive deposits automatically when sent using the given alias.
+At that moment, the customer is free to use the same alias handle to create a new registration pointing to the same or a different account.</p>
+<h5 id="updateregistration">UpdateRegistration<a class="headerlink" href="#updateregistration" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> UpdateRegistration(<a href="#thebaasco.tenant.interac.v1.UpdateRegistrationRequest">UpdateRegistrationRequest</a>)
+<a href="#thebaasco.tenant.interac.v1.UpdateRegistrationResponse">UpdateRegistrationResponse</a></p>
+</blockquote>
+<p>UpdateRegistration is an asynchronous function used to initiate the update of an existing Interac account alias registration.
+Performing this operation will generate an asynchronous response of type UpdateRegistrationResponse on the response topic.
+When updating the account alias registration, minimal changes are allowed, notably it is meant to change the target account linked to the alias.
+Notice that it is not possible to change the account alias handle itself (e.g. email/phone number). If more important changes are needed, the customer
+could always use the delete registration service and start a new account alias from scratch after that.
+ <!-- end services -->
+</p>
+<h3 id="enums">Enums<a class="headerlink" href="#enums" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.interac.v1.ErrorCodes"></a></p>
+<h4 id="errorcodes">ErrorCodes<a class="headerlink" href="#errorcodes" title="Permanent link">&para;</a></h4>
+<p>A Domain-specific list of error codes (For Transfers/Interac) documenting the error situations that could arrive while consuming synchronous or asynchronous APIs
+In all cases these error codes will be communicated to the consumer in a structured manner within an instance of <a href="../Global-types/errordetails/#apperror">AppError</a>
+that will be included within the error status response: status.Status.Details</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNSPECIFIED</td>
+<td>0</td>
+<td>UNSPECIFIED should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes.</td>
+</tr>
+<tr>
+<td>TRANS_INTERAC_INVALID_ACCOUNT</td>
+<td>1</td>
+<td>TRANS_INTERAC_INVALID_ACCOUNT - Invalid Account. gRPC Code=InvalidArgument. Returned when an account ID passed as argument for a given operation does not resolve to an existing account or the account is not authorized for the caller (e.g. the customer does not own the account)</td>
+</tr>
+<tr>
+<td>TRANS_INTERAC_ALIAS_IN_USE</td>
+<td>2</td>
+<td>TRANS_INTERAC_ALIAS_IN_USE - Autodeposit alias in use. gRPC Code==InvalidArgument. Returned while creating an autodeposit registration with an alias (email or phone number) that is already in use by another active registration</td>
+</tr>
+<tr>
+<td>TRANS_INTERAC_REG_COUNT_EXCEEDED</td>
+<td>3</td>
+<td>TRANS_INTERAC_REG_COUNT_EXCEEDED - Maximum number of account-alias registrations threshold exceeded. gRPC Code==FailedPrecondition. Returned when the customer has reached the allowed limit for account alias registrations on Interac</td>
+</tr>
+<tr>
+<td>TRANS_INTERAC_INV_MOB_NUMBER</td>
+<td>4</td>
+<td>TRANS_INTERAC_INV_MOB_NUMBER - Invalid mobile phone number. gRPC Code==InvalidArgument. Returned during creation of an an account alias registration based on phone number, if Interac does not recognize the phone number as valid.</td>
+</tr>
+<tr>
+<td>TRANS_INTERAC_INV_MOB_AREACODE</td>
+<td>5</td>
+<td>TRANS_INTERAC_INV_MOB_AREACODE - Invalid mobile phone area code. gRPC Code==InvalidArgument. Returned during creation of an an account alias registration based on phone number, if Interac does not recognize the phone number area code as valid.</td>
+</tr>
+</tbody>
+</table>
+<!-- end enums -->
+
+<h3 id="api-specific-types">API-specific types<a class="headerlink" href="#api-specific-types" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.interac.v1.CreateRegistrationRequest"></a></p>
+<h4 id="createregistrationrequest">CreateRegistrationRequest<a class="headerlink" href="#createregistrationrequest" title="Permanent link">&para;</a></h4>
+<p>CreateRegistrationRequest is message used to initiate the creation of a new Interac account alias registration.
+Performing this operation will generate an asynchronous response of type CreateRegistrationResponse, on the response topic.
+When creating the account alias registration, the information contained in the Client-Profile domain for the current user will be used to
+populate customer profile information created at Interac, e.g. Legal name, address, etc.
+Different errors can arise when creating account alias registrations. For details see <a href="#thebaasco.tenant.interac.v1.ErrorCodes">ErrorCodes</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>registration</td>
+<td><a href="#thebaasco.tenant.interac.v1.Registration">Registration</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.interac.v1.CreateRegistrationResponse"></a></p>
+<h4 id="createregistrationresponse">CreateRegistrationResponse<a class="headerlink" href="#createregistrationresponse" title="Permanent link">&para;</a></h4>
+<p>CreateRegistrationResponse is a wrapper model used to contain the result of a create account alias registration operation</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>registration</td>
+<td><a href="#thebaasco.tenant.interac.v1.Registration">Registration</a></td>
+<td></td>
+<td>Registration is the newly created registration, returned to the consumer for reference of the registration's current status and expiration date In case some feedback message needs to be presented to the user with that information</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.interac.v1.DeleteRegistrationRequest"></a></p>
+<h4 id="deleteregistrationrequest">DeleteRegistrationRequest<a class="headerlink" href="#deleteregistrationrequest" title="Permanent link">&para;</a></h4>
+<p>DeleteRegistrationRequest is message used to initiate the deletion/deactivation of an existing Interac account alias registration.
+Performing this operation will generate an asynchronous response of type DeleteRegistrationResponse on the response topic.
+Deleting an account alias registration will invalidate/inactivate the link between an account alias handle (email/phone) and an account, so that
+the account will no longer receive deposits automatically when sent using the given alias.
+At that moment, the customer is free to use the same alias handle to create a new registration pointing to the same or a different account.
+Errors, for more details see <a href="#thebaasco.tenant.interac.v1.ErrorCodes">ErrorCodes</a>
+- AppError: code=TRANS_INTERAC_INVALID_ACCOUNT if the account ID passed as argument is not owned or authorized for the current user.
+- AppError: type=codes.Unauthorized if the registration ID passed as argument is not owned by the current user.
+- AppError: type codes.Internal, code=GEN_INTERNAL if there is an unexpected error while processing the request, e.g. the execution of the operation on Interac's systems returns an unexpected error.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>registration_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.interac.v1.DeleteRegistrationResponse"></a></p>
+<h4 id="deleteregistrationresponse">DeleteRegistrationResponse<a class="headerlink" href="#deleteregistrationresponse" title="Permanent link">&para;</a></h4>
+<p>DeleteRegistrationResponse is a wrapper model used to contain the result of a delete account alias registration operation</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>registration</td>
+<td><a href="#thebaasco.tenant.interac.v1.Registration">Registration</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.interac.v1.InteracRegistrationCompletedEvent"></a></p>
+<h4 id="interacregistrationcompletedevent">InteracRegistrationCompletedEvent<a class="headerlink" href="#interacregistrationcompletedevent" title="Permanent link">&para;</a></h4>
+<p>Business event produced when an Interac account alias registration is created</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>registration_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Identifier of the account alias registration created</td>
+</tr>
+<tr>
+<td>individual_party_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Identifier of the customer for which this account alias was created</td>
+</tr>
+<tr>
+<td>expiry_date</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>Expiration date of the account alias</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Account for which the alias was created</td>
+</tr>
+<tr>
+<td>alias_email</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>alias_phone_number</td>
+<td><a href="#thebaasco.tenant.interac.v1.PhoneNumber">PhoneNumber</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.interac.v1.ListAutodepositRegistrationsRequest"></a></p>
+<h4 id="listautodepositregistrationsrequest">ListAutodepositRegistrationsRequest<a class="headerlink" href="#listautodepositregistrationsrequest" title="Permanent link">&para;</a></h4>
+<p>ListRegistrationsRequest is a message passed as argument to the ListRegistrations operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The Account ID for the Registrations that are to be listed. Must be a valid UUID. Must be an existing account owned by or authorized for the current user</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.interac.v1.ListAutodepositRegistrationsResponse"></a></p>
+<h4 id="listautodepositregistrationsresponse">ListAutodepositRegistrationsResponse<a class="headerlink" href="#listautodepositregistrationsresponse" title="Permanent link">&para;</a></h4>
+<p>ListRegistrationsResponse is a message returned in response to the ListRegistrations operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Registrations</td>
+<td><a href="#thebaasco.tenant.interac.v1.Registration">Registration</a></td>
+<td>repeated</td>
+<td>The requested list of Registrations. Will be empty if no registrations exist</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.interac.v1.PhoneNumber"></a></p>
+<h4 id="phonenumber">PhoneNumber<a class="headerlink" href="#phonenumber" title="Permanent link">&para;</a></h4>
+<p>Model that represents a valid phone number</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>phone_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.interac.v1.Registration"></a></p>
+<h4 id="registration">Registration<a class="headerlink" href="#registration" title="Permanent link">&para;</a></h4>
+<p>Model that contains the data of an Interac account alias registration</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>registration_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique identifier of this registration Output only.</td>
+</tr>
+<tr>
+<td>expiry_date</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>UTC point in time after which this account alias registration expires No transfer will succeed if sent through the given alias (email/phone) past this date Output only.</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier of the account whose alias this registration involves</td>
+</tr>
+<tr>
+<td>alias_email</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>alias_phone_number</td>
+<td><a href="#thebaasco.tenant.interac.v1.PhoneNumber">PhoneNumber</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.interac.v1.UpdateRegistrationRequest"></a></p>
+<h4 id="updateregistrationrequest">UpdateRegistrationRequest<a class="headerlink" href="#updateregistrationrequest" title="Permanent link">&para;</a></h4>
+<p>UpdateRegistrationRequest is message used to initiate the update of an existing Interac account alias registration.
+Performing this operation will generate an asynchronous response of type UpdateRegistrationResponse on the response topic.
+When updating the account alias registration, minimal changes are allowed, notably it is meant to change the target account linked to the alias.
+Notice that it is not possible to change the account alias handle itself (e.g. email/phone number). If more important changes are needed, the customer
+could always use the delete registration service and start a new account alias from scratch after that.
+Errors, for more details see <a href="#thebaasco.tenant.interac.v1.ErrorCodes">ErrorCodes</a>
+- AppError: type=codes.InvalidArgument, code=TRANS_INTERAC_INVALID_ACCOUNT if the account ID passed as argument is not owned or authorized for the current user.
+- AppError: type=codes.Unauthorized if the registration ID passed as argument is not owned by the current user.
+- AppError: type codes.Internal, code=GEN_INTERNAL if there is an unexpected error while processing the request, e.g. the execution of the operation on Interac's systems returns an unexpected error.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>registration_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.interac.v1.UpdateRegistrationResponse"></a></p>
+<h4 id="updateregistrationresponse">UpdateRegistrationResponse<a class="headerlink" href="#updateregistrationresponse" title="Permanent link">&para;</a></h4>
+<p>UpdateRegistrationResponse is a wrapper model used to contain the result of an update account alias registration operation</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>registration</td>
+<td><a href="#thebaasco.tenant.interac.v1.Registration">Registration</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<!-- end messages -->
+
+<p><a name="coretransfer_v1_remittance.proto"></a></p>
+<h2 id="coretransfer_v1_remittanceproto">coretransfer_v1_remittance.proto<a class="headerlink" href="#coretransfer_v1_remittanceproto" title="Permanent link">&para;</a></h2>
+<h3 id="api-specific-types_1">API-specific types<a class="headerlink" href="#api-specific-types_1" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.coretransfer.v1.RemittanceInformation"></a></p>
+<h4 id="remittanceinformation">RemittanceInformation<a class="headerlink" href="#remittanceinformation" title="Permanent link">&para;</a></h4>
+<p>RemittanceInformation includes additional information provided by the sender giving context for a transfer
+for instance, a transfer may be sent to a business by one of its clients in order to pay for a bill, the remittance data will
+include a reference to that bill payment
+Remittance data could be unstructured or structured or both.</p>
+<ul>
+<li>
+<p>Unstructured remittance data is a free-format text of up to 420 characters, e.g. the notes that clients put on a regular Interac transfer</p>
+</li>
+<li>
+<p>Structured remittance data is packaged as a json payload which is a variant of the ISO20022 standard for remittance data (originally defined as XML)</p>
+</li>
+</ul>
+<p>For illustration purposes, a sample structured payload looks like this:</p>
+<pre><code> [
+    {
+       &quot;referred_document_information&quot;: [
+           {
+               &quot;type&quot;: {
+                   &quot;code_or_proprietary&quot;: {
+                       &quot;code&quot;: &quot;MSIN&quot;
+                   }
+               },
+               &quot;number&quot;: &quot;4U1LH53P0R68OFFL0PN0NT4QOCFW4QUVJVE&quot;,
+               &quot;related_date&quot;: &quot;2021-08-19&quot;
+           }
+       ],
+       &quot;referred_document_amount&quot;: {
+       ...
+       },
+       &quot;creditor_reference_information&quot;: {
+       ...
+       },
+       &quot;invoicer&quot;: {
+       ...
+       },
+       &quot;invoicee&quot;: {
+        ...
+       },
+       &quot;additional_remittance_information&quot;: [
+           &quot;Deposit Req&quot;
+       ]
+   },
+]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unstructured</td>
+<td><a href="#thebaasco.tenant.coretransfer.v1.Unstructured">Unstructured</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>structured</td>
+<td><a href="#thebaasco.tenant.coretransfer.v1.Structured">Structured</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.Structured"></a></p>
+<h4 id="structured">Structured<a class="headerlink" href="#structured" title="Permanent link">&para;</a></h4>
+<p>StructuredRemittance is a container of an json version of an ISO20022 structured remittance data block
+The root of the object is an array that can contain up to 5 remittance document instances.
+TODO: Update with details of this structure once the documentation is available in our public site</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>JSON content for this structured remittance data The max size has been estimated assuming 5 instances of remittance documents, each one filled with all possible fields set to test values with their max documented length</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.Unstructured"></a></p>
+<h4 id="unstructured">Unstructured<a class="headerlink" href="#unstructured" title="Permanent link">&para;</a></h4>
+<p>UnstructuredRemittance data is comprised of up to 3 sender-provided strings with no more than 140 characters per string.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<!-- end messages -->
+
+<p><a name="coretransfer_v1_incoming_interac_transfer.proto"></a></p>
+<h2 id="coretransfer_v1_incoming_interac_transferproto">coretransfer_v1_incoming_interac_transfer.proto<a class="headerlink" href="#coretransfer_v1_incoming_interac_transferproto" title="Permanent link">&para;</a></h2>
+<h3 id="services_1">Services<a class="headerlink" href="#services_1" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.coretransfer.interac.v1.IncomingInteracTransfers"></a></p>
+<h4 id="incominginteractransfers">IncomingInteracTransfers<a class="headerlink" href="#incominginteractransfers" title="Permanent link">&para;</a></h4>
+<p>IncomingInteracTransfers service exposes synchronous endpoints used to retrieve details of an incoming Q&amp;A transfer and to authenticate the transfer
+This service must be called with a valid user authentication
+Unauthenticated calls will generate an error with status code UNAUTHENTICATED</p>
+<h5 id="getincomingtransferdetails">GetIncomingTransferDetails<a class="headerlink" href="#getincomingtransferdetails" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> GetIncomingTransferDetails(<a href="#thebaasco.tenant.coretransfer.interac.v1.GetIncomingTransferDetailsRequest">GetIncomingTransferDetailsRequest</a>)
+<a href="#thebaasco.tenant.coretransfer.interac.v1.GetIncomingTransferDetailsResponse">GetIncomingTransferDetailsResponse</a></p>
+</blockquote>
+<p>GetIncomingTransferDetails retrieves the details and state of an incoming Interac Q&amp;A transfer</p>
+<p>An error with error code TRANS_INTERAC_INVALID_TRANSFER desc: "payment number is invalid" will be generated in the following scenarios:
+- calls made with a non-existent interac_payment_number
+  An error with error code TRANS_INTERAC_INCONSISTENT_CUSTOMER desc: "Transfer was previously authenticated with a different customer ID" will be generated when:
+- calls made with a different customer than was previously authenticated</p>
+<!-- end services -->
+
+<h3 id="enums_1">Enums<a class="headerlink" href="#enums_1" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.coretransfer.interac.v1.HashAlgorithm"></a></p>
+<h4 id="hashalgorithm">HashAlgorithm<a class="headerlink" href="#hashalgorithm" title="Permanent link">&para;</a></h4>
+<p>HashAlgorithm represents the algorithm that must be used when hashing a security answer</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HASH_ALGORITHM_UNSPECIFIED</td>
+<td>0</td>
+<td>INCOMING_TRANSFER_STATUS_UNSPECIFIED is reserved for error detection purposes. It should not be used directly.</td>
+</tr>
+<tr>
+<td>SHA256</td>
+<td>1</td>
+<td>SHA256 - The SHA-256 hash algorithm.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.interac.v1.IncomingTransferErrorCodes"></a></p>
+<h4 id="incomingtransfererrorcodes">IncomingTransferErrorCodes<a class="headerlink" href="#incomingtransfererrorcodes" title="Permanent link">&para;</a></h4>
+<p>A Domain-specific list of error codes (For Transfers/Interac) documenting the error situations that could arrive while consuming synchronous or asynchronous APIs
+In all cases these error codes will be communicated to the consumer in a structured manner within an instance of AppError (see https://github.com/thebaasco/api-contracts/tree/master/proto/types/errordetails)
+that will be included within the error status response: status.Status.Details</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNSPECIFIED</td>
+<td>0</td>
+<td>UNSPECIFIED should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes.</td>
+</tr>
+<tr>
+<td>TRANS_INTERAC_INVALID_TRANSFER</td>
+<td>1</td>
+<td>TRANS_INTERAC_INVALID_TRANSFER - Transfer does not exist. gRPC Code=InvalidArgument. Returned when an Interac payment number passed as argument for a given operation does not resolve to a transfer or, in the case of a <code>complete transfer</code> operation, the user does not have access to the target account.</td>
+</tr>
+<tr>
+<td>TRANS_INTERAC_ALREADY_CANCELLED</td>
+<td>2</td>
+<td>TRANS_INTERAC_ALREADY_CANCELLED - Operation cannot be performed due to state of the transfer. gRPC Code==FailedPrecondition. Returned when attempting to authenticate a transfer that has already been canceled.</td>
+</tr>
+<tr>
+<td>TRANS_INTERAC_ALREADY_ACCEPTED</td>
+<td>3</td>
+<td>TRANS_INTERAC_ALREADY_ACCEPTED - Operation cannot be performed due to the state of the transfer. gRPC Code==FailedPrecondition. Returned when attempting to authenticate a transfer that has already been accepted.</td>
+</tr>
+<tr>
+<td>TRANS_INTERAC_PREVIOUS_TRANSFER_IN_PROGRESS</td>
+<td>4</td>
+<td>TRANS_INTERAC_PREVIOUS_TRANSFER_IN_PROGRESS - A previous transaction between this sender and recipient has not been completed. gRPC Code==FailedPrecondition. Returned when there already exists a transfer between sender and recipient that has not been completed or canceled.</td>
+</tr>
+<tr>
+<td>TRANS_INTERAC_INCONSISTENT_CUSTOMER</td>
+<td>5</td>
+<td>TRANS_INTERAC_INCONSISTENT_CUSTOMER - Transfer was previously authenticated with a different customer ID. gRPC Code==InvalidArgument. Returned when performing any operation a transfer has been authenticated by different customer ID.</td>
+</tr>
+<tr>
+<td>TRANS_INTERAC_TRANSFER_LIMITS_EXCEEDED</td>
+<td>6</td>
+<td>TRANS_INTERAC_TRANSFER_LIMITS_EXCEEDED - Rolling or per-transaction limits exceeded . gRPC Code==FailedPrecondition. Returned when the current transfer exceeds the rolling or per-transaction limits configured in the Interac system</td>
+</tr>
+<tr>
+<td>TRANS_INTERAC_AUTHENTICATION_REQUIRED</td>
+<td>7</td>
+<td>TRANS_INTERAC_AUTHENTICATION_REQUIRED - Authentication required for transfer . gRPC Code==FailedPrecondition. Returned when attempting to complete an incoming Q&amp;A transfer whose authentication step has not yet been completed successfully. E.g. the user has not provided the correct answer to the security question.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.interac.v1.IncomingTransferStatus"></a></p>
+<h4 id="incomingtransferstatus">IncomingTransferStatus<a class="headerlink" href="#incomingtransferstatus" title="Permanent link">&para;</a></h4>
+<p>IncomingTransferStatus represents the state of the transfer.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INCOMING_TRANSFER_STATUS_UNSPECIFIED</td>
+<td>0</td>
+<td>INCOMING_TRANSFER_STATUS_UNSPECIFIED is reserved for error detection purposes. It should not be used directly.</td>
+</tr>
+<tr>
+<td>AVAILABLE</td>
+<td>1</td>
+<td>AVAILABLE represents that a transfer has not been processed and is in a valid state to be authorized.</td>
+</tr>
+<tr>
+<td>AUTHORIZED</td>
+<td>2</td>
+<td>AUTHORIZED represents that a transfer has been authorized and is in a valid state to be accepted or declined.</td>
+</tr>
+<tr>
+<td>ACCEPTED</td>
+<td>3</td>
+<td>ACCEPTED represents that a transfer has been accepted. The transfer is complete and deposited into the target account.</td>
+</tr>
+<tr>
+<td>CANCELED</td>
+<td>4</td>
+<td>CANCELED represents that a transfer is complete and not deposited to an account. Ways to achieve this state are: if the transfer is canceled by the sender, if the receiver declines the transfer, the transfer has expired, the receiver is unable to authenticate the transfer within the allotted attempts.</td>
+</tr>
+</tbody>
+</table>
+<!-- end enums -->
+
+<h3 id="api-specific-types_2">API-specific types<a class="headerlink" href="#api-specific-types_2" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.coretransfer.interac.v1.AuthenticateIncomingTransferRequest"></a></p>
+<h4 id="authenticateincomingtransferrequest">AuthenticateIncomingTransferRequest<a class="headerlink" href="#authenticateincomingtransferrequest" title="Permanent link">&para;</a></h4>
+<p>AuthenticateIncomingTransferRequest is a message used to authenticate an inbound Interac transfer.
+Performing this operation will generate an asynchronous response of type AuthenticateIncomingTransferResponse, on the response topic.
+Different errors can arise when completing an incoming transfer. For details see <a href="#thebaasco.core-transfer.interac.v1.IncomingTransferErrorCodes">ErrorCodes</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>interac_payment_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The payment number, as provided by Interac, which this request authenticates</td>
+</tr>
+<tr>
+<td>security_answer</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The answer to the security question (as provided by the customer) with the following algorithm performed: - leading and trailing whitespace removed - converted to upper case - appended with the hash salt specified in hash_salt received from GetIncomingTransferDetailsRequest - encoded to ISO-8859-1 - hashed with the algorithm specified in hash_algorithm received from GetIncomingTransferDetailsRequest</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.interac.v1.AuthenticateIncomingTransferResponse"></a></p>
+<h4 id="authenticateincomingtransferresponse">AuthenticateIncomingTransferResponse<a class="headerlink" href="#authenticateincomingtransferresponse" title="Permanent link">&para;</a></h4>
+<p>AuthenticateIncomingTransferResponse is a wrapper model used to contain the result of a authenticate incoming transfer operation</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>interac_payment_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The payment number, as provided by Interac, which this authentication response pertains to</td>
+</tr>
+<tr>
+<td>success</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td>Indicates if the provided response was correct</td>
+</tr>
+<tr>
+<td>retry_allowed</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td>In case of an incorrect response (success=false), indicates if the user can try again providing a new answer.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.interac.v1.CompleteIncomingTransferRequest"></a></p>
+<h4 id="completeincomingtransferrequest">CompleteIncomingTransferRequest<a class="headerlink" href="#completeincomingtransferrequest" title="Permanent link">&para;</a></h4>
+<p>CompleteIncomingTransferRequest is a message used to complete the deposit of an inbound Interac transfer.
+Performing this operation will generate an asynchronous response of type CompleteIncomingTransferResponse, on the response topic.
+When completing the deposit, information contained in the Client-Profile domain for the current user will be used to
+enrich information sent to Interac to complete the transfer.
+Different errors can arise when completing an incoming transfer. For details see <a href="#thebaasco.core-transfer.interac.v1.IncomingTransferErrorCodes">ErrorCodes</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>interac_payment_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The payment number, as provided by Interac, for which the deposit is being completed</td>
+</tr>
+<tr>
+<td>target_account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the target account ID: - Current customer needs to be the owner or authorized user of the target account. - Target account must be a deposit account.</td>
+</tr>
+<tr>
+<td>recipient_memo</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>An optional memo provided by the recipient. This memo will be sent to the sender</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.interac.v1.CompleteIncomingTransferResponse"></a></p>
+<h4 id="completeincomingtransferresponse">CompleteIncomingTransferResponse<a class="headerlink" href="#completeincomingtransferresponse" title="Permanent link">&para;</a></h4>
+<p>CompleteIncomingTransferResponse is a wrapper model used to contain the result of a complete incoming transfer operation</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>interac_payment_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The payment number, as provided by Interac, for which the transfer is being completed</td>
+</tr>
+<tr>
+<td>transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents this single financial transaction (operation). This ID is stable across all domains for a given transaction.</td>
+</tr>
+<tr>
+<td>lifecycle_transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...).</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.interac.v1.DeclineIncomingTransferRequest"></a></p>
+<h4 id="declineincomingtransferrequest">DeclineIncomingTransferRequest<a class="headerlink" href="#declineincomingtransferrequest" title="Permanent link">&para;</a></h4>
+<p>DeclineIncomingTransferRequest is a message used to decline the deposit of an inbound Interac transfer.
+Performing this operation will generate an asynchronous response of type DeclineIncomingTransferResponse, on the response topic.
+Different errors can arise when declining an incoming transfer. For details see <a href="#thebaasco.core-transfer.interac.v1.IncomingTransferErrorCodes">ErrorCodes</a></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>interac_payment_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The payment number, as provided by Interac, for which the transfer is being declined</td>
+</tr>
+<tr>
+<td>recipient_memo</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>An optional memo provided by the recipient. This memo will be sent to the sender</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.interac.v1.DeclineIncomingTransferResponse"></a></p>
+<h4 id="declineincomingtransferresponse">DeclineIncomingTransferResponse<a class="headerlink" href="#declineincomingtransferresponse" title="Permanent link">&para;</a></h4>
+<p>DeclineIncomingTransferResponse is a wrapper model used to contain the result of a decline incoming transfer operation</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>interac_payment_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The payment number, as provided by Interac, for which the transfer is being declined</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.interac.v1.GetIncomingTransferDetailsRequest"></a></p>
+<h4 id="getincomingtransferdetailsrequest">GetIncomingTransferDetailsRequest<a class="headerlink" href="#getincomingtransferdetailsrequest" title="Permanent link">&para;</a></h4>
+<p>GetIncomingTransferDetailsRequest is a message passed as argument to the GetIncomingTransferDetails operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>interac_payment_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The payment number, as provided by Interac, for which to return the details of the transfer</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.interac.v1.GetIncomingTransferDetailsResponse"></a></p>
+<h4 id="getincomingtransferdetailsresponse">GetIncomingTransferDetailsResponse<a class="headerlink" href="#getincomingtransferdetailsresponse" title="Permanent link">&para;</a></h4>
+<p>GetIncomingTransferDetailsResponse is a message returned in response to the GetIncomingTransferDetails operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transfer_details</td>
+<td><a href="#thebaasco.tenant.coretransfer.interac.v1.IncomingTransferDetails">IncomingTransferDetails</a></td>
+<td></td>
+<td>Details of the current state of an incoming transfer</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.interac.v1.IncomingTransferDetails"></a></p>
+<h4 id="incomingtransferdetails">IncomingTransferDetails<a class="headerlink" href="#incomingtransferdetails" title="Permanent link">&para;</a></h4>
+<p>IncomingTransferDetails message contains details about a given inbound Interac transfer.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>interac_payment_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The payment number, as provided by Interac, which the details of the transfer will be returned for</td>
+</tr>
+<tr>
+<td>transfer_status</td>
+<td><a href="#thebaasco.tenant.coretransfer.interac.v1.IncomingTransferStatus">IncomingTransferStatus</a></td>
+<td></td>
+<td>The current status of the transfer</td>
+</tr>
+<tr>
+<td>transfer_amount</td>
+<td><a href="#thebaasco.types.Amount">thebaasco.types.Amount</a></td>
+<td></td>
+<td>The amount of the transfer. The amount should be always positive.</td>
+</tr>
+<tr>
+<td>expiry_date</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this transfer will expire.</td>
+</tr>
+<tr>
+<td>initiator_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The name of who initiated the transfer</td>
+</tr>
+<tr>
+<td>authentication_required</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td>Indicates if this transfer requires that the recipient provide a security answer before depositing the transfer into the account</td>
+</tr>
+<tr>
+<td>security_question</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>If authentication_required is true, the field contains the security question that the user must provide the answer to in order to deposit the transfer</td>
+</tr>
+<tr>
+<td>sender_memo</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>An optional memo provided by the sender</td>
+</tr>
+<tr>
+<td>hash_salt</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The salt which will be appended in Authentication. Will be provided only if authentication_required = true.</td>
+</tr>
+<tr>
+<td>hash_algorithm</td>
+<td><a href="#thebaasco.tenant.coretransfer.interac.v1.HashAlgorithm">HashAlgorithm</a></td>
+<td></td>
+<td>The algorithm which must be used when hashing the security answer for Authentication. Will be provided only if authentication_required = true.</td>
+</tr>
+</tbody>
+</table>
+<!-- end messages -->
+
+<p><a name="coretransfer_v1_routinginformation.proto"></a></p>
+<h2 id="coretransfer_v1_routinginformationproto">coretransfer_v1_routinginformation.proto<a class="headerlink" href="#coretransfer_v1_routinginformationproto" title="Permanent link">&para;</a></h2>
+<h3 id="services_2">Services<a class="headerlink" href="#services_2" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.coretransfer.v1.Routing"></a></p>
+<h4 id="routing">Routing<a class="headerlink" href="#routing" title="Permanent link">&para;</a></h4>
+<p>Routing service provides ability to retrieve the AccountRouting information mapped to an account</p>
+<h5 id="getaccountrouting">GetAccountRouting<a class="headerlink" href="#getaccountrouting" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> GetAccountRouting(<a href="#thebaasco.tenant.coretransfer.v1.GetAccountRoutingRequest">GetAccountRoutingRequest</a>)
+    <a href="#thebaasco.tenant.coretransfer.v1.AccountRouting">AccountRouting</a></p>
+</blockquote>
+<p>GetAccountRouting retrieves the AccountRouting information linked to the account specified. If no AccountRouting is linked to the account, then this operation will return an
+error with code NOT_FOUND.</p>
+<!-- end services -->
+
+<h3 id="api-specific-types_3">API-specific types<a class="headerlink" href="#api-specific-types_3" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.coretransfer.v1.AccountRouting"></a></p>
+<h4 id="accountrouting">AccountRouting<a class="headerlink" href="#accountrouting" title="Permanent link">&para;</a></h4>
+<p>AccountRouting message contains the routing details that is mapped to an account. It corresponds to the Canadian bank routing information, as well as account number.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transit_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Transit number is a 5 digits number representing the "branch" for traditional banks. In our case, since we are a fully digital financial institution, this number is arbitrary and does not represent branches, or any other partitioning.</td>
+</tr>
+<tr>
+<td>institution_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Institution number is a 3 digits number representing the financial institution.</td>
+</tr>
+<tr>
+<td>account_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Account number is a 12 digits number that uniquely represents the account for the associated transit and institution numbers. The 12th digit is a checksum number, following the Luhn algorithm, that can be used to validate during data entry if a number was typed properly. The checksum must be calculated by concatenating all digits of the AccountRouting in the TRANSIT-INSTITUTION-ACCOUNT order i.e. for account routing 11111-222-333333333334, the check digit 4 must be calculated using number 1111122233333333333.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.AccountRoutingLinkedEvent"></a></p>
+<h4 id="accountroutinglinkedevent">AccountRoutingLinkedEvent<a class="headerlink" href="#accountroutinglinkedevent" title="Permanent link">&para;</a></h4>
+<p>AccountRoutingLinkedEvent is an event raised when AccountRouting information is linked to an Account.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account on which the AccountRouting information was linked. This will be a valid UUID.</td>
+</tr>
+<tr>
+<td>account_routing</td>
+<td><a href="#thebaasco.tenant.coretransfer.v1.AccountRouting">AccountRouting</a></td>
+<td></td>
+<td>The AccountRouting information that was linked to the Account. Refer to AccountRouting message for details.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The tenant ID, to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>account_routing_linked_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp at which the AccountRouting information was linked to the Account.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.CreateAccountRoutingRequest"></a></p>
+<h4 id="createaccountroutingrequest">CreateAccountRoutingRequest<a class="headerlink" href="#createaccountroutingrequest" title="Permanent link">&para;</a></h4>
+<p>CreateAccountRoutingRequest is a message used to perform linking of the provided Account to new AccountRouting information. 
+Performing this operation will generate an asynchronous response of type CreateAccountRoutingResponse, on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account for which to link new AccountRouting information. This must be a valid UUID, and user must have proper access to the Account.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.CreateAccountRoutingResponse"></a></p>
+<h4 id="createaccountroutingresponse">CreateAccountRoutingResponse<a class="headerlink" href="#createaccountroutingresponse" title="Permanent link">&para;</a></h4>
+<p>CreateAccountRoutingResponse is the response to a CreateAccountRoutingRequest. It provides the created AccountRouting information for the requested Account.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account on which the AccountRouting information was linked. This will be a valid UUID.</td>
+</tr>
+<tr>
+<td>account_routing</td>
+<td><a href="#thebaasco.tenant.coretransfer.v1.AccountRouting">AccountRouting</a></td>
+<td></td>
+<td>The AccountRouting information that was linked to the Account. Refer to AccountRouting message for details.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.GetAccountRoutingRequest"></a></p>
+<h4 id="getaccountroutingrequest">GetAccountRoutingRequest<a class="headerlink" href="#getaccountroutingrequest" title="Permanent link">&para;</a></h4>
+<p>GetAccountRoutingRequest is a message passed as parameter to the GetAccountRouting operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account for which to retrieve AccountRouting information. This must be a valid UUID, and user must have proper access to the Account.</td>
+</tr>
+</tbody>
+</table>
+<!-- end messages -->
+
+<p><a name="coretransfer_v1_transaction.proto"></a></p>
+<h2 id="coretransfer_v1_transactionproto">coretransfer_v1_transaction.proto<a class="headerlink" href="#coretransfer_v1_transactionproto" title="Permanent link">&para;</a></h2>
+<h3 id="services_3">Services<a class="headerlink" href="#services_3" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.coretransfer.v1.Transfers"></a></p>
+<h4 id="transfers">Transfers<a class="headerlink" href="#transfers" title="Permanent link">&para;</a></h4>
+<p>Transfers service exposes generic synchronous endpoints related to the retrieval of transfers data
+The same contract will be implemented by subdomains that perform different transfer types
+e.g. Interac E-transfers, Internal transfers, International transfers etc.
+In all cases, the concrete service must be called with a valid user authentication
+Unauthenticated calls will generate an error with status code UNAUTHENTICATED</p>
+<h5 id="gettransferdetails">GetTransferDetails<a class="headerlink" href="#gettransferdetails" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> GetTransferDetails(<a href="#thebaasco.tenant.coretransfer.v1.GetTransferDetailsRequest">GetTransferDetailsRequest</a>)
+    <a href="#thebaasco.tenant.coretransfer.v1.TransferTransactionDetails">TransferTransactionDetails</a></p>
+</blockquote>
+<p>GetTransferDetails returns the latest state of a transfer by a given transaction ID.</p>
+<p>Errors:
+TransferErrorCodes.TRANS_INVALID_TRANSACTION - If a transaction ID is provided that is not found or resolves to an unauthorized account
+GenericErrorCodes.GEN_INTERNAL_ERROR - If an unexpected error occurs while processing the request. The error will include a RefNumber which Finaptic can use to investigate the cause.</p>
+<!-- end services -->
+
+<h3 id="enums_2">Enums<a class="headerlink" href="#enums_2" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.coretransfer.v1.CustomerRole"></a></p>
+<h4 id="customerrole">CustomerRole<a class="headerlink" href="#customerrole" title="Permanent link">&para;</a></h4>
+<p>CustomerRole enumeration indicates the role played by the customer.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CUSTOMER_ROLE_UNSPECIFIED</td>
+<td>0</td>
+<td>CUSTOMER_ROLE_UNSPECIFIED should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes.</td>
+</tr>
+<tr>
+<td>RECIPIENT</td>
+<td>1</td>
+<td>RECIPIENT indicates that the customer is the recipient of the transfer operation.</td>
+</tr>
+<tr>
+<td>INITIATOR</td>
+<td>2</td>
+<td>INITIATOR indicates that the customer is the initiator of the transfer operation.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.TransferErrorCodes"></a></p>
+<h4 id="transfererrorcodes">TransferErrorCodes<a class="headerlink" href="#transfererrorcodes" title="Permanent link">&para;</a></h4>
+<p>A Domain-specific list of error codes (For Transfers/Interac) documenting the error situations that could arrive while consuming synchronous or asynchronous APIs
+In all cases these error codes will be communicated to the consumer in a structured manner within an instance of <a href="../Global-types/errordetails/#apperror">AppError</a>
+that will be included within the error status response: status.Status.Details</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TRANS_ERROR_CODE_UNSPECIFIED</td>
+<td>0</td>
+<td>UNSPECIFIED should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes.</td>
+</tr>
+<tr>
+<td>TRANS_INVALID_TRANSACTION</td>
+<td>1</td>
+<td>TRANS_INVALID_TRANSACTION - Invalid Transaction. gRPC Code=InvalidArgument. Returned when a transaction ID passed as argument for a given operation does not resolve to an existing transaction or the account associated with the transaction is not authorized for the caller (e.g. the customer does not own the account)</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.TransferStatus"></a></p>
+<h4 id="transferstatus">TransferStatus<a class="headerlink" href="#transferstatus" title="Permanent link">&para;</a></h4>
+<p>TransferStatus enumeration indicates the processing status of a transaction.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TRANSFER_STATUS_UNSPECIFIED</td>
+<td>0</td>
+<td>TRANSFER_STATUS_UNSPECIFIED should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes.</td>
+</tr>
+<tr>
+<td>DECLINED</td>
+<td>1</td>
+<td>DECLINED indicates that the transfer has been declined and rollback has been performed. When transfer_type is INTERNAL_ACCOUNT_TO_ACCOUNT, this could be due to insufficient funds to initiate the transfer.</td>
+</tr>
+<tr>
+<td>COMPLETED</td>
+<td>2</td>
+<td>COMPLETED indicates that the transfer has been successfully completed.</td>
+</tr>
+<tr>
+<td>PENDING</td>
+<td>3</td>
+<td>PENDING indicates that the transfer is in an intermediate stage before completion. depending on the type of transfer, for instance, it is used for two-steps transfers to indicate the the initial step(authorization) has taken place but the second step(completion) has not finished yet.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.TransferType"></a></p>
+<h4 id="transfertype">TransferType<a class="headerlink" href="#transfertype" title="Permanent link">&para;</a></h4>
+<p>TransferType enumeration indicates the mechanism of transfer used for a transaction.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TRANSFER_TYPE_UNSPECIFIED</td>
+<td>0</td>
+<td>TRANSFER_TYPE_UNSPECIFIED should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes.</td>
+</tr>
+<tr>
+<td>INTERNAL_ACCOUNT_TO_ACCOUNT</td>
+<td>1</td>
+<td>INTERNAL_ACCOUNT_TO_ACCOUNT indicates that the transfer was an Account to Account transfer that did not transit through external systems ( stayed within the institution ).</td>
+</tr>
+<tr>
+<td>INTERAC_AUTODEPOSIT</td>
+<td>2</td>
+<td>INTERAC_AUTODEPOSIT indicates that the transfer came through Interac systems, and used the Interac Autodeposit mechanism.</td>
+</tr>
+</tbody>
+</table>
+<!-- end enums -->
+
+<h3 id="api-specific-types_4">API-specific types<a class="headerlink" href="#api-specific-types_4" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.coretransfer.v1.Counterparty"></a></p>
+<h4 id="counterparty">Counterparty<a class="headerlink" href="#counterparty" title="Permanent link">&para;</a></h4>
+<p>Counterparty contains details about the person/entity on the other side of the transfer.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>legal_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Legal name of the person/entity on the other side of the transfer.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.GetTransferDetailsRequest"></a></p>
+<h4 id="gettransferdetailsrequest">GetTransferDetailsRequest<a class="headerlink" href="#gettransferdetailsrequest" title="Permanent link">&para;</a></h4>
+<p>GetTransferDetailsRequest is a message passed as argument to the GetTransferDetails operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the transaction to get details for. Must be a valid UUID. Must be an existing transaction and the associated account must be owned by or authorized for the user In the case of Interac transfers that happen in two steps (authorization+confirmation), this field could be the transaction ID generated for one of those. Meaning that passing the transaction ID of the authorization step or the confirmation step, will return the corresponding transfer.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.InitiateTransferRequest"></a></p>
+<h4 id="initiatetransferrequest">InitiateTransferRequest<a class="headerlink" href="#initiatetransferrequest" title="Permanent link">&para;</a></h4>
+<p>InitiateTransferRequest create a transfer fund request between accounts owned by current customer</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>source_account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the source account ID: - Current customer needs to be owner or authorized user of the source account. - Source account needs to have sufficient available balance and actual balance to be able to initiate the transfer.</td>
+</tr>
+<tr>
+<td>destination_account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the destination account ID: - Current customer needs to be owner or authorized user of the destination account.</td>
+</tr>
+<tr>
+<td>fund_transfer</td>
+<td><a href="#thebaasco.types.Amount">thebaasco.types.Amount</a></td>
+<td></td>
+<td>The amount of the fund transfer. The amount should be always positive.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.InitiateTransferResponse"></a></p>
+<h4 id="initiatetransferresponse">InitiateTransferResponse<a class="headerlink" href="#initiatetransferresponse" title="Permanent link">&para;</a></h4>
+<p>InitiateTransferResponse is the response to InitiateTransferRequest. It contains the details of the transfer.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>details</td>
+<td><a href="#thebaasco.tenant.coretransfer.v1.TransferTransactionDetails">TransferTransactionDetails</a></td>
+<td></td>
+<td>Details of the transaction with its status (whether the transaction is COMPLETED or DECLINED. See TransferTransactionDetails for more details</td>
+</tr>
+<tr>
+<td>reason</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Empty when status is COMPLETED. Reason why transfer is declined.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.TransferTransactionDetails"></a></p>
+<h4 id="transfertransactiondetails">TransferTransactionDetails<a class="headerlink" href="#transfertransactiondetails" title="Permanent link">&para;</a></h4>
+<p>TransferTransactionDetails message contains details about a given transaction, relevant and specific to the Core-Transfer domain.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents this single financial transaction (operation). This ID is stable across all domains for a given transaction.</td>
+</tr>
+<tr>
+<td>lifecycle_transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...). Note: there might be multiple unique "transaction_id" for a single "lifecycle_transaction_id".</td>
+</tr>
+<tr>
+<td>status</td>
+<td><a href="#thebaasco.tenant.coretransfer.v1.TransferStatus">TransferStatus</a></td>
+<td></td>
+<td>The current status of the transfer. See TransferStatus enumeration for details on possible statuses.</td>
+</tr>
+<tr>
+<td>customer_role</td>
+<td><a href="#thebaasco.tenant.coretransfer.v1.CustomerRole">CustomerRole</a></td>
+<td></td>
+<td>The role played by our customer in this transaction. See CustomerRole for details on possible roles. When transfer_type is INTERNAL_ACCOUNT_TO_ACCOUNT, this will always be INITATOR.</td>
+</tr>
+<tr>
+<td>transfer_type</td>
+<td><a href="#thebaasco.tenant.coretransfer.v1.TransferType">TransferType</a></td>
+<td></td>
+<td>The type of transfer for this transaction. See TransferType for details on possible types.</td>
+</tr>
+<tr>
+<td>counterparty</td>
+<td><a href="#thebaasco.tenant.coretransfer.v1.Counterparty">Counterparty</a></td>
+<td></td>
+<td>When transfer_type is INTERAC_AUTODEPOSIT, this will contain the details about the person/entity on the other side of this transfer. When transfer_type is INTERNAL_ACCOUNT_TO_ACCOUNT, this will contain the details of the owner of the destination account.</td>
+</tr>
+<tr>
+<td>clearing_system_ref_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier assigned to the transaction by the external payment/transfer clearing system When transfer_type is INTERAC_AUTODEPOSIT, it will be set to interac payment number. When transfer_type is INTERNAL_ACCOUNT_TO_ACCOUNT, it will be set to the transaction ID.</td>
+</tr>
+<tr>
+<td>remittance</td>
+<td><a href="#thebaasco.tenant.coretransfer.v1.RemittanceInformation">RemittanceInformation</a></td>
+<td></td>
+<td>Includes remittance data from this transfer if it contains any</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransfer.v1.TransferTransactionDetailsCreatedEvent"></a></p>
+<h4 id="transfertransactiondetailscreatedevent">TransferTransactionDetailsCreatedEvent<a class="headerlink" href="#transfertransactiondetailscreatedevent" title="Permanent link">&para;</a></h4>
+<p>TransferTransactionDetailsCreatedEvent event is raised by the Core-Transfer domain when transactions are created and Core-Transfer specific details are available.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique event ID for this transaction. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>details</td>
+<td><a href="#thebaasco.tenant.coretransfer.v1.TransferTransactionDetails">TransferTransactionDetails</a></td>
+<td></td>
+<td>The transaction details for this event.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The tenant ID, to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+</tbody>
+</table>
+<!-- end messages -->
+
+<h2 id="shared-types">Shared types<a class="headerlink" href="#shared-types" title="Permanent link">&para;</a></h2>
+<p><a name="thebaasco.types.Amount"></a></p>
+<h3 id="amount">Amount<a class="headerlink" href="#amount" title="Permanent link">&para;</a></h3>
+<p><a href="../Global-types/amount/#amount_1">Global types / Amount</a> </p>
+<p><a name="thebaasco.types.AppError"></a></p>
+<h3 id="apperror">AppError<a class="headerlink" href="#apperror" title="Permanent link">&para;</a></h3>
+<p><a href="../Global-types/errordetails/#apperror">Global types / AppError</a></p>
+<h2 id="scalar-value-types">Scalar Value Types<a class="headerlink" href="#scalar-value-types" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>.proto Type</th>
+<th>Notes</th>
+<th>C++</th>
+<th>Java</th>
+<th>Python</th>
+<th>Go</th>
+<th>C#</th>
+<th>PHP</th>
+<th>Ruby</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a name="double" /> double</td>
+<td></td>
+<td>double</td>
+<td>double</td>
+<td>float</td>
+<td>float64</td>
+<td>double</td>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td><a name="float" /> float</td>
+<td></td>
+<td>float</td>
+<td>float</td>
+<td>float</td>
+<td>float32</td>
+<td>float</td>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td><a name="int32" /> int32</td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="int64" /> int64</td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="uint32" /> uint32</td>
+<td>Uses variable-length encoding.</td>
+<td>uint32</td>
+<td>int</td>
+<td>int/long</td>
+<td>uint32</td>
+<td>uint</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="uint64" /> uint64</td>
+<td>Uses variable-length encoding.</td>
+<td>uint64</td>
+<td>long</td>
+<td>int/long</td>
+<td>uint64</td>
+<td>ulong</td>
+<td>integer/string</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sint32" /> sint32</td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sint64" /> sint64</td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="fixed32" /> fixed32</td>
+<td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+<td>uint32</td>
+<td>int</td>
+<td>int</td>
+<td>uint32</td>
+<td>uint</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="fixed64" /> fixed64</td>
+<td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+<td>uint64</td>
+<td>long</td>
+<td>int/long</td>
+<td>uint64</td>
+<td>ulong</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="sfixed32" /> sfixed32</td>
+<td>Always four bytes.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sfixed64" /> sfixed64</td>
+<td>Always eight bytes.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="bool" /> bool</td>
+<td></td>
+<td>bool</td>
+<td>boolean</td>
+<td>boolean</td>
+<td>bool</td>
+<td>bool</td>
+<td>boolean</td>
+<td>TrueClass/FalseClass</td>
+</tr>
+<tr>
+<td><a name="string" /> string</td>
+<td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+<td>string</td>
+<td>String</td>
+<td>str/unicode</td>
+<td>string</td>
+<td>string</td>
+<td>string</td>
+<td>String (UTF-8)</td>
+</tr>
+<tr>
+<td><a name="bytes" /> bytes</td>
+<td>May contain any arbitrary sequence of bytes.</td>
+<td>string</td>
+<td>ByteString</td>
+<td>str</td>
+<td>[]byte</td>
+<td>ByteString</td>
+<td>string</td>
+<td>String (ASCII-8BIT)</td>
+</tr>
+</tbody>
+</table>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../coretransaction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Core Transaction API" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Core Transaction API
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../distribution/" class="md-footer__link md-footer__link--next" aria-label="Next: Distribution API" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Distribution API
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/finaptic" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+    
+  </body>
+</html>

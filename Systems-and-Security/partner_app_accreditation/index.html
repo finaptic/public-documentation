@@ -1,0 +1,2450 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.finaptic.dev/Systems-and-Security/partner_app_accreditation/">
+      
+      <link rel="icon" href="../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
+    
+    
+      
+        <title>Partner Application Accreditation Process and App Security Checklist - Finaptic Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.644de097.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Assistant:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Assistant";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="finaptic" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#partner-application-accreditation-process-and-app-security-checklist" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://finaptic.com" title="Finaptic Documentation" class="md-header__button md-logo" aria-label="Finaptic Documentation" data-md-component="logo">
+      
+  <img src="../../images/FinapticLogo_F_White.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Finaptic Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Partner Application Accreditation Process and App Security Checklist
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Introduction & Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../API-Specifications/clientinformation/" class="md-tabs__link">
+        API Specifications
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../FAQs/" class="md-tabs__link">
+        FAQs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Implementation-Guide/" class="md-tabs__link">
+        Implementation Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../SDK-Guide/" class="md-tabs__link">
+        SDK Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        Systems and Security
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://finaptic.com" title="Finaptic Documentation" class="md-nav__button md-logo" aria-label="Finaptic Documentation" data-md-component="logo">
+      
+  <img src="../../images/FinapticLogo_F_White.png" alt="logo">
+
+    </a>
+    Finaptic Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction & Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          API Specifications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Specifications" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          API Specifications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/clientinformation/" class="md-nav__link">
+        Client Profile API (Draft)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/corebanking/" class="md-nav__link">
+        Core Banking API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/corecard/" class="md-nav__link">
+        Core Card API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/coretransaction/" class="md-nav__link">
+        Core Transaction API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/coretransfer/" class="md-nav__link">
+        Core Transfers API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/distribution/" class="md-nav__link">
+        Distribution API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/onboarding/" class="md-nav__link">
+        Onboarding API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/payments/" class="md-nav__link">
+        Payments API (Experimental)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/persfinmngt/" class="md-nav__link">
+        Personal Finance Management API (Draft)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_10">
+          Global types
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Global types" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          Global types
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/Global-types/amount/" class="md-nav__link">
+        Amount
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/Global-types/balance/" class="md-nav__link">
+        Balance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/Global-types/errordetails/" class="md-nav__link">
+        Cross-domain error model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/Global-types/phonenumber/" class="md-nav__link">
+        Phone Number
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../API-Specifications/Global-types/protectedtypes/" class="md-nav__link">
+        Protected types
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          FAQs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FAQs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          FAQs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQs/" class="md-nav__link">
+        Frequently Asked Questions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Interac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Interac" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Interac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQs/Interac/help/" class="md-nav__link">
+        Help
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Implementation Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Implementation Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Implementation Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/" class="md-nav__link">
+        Implementation Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Authentication
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Authentication" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Authentication
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Authentication/authentication/" class="md-nav__link">
+        Authentication Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Banking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Banking" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Banking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_1" type="checkbox" id="__nav_4_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_1">
+          Authorized User
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Authorized User" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Authorized User
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Banking/Authorized-User/AuthorizedUserDocumentation/" class="md-nav__link">
+        Authorized User Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_2" type="checkbox" id="__nav_4_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_2">
+          Deposit Accounts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Deposit Accounts" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Deposit Accounts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Banking/Deposit-Accounts/DepositAccountGuide/" class="md-nav__link">
+        Deposits Account Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Cards
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cards" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Cards
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Cards/corecard/" class="md-nav__link">
+        Cards Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_5">
+          Client Profile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Client Profile" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          Client Profile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Client-Profile/ClientProfileGuide/" class="md-nav__link">
+        Client Profile Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6" type="checkbox" id="__nav_4_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_6">
+          Fraud And Customer Service
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Fraud And Customer Service" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_6">
+          <span class="md-nav__icon md-icon"></span>
+          Fraud And Customer Service
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/complaints/" class="md-nav__link">
+        Complaint Handling Policy and Procedures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/customer-service/" class="md-nav__link">
+        Customer Support Inquiry Flow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/customer_support_guide/" class="md-nav__link">
+        Customer Support Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/disputes/" class="md-nav__link">
+        Customer Initiated Transaction Disputes
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_7" type="checkbox" id="__nav_4_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_7">
+          Legal And Regulatory Compliance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Legal And Regulatory Compliance" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          Legal And Regulatory Compliance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/" class="md-nav__link">
+        Legal and Regulatory Compliance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/financial_services_regulations/" class="md-nav__link">
+        Financial Services Regulations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_account_fee_guide_and_agreement/" class="md-nav__link">
+        Finaptic Account Fee Guide and Agreement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_app_terms_of_use/" class="md-nav__link">
+        Finaptic App Terms of Use
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_electronic_communications_agreement/" class="md-nav__link">
+        Finaptic electronic communications agreement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_privacy_policy/" class="md-nav__link">
+        Finaptic Privacy Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/legal_compliance_on_screen/" class="md-nav__link">
+        Legal and Compliance On Screen Requirements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/restricted_industries/" class="md-nav__link">
+        Restricted industries
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_8" type="checkbox" id="__nav_4_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_8">
+          Onboarding
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Onboarding" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_8">
+          <span class="md-nav__icon md-icon"></span>
+          Onboarding
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingDocumentation/" class="md-nav__link">
+        Onboarding Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingSequenceDoc/" class="md-nav__link">
+        Onboarding Sequence Diagram
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingTestProfiles/" class="md-nav__link">
+        Test profiles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/" class="md-nav__link">
+        Productless Onboarding
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_9" type="checkbox" id="__nav_4_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_9">
+          Personal Financial Management
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Personal Financial Management" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_9">
+          <span class="md-nav__icon md-icon"></span>
+          Personal Financial Management
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Personal-Financial-Management/" class="md-nav__link">
+        PFM Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_10" type="checkbox" id="__nav_4_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_10">
+          Transactions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transactions" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_10">
+          <span class="md-nav__icon md-icon"></span>
+          Transactions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transactions/transactions/" class="md-nav__link">
+        Transactions Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11" type="checkbox" id="__nav_4_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11">
+          Transfers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transfers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_11">
+          <span class="md-nav__icon md-icon"></span>
+          Transfers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_1" type="checkbox" id="__nav_4_11_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_1">
+          EFT
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="EFT" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_1">
+          <span class="md-nav__icon md-icon"></span>
+          EFT
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/EFT/electronicfundstransfer/" class="md-nav__link">
+        Electronic Funds Transfer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_2" type="checkbox" id="__nav_4_11_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_2">
+          Interac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Interac" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_2">
+          <span class="md-nav__icon md-icon"></span>
+          Interac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/Interac/autodeposit/" class="md-nav__link">
+        Auto-Deposit Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_3" type="checkbox" id="__nav_4_11_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_3">
+          Internal Transfers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Internal Transfers" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_3">
+          <span class="md-nav__icon md-icon"></span>
+          Internal Transfers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/Internal%20Transfers/Internal%20Transfers/" class="md-nav__link">
+        Internal Transfers Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          SDK Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SDK Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          SDK Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/" class="md-nav__link">
+        SDK Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/android-sdk/" class="md-nav__link">
+        Finaptic Android SDK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/ios-sdk/" class="md-nav__link">
+        Finaptic iOS SDK
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Systems and Security
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Systems and Security" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Systems and Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Systems and Security Requirements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Partner Application Accreditation Process and App Security Checklist
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Partner Application Accreditation Process and App Security Checklist
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#process-overview" class="md-nav__link">
+    Process Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-software-development-lifecycle-sdlc" class="md-nav__link">
+    Step 1: Software Development Lifecycle (SDLC)
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Software Development Lifecycle (SDLC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdlc-requirements-checklist" class="md-nav__link">
+    SDLC Requirements Checklist
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommendations" class="md-nav__link">
+    Recommendations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-document-external-dependencies" class="md-nav__link">
+    Step 2: Document External Dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-application-security-controls" class="md-nav__link">
+    Step 3: Application Security Controls
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Application Security Controls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements-checklist-mobile-application-with-finaptic-sdk" class="md-nav__link">
+    Requirements Checklist - Mobile application with Finaptic SDK
+  </a>
+  
+    <nav class="md-nav" aria-label="Requirements Checklist - Mobile application with Finaptic SDK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommendations_1" class="md-nav__link">
+    Recommendations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requirements-checklist-web-application-with-finaptic-apis" class="md-nav__link">
+    Requirements Checklist - Web application with Finaptic APIs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-partner-to-provide-source-code-to-finaptic-for-code-review" class="md-nav__link">
+    Step 4: Partner to provide source code to Finaptic for code review
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-security-testing-penetration-test-code-audit-etc" class="md-nav__link">
+    Step 5: Security Testing (Penetration test, Code Audit, etc.)
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Security Testing (Penetration test, Code Audit, etc.)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mobile-application-with-finaptic-sdk" class="md-nav__link">
+    Mobile application with Finaptic SDK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-application-with-finaptic-apis" class="md-nav__link">
+    Web application with Finaptic APIs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-user-acceptance-testing-uat-by-finaptic" class="md-nav__link">
+    Step 6: User Acceptance Testing (UAT) by Finaptic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-findings-deemed-critical-in-the-testing-must-be-fixed-before-go-live" class="md-nav__link">
+    Step 7: Findings deemed critical in the testing must be fixed before go-live.
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7: Findings deemed critical in the testing must be fixed before go-live.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#critical-vulnerability" class="md-nav__link">
+    Critical vulnerability
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process" class="md-nav__link">
+    Process
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-go-live" class="md-nav__link">
+    Step 7: Go live!
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security_requirements/" class="md-nav__link">
+        Security Requirements for Partners
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vulnerability_disclosure/" class="md-nav__link">
+        Vulnerability Disclosure
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#process-overview" class="md-nav__link">
+    Process Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-software-development-lifecycle-sdlc" class="md-nav__link">
+    Step 1: Software Development Lifecycle (SDLC)
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Software Development Lifecycle (SDLC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sdlc-requirements-checklist" class="md-nav__link">
+    SDLC Requirements Checklist
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommendations" class="md-nav__link">
+    Recommendations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-document-external-dependencies" class="md-nav__link">
+    Step 2: Document External Dependencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-application-security-controls" class="md-nav__link">
+    Step 3: Application Security Controls
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Application Security Controls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requirements-checklist-mobile-application-with-finaptic-sdk" class="md-nav__link">
+    Requirements Checklist - Mobile application with Finaptic SDK
+  </a>
+  
+    <nav class="md-nav" aria-label="Requirements Checklist - Mobile application with Finaptic SDK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recommendations_1" class="md-nav__link">
+    Recommendations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requirements-checklist-web-application-with-finaptic-apis" class="md-nav__link">
+    Requirements Checklist - Web application with Finaptic APIs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-partner-to-provide-source-code-to-finaptic-for-code-review" class="md-nav__link">
+    Step 4: Partner to provide source code to Finaptic for code review
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-security-testing-penetration-test-code-audit-etc" class="md-nav__link">
+    Step 5: Security Testing (Penetration test, Code Audit, etc.)
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5: Security Testing (Penetration test, Code Audit, etc.)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mobile-application-with-finaptic-sdk" class="md-nav__link">
+    Mobile application with Finaptic SDK
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-application-with-finaptic-apis" class="md-nav__link">
+    Web application with Finaptic APIs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-user-acceptance-testing-uat-by-finaptic" class="md-nav__link">
+    Step 6: User Acceptance Testing (UAT) by Finaptic
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-findings-deemed-critical-in-the-testing-must-be-fixed-before-go-live" class="md-nav__link">
+    Step 7: Findings deemed critical in the testing must be fixed before go-live.
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7: Findings deemed critical in the testing must be fixed before go-live.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#critical-vulnerability" class="md-nav__link">
+    Critical vulnerability
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#process" class="md-nav__link">
+    Process
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-go-live" class="md-nav__link">
+    Step 7: Go live!
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="partner-application-accreditation-process-and-app-security-checklist">Partner Application Accreditation Process and App Security Checklist<a class="headerlink" href="#partner-application-accreditation-process-and-app-security-checklist" title="Permanent link">&para;</a></h1>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>Partners that leverage our SDK or APIs in their own applications must build those applications securely.</p>
+<p>While Finaptic handles security of the APIs themselves, the client application must be designed securely, and the implementation of it must be tested.</p>
+<p>This document describes the steps in the accredidation process.</p>
+<h3 id="process-overview">Process Overview<a class="headerlink" href="#process-overview" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Accreditation Step</th>
+<th>Timeline</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Finaptic and Partner to review that SDLC (Software Development Life Cycle) process must be confirmed to meet the requirements described in this document. Action items for review will be reviewed again later.</td>
+<td>Kickoff week</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Partner must document all external dependencies (software/libraries and vendors) and their purpose, and communicate the list to Finaptic as early as possible.</td>
+<td>Kickoff + 1 month</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Partner must ensure the application has the required controls, listed in this document, implemented.</td>
+<td>Before security testing</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Partner must provide source code of application to Finaptic for code review purposes</td>
+<td>Before penetration testing</td>
+</tr>
+<tr>
+<td>5</td>
+<td>A third party must perform a "penetration test" of the application before go-live. Finaptic will review the scope as well as the results</td>
+<td>Go Live - One Month</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Functional testing results are reviewed by Finaptic</td>
+<td>Go Live - One Week</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Findings deemed critical in the testing must be fixed before go-live.</td>
+<td>Before go-live</td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-1-software-development-lifecycle-sdlc">Step 1: Software Development Lifecycle (SDLC)<a class="headerlink" href="#step-1-software-development-lifecycle-sdlc" title="Permanent link">&para;</a></h3>
+<p>We must ensure that all partners making custom applications (web or mobile) using Finaptic SDKs and APIs, have a sufficient level of security maturity when it comes to the SDLC.</p>
+<p>This part can be reviewed early in the partner relationship, to identify potential issues and have time to perform the necessary improvements as soon as possible.</p>
+<h4 id="sdlc-requirements-checklist">SDLC Requirements Checklist<a class="headerlink" href="#sdlc-requirements-checklist" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Done</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Partner must use a source version control system, such as GitHub.</td>
+<td></td>
+</tr>
+<tr>
+<td>Authentication to this system, if done over the Internet, must require Multi-Factor Authentication (MFA).</td>
+<td></td>
+</tr>
+<tr>
+<td>Code reviews must be enforced on all code. A single person must be unable to write code that will end up in production builds without being reviewed by someone else.</td>
+<td></td>
+</tr>
+<tr>
+<td>A vulnerability management process must be in place, ensuring all components of the application are patched/fixed in a timely manner.</td>
+<td></td>
+</tr>
+<tr>
+<td>The application must be reviewed/tested for security by a third party at least once a year and after significant changes. Testing can be of the penetration testing kind, code audits, or anywhere in between, with the entire mobile application in scope.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="recommendations">Recommendations<a class="headerlink" href="#recommendations" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Code should be signed with a PGP key unique to the developer committing it.</li>
+<li>Static Application Security Testing (SAST) should be in place to scan code for common security vulnerabilities.</li>
+<li>The application should implement jailbreak/rooting detection and not be usable on devices detected as potentially compromised.</li>
+</ul>
+<h3 id="step-2-document-external-dependencies">Step 2: Document External Dependencies<a class="headerlink" href="#step-2-document-external-dependencies" title="Permanent link">&para;</a></h3>
+<p>External dependencies (libraries or services) have an important impact on the security of a mobile or web application.
+Those dependencies must be inventoried, as well as their purpose.  For external dependencies specifically, please document what information is shared with the third parties as well. Once it is sent to Finaptic, the Finaptic security team will review it and see if it is necessary to discuss any of the dependencies further.</p>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Done</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inventory code dependencies (third party libraries, etc)</td>
+<td></td>
+</tr>
+<tr>
+<td>Inventory external dependencies (third party services, etc)</td>
+<td></td>
+</tr>
+<tr>
+<td>Communicate inventories to Finaptic</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-3-application-security-controls">Step 3: Application Security Controls<a class="headerlink" href="#step-3-application-security-controls" title="Permanent link">&para;</a></h3>
+<p>The current mobile app requirements and recommendations are valid for both iOS and Android, though the suggested implementations are only documented for iOS so far.</p>
+<h4 id="requirements-checklist-mobile-application-with-finaptic-sdk">Requirements Checklist - Mobile application with Finaptic SDK<a class="headerlink" href="#requirements-checklist-mobile-application-with-finaptic-sdk" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Done</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Communication from the app must be done over encrypted protocols only. While Finaptic APIs are only accessible over HTTPS, other destinations being used over HTTP would put the integrity of communications at risk and could allow someone to exploit flaws in the application itself. If exceptions are needed, they must be documented, communicated to Finaptic and use <code>NSexceptionDomains</code> on iOS.</td>
+<td></td>
+</tr>
+<tr>
+<td>Certificate authority pinning must be done to prevent breaking TLS communications. While pinning the certificates used by Finaptic is the safest, pinning the certificate authority, and allowing rotation in the future, is very secure and much easier to manage.</td>
+<td></td>
+</tr>
+<tr>
+<td>Ensure that only strong TLS ciphers can be used in the application, by explicitly enabling <code>NSExceptionRequiresForwardSecrecy</code> and <code>NSRequiresCertificateTransparency</code> at least towards Finaptic APIs and authentication provider.</td>
+<td></td>
+</tr>
+<tr>
+<td>The Finaptic SDK must be use as a library within partner application</td>
+<td></td>
+</tr>
+<tr>
+<td>If "long sessions" are provided, so the user does not have to enter credentials when opening the application, those sessions must be protected by biometrics. For iOS, this means ensuring <code>kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly</code> is configured (a device without a passcode can't have biometric), and this ensures this credential won't be usable through keychain syncing. <code>kSecAccessControlBiometryAny</code> must also be configured for keychain stored credentials.</td>
+<td></td>
+</tr>
+<tr>
+<td>Sessions not protected by biometrics should not last for more than 15 minutes of inactivity, and a <code>Log Out</code> button should be available to the end-user.</td>
+<td></td>
+</tr>
+<tr>
+<td>Sensitive data fields (passwords, PII entry) must be tagged in order to avoid 3rd party keyboards being usable on them.</td>
+<td></td>
+</tr>
+<tr>
+<td>The OS features to integrate screenshots of running applications in the application switchers must replace the screenshot of the application with a static image when the user is viewing financial information. This is to avoid screenshots with financial information being stored on the device, and potentially in backups.</td>
+<td></td>
+</tr>
+<tr>
+<td>All secrets and authentication related materials must be stored in the system secure storage, such as the keychain on iOS.</td>
+<td></td>
+</tr>
+<tr>
+<td>URL Schemes should never be used for any "write" action related to Finaptic APIs. For example, a URL scheme to trigger an Interac transfer is not acceptable, as URL schemes are insecure by design.</td>
+<td></td>
+</tr>
+<tr>
+<td>External services, such as but not limited to analytics providers, must not receive PII, financial transactional data, or any other data which is managed by Finaptic, in order to avoid duplicating critical info that is and must be protected by Finaptic</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="recommendations_1">Recommendations<a class="headerlink" href="#recommendations_1" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Reject the use of 3rd party keyboards completely, using <a href="https://developer.apple.com/documentation/uikit/uiapplicationkeyboardextensionpointidentifier?language=objc">UIApplicationKeyboardExtensionPointIdentifier</a></li>
+</ul>
+<h4 id="requirements-checklist-web-application-with-finaptic-apis">Requirements Checklist - Web application with Finaptic APIs<a class="headerlink" href="#requirements-checklist-web-application-with-finaptic-apis" title="Permanent link">&para;</a></h4>
+<p>TBD </p>
+<h3 id="step-4-partner-to-provide-source-code-to-finaptic-for-code-review">Step 4: Partner to provide source code to Finaptic for code review<a class="headerlink" href="#step-4-partner-to-provide-source-code-to-finaptic-for-code-review" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Source code must be provided to Finaptic for internal code review, prior to external security testing.</li>
+</ul>
+<h3 id="step-5-security-testing-penetration-test-code-audit-etc">Step 5: Security Testing (Penetration test, Code Audit, etc.)<a class="headerlink" href="#step-5-security-testing-penetration-test-code-audit-etc" title="Permanent link">&para;</a></h3>
+<p>Finaptic requires that partners test their applications which leverage Finaptic APIs or SDKs.</p>
+<ul>
+<li>Testing must be done <strong>at least once a year</strong> as well as when <strong>major changes are performed</strong>.</li>
+<li>Testing must be done by a third party company that specializes in security testing, unless partner has an internal team dedicated to offensive security.</li>
+<li>The scope of the tests must be the entire mobile application. </li>
+<li>The format of testing is up to the partner - very open testing techniques such as a code audit are acceptable, and completely advanced knowledge free penetration testing is acceptable as well. We recommend using many techniques over time.</li>
+<li>If the test is a penetration test, vulnerability re-testing must be included.</li>
+<li>Test results must be communicated to Finaptic, and remediation priority will be discussed between Finaptic and partner.</li>
+</ul>
+<h4 id="mobile-application-with-finaptic-sdk">Mobile application with Finaptic SDK<a class="headerlink" href="#mobile-application-with-finaptic-sdk" title="Permanent link">&para;</a></h4>
+<p>If vulnerabilities are found on the SDK itself during the application test, Finaptic will resolve them based on risk and priority.</p>
+<h4 id="web-application-with-finaptic-apis">Web application with Finaptic APIs<a class="headerlink" href="#web-application-with-finaptic-apis" title="Permanent link">&para;</a></h4>
+<p>Not supported at this time.</p>
+<h3 id="step-6-user-acceptance-testing-uat-by-finaptic">Step 6: User Acceptance Testing (UAT) by Finaptic<a class="headerlink" href="#step-6-user-acceptance-testing-uat-by-finaptic" title="Permanent link">&para;</a></h3>
+<p>One week before go-live, as well as before major changes, the application will be manually reviewed by Finaptic, focusing on:</p>
+<ul>
+<li>Functional testing</li>
+<li>Disaster recovery</li>
+<li>User consent</li>
+<li>Accessibility</li>
+<li>Legal</li>
+</ul>
+<p><strong>This process will be detailed further in a future version of this document.</strong></p>
+<h3 id="step-7-findings-deemed-critical-in-the-testing-must-be-fixed-before-go-live">Step 7: Findings deemed critical in the testing must be fixed before go-live.<a class="headerlink" href="#step-7-findings-deemed-critical-in-the-testing-must-be-fixed-before-go-live" title="Permanent link">&para;</a></h3>
+<p>Findings discovered in Step 4 deemed to be critical to fix before go-live must now be fixed, and re-tested by the vendor used in Step 4.</p>
+<h4 id="critical-vulnerability">Critical vulnerability<a class="headerlink" href="#critical-vulnerability" title="Permanent link">&para;</a></h4>
+<p>A critical vulnerability is defined as a vulnerability which could be used directly to impact the security or privacy of customers or Finaptic. The Finaptic security team reserves the right to flag any vulnerability as critical, based on our own threat modeling exercises, but will usually focus on these types of vulnerabilities:</p>
+<ol>
+<li>Privacy/Confidentiality issues at the network level (ex: lack of proper HTTPS configuration)</li>
+<li>Credential storage safety (ex: sessions stored in an unsafe manner)</li>
+<li>Data leak caused by 3rd party tools (ex: PII sent to analytics service)</li>
+</ol>
+<p>Less critical vulnerabilities also have to be fixed, but can be prioritized as per the partner's vulnerability management policy.</p>
+<h4 id="process">Process<a class="headerlink" href="#process" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Re-testing of vulnerabilities is performed.</li>
+<li>Testing vendor provides documentation showing the issues were resolved.</li>
+</ul>
+<h3 id="step-7-go-live">Step 7: Go live!<a class="headerlink" href="#step-7-go-live" title="Permanent link">&para;</a></h3>
+<p>🥳</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Systems and Security Requirements" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Systems and Security Requirements
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../security_requirements/" class="md-footer__link md-footer__link--next" aria-label="Next: Security Requirements for Partners" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Security Requirements for Partners
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/finaptic" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+    
+  </body>
+</html>

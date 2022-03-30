@@ -1,0 +1,4176 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.finaptic.dev/API-Specifications/corecard/">
+      
+      <link rel="icon" href="../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
+    
+    
+      
+        <title>Core Card API - Finaptic Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.644de097.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Assistant:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Assistant";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="finaptic" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#core-card-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://finaptic.com" title="Finaptic Documentation" class="md-header__button md-logo" aria-label="Finaptic Documentation" data-md-component="logo">
+      
+  <img src="../../images/FinapticLogo_F_White.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Finaptic Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Core Card API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Introduction & Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../clientinformation/" class="md-tabs__link md-tabs__link--active">
+        API Specifications
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../FAQs/" class="md-tabs__link">
+        FAQs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Implementation-Guide/" class="md-tabs__link">
+        Implementation Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../SDK-Guide/" class="md-tabs__link">
+        SDK Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Systems-and-Security/" class="md-tabs__link">
+        Systems and Security
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://finaptic.com" title="Finaptic Documentation" class="md-nav__button md-logo" aria-label="Finaptic Documentation" data-md-component="logo">
+      
+  <img src="../../images/FinapticLogo_F_White.png" alt="logo">
+
+    </a>
+    Finaptic Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction & Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          API Specifications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Specifications" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          API Specifications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clientinformation/" class="md-nav__link">
+        Client Profile API (Draft)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corebanking/" class="md-nav__link">
+        Core Banking API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Core Card API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Core Card API
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#corecard_v1_cardsproto" class="md-nav__link">
+    corecard_v1_cards.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="corecard_v1_cards.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cards" class="md-nav__link">
+    Cards
+  </a>
+  
+    <nav class="md-nav" aria-label="Cards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getcard" class="md-nav__link">
+    GetCard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listcards" class="md-nav__link">
+    ListCards
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createcardsdksignontoken" class="md-nav__link">
+    CreateCardSDKSignOnToken
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardscommands" class="md-nav__link">
+    CardsCommands
+  </a>
+  
+    <nav class="md-nav" aria-label="CardsCommands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#createcard" class="md-nav__link">
+    CreateCard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lockcard" class="md-nav__link">
+    LockCard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlockcard" class="md-nav__link">
+    UnlockCard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createauthorizedusercard" class="md-nav__link">
+    CreateAuthorizedUserCard
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums" class="md-nav__link">
+    Enums
+  </a>
+  
+    <nav class="md-nav" aria-label="Enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cardstate" class="md-nav__link">
+    CardState
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardtype" class="md-nav__link">
+    CardType
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errorcodes" class="md-nav__link">
+    ErrorCodes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#card" class="md-nav__link">
+    Card
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardcreatedevent" class="md-nav__link">
+    CardCreatedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardupdatedevent" class="md-nav__link">
+    CardUpdatedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createauthorizedusercardrequest" class="md-nav__link">
+    CreateAuthorizedUserCardRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createauthorizedusercardresponse" class="md-nav__link">
+    CreateAuthorizedUserCardResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createcardrequest" class="md-nav__link">
+    CreateCardRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createcardsdksignontokenrequest" class="md-nav__link">
+    CreateCardSDKSignOnTokenRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createcardsdksignontokenresponse" class="md-nav__link">
+    CreateCardSDKSignOnTokenResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getcardrequest" class="md-nav__link">
+    GetCardRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listcardsrequest" class="md-nav__link">
+    ListCardsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listcardsresponse" class="md-nav__link">
+    ListCardsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lockcardrequest" class="md-nav__link">
+    LockCardRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lockcardresponse" class="md-nav__link">
+    LockCardResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlockcardrequest" class="md-nav__link">
+    UnlockCardRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlockcardresponse" class="md-nav__link">
+    UnlockCardResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecardrequest" class="md-nav__link">
+    UpdateCardRequest
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#corecard_v1_transactiondetailsproto" class="md-nav__link">
+    corecard_v1_transactiondetails.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="corecard_v1_transactiondetails.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_1" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transactiondetails" class="md-nav__link">
+    TransactionDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactiondetailscreatedevent" class="md-nav__link">
+    TransactionDetailsCreatedEvent
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#txsimulation_v1_cardpaymentsproto" class="md-nav__link">
+    txsimulation_v1_cardpayments.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="txsimulation_v1_cardpayments.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_1" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cardpaymentssimulationservice" class="md-nav__link">
+    CardPaymentsSimulationService
+  </a>
+  
+    <nav class="md-nav" aria-label="CardPaymentsSimulationService">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purchase" class="md-nav__link">
+    Purchase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizepurchase" class="md-nav__link">
+    AuthorizePurchase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmpurchase" class="md-nav__link">
+    ConfirmPurchase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancelpurchase" class="md-nav__link">
+    CancelPurchase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refund" class="md-nav__link">
+    Refund
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_2" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorizepurchaserequest" class="md-nav__link">
+    AuthorizePurchaseRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizepurchaseresponse" class="md-nav__link">
+    AuthorizePurchaseResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancelpurchaserequest" class="md-nav__link">
+    CancelPurchaseRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancelpurchaseresponse" class="md-nav__link">
+    CancelPurchaseResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmpurchaserequest" class="md-nav__link">
+    ConfirmPurchaseRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmpurchaseresponse" class="md-nav__link">
+    ConfirmPurchaseResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paymentdetails" class="md-nav__link">
+    PaymentDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purchaserequest" class="md-nav__link">
+    PurchaseRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purchaseresponse" class="md-nav__link">
+    PurchaseResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refundrequest" class="md-nav__link">
+    RefundRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refundresponse" class="md-nav__link">
+    RefundResponse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-types" class="md-nav__link">
+    Shared types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalar-value-types" class="md-nav__link">
+    Scalar Value Types
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coretransaction/" class="md-nav__link">
+        Core Transaction API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coretransfer/" class="md-nav__link">
+        Core Transfers API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distribution/" class="md-nav__link">
+        Distribution API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding/" class="md-nav__link">
+        Onboarding API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payments/" class="md-nav__link">
+        Payments API (Experimental)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persfinmngt/" class="md-nav__link">
+        Personal Finance Management API (Draft)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_10">
+          Global types
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Global types" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          Global types
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/amount/" class="md-nav__link">
+        Amount
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/balance/" class="md-nav__link">
+        Balance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/errordetails/" class="md-nav__link">
+        Cross-domain error model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/phonenumber/" class="md-nav__link">
+        Phone Number
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/protectedtypes/" class="md-nav__link">
+        Protected types
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          FAQs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FAQs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          FAQs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQs/" class="md-nav__link">
+        Frequently Asked Questions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Interac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Interac" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Interac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQs/Interac/help/" class="md-nav__link">
+        Help
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Implementation Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Implementation Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Implementation Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/" class="md-nav__link">
+        Implementation Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Authentication
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Authentication" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Authentication
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Authentication/authentication/" class="md-nav__link">
+        Authentication Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Banking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Banking" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Banking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_1" type="checkbox" id="__nav_4_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_1">
+          Authorized User
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Authorized User" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Authorized User
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Banking/Authorized-User/AuthorizedUserDocumentation/" class="md-nav__link">
+        Authorized User Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_2" type="checkbox" id="__nav_4_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_2">
+          Deposit Accounts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Deposit Accounts" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Deposit Accounts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Banking/Deposit-Accounts/DepositAccountGuide/" class="md-nav__link">
+        Deposits Account Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Cards
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cards" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Cards
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Cards/corecard/" class="md-nav__link">
+        Cards Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_5">
+          Client Profile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Client Profile" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          Client Profile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Client-Profile/ClientProfileGuide/" class="md-nav__link">
+        Client Profile Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6" type="checkbox" id="__nav_4_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_6">
+          Fraud And Customer Service
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Fraud And Customer Service" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_6">
+          <span class="md-nav__icon md-icon"></span>
+          Fraud And Customer Service
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/complaints/" class="md-nav__link">
+        Complaint Handling Policy and Procedures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/customer-service/" class="md-nav__link">
+        Customer Support Inquiry Flow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/customer_support_guide/" class="md-nav__link">
+        Customer Support Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/disputes/" class="md-nav__link">
+        Customer Initiated Transaction Disputes
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_7" type="checkbox" id="__nav_4_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_7">
+          Legal And Regulatory Compliance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Legal And Regulatory Compliance" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          Legal And Regulatory Compliance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/" class="md-nav__link">
+        Legal and Regulatory Compliance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/financial_services_regulations/" class="md-nav__link">
+        Financial Services Regulations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_account_fee_guide_and_agreement/" class="md-nav__link">
+        Finaptic Account Fee Guide and Agreement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_app_terms_of_use/" class="md-nav__link">
+        Finaptic App Terms of Use
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_electronic_communications_agreement/" class="md-nav__link">
+        Finaptic electronic communications agreement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_privacy_policy/" class="md-nav__link">
+        Finaptic Privacy Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/legal_compliance_on_screen/" class="md-nav__link">
+        Legal and Compliance On Screen Requirements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/restricted_industries/" class="md-nav__link">
+        Restricted industries
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_8" type="checkbox" id="__nav_4_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_8">
+          Onboarding
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Onboarding" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_8">
+          <span class="md-nav__icon md-icon"></span>
+          Onboarding
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingDocumentation/" class="md-nav__link">
+        Onboarding Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingSequenceDoc/" class="md-nav__link">
+        Onboarding Sequence Diagram
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingTestProfiles/" class="md-nav__link">
+        Test profiles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/" class="md-nav__link">
+        Productless Onboarding
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_9" type="checkbox" id="__nav_4_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_9">
+          Personal Financial Management
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Personal Financial Management" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_9">
+          <span class="md-nav__icon md-icon"></span>
+          Personal Financial Management
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Personal-Financial-Management/" class="md-nav__link">
+        PFM Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_10" type="checkbox" id="__nav_4_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_10">
+          Transactions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transactions" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_10">
+          <span class="md-nav__icon md-icon"></span>
+          Transactions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transactions/transactions/" class="md-nav__link">
+        Transactions Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11" type="checkbox" id="__nav_4_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11">
+          Transfers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transfers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_11">
+          <span class="md-nav__icon md-icon"></span>
+          Transfers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_1" type="checkbox" id="__nav_4_11_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_1">
+          EFT
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="EFT" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_1">
+          <span class="md-nav__icon md-icon"></span>
+          EFT
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/EFT/electronicfundstransfer/" class="md-nav__link">
+        Electronic Funds Transfer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_2" type="checkbox" id="__nav_4_11_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_2">
+          Interac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Interac" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_2">
+          <span class="md-nav__icon md-icon"></span>
+          Interac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/Interac/autodeposit/" class="md-nav__link">
+        Auto-Deposit Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_3" type="checkbox" id="__nav_4_11_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_3">
+          Internal Transfers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Internal Transfers" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_3">
+          <span class="md-nav__icon md-icon"></span>
+          Internal Transfers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/Internal%20Transfers/Internal%20Transfers/" class="md-nav__link">
+        Internal Transfers Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          SDK Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SDK Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          SDK Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/" class="md-nav__link">
+        SDK Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/android-sdk/" class="md-nav__link">
+        Finaptic Android SDK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/ios-sdk/" class="md-nav__link">
+        Finaptic iOS SDK
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Systems and Security
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Systems and Security" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Systems and Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/" class="md-nav__link">
+        Systems and Security Requirements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/partner_app_accreditation/" class="md-nav__link">
+        Partner Application Accreditation Process and App Security Checklist
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/security_requirements/" class="md-nav__link">
+        Security Requirements for Partners
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/vulnerability_disclosure/" class="md-nav__link">
+        Vulnerability Disclosure
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#corecard_v1_cardsproto" class="md-nav__link">
+    corecard_v1_cards.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="corecard_v1_cards.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cards" class="md-nav__link">
+    Cards
+  </a>
+  
+    <nav class="md-nav" aria-label="Cards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getcard" class="md-nav__link">
+    GetCard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listcards" class="md-nav__link">
+    ListCards
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createcardsdksignontoken" class="md-nav__link">
+    CreateCardSDKSignOnToken
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardscommands" class="md-nav__link">
+    CardsCommands
+  </a>
+  
+    <nav class="md-nav" aria-label="CardsCommands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#createcard" class="md-nav__link">
+    CreateCard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lockcard" class="md-nav__link">
+    LockCard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlockcard" class="md-nav__link">
+    UnlockCard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createauthorizedusercard" class="md-nav__link">
+    CreateAuthorizedUserCard
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums" class="md-nav__link">
+    Enums
+  </a>
+  
+    <nav class="md-nav" aria-label="Enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cardstate" class="md-nav__link">
+    CardState
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardtype" class="md-nav__link">
+    CardType
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#errorcodes" class="md-nav__link">
+    ErrorCodes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#card" class="md-nav__link">
+    Card
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardcreatedevent" class="md-nav__link">
+    CardCreatedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cardupdatedevent" class="md-nav__link">
+    CardUpdatedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createauthorizedusercardrequest" class="md-nav__link">
+    CreateAuthorizedUserCardRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createauthorizedusercardresponse" class="md-nav__link">
+    CreateAuthorizedUserCardResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createcardrequest" class="md-nav__link">
+    CreateCardRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createcardsdksignontokenrequest" class="md-nav__link">
+    CreateCardSDKSignOnTokenRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createcardsdksignontokenresponse" class="md-nav__link">
+    CreateCardSDKSignOnTokenResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getcardrequest" class="md-nav__link">
+    GetCardRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listcardsrequest" class="md-nav__link">
+    ListCardsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listcardsresponse" class="md-nav__link">
+    ListCardsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lockcardrequest" class="md-nav__link">
+    LockCardRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lockcardresponse" class="md-nav__link">
+    LockCardResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlockcardrequest" class="md-nav__link">
+    UnlockCardRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unlockcardresponse" class="md-nav__link">
+    UnlockCardResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecardrequest" class="md-nav__link">
+    UpdateCardRequest
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#corecard_v1_transactiondetailsproto" class="md-nav__link">
+    corecard_v1_transactiondetails.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="corecard_v1_transactiondetails.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_1" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transactiondetails" class="md-nav__link">
+    TransactionDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactiondetailscreatedevent" class="md-nav__link">
+    TransactionDetailsCreatedEvent
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#txsimulation_v1_cardpaymentsproto" class="md-nav__link">
+    txsimulation_v1_cardpayments.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="txsimulation_v1_cardpayments.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_1" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cardpaymentssimulationservice" class="md-nav__link">
+    CardPaymentsSimulationService
+  </a>
+  
+    <nav class="md-nav" aria-label="CardPaymentsSimulationService">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purchase" class="md-nav__link">
+    Purchase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizepurchase" class="md-nav__link">
+    AuthorizePurchase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmpurchase" class="md-nav__link">
+    ConfirmPurchase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancelpurchase" class="md-nav__link">
+    CancelPurchase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refund" class="md-nav__link">
+    Refund
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_2" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorizepurchaserequest" class="md-nav__link">
+    AuthorizePurchaseRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizepurchaseresponse" class="md-nav__link">
+    AuthorizePurchaseResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancelpurchaserequest" class="md-nav__link">
+    CancelPurchaseRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancelpurchaseresponse" class="md-nav__link">
+    CancelPurchaseResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmpurchaserequest" class="md-nav__link">
+    ConfirmPurchaseRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmpurchaseresponse" class="md-nav__link">
+    ConfirmPurchaseResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paymentdetails" class="md-nav__link">
+    PaymentDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purchaserequest" class="md-nav__link">
+    PurchaseRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purchaseresponse" class="md-nav__link">
+    PurchaseResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refundrequest" class="md-nav__link">
+    RefundRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refundresponse" class="md-nav__link">
+    RefundResponse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-types" class="md-nav__link">
+    Shared types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalar-value-types" class="md-nav__link">
+    Scalar Value Types
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="core-card-api">Core Card API<a class="headerlink" href="#core-card-api" title="Permanent link">&para;</a></h1>
+<p><a name="top"></a></p>
+<p><a name="corecard_v1_cards.proto"></a></p>
+<h2 id="corecard_v1_cardsproto">corecard_v1_cards.proto<a class="headerlink" href="#corecard_v1_cardsproto" title="Permanent link">&para;</a></h2>
+<p>This section of Core Card API includes the main data types and services that make the API surface if this domain</p>
+<h3 id="services">Services<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.corecard.v1.Cards"></a></p>
+<h4 id="cards">Cards<a class="headerlink" href="#cards" title="Permanent link">&para;</a></h4>
+<p>Cards service exposes operations related to listing and retrieving details for Cards issued.</p>
+<p>It is a real gRPC service accessible in a synchronous manner.
+As such it is also used for generation of Card SDK sign on tokens needed to reveal card authentication details
+like CVV and expiration date</p>
+<h5 id="getcard">GetCard<a class="headerlink" href="#getcard" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> GetCard(<a href="#thebaasco.tenant.corecard.v1.GetCardRequest">GetCardRequest</a>)
+    <a href="#thebaasco.tenant.corecard.v1.Card">Card</a></p>
+</blockquote>
+<p>GetCard retrieves generic details about a single Card. The card data returned does not contain any sensitive information such as card number or expiration date. 
+Only users associated with the Card will be able to invoke this endpoint and retrieve details for a given Card.</p>
+<h5 id="listcards">ListCards<a class="headerlink" href="#listcards" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> ListCards(<a href="#thebaasco.tenant.corecard.v1.ListCardsRequest">ListCardsRequest</a>)
+    <a href="#thebaasco.tenant.corecard.v1.ListCardsResponse">ListCardsResponse</a></p>
+</blockquote>
+<p>ListCards lists all Cards associated to the current user. The information returned does not contain any sensitive information such as card number or expiration date.
+This endpoint uses pagination to allow listing the Cards in smaller, easy to manage, chunks.</p>
+<h5 id="createcardsdksignontoken">CreateCardSDKSignOnToken<a class="headerlink" href="#createcardsdksignontoken" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> CreateCardSDKSignOnToken(<a href="#thebaasco.tenant.corecard.v1.CreateCardSDKSignOnTokenRequest">CreateCardSDKSignOnTokenRequest</a>)
+    <a href="#thebaasco.tenant.corecard.v1.CreateCardSDKSignOnTokenResponse">CreateCardSDKSignOnTokenResponse</a></p>
+</blockquote>
+<p>CreateCardSDKSignOnToken generates a single-use, limited duration token, which is used by the Front End SDK to retrieve sensitive information about Cards.
+The SDK is necessary when performing sensitive operations like retrieving the Card's number (PAN), expiration date, CVV, or resetting the Card's PIN.</p>
+<p><a name="thebaasco.tenant.corecard.v1.CardsCommands"></a></p>
+<h4 id="cardscommands">CardsCommands<a class="headerlink" href="#cardscommands" title="Permanent link">&para;</a></h4>
+<p>CardsCommandsService is a key component of Core Card API thar exposes asynchronous operations that alter the state of a Card.</p>
+<p>It is not directly accessible by consumers as a gRPC service, it instead uses Google PubSub as delivery mechanism for requests and responses.</p>
+<p>We include it in the documentation as a reference for a better understanding of the responsibilities and API surface of this domain</p>
+<h5 id="createcard">CreateCard<a class="headerlink" href="#createcard" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> CreateCard(<a href="#thebaasco.tenant.corecard.v1.CreateCardRequest">CreateCardRequest</a>)
+    <a href="#thebaasco.tenant.corecard.v1.Card">Card</a></p>
+</blockquote>
+<p>CreateCard is an asynchronous operation used to create a new Card. 
+Performing this operation will generate an asynchronous response of type Card on the response topic.
+When creating the card, the information contained in the Client-Profile domain for current user will be used to
+populate Card information such as name on card, and billing address.
+As result of a successful card creation, a business event of type CardCreatedEvent will be issued</p>
+<h5 id="lockcard">LockCard<a class="headerlink" href="#lockcard" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> LockCard(<a href="#thebaasco.tenant.corecard.v1.LockCardRequest">LockCardRequest</a>)
+<a href="#thebaasco.tenant.corecard.v1.LockCardResponse">LockCardResponse</a></p>
+</blockquote>
+<p>LockCard is an asynchronous function used to temporarily lock a card.
+Performing this operation will generate an asynchronous response of type LockCardResponse on the response topic or an error if applicable.
+This feature allows customers to prevent transactions from getting authorized while they confirm if a card is effectively lost.
+After finding the card if it is the case, they can re-enable the card by using the unlock function above.</p>
+<h5 id="unlockcard">UnlockCard<a class="headerlink" href="#unlockcard" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> UnlockCard(<a href="#thebaasco.tenant.corecard.v1.UnlockCardRequest">UnlockCardRequest</a>)
+<a href="#thebaasco.tenant.corecard.v1.UnlockCardResponse">UnlockCardResponse</a></p>
+</blockquote>
+<p>UnlockCard is an asynchronous function used to re-enable a locked card.
+Performing this operation will generate an asynchronous response of type UnlockCardResponse on the response topic or an error if applicable.
+This feature allows customers to re-enable transactions on the card if they find it after suspecting it lost.</p>
+<h5 id="createauthorizedusercard">CreateAuthorizedUserCard<a class="headerlink" href="#createauthorizedusercard" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> CreateAuthorizedUserCard(<a href="#thebaasco.tenant.corecard.v1.CreateAuthorizedUserCardRequest">CreateAuthorizedUserCardRequest</a>)
+<a href="#thebaasco.tenant.corecard.v1.CreateAuthorizedUserCardResponse">CreateAuthorizedUserCardResponse</a></p>
+<p>CreateAuthorizedCard is an asynchronous function for the creation of a new Card for an authorized user of an account.
+Performing this operation will generate an asynchronous response of type CreateAuthorizedUserCardResponse on the response topic.
+When creating the card, the Client-Profile for the authorized user will be fetched to populate information such as name on card and billing address.</p>
+</blockquote>
+<!-- end services -->
+<h3 id="enums">Enums<a class="headerlink" href="#enums" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.corecard.v1.CardState"></a></p>
+<h4 id="cardstate">CardState<a class="headerlink" href="#cardstate" title="Permanent link">&para;</a></h4>
+<p>CardState is used to describe the state of a card.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CARD_STATE_UNSPECIFIED</td>
+<td>0</td>
+<td>CARD_TYPE_UNSPECIFIED should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes.</td>
+</tr>
+<tr>
+<td>CARD_STATE_ACTIVE</td>
+<td>1</td>
+<td>CARD_STATE_ACTIVE indicates that the card is ready to be used.</td>
+</tr>
+<tr>
+<td>CARD_STATE_LOCKED</td>
+<td>2</td>
+<td>CARD_STATE_LOCKED indicates that the card is temporarily blocked for usage.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.CardType"></a></p>
+<h4 id="cardtype">CardType<a class="headerlink" href="#cardtype" title="Permanent link">&para;</a></h4>
+<p>CardType provides indication of the Card's type.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CARD_TYPE_UNSPECIFIED</td>
+<td>0</td>
+<td>CARD_TYPE_UNSPECIFIED should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes. Trying to create a Card with this type will result in an error.</td>
+</tr>
+<tr>
+<td>CARD_TYPE_PREPAID</td>
+<td>1</td>
+<td>CARD_TYPE_PREPAID represents a Prepaid Card. A Prepaid Card uses the linked account's funds when processing operations.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.ErrorCodes"></a></p>
+<h4 id="errorcodes">ErrorCodes<a class="headerlink" href="#errorcodes" title="Permanent link">&para;</a></h4>
+<p>A Domain-specific list of error codes (For Core Card) documenting the error situations that could arrive while consuming synchronous or asynchronous APIs
+In all cases these error codes will be communicated to the consumer in a structured manner within an instance of AppError (see https://github.com/thebaasco/api-contracts/tree/master/proto/types/errordetails.proto)
+that will be included within the error status response: status.Status.Details</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNSPECIFIED</td>
+<td>0</td>
+<td>UNSPECIFIED should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes.</td>
+</tr>
+<tr>
+<td>CARDS_INVALID_ACCOUNT</td>
+<td>1</td>
+<td>CARDS_INVALID_ACCOUNT - Invalid Account. gRPC Code=InvalidArgument. Returned when an account ID passed as argument for a given operation does not resolve to an existing account or the account is not authorized for the caller (e.g. the customer does not own the account)</td>
+</tr>
+<tr>
+<td>CARDS_INVALID_AUTHORIZED_USER</td>
+<td>2</td>
+<td>CARDS_INVALID_AUTHORIZED_USER - Invalid authorized user. gRPC Code==InvalidArgument. Returned while creating a card for an authorized user if the ID passed as argument does not resolve to an existing user or the user is not an authorized user of the given account</td>
+</tr>
+<tr>
+<td>CARDS_INVALID_CARD_ID</td>
+<td>3</td>
+<td>CARDS_INVALID_CARD_ID - Invalid Card ID. gRPC Code=InvalidArgument. Returned while executing card servicing operations (e.g Lock/Unlock) if the card ID passed as argument does not resolve to a valid card or the card is not owned by the current user or the underlying account is not owned by the current user</td>
+</tr>
+</tbody>
+</table>
+<!-- end enums -->
+
+<h3 id="api-specific-types">API-specific types<a class="headerlink" href="#api-specific-types" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.corecard.v1.Card"></a></p>
+<h4 id="card">Card<a class="headerlink" href="#card" title="Permanent link">&para;</a></h4>
+<p>Card represents generic details about a given Card. The message does not contain any sensitive information, such as Card number (PAN), expiration date, or CVV.
+Access to such sensitive information must be done throuh other mechanism, such as via an external SDK (using CreateCardSDKSignOnToken operation)</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Output only. The unique ID of this Card. It is not nescessary to specify the ID when creating a Card, but the resulting Card will have this value populated with the generated ID. The ID generated follows the UUID v4 format, always.</td>
+</tr>
+<tr>
+<td>card_type</td>
+<td><a href="#thebaasco.tenant.corecard.v1.CardType">CardType</a></td>
+<td></td>
+<td>The type of the Card. See documentation on CardType enum for details on enum values.</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account linked to this Card. The value of this field must follow the UUID format, and must map to a valid Account, for which the user has proper access. The list of valid Accounts can be retrieved from Core-Transaction domain. All Cards must have a linked Account.</td>
+</tr>
+<tr>
+<td>description</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The description for this Card. Specifying a description for a Card is optional.</td>
+</tr>
+<tr>
+<td>state</td>
+<td><a href="#thebaasco.tenant.corecard.v1.CardState">CardState</a></td>
+<td></td>
+<td>Describes the current state of the card. Output-only</td>
+</tr>
+<tr>
+<td>owner_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The user ID of the card owner. Output-only</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.CardCreatedEvent"></a></p>
+<h4 id="cardcreatedevent">CardCreatedEvent<a class="headerlink" href="#cardcreatedevent" title="Permanent link">&para;</a></h4>
+<p>CardCreatedEvent is an event raised when a Card is successfuly created.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>card</td>
+<td><a href="#thebaasco.tenant.corecard.v1.Card">Card</a></td>
+<td></td>
+<td>The Card that was created.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The tenant ID, to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>card_creation_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp for the creation of the Card.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.CardUpdatedEvent"></a></p>
+<h4 id="cardupdatedevent">CardUpdatedEvent<a class="headerlink" href="#cardupdatedevent" title="Permanent link">&para;</a></h4>
+<p>CardUpdatedEvent is an event raised when a card is updated. E.g. The card description could be changed or the card state change from Active to Locked,</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+<tr>
+<td>card</td>
+<td><a href="#thebaasco.tenant.corecard.v1.Card">Card</a></td>
+<td></td>
+<td>Snapshot of the card at its resulting state after the update took place.</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the user who triggered the operation that resulted in the creation of the current event</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The tenant ID, to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.CreateAuthorizedUserCardRequest"></a></p>
+<h4 id="createauthorizedusercardrequest">CreateAuthorizedUserCardRequest<a class="headerlink" href="#createauthorizedusercardrequest" title="Permanent link">&para;</a></h4>
+<p>CreateAuthorizedCardRequest is message used to perform the asynchronous operation of creating a new Card for an authorized user of an account.
+Performing this operation will generate an asynchronous response of type Card on the response topic.
+When creating the card, the information contained in the Client-Profile for the authorized user will be fetched to
+populate information such as name on card and billing address.
+Errors:
+ErrorCodes.CARDS_INVALID_ACCOUNT if the account passed as argument does not exist or is not owned by the current user
+ErrorCodes.CARDS_INVALID_AUTH_USER if the user ID passed as argument does not exist or is not an authorized user of the account</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>card</td>
+<td><a href="#thebaasco.tenant.corecard.v1.Card">Card</a></td>
+<td></td>
+<td>A valid Card message. Refer to Card message for details.</td>
+</tr>
+<tr>
+<td>authorized_user_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the authorized user who will be the owner of the newly created card</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.CreateAuthorizedUserCardResponse"></a></p>
+<h4 id="createauthorizedusercardresponse">CreateAuthorizedUserCardResponse<a class="headerlink" href="#createauthorizedusercardresponse" title="Permanent link">&para;</a></h4>
+<p>CreateAuthorizedUserCardResponse is the response model for the asynchronous operation of creating a new Card for an authorized user of an account.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>card</td>
+<td><a href="#thebaasco.tenant.corecard.v1.Card">Card</a></td>
+<td></td>
+<td>A valid Card message. Refer to Card message for details.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.CreateCardRequest"></a></p>
+<h4 id="createcardrequest">CreateCardRequest<a class="headerlink" href="#createcardrequest" title="Permanent link">&para;</a></h4>
+<p>CreateCardRequest is message used to perform the asynchronous operation of creating a new Card. Performing this operation will generate an asynchronous response of type Card, on the response topic.
+When creating the card, the information contained in the Client-Profile domain for current user will be used to
+populate Card information such as name on card, and billing address.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>card</td>
+<td><a href="#thebaasco.tenant.corecard.v1.Card">Card</a></td>
+<td></td>
+<td>A valid Card message. Refer to Card message for details.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.CreateCardSDKSignOnTokenRequest"></a></p>
+<h4 id="createcardsdksignontokenrequest">CreateCardSDKSignOnTokenRequest<a class="headerlink" href="#createcardsdksignontokenrequest" title="Permanent link">&para;</a></h4>
+<p>CreateCardSDKSignOnTokenRequest is a message passed as parameter to the CreateCardSDKSignOnToken operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>card_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Card for which a SDK Sign-On Token must be created. The value must be a valid UUID, and current user must have proper access to the Card.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.CreateCardSDKSignOnTokenResponse"></a></p>
+<h4 id="createcardsdksignontokenresponse">CreateCardSDKSignOnTokenResponse<a class="headerlink" href="#createcardsdksignontokenresponse" title="Permanent link">&para;</a></h4>
+<p>CreateCardSDKSignOnTokenResponse is a message returned in response to the CreateCardSDKSignOnToken operation, which contains the token needed to use the SDK.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The token to be used by the Front End SDK t . This token can only be used to sign-on a single device, for a single session, and has limited duration during which it can be used.</td>
+</tr>
+<tr>
+<td>card_ref_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>A reference number assigned to the selected card by the card payment processor provider. This value must be passed along with the token to the card payment processor's SDK in order to reveal the card's authentication details (number, CVV, expiration)</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.GetCardRequest"></a></p>
+<h4 id="getcardrequest">GetCardRequest<a class="headerlink" href="#getcardrequest" title="Permanent link">&para;</a></h4>
+<p>GetCardRequest is a message passed as parameter to the GetCard operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>card_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Card to retrieve. The value must be a valid UUID, and current user must have proper access to the Card to retrieve it.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.ListCardsRequest"></a></p>
+<h4 id="listcardsrequest">ListCardsRequest<a class="headerlink" href="#listcardsrequest" title="Permanent link">&para;</a></h4>
+<p>ListCardsRequest is a message passed as parameter to the ListCards operation. See ListCards for details on operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>page_size</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The maximum number of Cards to retrieve as part of this request. This value needs to be superior, or equal to 1.</td>
+</tr>
+<tr>
+<td>page_token</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>When retrieving page other than the initial page, the value for the page_token must be specified, and taken from the previous page's next_page_token value (see ListCardsResponse). When no value is specified, then the initial page will be returned.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.ListCardsResponse"></a></p>
+<h4 id="listcardsresponse">ListCardsResponse<a class="headerlink" href="#listcardsresponse" title="Permanent link">&para;</a></h4>
+<p>ListCardsResponse is a message returned in response to the ListCards operation, which contains the requested data.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cards</td>
+<td><a href="#thebaasco.tenant.corecard.v1.Card">Card</a></td>
+<td>repeated</td>
+<td>The list of Card messages requested.</td>
+</tr>
+<tr>
+<td>next_page_token</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The token to be used to retrieve the next page of data. Must be passed in the page_token field of the next request (see ListCardsRequest). When no value is returned in this field, then no further data exists to be listed.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.LockCardRequest"></a></p>
+<h4 id="lockcardrequest">LockCardRequest<a class="headerlink" href="#lockcardrequest" title="Permanent link">&para;</a></h4>
+<p>LockCardRequest is message used to perform the asynchronous operation of temporarily locking a card.
+Performing this operation will generate an asynchronous response of type Card on the response topic or an error if applicable.
+This feature allows customers to prevent transactions from getting authorized while they confirm if a card is effectively lost.
+After finding the card if it is the case, they can re-enable the card by using the unlock function, see UnlockCardRequest
+Errors:
+ErrorCodes.CARDS_INVALID_CARD_ID if the card ID passed as argument does not resolve to a valid card or the card is not owned by the current user or the underlying account is not owned by the current user</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>card_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the card to be locked</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.LockCardResponse"></a></p>
+<h4 id="lockcardresponse">LockCardResponse<a class="headerlink" href="#lockcardresponse" title="Permanent link">&para;</a></h4>
+<p>LockCardResponse is message used as return type of the async operation LockCard</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>card</td>
+<td><a href="#thebaasco.tenant.corecard.v1.Card">Card</a></td>
+<td></td>
+<td>The card in its current status as result of the operation.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.UnlockCardRequest"></a></p>
+<h4 id="unlockcardrequest">UnlockCardRequest<a class="headerlink" href="#unlockcardrequest" title="Permanent link">&para;</a></h4>
+<p>UnlockCardRequest is message used to perform the asynchronous operation of unlocking a locked card.
+Performing this operation will generate an asynchronous response of type UnlockCardResponse on the response topic or an error if applicable.
+This feature allows customers to re-enable transactions on the card if they find it after suspecting it lost.
+Errors:
+ErrorCodes.CARDS_INVALID_CARD_ID if the card ID passed as argument does not resolve to a valid card or the card is not owned by the current user or the underlying account is not owned by the current user</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>card_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the locked card to be unlocked</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.UnlockCardResponse"></a></p>
+<h4 id="unlockcardresponse">UnlockCardResponse<a class="headerlink" href="#unlockcardresponse" title="Permanent link">&para;</a></h4>
+<p>UnlockCardResponse is message used as return type of the async operation UnlockCard</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>card</td>
+<td><a href="#thebaasco.tenant.corecard.v1.Card">Card</a></td>
+<td></td>
+<td>The card in its current as result of of the operation.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.UpdateCardRequest"></a></p>
+<h4 id="updatecardrequest">UpdateCardRequest<a class="headerlink" href="#updatecardrequest" title="Permanent link">&para;</a></h4>
+<p>UpdateCardRequest is message used to perform the asynchronous operation of updating a Card. Performing this operation will generate an asynchronous response of type Card, on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>card_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Card to update. This must be specified as part of the UpdateCardRequest, instead of as part of the Card message, since the Card ID is specified as "Output Only" (not considered during input). User must have proper access to the Card to call this endpoint.</td>
+</tr>
+<tr>
+<td>card</td>
+<td><a href="#thebaasco.tenant.corecard.v1.Card">Card</a></td>
+<td></td>
+<td>A valid Card message. Refer to Card message for details.</td>
+</tr>
+</tbody>
+</table>
+<!-- end messages -->
+
+<p><a name="corecard_v1_transactiondetails.proto"></a></p>
+<h2 id="corecard_v1_transactiondetailsproto">corecard_v1_transactiondetails.proto<a class="headerlink" href="#corecard_v1_transactiondetailsproto" title="Permanent link">&para;</a></h2>
+<h3 id="api-specific-types_1">API-specific types<a class="headerlink" href="#api-specific-types_1" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.corecard.v1.TransactionDetails"></a></p>
+<h4 id="transactiondetails">TransactionDetails<a class="headerlink" href="#transactiondetails" title="Permanent link">&para;</a></h4>
+<p>TransactionDetails message contains details about a given transaction, relevant and specific to the Core-Card domain.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents this single financial transaction (operation). This ID is stable across all domains for a given transaction.</td>
+</tr>
+<tr>
+<td>lifecycle_transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...). Note: there might be multiple unique "transaction_id" for a single "lifecycle_transaction_id".</td>
+</tr>
+<tr>
+<td>merchant_type</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The classification of the merchant’s type of business product or service. This is the MCC (Merchant Category Code), and is extracted from Data Element DE-018 of the ISO-8583 messages. Refer to this github project for details on MCC values: https://github.com/greggles/mcc-codes</td>
+</tr>
+<tr>
+<td>card_acceptor_identification_code</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>This Data element denotes the Merchant ID as part of the tansaction In a Point of sale transaction i.e Maestro or debit MasterCard transaction, this data element type is an alphanumeric value</td>
+</tr>
+<tr>
+<td>card_acceptor_name_location</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The name and location of the card acceptor (merchant), including the city name, state and country code. This is extracted from Data Element DE-043 from ISO-8583 messages.</td>
+</tr>
+<tr>
+<td>network_transaction_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp for the point in time when the transaction took place from the payment network's standpoint Its value is extracted from the Data Element DE-007 of the ISO-8583 messages</td>
+</tr>
+<tr>
+<td>mti</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The 4 digits representation of the originating message type (e.g. "0100", "0400", ... ).</td>
+</tr>
+<tr>
+<td>card_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The identifier of the card involved in this card transaction.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.corecard.v1.TransactionDetailsCreatedEvent"></a></p>
+<h4 id="transactiondetailscreatedevent">TransactionDetailsCreatedEvent<a class="headerlink" href="#transactiondetailscreatedevent" title="Permanent link">&para;</a></h4>
+<p>TransactionDetailsCreatedEvent event is raised by the Core-Card domain when transactions are created and Core-Card specific details are available.
+Note: There are no timestamps in this event message, since <code>details</code> field will contain the transaction timestamp.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique event ID for this transaction. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>details</td>
+<td><a href="#thebaasco.tenant.corecard.v1.TransactionDetails">TransactionDetails</a></td>
+<td></td>
+<td>The transaction details for this event.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The tenant ID, to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+</tbody>
+</table>
+<!-- end messages -->
+
+<p><a name="txsimulation_v1_cardpayments.proto"></a></p>
+<h2 id="txsimulation_v1_cardpaymentsproto">txsimulation_v1_cardpayments.proto<a class="headerlink" href="#txsimulation_v1_cardpaymentsproto" title="Permanent link">&para;</a></h2>
+<h3 id="services_1">Services<a class="headerlink" href="#services_1" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.txsimulation.v1.CardPaymentsSimulationService"></a></p>
+<h4 id="cardpaymentssimulationservice">CardPaymentsSimulationService<a class="headerlink" href="#cardpaymentssimulationservice" title="Permanent link">&para;</a></h4>
+<p>CardPaymentsSimulationService is a synchronous gRPC service for the simulation of card payments transactions</p>
+<h5 id="purchase">Purchase<a class="headerlink" href="#purchase" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> Purchase(<a href="#thebaasco.txsimulation.v1.PurchaseRequest">PurchaseRequest</a>)
+<a href="#thebaasco.txsimulation.v1.PurchaseResponse">PurchaseResponse</a></p>
+</blockquote>
+<p>Used to simulate a purchase made in one step. The transaction authorization and confirmation occurs in a single shot.
+At the end of the operation the committed balance of the underlying account will be reduced by the amount specified
+in the purchase request</p>
+<h5 id="authorizepurchase">AuthorizePurchase<a class="headerlink" href="#authorizepurchase" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> AuthorizePurchase(<a href="#thebaasco.txsimulation.v1.AuthorizePurchaseRequest">AuthorizePurchaseRequest</a>)
+<a href="#thebaasco.txsimulation.v1.AuthorizePurchaseResponse">AuthorizePurchaseResponse</a></p>
+</blockquote>
+<p>Used to simulate a purchase made in two steps. The transaction authorization occurs during this step
+and it must be followed by a finalization call: ConfirmPurchase() or CancelPurchase()
+At the end of the operation the overall transaction ends up in an authorized status and will be open until the
+finalization operation is called for this transfer</p>
+<h5 id="confirmpurchase">ConfirmPurchase<a class="headerlink" href="#confirmpurchase" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> ConfirmPurchase(<a href="#thebaasco.txsimulation.v1.ConfirmPurchaseRequest">ConfirmPurchaseRequest</a>)
+<a href="#thebaasco.txsimulation.v1.ConfirmPurchaseResponse">ConfirmPurchaseResponse</a></p>
+</blockquote>
+<p>Used to simulate a purchase made in two steps.
+This is the second step of a successful 2-steps purchase, where the merchant confirms the transaction
+closing it and triggering the actual moving of funds in the underlying account</p>
+<h5 id="cancelpurchase">CancelPurchase<a class="headerlink" href="#cancelpurchase" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> CancelPurchase(<a href="#thebaasco.txsimulation.v1.CancelPurchaseRequest">CancelPurchaseRequest</a>)
+<a href="#thebaasco.txsimulation.v1.CancelPurchaseResponse">CancelPurchaseResponse</a></p>
+</blockquote>
+<p>Used to simulate a purchase made in two steps.
+This is the second step of a cancelled 2-steps purchase, where the merchant voids the purchase authorization
+closing it and triggering releasing any funds withheld by the authorization</p>
+<h5 id="refund">Refund<a class="headerlink" href="#refund" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> Refund(<a href="#thebaasco.txsimulation.v1.RefundRequest">RefundRequest</a>)
+<a href="#thebaasco.txsimulation.v1.RefundResponse">RefundResponse</a></p>
+</blockquote>
+<p>Used to simulate a purchase refund.
+E.g. when the customer returns all or part of the merchandise to receive a total or partial refund
+or when the merchant needs to return part of the funds because some item ran out of stock after the order was completed and the payment completed.
+Notice that this operation is meant to be used for cases where the original payment already completed.
+in order to cancel an on-going payments, use CancelPurchase() instead.</p>
+<!-- end services -->
+
+<h3 id="api-specific-types_2">API-specific types<a class="headerlink" href="#api-specific-types_2" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.txsimulation.v1.AuthorizePurchaseRequest"></a></p>
+<h4 id="authorizepurchaserequest">AuthorizePurchaseRequest<a class="headerlink" href="#authorizepurchaserequest" title="Permanent link">&para;</a></h4>
+<p>message AuthorizePurchaseRequest is the request model for the AuthorizePurchase() operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>payment</td>
+<td><a href="#thebaasco.txsimulation.v1.PaymentDetails">PaymentDetails</a></td>
+<td></td>
+<td>The identifier of the card that will be used for the purchase simulation</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.txsimulation.v1.AuthorizePurchaseResponse"></a></p>
+<h4 id="authorizepurchaseresponse">AuthorizePurchaseResponse<a class="headerlink" href="#authorizepurchaseresponse" title="Permanent link">&para;</a></h4>
+<p>AuthorizePurchaseResponse is returned when the purchase authorization operation finishes</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lifecycle_transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...).</td>
+</tr>
+<tr>
+<td>transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents this single financial transaction (operation). This ID is stable across all domains for a given transaction.</td>
+</tr>
+<tr>
+<td>response_code</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>an ISO 8583 response code describing the status of the card payment "00" means success other values indicate error e.g. "51" -&gt; Insufficient funds</td>
+</tr>
+<tr>
+<td>id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that will be used to 'link' transactions for one purchase ( for example: auth, settlement is one purchase. Settlement, refund is another.. etc)</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.txsimulation.v1.CancelPurchaseRequest"></a></p>
+<h4 id="cancelpurchaserequest">CancelPurchaseRequest<a class="headerlink" href="#cancelpurchaserequest" title="Permanent link">&para;</a></h4>
+<p>CancelPurchaseRequest is the request model for the operation CancelPurchase().</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lifecycle_transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...).</td>
+</tr>
+<tr>
+<td>id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>CancelPurchaseRequest is the second step of a cancelled 2-steps purchase and this field is used to specify which purchase should be cancelled. It is required.</td>
+</tr>
+<tr>
+<td>card_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The identifier of the card that will be used for the purchase simulation</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.txsimulation.v1.CancelPurchaseResponse"></a></p>
+<h4 id="cancelpurchaseresponse">CancelPurchaseResponse<a class="headerlink" href="#cancelpurchaseresponse" title="Permanent link">&para;</a></h4>
+<p>AuthorizePurchaseResponse is returned when the purchase authorization operation finishes</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lifecycle_transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...).</td>
+</tr>
+<tr>
+<td>transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents this single financial transaction (operation). This ID is stable across all domains for a given transaction.</td>
+</tr>
+<tr>
+<td>response_code</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>an ISO 8583 response code describing the status of the card payment "00" means success other values indicate error e.g. "51" -&gt; Insufficient funds</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.txsimulation.v1.ConfirmPurchaseRequest"></a></p>
+<h4 id="confirmpurchaserequest">ConfirmPurchaseRequest<a class="headerlink" href="#confirmpurchaserequest" title="Permanent link">&para;</a></h4>
+<p>ConfirmPurchaseRequest is the request model for the ConfirmPurchase() operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lifecycle_transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...).</td>
+</tr>
+<tr>
+<td>amount</td>
+<td><a href="#thebaasco.types.Amount">thebaasco.types.Amount</a></td>
+<td></td>
+<td>Amount to be used for the authorization confirmation. Sometimes it can be a smaller than what was originally authorized e.g. for gas station transactions where there is an original authorization of 200$ but the confirmed amount depends on the actual gas the customer ended up buying</td>
+</tr>
+<tr>
+<td>id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that will be used to 'link' transactions for one purchase ( for example: auth, settlement is one purchase. Settlement, refund is another.. etc)</td>
+</tr>
+<tr>
+<td>card_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The identifier of the card that will be used for the purchase simulation</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.txsimulation.v1.ConfirmPurchaseResponse"></a></p>
+<h4 id="confirmpurchaseresponse">ConfirmPurchaseResponse<a class="headerlink" href="#confirmpurchaseresponse" title="Permanent link">&para;</a></h4>
+<p>ConfirmPurchaseResponse is returned when the purchase confirmation operation finishes</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lifecycle_transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...).</td>
+</tr>
+<tr>
+<td>transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents this single financial transaction (operation). This ID is stable across all domains for a given transaction.</td>
+</tr>
+<tr>
+<td>response_code</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>an ISO 8583 response code describing the status of the card payment "00" means success other values indicate error e.g. "51" -&gt; Insufficient funds</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.txsimulation.v1.PaymentDetails"></a></p>
+<h4 id="paymentdetails">PaymentDetails<a class="headerlink" href="#paymentdetails" title="Permanent link">&para;</a></h4>
+<p>PaymentDetails is a model that describes the detail of a card payment</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>card_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The identifier of the card that will be used for the purchase simulation</td>
+</tr>
+<tr>
+<td>amount</td>
+<td><a href="#thebaasco.types.Amount">thebaasco.types.Amount</a></td>
+<td></td>
+<td>Amount to be paid in this transaction</td>
+</tr>
+<tr>
+<td>card_acceptor_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>This field contains the name of the merchant. An example: "AMAZON.COM".</td>
+</tr>
+<tr>
+<td>merchant_category_code</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Category code of the merchant to use for the payment simulation For example values see: https://www.citibank.com/tts/solutions/commercial-cards/assets/docs/govt/Merchant-Category-Codes.pdf If left blank will get a default value assigned.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.txsimulation.v1.PurchaseRequest"></a></p>
+<h4 id="purchaserequest">PurchaseRequest<a class="headerlink" href="#purchaserequest" title="Permanent link">&para;</a></h4>
+<p>PurchaseRequest is used when distribution partner wants to simulate a card transaction.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>payment</td>
+<td><a href="#thebaasco.txsimulation.v1.PaymentDetails">PaymentDetails</a></td>
+<td></td>
+<td>The identifier of the card that will be used for the purchase simulation</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.txsimulation.v1.PurchaseResponse"></a></p>
+<h4 id="purchaseresponse">PurchaseResponse<a class="headerlink" href="#purchaseresponse" title="Permanent link">&para;</a></h4>
+<p>PurchaseResponse is returned when the purchase operation finishes</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lifecycle_transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...).</td>
+</tr>
+<tr>
+<td>transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents this single financial transaction (operation). This ID is stable across all domains for a given transaction.</td>
+</tr>
+<tr>
+<td>response_code</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>an ISO 8583 response code describing the status of the card payment "00" means success other values indicate error e.g. "51" -&gt; Insufficient funds</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.txsimulation.v1.RefundRequest"></a></p>
+<h4 id="refundrequest">RefundRequest<a class="headerlink" href="#refundrequest" title="Permanent link">&para;</a></h4>
+<p>RefundRequest is the request model for the operation Refund()
+It is used to simulate that a customer is returning all or part of the merchandise he bought
+to obtain a total or partial refund
+Notice that this operation is expected to happen afther the original transaction had already been completed
+To reverse/cancel an on-going transaction before it is confirmed, use the CancelPurchase() operation instead</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lifecycle_transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...).</td>
+</tr>
+<tr>
+<td>amount</td>
+<td><a href="#thebaasco.types.Amount">thebaasco.types.Amount</a></td>
+<td></td>
+<td>Indicates the amount to be returned to the customer's account it could be the total value of the original purchase or it could be a smaller amount in case of partial refunds.</td>
+</tr>
+<tr>
+<td>card_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The identifier of the card that will be used for the purchase simulation</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.txsimulation.v1.RefundResponse"></a></p>
+<h4 id="refundresponse">RefundResponse<a class="headerlink" href="#refundresponse" title="Permanent link">&para;</a></h4>
+<p>RefundResponse is returned when the purchase authorization operation finishes</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lifecycle_transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...).</td>
+</tr>
+<tr>
+<td>transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents this single financial transaction (operation). This ID is stable across all domains for a given transaction.</td>
+</tr>
+<tr>
+<td>response_code</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>an ISO 8583 response code describing the status of the card payment "00" means success other values indicate error e.g. "51" -&gt; Insufficient funds</td>
+</tr>
+</tbody>
+</table>
+<!-- end messages -->
+
+<h2 id="shared-types">Shared types<a class="headerlink" href="#shared-types" title="Permanent link">&para;</a></h2>
+<p>TODO: write shared types here if they exist</p>
+<h2 id="scalar-value-types">Scalar Value Types<a class="headerlink" href="#scalar-value-types" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>.proto Type</th>
+<th>Notes</th>
+<th>C++</th>
+<th>Java</th>
+<th>Python</th>
+<th>Go</th>
+<th>C#</th>
+<th>PHP</th>
+<th>Ruby</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a name="double" /> double</td>
+<td></td>
+<td>double</td>
+<td>double</td>
+<td>float</td>
+<td>float64</td>
+<td>double</td>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td><a name="float" /> float</td>
+<td></td>
+<td>float</td>
+<td>float</td>
+<td>float</td>
+<td>float32</td>
+<td>float</td>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td><a name="int32" /> int32</td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="int64" /> int64</td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="uint32" /> uint32</td>
+<td>Uses variable-length encoding.</td>
+<td>uint32</td>
+<td>int</td>
+<td>int/long</td>
+<td>uint32</td>
+<td>uint</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="uint64" /> uint64</td>
+<td>Uses variable-length encoding.</td>
+<td>uint64</td>
+<td>long</td>
+<td>int/long</td>
+<td>uint64</td>
+<td>ulong</td>
+<td>integer/string</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sint32" /> sint32</td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sint64" /> sint64</td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="fixed32" /> fixed32</td>
+<td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+<td>uint32</td>
+<td>int</td>
+<td>int</td>
+<td>uint32</td>
+<td>uint</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="fixed64" /> fixed64</td>
+<td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+<td>uint64</td>
+<td>long</td>
+<td>int/long</td>
+<td>uint64</td>
+<td>ulong</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="sfixed32" /> sfixed32</td>
+<td>Always four bytes.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sfixed64" /> sfixed64</td>
+<td>Always eight bytes.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="bool" /> bool</td>
+<td></td>
+<td>bool</td>
+<td>boolean</td>
+<td>boolean</td>
+<td>bool</td>
+<td>bool</td>
+<td>boolean</td>
+<td>TrueClass/FalseClass</td>
+</tr>
+<tr>
+<td><a name="string" /> string</td>
+<td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+<td>string</td>
+<td>String</td>
+<td>str/unicode</td>
+<td>string</td>
+<td>string</td>
+<td>string</td>
+<td>String (UTF-8)</td>
+</tr>
+<tr>
+<td><a name="bytes" /> bytes</td>
+<td>May contain any arbitrary sequence of bytes.</td>
+<td>string</td>
+<td>ByteString</td>
+<td>str</td>
+<td>[]byte</td>
+<td>ByteString</td>
+<td>string</td>
+<td>String (ASCII-8BIT)</td>
+</tr>
+</tbody>
+</table>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../corebanking/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Core Banking API" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Core Banking API
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../coretransaction/" class="md-footer__link md-footer__link--next" aria-label="Next: Core Transaction API" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Core Transaction API
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/finaptic" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+    
+  </body>
+</html>

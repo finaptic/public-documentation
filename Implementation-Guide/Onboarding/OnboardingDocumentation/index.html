@@ -1,0 +1,2576 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.finaptic.dev/Implementation-Guide/Onboarding/OnboardingDocumentation/">
+      
+      <link rel="icon" href="../../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
+    
+    
+      
+        <title>Onboarding Overview - Finaptic Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.644de097.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Assistant:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Assistant";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="finaptic" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#onboarding-overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://finaptic.com" title="Finaptic Documentation" class="md-header__button md-logo" aria-label="Finaptic Documentation" data-md-component="logo">
+      
+  <img src="../../../images/FinapticLogo_F_White.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Finaptic Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Onboarding Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Introduction & Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../API-Specifications/clientinformation/" class="md-tabs__link">
+        API Specifications
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../FAQs/" class="md-tabs__link">
+        FAQs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        Implementation Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../SDK-Guide/" class="md-tabs__link">
+        SDK Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Systems-and-Security/" class="md-tabs__link">
+        Systems and Security
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://finaptic.com" title="Finaptic Documentation" class="md-nav__button md-logo" aria-label="Finaptic Documentation" data-md-component="logo">
+      
+  <img src="../../../images/FinapticLogo_F_White.png" alt="logo">
+
+    </a>
+    Finaptic Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Introduction & Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          API Specifications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Specifications" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          API Specifications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/clientinformation/" class="md-nav__link">
+        Client Profile API (Draft)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/corebanking/" class="md-nav__link">
+        Core Banking API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/corecard/" class="md-nav__link">
+        Core Card API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/coretransaction/" class="md-nav__link">
+        Core Transaction API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/coretransfer/" class="md-nav__link">
+        Core Transfers API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/distribution/" class="md-nav__link">
+        Distribution API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/onboarding/" class="md-nav__link">
+        Onboarding API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/payments/" class="md-nav__link">
+        Payments API (Experimental)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/persfinmngt/" class="md-nav__link">
+        Personal Finance Management API (Draft)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_10">
+          Global types
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Global types" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          Global types
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/Global-types/amount/" class="md-nav__link">
+        Amount
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/Global-types/balance/" class="md-nav__link">
+        Balance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/Global-types/errordetails/" class="md-nav__link">
+        Cross-domain error model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/Global-types/phonenumber/" class="md-nav__link">
+        Phone Number
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../API-Specifications/Global-types/protectedtypes/" class="md-nav__link">
+        Protected types
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          FAQs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FAQs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          FAQs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAQs/" class="md-nav__link">
+        Frequently Asked Questions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Interac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Interac" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Interac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAQs/Interac/help/" class="md-nav__link">
+        Help
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Implementation Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Implementation Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Implementation Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Implementation Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Authentication
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Authentication" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Authentication
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Authentication/authentication/" class="md-nav__link">
+        Authentication Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Banking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Banking" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Banking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_1" type="checkbox" id="__nav_4_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_1">
+          Authorized User
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Authorized User" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Authorized User
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Banking/Authorized-User/AuthorizedUserDocumentation/" class="md-nav__link">
+        Authorized User Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_2" type="checkbox" id="__nav_4_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_2">
+          Deposit Accounts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Deposit Accounts" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Deposit Accounts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Banking/Deposit-Accounts/DepositAccountGuide/" class="md-nav__link">
+        Deposits Account Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Cards
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cards" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Cards
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Cards/corecard/" class="md-nav__link">
+        Cards Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_5">
+          Client Profile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Client Profile" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          Client Profile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Client-Profile/ClientProfileGuide/" class="md-nav__link">
+        Client Profile Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6" type="checkbox" id="__nav_4_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_6">
+          Fraud And Customer Service
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Fraud And Customer Service" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_6">
+          <span class="md-nav__icon md-icon"></span>
+          Fraud And Customer Service
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fraud-And-Customer-Service/complaints/" class="md-nav__link">
+        Complaint Handling Policy and Procedures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fraud-And-Customer-Service/customer-service/" class="md-nav__link">
+        Customer Support Inquiry Flow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fraud-And-Customer-Service/customer_support_guide/" class="md-nav__link">
+        Customer Support Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Fraud-And-Customer-Service/disputes/" class="md-nav__link">
+        Customer Initiated Transaction Disputes
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_7" type="checkbox" id="__nav_4_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_7">
+          Legal And Regulatory Compliance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Legal And Regulatory Compliance" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          Legal And Regulatory Compliance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Legal-And-Regulatory-Compliance/" class="md-nav__link">
+        Legal and Regulatory Compliance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Legal-And-Regulatory-Compliance/financial_services_regulations/" class="md-nav__link">
+        Financial Services Regulations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Legal-And-Regulatory-Compliance/finaptic_account_fee_guide_and_agreement/" class="md-nav__link">
+        Finaptic Account Fee Guide and Agreement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Legal-And-Regulatory-Compliance/finaptic_app_terms_of_use/" class="md-nav__link">
+        Finaptic App Terms of Use
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Legal-And-Regulatory-Compliance/finaptic_electronic_communications_agreement/" class="md-nav__link">
+        Finaptic electronic communications agreement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Legal-And-Regulatory-Compliance/finaptic_privacy_policy/" class="md-nav__link">
+        Finaptic Privacy Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Legal-And-Regulatory-Compliance/legal_compliance_on_screen/" class="md-nav__link">
+        Legal and Compliance On Screen Requirements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Legal-And-Regulatory-Compliance/restricted_industries/" class="md-nav__link">
+        Restricted industries
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_8" type="checkbox" id="__nav_4_8" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_8">
+          Onboarding
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Onboarding" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_8">
+          <span class="md-nav__icon md-icon"></span>
+          Onboarding
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Onboarding Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Onboarding Overview
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#guide-purpose" class="md-nav__link">
+    Guide Purpose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-onboarding" class="md-nav__link">
+    What is Onboarding?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#about-the-platform" class="md-nav__link">
+    About the Platform
+  </a>
+  
+    <nav class="md-nav" aria-label="About the Platform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#three-pillars-of-onboarding" class="md-nav__link">
+    Three Pillars of Onboarding
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pillar-1-customer-information" class="md-nav__link">
+    Pillar 1 | Customer Information
+  </a>
+  
+    <nav class="md-nav" aria-label="Pillar 1 | Customer Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboarding-a-sole-proprietor" class="md-nav__link">
+    Onboarding a Sole Proprietor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference-data-sets-for-select-fields" class="md-nav__link">
+    Reference data sets for select fields
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pillar-2-digital-id-verification" class="md-nav__link">
+    Pillar 2 | Digital ID Verification
+  </a>
+  
+    <nav class="md-nav" aria-label="Pillar 2 | Digital ID Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-does-finaptics-onboarding-sevice-help-your-business" class="md-nav__link">
+    How does Finaptic's Onboarding Sevice help your business?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requirements-for-digital-id-verification" class="md-nav__link">
+    Requirements for Digital ID Verification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#digital-id-verification-decision-making" class="md-nav__link">
+    Digital ID Verification Decision Making
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualizing-digital-id-verification" class="md-nav__link">
+    Visualizing Digital ID Verification
+  </a>
+  
+    <nav class="md-nav" aria-label="Visualizing Digital ID Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accepted-forms-of-identity-documentation-for-digital-id-verification" class="md-nav__link">
+    Accepted forms of identity documentation for Digital ID Verification
+  </a>
+  
+    <nav class="md-nav" aria-label="Accepted forms of identity documentation for Digital ID Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#valid-unexpired-government-issued-identification" class="md-nav__link">
+    Valid (unexpired) Government Issued Identification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valid-unexpired-canadian-government-drivers-licence-identification" class="md-nav__link">
+    Valid (unexpired) Canadian Government Driver's Licence Identification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valid-unexpired-canadian-provincial-services-cards" class="md-nav__link">
+    Valid (unexpired) Canadian Provincial services cards
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valid-unexpired-canadian-provincial-or-territorial-identity-cards" class="md-nav__link">
+    Valid (unexpired) Canadian Provincial or territorial identity cards
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboarding-a-minor" class="md-nav__link">
+    Onboarding a Minor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-retention-guidelines" class="md-nav__link">
+    Data Retention Guidelines
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pillar-3-onboarding-agreements" class="md-nav__link">
+    Pillar 3 | Onboarding Agreements
+  </a>
+  
+    <nav class="md-nav" aria-label="Pillar 3 | Onboarding Agreements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-agreements" class="md-nav__link">
+    The Agreements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-the-agreement-available-within-your-app-sdk-guides" class="md-nav__link">
+    Making the agreement available within your app; SDK Guides
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OnboardingSequenceDoc/" class="md-nav__link">
+        Onboarding Sequence Diagram
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OnboardingTestProfiles/" class="md-nav__link">
+        Test profiles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ProductlessOnboardingDoc/" class="md-nav__link">
+        Productless Onboarding
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_9" type="checkbox" id="__nav_4_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_9">
+          Personal Financial Management
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Personal Financial Management" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_9">
+          <span class="md-nav__icon md-icon"></span>
+          Personal Financial Management
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Personal-Financial-Management/" class="md-nav__link">
+        PFM Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_10" type="checkbox" id="__nav_4_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_10">
+          Transactions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transactions" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_10">
+          <span class="md-nav__icon md-icon"></span>
+          Transactions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Transactions/transactions/" class="md-nav__link">
+        Transactions Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11" type="checkbox" id="__nav_4_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11">
+          Transfers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transfers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_11">
+          <span class="md-nav__icon md-icon"></span>
+          Transfers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_1" type="checkbox" id="__nav_4_11_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_1">
+          EFT
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="EFT" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_1">
+          <span class="md-nav__icon md-icon"></span>
+          EFT
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Transfers/EFT/electronicfundstransfer/" class="md-nav__link">
+        Electronic Funds Transfer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_2" type="checkbox" id="__nav_4_11_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_2">
+          Interac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Interac" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_2">
+          <span class="md-nav__icon md-icon"></span>
+          Interac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Transfers/Interac/autodeposit/" class="md-nav__link">
+        Auto-Deposit Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_3" type="checkbox" id="__nav_4_11_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_3">
+          Internal Transfers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Internal Transfers" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_3">
+          <span class="md-nav__icon md-icon"></span>
+          Internal Transfers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Transfers/Internal%20Transfers/Internal%20Transfers/" class="md-nav__link">
+        Internal Transfers Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          SDK Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SDK Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          SDK Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SDK-Guide/" class="md-nav__link">
+        SDK Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SDK-Guide/android-sdk/" class="md-nav__link">
+        Finaptic Android SDK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../SDK-Guide/ios-sdk/" class="md-nav__link">
+        Finaptic iOS SDK
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Systems and Security
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Systems and Security" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Systems and Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Systems-and-Security/" class="md-nav__link">
+        Systems and Security Requirements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Systems-and-Security/partner_app_accreditation/" class="md-nav__link">
+        Partner Application Accreditation Process and App Security Checklist
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Systems-and-Security/security_requirements/" class="md-nav__link">
+        Security Requirements for Partners
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Systems-and-Security/vulnerability_disclosure/" class="md-nav__link">
+        Vulnerability Disclosure
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#guide-purpose" class="md-nav__link">
+    Guide Purpose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-onboarding" class="md-nav__link">
+    What is Onboarding?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#about-the-platform" class="md-nav__link">
+    About the Platform
+  </a>
+  
+    <nav class="md-nav" aria-label="About the Platform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#three-pillars-of-onboarding" class="md-nav__link">
+    Three Pillars of Onboarding
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pillar-1-customer-information" class="md-nav__link">
+    Pillar 1 | Customer Information
+  </a>
+  
+    <nav class="md-nav" aria-label="Pillar 1 | Customer Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboarding-a-sole-proprietor" class="md-nav__link">
+    Onboarding a Sole Proprietor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference-data-sets-for-select-fields" class="md-nav__link">
+    Reference data sets for select fields
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pillar-2-digital-id-verification" class="md-nav__link">
+    Pillar 2 | Digital ID Verification
+  </a>
+  
+    <nav class="md-nav" aria-label="Pillar 2 | Digital ID Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-does-finaptics-onboarding-sevice-help-your-business" class="md-nav__link">
+    How does Finaptic's Onboarding Sevice help your business?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requirements-for-digital-id-verification" class="md-nav__link">
+    Requirements for Digital ID Verification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#digital-id-verification-decision-making" class="md-nav__link">
+    Digital ID Verification Decision Making
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualizing-digital-id-verification" class="md-nav__link">
+    Visualizing Digital ID Verification
+  </a>
+  
+    <nav class="md-nav" aria-label="Visualizing Digital ID Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accepted-forms-of-identity-documentation-for-digital-id-verification" class="md-nav__link">
+    Accepted forms of identity documentation for Digital ID Verification
+  </a>
+  
+    <nav class="md-nav" aria-label="Accepted forms of identity documentation for Digital ID Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#valid-unexpired-government-issued-identification" class="md-nav__link">
+    Valid (unexpired) Government Issued Identification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valid-unexpired-canadian-government-drivers-licence-identification" class="md-nav__link">
+    Valid (unexpired) Canadian Government Driver's Licence Identification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valid-unexpired-canadian-provincial-services-cards" class="md-nav__link">
+    Valid (unexpired) Canadian Provincial services cards
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valid-unexpired-canadian-provincial-or-territorial-identity-cards" class="md-nav__link">
+    Valid (unexpired) Canadian Provincial or territorial identity cards
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboarding-a-minor" class="md-nav__link">
+    Onboarding a Minor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-retention-guidelines" class="md-nav__link">
+    Data Retention Guidelines
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pillar-3-onboarding-agreements" class="md-nav__link">
+    Pillar 3 | Onboarding Agreements
+  </a>
+  
+    <nav class="md-nav" aria-label="Pillar 3 | Onboarding Agreements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-agreements" class="md-nav__link">
+    The Agreements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#making-the-agreement-available-within-your-app-sdk-guides" class="md-nav__link">
+    Making the agreement available within your app; SDK Guides
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="onboarding-overview">Onboarding Overview<a class="headerlink" href="#onboarding-overview" title="Permanent link">&para;</a></h1>
+<p>Welcome to Finaptic's end-to-end Onboarding Service. We make it simple to build trust in a digital world and easy to welcome new customers. This documentation includes comprehensive information for building a compliant customer onboarding experience and integrating with Finaptic's Onboarding Service.</p>
+<h2 id="guide-purpose">Guide Purpose<a class="headerlink" href="#guide-purpose" title="Permanent link">&para;</a></h2>
+<p><strong>This guide will</strong></p>
+<ol>
+<li>Educate you on Finaptic's Onboarding Service for a <strong><code>Primary Account Holder</code></strong></li>
+<li>Arm you with an API Guide for effective integration</li>
+</ol>
+<p><strong>Links to related Onboarding topics</strong></p>
+<ol>
+<li><a href="/../../Implementation-Guide/Onboarding/OnboardingSequenceDoc/">Onboarding Sequence Diagram</a></li>
+<li><a href="/../../Implementation-Guide/Banking/Authorized-User/AuthorizedUserDocumentation/">Finaptic's Authorized User Policies</a></li>
+<li><a href="/../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/">Productless Onboarding Architecture</a> to Onboard an Authorized User</li>
+<li><a href="/../../Implementation-Guide/Onboarding/OnboardingTestProfiles/">Test profiles</a> to test your onboarding flow </li>
+</ol>
+<hr />
+<h2 id="what-is-onboarding"><strong>What is Onboarding?</strong><a class="headerlink" href="#what-is-onboarding" title="Permanent link">&para;</a></h2>
+<p>Onboarding is the process of welcoming and establishing a relationship with new customers including adding new products to existing customers. Steps are anchored to obtain a customer's consent to collect their personal information and verify their identity to provide banking products and services and establish a relationship.</p>
+<h2 id="about-the-platform"><strong>About the Platform</strong><a class="headerlink" href="#about-the-platform" title="Permanent link">&para;</a></h2>
+<p>Finaptic's Onboarding Service processes high volumes of identity checks annually and inherits all scalability, reliability, and security features of the core platform.</p>
+<h4 id="three-pillars-of-onboarding"><strong>Three Pillars of Onboarding</strong><a class="headerlink" href="#three-pillars-of-onboarding" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Pillar 1 Customer Information</li>
+<li>Pillar 2 Digital ID Verification</li>
+<li>Pillar 3 Onboarding Agreements</li>
+</ul>
+<hr />
+<h2 id="pillar-1-customer-information"><strong>Pillar 1 | Customer Information</strong><a class="headerlink" href="#pillar-1-customer-information" title="Permanent link">&para;</a></h2>
+<p>In order to satisfy regulatory obligations such as <strong>Know Your Customer</strong> (KYC) and Account Opening requirements there are 4 categories of information type that must be collected from the applicant. In total, there are about 15-24 data fields or questions to complete.</p>
+<table>
+<thead>
+<tr>
+<th>CATEGORIES</th>
+<th>RATIONALE</th>
+<th>FIELDS</th>
+<th>API CALLS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PERSONAL</strong></td>
+<td>Collect basic applicant information for communication &amp; vetting purposes</td>
+<td>- Full Legal Name<br/>- Middle Name <em>(optional)</em><br/>- Alias (optional)<em><br/>- Residential Address <br/>- Date of Birth<br/>- Phone Number<br/>- Phone Number Type (Mobile or Landline) <br/>- Email Address<br/>- Language Preferences<br/>- Social Insurance Number<sup>1</sup> </em>(Interest bearing products only)*</td>
+<td><a href="/../../API-Specifications/onboarding/#personaldetails">Personal Details</a><br/><a href="/../../API-Specifications/onboarding/#contactdetails">Contact Details</a> <br/><a href="/../../API-Specifications/onboarding/#address">Address</a></td>
+</tr>
+<tr>
+<td><strong>TAX</strong> <strong>RESIDENCY<sup>2</sup></strong></td>
+<td>Identifying tax residency during account opening to comply with regulation</td>
+<td>- Canadian Tax Residency Status<br/>- US Citizen<br/>- Another Country Tax Residency Status<br/><em>If the applicant is a tax resident of Another Country (including the US), or a US Citizen, then the tax identification number for that country and Canadian SIN must be collected</em></td>
+<td><a href="/../../API-Specifications/onboarding/#customerresidency">Tax Residency</a><br/><a href="/../../API-Specifications/onboarding/#customerresidency">Other Residency</a></td>
+</tr>
+<tr>
+<td><strong>EMPLOYMENT</strong></td>
+<td>Support with Anti-Money Laundering filtering</td>
+<td>- Employment Status<br/>- Employment Occupation<br/>- Industry<br/>- Employer Name<br/>- Employer Address<br/>- Employer Phone Number<br/>- Employed Since Date <em>(optional)</em><br/>- Income <em>(optional)</em></td>
+<td><a href="/../../API-Specifications/onboarding/#employment">Employment</a></td>
+</tr>
+<tr>
+<td><strong>ACCOUNT PURPOSE</strong> <em>(Deposit Products)</em></td>
+<td>Support with Anti-Money Laundering filtering</td>
+<td>- Account Opening Purpose<br/>- Account Source of Funds<br/>- Third Party Declaration</td>
+<td><a href="/../../API-Specifications/onboarding/#accountusagedetails">Account Purpose</a></td>
+</tr>
+</tbody>
+</table>
+<p><sup>1</sup> "Social Insurance Number" is currently not built and will be released later in 2022
+<sup>2</sup> Note, at this time we do not support ID verification for Canadian Residents who are also Tax Residents of another country</p>
+<h4 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<h4 id="onboarding-a-sole-proprietor">Onboarding a Sole Proprietor<a class="headerlink" href="#onboarding-a-sole-proprietor" title="Permanent link">&para;</a></h4>
+<p>A Sole Proprietor is also governed by the same "Know Your Client" regulations; and what may appear as an outlier field like "Residential Address" is required. Below is a breakdown of fields required for a Sole Proprietor.</p>
+<table>
+<thead>
+<tr>
+<th>CATEGORIES</th>
+<th>RATIONALE</th>
+<th>FIELDS</th>
+<th>API CALLS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PERSONAL</strong></td>
+<td>Collect basic applicant information for communication &amp; vetting purposes</td>
+<td>- Full Legal Name<br/>- Middle Name <em>(optional)</em><br/>- Alias <em>(optional)</em><br/>- Residential Address <br/>- Date of Birth<br/>- Phone Number<br/>- Phone Number Type (Mobile or Landline) <br/>- Email Address<br/>- Language Preferences</td>
+<td><a href="/../../API-Specifications/onboarding/#personaldetails">Personal Details</a><br/><a href="/../../API-Specifications/onboarding/#contactdetails">Contact Details</a> <br/><a href="/../../API-Specifications/onboarding/#address">Address</a></td>
+</tr>
+<tr>
+<td><strong>TAX</strong> <strong>RESIDENCY<sup>2</sup></strong></td>
+<td>Identifying tax residency during account opening to comply with regulation</td>
+<td>- Canadian Tax Residency Status<br/>- US Citizen<br/>- Another Country Tax Residency Status<br/><em>If the applicant is a tax resident of Another Country (including the US), or a US Citizen, then the tax identification number for that country and Canadian SIN must be collected</em></td>
+<td><a href="/../../API-Specifications/onboarding/#customerresidency">Tax Residency</a><br/><a href="/../../API-Specifications/onboarding/#customerresidency">Other Residency</a></td>
+</tr>
+<tr>
+<td><strong>EMPLOYMENT</strong></td>
+<td>Support with Anti-Money Laundering filtering</td>
+<td>- Employment Status<br/>- Employment Occupation<br/>- Industry<br/>- Employer Name<br/>- Business Address<br/>- Employer Phone Number<br/>- Employed Since Date <em>(optional)</em></td>
+<td><a href="/../../API-Specifications/onboarding/#employment">Employment</a></td>
+</tr>
+<tr>
+<td><strong>ACCOUNT PURPOSE</strong> <em>(Deposit Products)</em></td>
+<td>Support with Anti-Money Laundering filtering</td>
+<td>- Account Purpose<br/>- Account Source of Funds<br/>- Third Party Declaration</td>
+<td><a href="/../../API-Specifications/onboarding/#accountusagedetails">Account Purpose</a></td>
+</tr>
+</tbody>
+</table>
+<p><sup>2</sup> Note, at this time we do not support ID verification for Canadian Residents who are also Tax Residents of another country</p>
+<h4 id="reference-data-sets-for-select-fields">Reference data sets for select fields<a class="headerlink" href="#reference-data-sets-for-select-fields" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>CATEGORIES</th>
+<th>LIST OF OPTIONS PRESENTED</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>EMPLOYMENT STATUS</strong></td>
+<td>- Employed<br/>- Unemployed<br/>- Retired<br/>- Student-Unemployed<br/>- Student-Employed<br/>- Self-employed <br/>- Homemaker</td>
+</tr>
+<tr>
+<td><strong>PRIMARY ACCOUNT USAGE</strong></td>
+<td>- Everyday transactions<br/>- Everyday Business transactions (for Sole Proprietors only)<br/>- Paying for school<br/>- Travelling<br/>- Buying property/Renovations<br/>- Buying a car<br/>- Savings<br/>- Other</td>
+</tr>
+<tr>
+<td><strong>PRIMARY SOURCE OF FUNDS</strong></td>
+<td>- Employment Income (Salary / Self-employment Income) <br/>- Sale of Assets/Capital Gains (House, Car, etc.) <br/>- Trust / Inheritance/ Family income <br/>- Loans <br/>- Government Payments / Social Assistance <br/>- Support Payments <br/>- Grants/Scholarships or Bursaries <br/>- Work-Related Retirement or Disability Pension <br/>- Rental Income <br/>- Investment Income - Savings (Dividends / Interest) <br/>- Royalty Income<br/>- Tips/Commissions<br/>- Gifts <br/>- Insurance Claims / Payments <br/>- Pension / Retirement Income <br/>- Windfall (Lottery winnings, casino, etc.)</td>
+</tr>
+<tr>
+<td><strong>OCCUPATION<br/>INDUSTRY</strong></td>
+<td>The “Occupation” and “Industry” fields are required to comply with Anti-Money Laundering and Anti-Terrorist Financing regulations.<br/><br/>We use the National Occupational Classification (NOC) list for <strong>Occupations</strong> <a href="https://noc.esdc.gc.ca/">National Occupational Classification - Canada.ca</a> and the North American Industry Classification System (Canada) (NAICS) for <strong>Industries</strong> <a href="https://www.statcan.gc.ca/eng/concepts/industry">Industry classifications</a>. <br/><br/>The NOC list may not include newer titles such as “influencer”, “brand ambassador”, or “social media guru”, however, the traditional classification of “publicist” or “professional in marketing” would be an equivalent or a close enough approximation that customers can select to identify their occupation.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="pillar-2-digital-id-verification"><strong>Pillar 2 | Digital ID Verification</strong><a class="headerlink" href="#pillar-2-digital-id-verification" title="Permanent link">&para;</a></h2>
+<p>This process verifies a person's identity by using computer technology. We screen for bad actors and potential device level frauds and validate the person's documentation and liveness.</p>
+<h4 id="how-does-finaptics-onboarding-sevice-help-your-business"><strong>How does Finaptic's Onboarding Sevice help your business?</strong><a class="headerlink" href="#how-does-finaptics-onboarding-sevice-help-your-business" title="Permanent link">&para;</a></h4>
+<p>Our approach helps prevent fraud, money laundering and terrorist funding. Using leading ID verification partner technologies that leverage artificial intelligence technology; providing document and biometric authentication with liveness tests to truly verify if the person applying for a financial product is who they say they are.</p>
+<p>Working in real time, we will eliminate manual screening errors, speed up the document inspection process, and significantly reduce employee intervention, operating costs and customer inconvenience.</p>
+<h4 id="requirements-for-digital-id-verification"><strong>Requirements for Digital ID Verification</strong><a class="headerlink" href="#requirements-for-digital-id-verification" title="Permanent link">&para;</a></h4>
+<ol>
+<li>The identification document has to be authentic, valid, and original.</li>
+<li>A valid (unexpired) identification document as listed in the <a href="/../../Implementation-Guide/onboarding/OnboardingDocumentation/#accepted-forms-of-identity-documentation-for-digital-id-verification">Accepted Forms of Identity Documentation for Digital Identification Verification</a> section.</li>
+<li>A mobile device with a functional camera for a selfie.</li>
+</ol>
+<h4 id="digital-id-verification-decision-making"><strong>Digital ID Verification Decision Making</strong><a class="headerlink" href="#digital-id-verification-decision-making" title="Permanent link">&para;</a></h4>
+<p>Finaptic will render a decision of either Approved or Declined within 90 seconds from the point of application submission.</p>
+<p>During those 90 seconds, Finaptic will complete the following process to screen for bad actors and potential fraud with every applicant:</p>
+<ol>
+<li>Cross referenced against up-to-date Sanctions lists, Politically Exposed Persons, and other Watchlists</li>
+<li>Validate for potential device &amp; IP level fraud</li>
+<li>Facial Recognition Match will include a liveness test. A liveness test ensures that there is a real person present instead of a photo, video playback or even a mask</li>
+</ol>
+<p>An applicant will be permitted up to 3 retries for common applicant error types (ex. name mismatch, incorrect date of birth, etc.).</p>
+<p>An applicant will not be permitted to re-apply if the reason for a decline is Fraud or Sanctions related.</p>
+<h3 id="visualizing-digital-id-verification"><strong>Visualizing Digital ID Verification</strong><a class="headerlink" href="#visualizing-digital-id-verification" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="../images/idvflow.png" /></p>
+<p>The <a href="/../../API-Specifications/onboarding/#documentinfo"><strong>DocumentInfo</strong></a> <strong>API</strong> is a message containing the details of an onboarding document collected from the customer to prove identity.</p>
+<p><strong>TIP |</strong></p>
+<p>As a Partner, you can re-brand the Digital ID Verification experience to reflect your brand's colour &amp; tone; with the exeption of when your camera is attempting to take a picture. </p>
+<h4 id="accepted-forms-of-identity-documentation-for-digital-id-verification"><strong>Accepted forms of identity documentation for Digital ID Verification</strong><a class="headerlink" href="#accepted-forms-of-identity-documentation-for-digital-id-verification" title="Permanent link">&para;</a></h4>
+<p>At this moment, Finaptic will accept select Valid (unexpired) Government issued identification.
+Note, damaged and worn identification documents will not be accepted.</p>
+<h5 id="valid-unexpired-government-issued-identification"><strong>Valid (unexpired) Government Issued Identification</strong><a class="headerlink" href="#valid-unexpired-government-issued-identification" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Canadian Passport (front page only)</li>
+<li>Canadian Permanent Resident Card Canada (front &amp; backpages)</li>
+<li>Canadian Citizenship card (issued prior to 2012) Canada (front &amp; backpages)</li>
+</ul>
+<h5 id="valid-unexpired-canadian-government-drivers-licence-identification"><strong>Valid (unexpired) Canadian Government Driver's Licence Identification</strong><a class="headerlink" href="#valid-unexpired-canadian-government-drivers-licence-identification" title="Permanent link">&para;</a></h5>
+<ul>
+<li>British Columbia Driver's License British Columbia, Canada</li>
+<li>Alberta Driver's License Alberta, Canada</li>
+<li>Ontario Driver's License Ontario, Canada</li>
+<li>Saskatchewan Driver's License Saskatchewan, Canada</li>
+<li>Manitoba Driver's License Manitoba, Canada</li>
+<li>Quebec Driver's License Quebec, Canada</li>
+<li>New Brunswick Driver's License New Brunswick, Canada</li>
+<li>Nova Scotia Driver's License Nova Scotia, Canada</li>
+<li>Prince Edward Island Driver's License Prince Edward Island, Canada</li>
+<li>Newfoundland and Labrador Driver's License Newfoundland &amp; Labrador, Canada</li>
+<li>Yukon Driver's License Yukon, Canada</li>
+<li>Northwest Territories Driver's License Northwest Territories, Canada</li>
+<li>Nunavut Driver's License Nunavut, Canada</li>
+</ul>
+<h5 id="valid-unexpired-canadian-provincial-services-cards"><strong>Valid (unexpired) Canadian Provincial services cards</strong><a class="headerlink" href="#valid-unexpired-canadian-provincial-services-cards" title="Permanent link">&para;</a></h5>
+<ul>
+<li>British Columbia Services Card British Columbia, Canada</li>
+</ul>
+<h5 id="valid-unexpired-canadian-provincial-or-territorial-identity-cards"><strong>Valid (unexpired) Canadian Provincial or territorial identity cards</strong><a class="headerlink" href="#valid-unexpired-canadian-provincial-or-territorial-identity-cards" title="Permanent link">&para;</a></h5>
+<ul>
+<li>British Columbia Enhanced ID British Columbia, Canada</li>
+<li>Alberta Photo Identification Card Alberta, Canada</li>
+<li>Saskatchewan Non-driver photo ID Saskatchewan, Canada</li>
+<li>Manitoba Enhanced Identification Card Manitoba, Canada</li>
+<li>Ontario Photo Card Ontario, Canada</li>
+<li>New Brunswick Photo ID Card New Brunswick, Canada</li>
+<li>Nova Scotia Identification Card Nova Scotia, Canada</li>
+<li>Prince Edward Island Voluntary ID Prince Edward Island, Canada</li>
+<li>Newfoundland and Labrador Photo Identification Card Newfoundland and Labrador, Canada</li>
+<li>Northwest Territories General Identification Card Northwest Territories, Canada</li>
+<li>Nunavut General Identification Card Nunavut, Canada</li>
+</ul>
+<h3 id="onboarding-a-minor"><strong>Onboarding a Minor</strong><a class="headerlink" href="#onboarding-a-minor" title="Permanent link">&para;</a></h3>
+<p>Finaptic's Onboarding Service is ready to onboard minors and is subject to Finaptic ID Verification Policies listed below.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Age Brackets</strong></th>
+<th><strong>FINTRAC Requirement</strong></th>
+<th><strong>Finaptic Technology Policy</strong></th>
+<th>Available</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>0 - 11 years of age</strong></td>
+<td>ID Verification is <u>Optional</u></td>
+<td>Don't ID Verify Child <br>Must ID Verify Parent/Guardian<br><br><u>Details below</u>:<br>Parent/Guardian ID must be verified <em>(ID does not be re-verified if on file but parent/guardian should be authenticated or provide acknowledgment)</em></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>12 - 15 years of age</strong></td>
+<td>ID Verification is <u>Optional</u></td>
+<td>Same as above; <em>0-11 years of age</em></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>16+ years of age</strong></td>
+<td>ID Verification is <u>Required</u></td>
+<td>Must ID Verify like an Adult</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="data-retention-guidelines">Data Retention Guidelines<a class="headerlink" href="#data-retention-guidelines" title="Permanent link">&para;</a></h3>
+<p><strong>For how long are the Personal Identity and Selfie information stored?</strong></p>
+<p>Our third party vendor, Acuant, which receives the selfie and and Personal ID is permitted to store the photo and ID solely for the purposes of verifying the identity of the applicant and verifying that the identification document is authentic, valid and current, and for providing us the information extracted from the personal identification. <code>Acuant expunges the selfie and the personal identification from their system within **24 hours**.</code> </p>
+<p>If the applicant is approved to open an account, Finaptic receives the following information regarding the identification document used to verify the applicant’s identification, which Finaptic will store for <code>7 years after the customer’s account is closed</code>; retained data points include</p>
+<ul>
+<li>
+<p>Person’s Name</p>
+</li>
+<li>
+<p>Date on which the person’s identity was verified</p>
+</li>
+<li>
+<p>Type of document used (for example, driver's licence, passport, etc.)</p>
+</li>
+<li>
+<p>Unique identifying number of the document used</p>
+</li>
+<li>
+<p>Jurisdiction (province or state) and country of issue of the document</p>
+</li>
+<li>
+<p>Expiry date of the document, if available (if this information appears on the document or card, we must record it)</p>
+</li>
+</ul>
+<p>In case of a malfunction in the onboarding process or the user doesn’t complete the process, a garbage collection will delete picture within 24 hours.</p>
+<p><code>All retained data is stored in the Google Cloud Platform's GCS Encrypted buckets.</code></p>
+<hr />
+<h2 id="pillar-3-onboarding-agreements"><strong>Pillar 3 | Onboarding Agreements</strong><a class="headerlink" href="#pillar-3-onboarding-agreements" title="Permanent link">&para;</a></h2>
+<p>In addition to the agreements presented to your customer to upload your app, such as an End User License Agreement and Terms of Use, your customer must read and agree to a number of additional agreements before being able to proceed with the application. As part of Onboarding, these include the Electronic Communications Agreement and Privacy Policy. Documents that are presented later in the app, and that are related to your specific use case, including product disclosures, product applications and agreements are covered under the product sections of this guide.</p>
+<p>There are 2 notable APIs to refer to:</p>
+<ol>
+<li>
+<p>The <a href="/../../API-Specifications/onboarding/#consent"><strong>Consent</strong></a> <strong>API</strong> is a message indicating the receipt of a requested customer Consent.</p>
+</li>
+<li>
+<p>The <a href="/../../API-Specifications/onboarding/#disclosure"><strong>Disclosure</strong></a> <strong>API</strong> is a message indicating the receipt of a requested customer Disclosure.</p>
+</li>
+</ol>
+<h3 id="the-agreements"><strong>The Agreements</strong><a class="headerlink" href="#the-agreements" title="Permanent link">&para;</a></h3>
+<p>There are 4 primary agreement types with each tailored to the partner agreement.</p>
+<ol>
+<li>
+<p><a href="/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_account_fee_guide_and_agreement/">Finaptic Account Fee Guide and Agreement</a></p>
+</li>
+<li>
+<p><a href="/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_app_terms_of_use/">Finaptic App Terms of User</a></p>
+</li>
+<li>
+<p><a href="/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_electronic_communications_agreement/">Finaptic Electronic Communications Agreement</a></p>
+</li>
+<li>
+<p><a href="/../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_privacy_policy/">Finaptic Privacy Policy</a></p>
+</li>
+</ol>
+<h3 id="making-the-agreement-available-within-your-app-sdk-guides"><strong>Making the agreement available within your app; <a href="/../../sdk-guide/index/">SDK Guides</a></strong><a class="headerlink" href="#making-the-agreement-available-within-your-app-sdk-guides" title="Permanent link">&para;</a></h3>
+<p>Customers must be able to easily access each agreement from your app. Best practice is to send the agreement to the customer's in app Message Centre noting their consent. You must also have the most recent version of the agreement displayed in the "Legal" section of the app or other obvious section that can be easily found.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../Legal-And-Regulatory-Compliance/restricted_industries/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Restricted industries" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Restricted industries
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../OnboardingSequenceDoc/" class="md-footer__link md-footer__link--next" aria-label="Next: Onboarding Sequence Diagram" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Onboarding Sequence Diagram
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/finaptic" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+    
+  </body>
+</html>

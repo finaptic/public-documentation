@@ -1,0 +1,3558 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.finaptic.dev/API-Specifications/coretransaction/">
+      
+      <link rel="icon" href="../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
+    
+    
+      
+        <title>Core Transaction API - Finaptic Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.644de097.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Assistant:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Assistant";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="finaptic" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#core-transaction-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://finaptic.com" title="Finaptic Documentation" class="md-header__button md-logo" aria-label="Finaptic Documentation" data-md-component="logo">
+      
+  <img src="../../images/FinapticLogo_F_White.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Finaptic Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Core Transaction API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Introduction & Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../clientinformation/" class="md-tabs__link md-tabs__link--active">
+        API Specifications
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../FAQs/" class="md-tabs__link">
+        FAQs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Implementation-Guide/" class="md-tabs__link">
+        Implementation Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../SDK-Guide/" class="md-tabs__link">
+        SDK Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Systems-and-Security/" class="md-tabs__link">
+        Systems and Security
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://finaptic.com" title="Finaptic Documentation" class="md-nav__button md-logo" aria-label="Finaptic Documentation" data-md-component="logo">
+      
+  <img src="../../images/FinapticLogo_F_White.png" alt="logo">
+
+    </a>
+    Finaptic Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction & Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          API Specifications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Specifications" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          API Specifications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clientinformation/" class="md-nav__link">
+        Client Profile API (Draft)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corebanking/" class="md-nav__link">
+        Core Banking API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corecard/" class="md-nav__link">
+        Core Card API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Core Transaction API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Core Transaction API
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#coretransaction_v1_accountsproto" class="md-nav__link">
+    coretransaction_v1_accounts.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransaction_v1_accounts.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accounts" class="md-nav__link">
+    Accounts
+  </a>
+  
+    <nav class="md-nav" aria-label="Accounts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listaccounts" class="md-nav__link">
+    ListAccounts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getaccount" class="md-nav__link">
+    GetAccount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listauthorizedusers" class="md-nav__link">
+    ListAuthorizedUsers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listowners" class="md-nav__link">
+    ListOwners
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account" class="md-nav__link">
+    Account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addauthorizeduserrequest" class="md-nav__link">
+    AddAuthorizedUserRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addauthorizeduserresponse" class="md-nav__link">
+    AddAuthorizedUserResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addownerrequest" class="md-nav__link">
+    AddOwnerRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addownerresponse" class="md-nav__link">
+    AddOwnerResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduseraddedevent" class="md-nav__link">
+    AuthorizedUserAddedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserremovedevent" class="md-nav__link">
+    AuthorizedUserRemovedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getaccountrequest" class="md-nav__link">
+    GetAccountRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listaccountsrequest" class="md-nav__link">
+    ListAccountsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listaccountsresponse" class="md-nav__link">
+    ListAccountsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listauthorizedusersrequest" class="md-nav__link">
+    ListAuthorizedUsersRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listauthorizedusersresponse" class="md-nav__link">
+    ListAuthorizedUsersResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listownersrequest" class="md-nav__link">
+    ListOwnersRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listownersresponse" class="md-nav__link">
+    ListOwnersResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#owneraddedevent" class="md-nav__link">
+    OwnerAddedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removeauthorizeduserrequest" class="md-nav__link">
+    RemoveAuthorizedUserRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removeauthorizeduserresponse" class="md-nav__link">
+    RemoveAuthorizedUserResponse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coretransaction_v1_transactionsproto" class="md-nav__link">
+    coretransaction_v1_transactions.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransaction_v1_transactions.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_1" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transactions" class="md-nav__link">
+    Transactions
+  </a>
+  
+    <nav class="md-nav" aria-label="Transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listtransactions" class="md-nav__link">
+    ListTransactions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_1" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#internalaccounttransaction" class="md-nav__link">
+    InternalAccountTransaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internalaccounttransactioncreatedevent" class="md-nav__link">
+    InternalAccountTransactionCreatedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listtransactionsrequest" class="md-nav__link">
+    ListTransactionsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listtransactionsresponse" class="md-nav__link">
+    ListTransactionsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transaction" class="md-nav__link">
+    Transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactioncreatedevent" class="md-nav__link">
+    TransactionCreatedEvent
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-types" class="md-nav__link">
+    Shared types
+  </a>
+  
+    <nav class="md-nav" aria-label="Shared types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amount" class="md-nav__link">
+    Amount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balance" class="md-nav__link">
+    Balance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalar-value-types" class="md-nav__link">
+    Scalar Value Types
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coretransfer/" class="md-nav__link">
+        Core Transfers API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distribution/" class="md-nav__link">
+        Distribution API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../onboarding/" class="md-nav__link">
+        Onboarding API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payments/" class="md-nav__link">
+        Payments API (Experimental)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persfinmngt/" class="md-nav__link">
+        Personal Finance Management API (Draft)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_10">
+          Global types
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Global types" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          Global types
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/amount/" class="md-nav__link">
+        Amount
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/balance/" class="md-nav__link">
+        Balance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/errordetails/" class="md-nav__link">
+        Cross-domain error model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/phonenumber/" class="md-nav__link">
+        Phone Number
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/protectedtypes/" class="md-nav__link">
+        Protected types
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          FAQs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FAQs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          FAQs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQs/" class="md-nav__link">
+        Frequently Asked Questions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Interac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Interac" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Interac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQs/Interac/help/" class="md-nav__link">
+        Help
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Implementation Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Implementation Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Implementation Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/" class="md-nav__link">
+        Implementation Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Authentication
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Authentication" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Authentication
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Authentication/authentication/" class="md-nav__link">
+        Authentication Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Banking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Banking" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Banking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_1" type="checkbox" id="__nav_4_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_1">
+          Authorized User
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Authorized User" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Authorized User
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Banking/Authorized-User/AuthorizedUserDocumentation/" class="md-nav__link">
+        Authorized User Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_2" type="checkbox" id="__nav_4_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_2">
+          Deposit Accounts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Deposit Accounts" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Deposit Accounts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Banking/Deposit-Accounts/DepositAccountGuide/" class="md-nav__link">
+        Deposits Account Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Cards
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cards" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Cards
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Cards/corecard/" class="md-nav__link">
+        Cards Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_5">
+          Client Profile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Client Profile" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          Client Profile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Client-Profile/ClientProfileGuide/" class="md-nav__link">
+        Client Profile Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6" type="checkbox" id="__nav_4_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_6">
+          Fraud And Customer Service
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Fraud And Customer Service" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_6">
+          <span class="md-nav__icon md-icon"></span>
+          Fraud And Customer Service
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/complaints/" class="md-nav__link">
+        Complaint Handling Policy and Procedures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/customer-service/" class="md-nav__link">
+        Customer Support Inquiry Flow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/customer_support_guide/" class="md-nav__link">
+        Customer Support Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/disputes/" class="md-nav__link">
+        Customer Initiated Transaction Disputes
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_7" type="checkbox" id="__nav_4_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_7">
+          Legal And Regulatory Compliance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Legal And Regulatory Compliance" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          Legal And Regulatory Compliance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/" class="md-nav__link">
+        Legal and Regulatory Compliance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/financial_services_regulations/" class="md-nav__link">
+        Financial Services Regulations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_account_fee_guide_and_agreement/" class="md-nav__link">
+        Finaptic Account Fee Guide and Agreement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_app_terms_of_use/" class="md-nav__link">
+        Finaptic App Terms of Use
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_electronic_communications_agreement/" class="md-nav__link">
+        Finaptic electronic communications agreement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_privacy_policy/" class="md-nav__link">
+        Finaptic Privacy Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/legal_compliance_on_screen/" class="md-nav__link">
+        Legal and Compliance On Screen Requirements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/restricted_industries/" class="md-nav__link">
+        Restricted industries
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_8" type="checkbox" id="__nav_4_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_8">
+          Onboarding
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Onboarding" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_8">
+          <span class="md-nav__icon md-icon"></span>
+          Onboarding
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingDocumentation/" class="md-nav__link">
+        Onboarding Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingSequenceDoc/" class="md-nav__link">
+        Onboarding Sequence Diagram
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingTestProfiles/" class="md-nav__link">
+        Test profiles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/" class="md-nav__link">
+        Productless Onboarding
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_9" type="checkbox" id="__nav_4_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_9">
+          Personal Financial Management
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Personal Financial Management" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_9">
+          <span class="md-nav__icon md-icon"></span>
+          Personal Financial Management
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Personal-Financial-Management/" class="md-nav__link">
+        PFM Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_10" type="checkbox" id="__nav_4_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_10">
+          Transactions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transactions" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_10">
+          <span class="md-nav__icon md-icon"></span>
+          Transactions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transactions/transactions/" class="md-nav__link">
+        Transactions Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11" type="checkbox" id="__nav_4_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11">
+          Transfers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transfers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_11">
+          <span class="md-nav__icon md-icon"></span>
+          Transfers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_1" type="checkbox" id="__nav_4_11_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_1">
+          EFT
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="EFT" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_1">
+          <span class="md-nav__icon md-icon"></span>
+          EFT
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/EFT/electronicfundstransfer/" class="md-nav__link">
+        Electronic Funds Transfer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_2" type="checkbox" id="__nav_4_11_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_2">
+          Interac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Interac" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_2">
+          <span class="md-nav__icon md-icon"></span>
+          Interac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/Interac/autodeposit/" class="md-nav__link">
+        Auto-Deposit Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_3" type="checkbox" id="__nav_4_11_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_3">
+          Internal Transfers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Internal Transfers" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_3">
+          <span class="md-nav__icon md-icon"></span>
+          Internal Transfers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/Internal%20Transfers/Internal%20Transfers/" class="md-nav__link">
+        Internal Transfers Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          SDK Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SDK Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          SDK Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/" class="md-nav__link">
+        SDK Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/android-sdk/" class="md-nav__link">
+        Finaptic Android SDK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/ios-sdk/" class="md-nav__link">
+        Finaptic iOS SDK
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Systems and Security
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Systems and Security" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Systems and Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/" class="md-nav__link">
+        Systems and Security Requirements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/partner_app_accreditation/" class="md-nav__link">
+        Partner Application Accreditation Process and App Security Checklist
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/security_requirements/" class="md-nav__link">
+        Security Requirements for Partners
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/vulnerability_disclosure/" class="md-nav__link">
+        Vulnerability Disclosure
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#coretransaction_v1_accountsproto" class="md-nav__link">
+    coretransaction_v1_accounts.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransaction_v1_accounts.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#accounts" class="md-nav__link">
+    Accounts
+  </a>
+  
+    <nav class="md-nav" aria-label="Accounts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listaccounts" class="md-nav__link">
+    ListAccounts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getaccount" class="md-nav__link">
+    GetAccount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listauthorizedusers" class="md-nav__link">
+    ListAuthorizedUsers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listowners" class="md-nav__link">
+    ListOwners
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#account" class="md-nav__link">
+    Account
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addauthorizeduserrequest" class="md-nav__link">
+    AddAuthorizedUserRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addauthorizeduserresponse" class="md-nav__link">
+    AddAuthorizedUserResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addownerrequest" class="md-nav__link">
+    AddOwnerRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#addownerresponse" class="md-nav__link">
+    AddOwnerResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduseraddedevent" class="md-nav__link">
+    AuthorizedUserAddedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserremovedevent" class="md-nav__link">
+    AuthorizedUserRemovedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getaccountrequest" class="md-nav__link">
+    GetAccountRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listaccountsrequest" class="md-nav__link">
+    ListAccountsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listaccountsresponse" class="md-nav__link">
+    ListAccountsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listauthorizedusersrequest" class="md-nav__link">
+    ListAuthorizedUsersRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listauthorizedusersresponse" class="md-nav__link">
+    ListAuthorizedUsersResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listownersrequest" class="md-nav__link">
+    ListOwnersRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listownersresponse" class="md-nav__link">
+    ListOwnersResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#owneraddedevent" class="md-nav__link">
+    OwnerAddedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removeauthorizeduserrequest" class="md-nav__link">
+    RemoveAuthorizedUserRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#removeauthorizeduserresponse" class="md-nav__link">
+    RemoveAuthorizedUserResponse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coretransaction_v1_transactionsproto" class="md-nav__link">
+    coretransaction_v1_transactions.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="coretransaction_v1_transactions.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_1" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transactions" class="md-nav__link">
+    Transactions
+  </a>
+  
+    <nav class="md-nav" aria-label="Transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listtransactions" class="md-nav__link">
+    ListTransactions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_1" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#internalaccounttransaction" class="md-nav__link">
+    InternalAccountTransaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#internalaccounttransactioncreatedevent" class="md-nav__link">
+    InternalAccountTransactionCreatedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listtransactionsrequest" class="md-nav__link">
+    ListTransactionsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listtransactionsresponse" class="md-nav__link">
+    ListTransactionsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transaction" class="md-nav__link">
+    Transaction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transactioncreatedevent" class="md-nav__link">
+    TransactionCreatedEvent
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-types" class="md-nav__link">
+    Shared types
+  </a>
+  
+    <nav class="md-nav" aria-label="Shared types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amount" class="md-nav__link">
+    Amount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balance" class="md-nav__link">
+    Balance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalar-value-types" class="md-nav__link">
+    Scalar Value Types
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="core-transaction-api">Core Transaction API<a class="headerlink" href="#core-transaction-api" title="Permanent link">&para;</a></h1>
+<p><a name="top"></a></p>
+<p><a name="coretransaction_v1_accounts.proto"></a></p>
+<h2 id="coretransaction_v1_accountsproto">coretransaction_v1_accounts.proto<a class="headerlink" href="#coretransaction_v1_accountsproto" title="Permanent link">&para;</a></h2>
+<h3 id="services">Services<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.coretransaction.v1.Accounts"></a></p>
+<h4 id="accounts">Accounts<a class="headerlink" href="#accounts" title="Permanent link">&para;</a></h4>
+<p>Accounts service exposes endpoints related to listing and retrieving Accounts.</p>
+<h5 id="listaccounts">ListAccounts<a class="headerlink" href="#listaccounts" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> ListAccounts(<a href="#thebaasco.tenant.coretransaction.v1.ListAccountsRequest">ListAccountsRequest</a>)
+<a href="#thebaasco.tenant.coretransaction.v1.ListAccountsResponse">ListAccountsResponse</a></p>
+</blockquote>
+<p>ListAccounts lists all accounts on which the current user is the owner, or an authorized user. This endpoint uses pagination to allow listing accounts in smaller, easy to manage, chunks.</p>
+<h5 id="getaccount">GetAccount<a class="headerlink" href="#getaccount" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> GetAccount(<a href="#thebaasco.tenant.coretransaction.v1.GetAccountRequest">GetAccountRequest</a>)
+<a href="#thebaasco.tenant.coretransaction.v1.Account">Account</a></p>
+</blockquote>
+<p>GetAccount retrieves an Account. The user must have proper access to the Account.</p>
+<h5 id="listauthorizedusers">ListAuthorizedUsers<a class="headerlink" href="#listauthorizedusers" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> ListAuthorizedUsers(<a href="#thebaasco.tenant.coretransaction.v1.ListAuthorizedUsersRequest">ListAuthorizedUsersRequest</a>)
+<a href="#thebaasco.tenant.coretransaction.v1.ListAuthorizedUsersResponse">ListAuthorizedUsersResponse</a></p>
+</blockquote>
+<p>ListAuthorizedUsers lists all authorized users of an account if the caller as the access rights.</p>
+<h5 id="listowners">ListOwners<a class="headerlink" href="#listowners" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> ListOwners(<a href="#thebaasco.tenant.coretransaction.v1.ListOwnersRequest">ListOwnersRequest</a>)
+<a href="#thebaasco.tenant.coretransaction.v1.ListOwnersResponse">ListOwnersResponse</a></p>
+</blockquote>
+<p>ListOwners lists all owners of an account if the caller as the access rights.</p>
+<!-- end services -->
+
+<h3 id="api-specific-types">API-specific types<a class="headerlink" href="#api-specific-types" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.coretransaction.v1.Account"></a></p>
+<h4 id="account">Account<a class="headerlink" href="#account" title="Permanent link">&para;</a></h4>
+<p>Account represents generic details about a given Account. This notion of Account is shared across all types of Accounts, from any domains ( e.g. Core-Banking, ... ).</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of the Account. This ID can be used to retrieve the Account. This will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>balance</td>
+<td><a href="#thebaasco.types.Balance">thebaasco.types.Balance</a></td>
+<td></td>
+<td>The current balance of the Account.</td>
+</tr>
+<tr>
+<td>name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The display name of the Account.</td>
+</tr>
+<tr>
+<td>source_domain</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The source domain which created the Account (eg: core-banking).</td>
+</tr>
+<tr>
+<td>owners</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td>The owners of the Account. This will always be a list of valid UUID.</td>
+</tr>
+<tr>
+<td>authorized_users</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td>The list authorized users of the Account. Each item in the list will be a valid UUID.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.AddAuthorizedUserRequest"></a></p>
+<h4 id="addauthorizeduserrequest">AddAuthorizedUserRequest<a class="headerlink" href="#addauthorizeduserrequest" title="Permanent link">&para;</a></h4>
+<p>AddAuthorizedUserRequest is used to add an authorized user to the provided Account.
+Performing this operation will generate an asynchronous response of type AddAuthorizedUserResponse, on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account where the authorized is added. The value must be a valid UUID, and current user must be owner of the Account.</td>
+</tr>
+<tr>
+<td>authorized_user</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the authorized user to add to the Account. The value must be a valid UUID, from an onboarded Customer.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.AddAuthorizedUserResponse"></a></p>
+<h4 id="addauthorizeduserresponse">AddAuthorizedUserResponse<a class="headerlink" href="#addauthorizeduserresponse" title="Permanent link">&para;</a></h4>
+<p>AddAuthorizedUserResponse is the response to a AddAuthorizedUserRequest. It provides the Updated list of authorized users.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>authorized_users</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td>The resulting list of authorized users of the Account, including the newly added one. Each item in the list will be a valid UUID.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.AddOwnerRequest"></a></p>
+<h4 id="addownerrequest">AddOwnerRequest<a class="headerlink" href="#addownerrequest" title="Permanent link">&para;</a></h4>
+<p>AddOwnerRequest is used to add an owner to the provided Account.
+Performing this operation will generate an asynchronous response of type AddOwnerResponse, on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account where the owner is added. The value must be a valid UUID, and current user must be owner of the Account.</td>
+</tr>
+<tr>
+<td>owner</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the owner to add to the Account. The value must be a valid UUID, from an onboarded Customer.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.AddOwnerResponse"></a></p>
+<h4 id="addownerresponse">AddOwnerResponse<a class="headerlink" href="#addownerresponse" title="Permanent link">&para;</a></h4>
+<p>AddOwnerResponse is the response to a AddOwnerRequest. It provides the Updated list of owners.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>owners</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td>The resulting list of owners of the Account, including the newly added one. Each item in the list will be a valid UUID.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.AuthorizedUserAddedEvent"></a></p>
+<h4 id="authorizeduseraddedevent">AuthorizedUserAddedEvent<a class="headerlink" href="#authorizeduseraddedevent" title="Permanent link">&para;</a></h4>
+<p>AuthorizedUserAddedEvent is an event raised when adding an authorized user to an account.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account where the authorized user was added. This will be a valid UUID.</td>
+</tr>
+<tr>
+<td>authorized_user_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the authorized user added to the Account. This will be a valid UUID.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The tenant ID, to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp at which the authorized user was added to the Account.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.AuthorizedUserRemovedEvent"></a></p>
+<h4 id="authorizeduserremovedevent">AuthorizedUserRemovedEvent<a class="headerlink" href="#authorizeduserremovedevent" title="Permanent link">&para;</a></h4>
+<p>AuthorizedUserRemovedEvent is an event raised when removing an authorized user from an account.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account where the authorized user was added. This will be a valid UUID.</td>
+</tr>
+<tr>
+<td>authorized_user_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the authorized user added to the Account. This will be a valid UUID.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The tenant ID, to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp at which the authorized user was added to the Account.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.GetAccountRequest"></a></p>
+<h4 id="getaccountrequest">GetAccountRequest<a class="headerlink" href="#getaccountrequest" title="Permanent link">&para;</a></h4>
+<p>GetAccountRequest is a message passed as parameter to the GetAccount operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account to retrieve. The value must be a valid UUID, and current user must have proper access.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.ListAccountsRequest"></a></p>
+<h4 id="listaccountsrequest">ListAccountsRequest<a class="headerlink" href="#listaccountsrequest" title="Permanent link">&para;</a></h4>
+<p>ListAccountsRequest is a message passed as parameter to the ListAccounts operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>page_size</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The maximum number of Accounts to retrieve as part of this request. This value needs to be superior, or equal to 1.</td>
+</tr>
+<tr>
+<td>page_token</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>When retrieving a page other than the initial page, the value for the page_token must be specified, and taken from the previous page's next_page_token value (see ListAccountsResponse). When no value is specified, then the initial page will be returned.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.ListAccountsResponse"></a></p>
+<h4 id="listaccountsresponse">ListAccountsResponse<a class="headerlink" href="#listaccountsresponse" title="Permanent link">&para;</a></h4>
+<p>ListAccountsResponse is a message returned in response to the ListAccounts operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>accounts</td>
+<td><a href="#thebaasco.tenant.coretransaction.v1.Account">Account</a></td>
+<td>repeated</td>
+<td>The requested list of Accounts.</td>
+</tr>
+<tr>
+<td>next_page_token</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The token to be used to retrieve the next page of data. Must be passed in the page_token field of the next request (see ListAccountsRequest). When no value is returned in this field, then no further data exists to be listed.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.ListAuthorizedUsersRequest"></a></p>
+<h4 id="listauthorizedusersrequest">ListAuthorizedUsersRequest<a class="headerlink" href="#listauthorizedusersrequest" title="Permanent link">&para;</a></h4>
+<p>ListAuthorizedUsersRequest is a message passed as parameter to the ListAuthorizedUsers operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account for which the authorized users are to be listed. Must be a valid UUID.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.ListAuthorizedUsersResponse"></a></p>
+<h4 id="listauthorizedusersresponse">ListAuthorizedUsersResponse<a class="headerlink" href="#listauthorizedusersresponse" title="Permanent link">&para;</a></h4>
+<p>ListAuthorizedUsersResponse is a message returned in response to the ListAuthorizedUsers operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>authorized_users</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td>The requested list of authorized users ids. Each item in the list will be a valid UUID.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.ListOwnersRequest"></a></p>
+<h4 id="listownersrequest">ListOwnersRequest<a class="headerlink" href="#listownersrequest" title="Permanent link">&para;</a></h4>
+<p>ListOwnersRequest is a message passed as parameter to the ListOwners operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account for which the owners are to be listed. Must be a valid UUID.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.ListOwnersResponse"></a></p>
+<h4 id="listownersresponse">ListOwnersResponse<a class="headerlink" href="#listownersresponse" title="Permanent link">&para;</a></h4>
+<p>ListOwnersResponse is a message returned in response to the ListOwners operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>owners</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td>The requested list of owners ids. Each item in the list will be a valid UUID.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.OwnerAddedEvent"></a></p>
+<h4 id="owneraddedevent">OwnerAddedEvent<a class="headerlink" href="#owneraddedevent" title="Permanent link">&para;</a></h4>
+<p>OwnerAddedEvent is an event raised when adding an owner to an account.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account where the owner was added. This will be a valid UUID.</td>
+</tr>
+<tr>
+<td>owner_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the owner added to the Account. This will be a valid UUID.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The tenant ID, to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp at which the owner was added to the Account.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.RemoveAuthorizedUserRequest"></a></p>
+<h4 id="removeauthorizeduserrequest">RemoveAuthorizedUserRequest<a class="headerlink" href="#removeauthorizeduserrequest" title="Permanent link">&para;</a></h4>
+<p>RemoveAuthorizedUserRequest is used to remove an authorized user from the provided Account.
+Performing this operation will generate an asynchronous response of type RemoveAuthorizedUserResponse, on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account where the authorized is removed from. The value must be a valid UUID, and current user must be owner of the Account. The current user must have remove:authorized_user scope</td>
+</tr>
+<tr>
+<td>authorized_user</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the authorized user to add to the Account. The value must be a valid UUID, from an onboarded Customer.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.RemoveAuthorizedUserResponse"></a></p>
+<h4 id="removeauthorizeduserresponse">RemoveAuthorizedUserResponse<a class="headerlink" href="#removeauthorizeduserresponse" title="Permanent link">&para;</a></h4>
+<p>RemoveAuthorizedUserResponse is the response to a RemoveAuthorizedUserRequest. It provides the Updated list of authorized users.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>authorized_users</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td>The resulting list of authorized users of the Account. Each item in the list will be a valid UUID.</td>
+</tr>
+</tbody>
+</table>
+<!-- end messages -->
+
+<p><a name="coretransaction_v1_transactions.proto"></a></p>
+<h2 id="coretransaction_v1_transactionsproto">coretransaction_v1_transactions.proto<a class="headerlink" href="#coretransaction_v1_transactionsproto" title="Permanent link">&para;</a></h2>
+<h3 id="services_1">Services<a class="headerlink" href="#services_1" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.coretransaction.v1.Transactions"></a></p>
+<h4 id="transactions">Transactions<a class="headerlink" href="#transactions" title="Permanent link">&para;</a></h4>
+<p>Transactions service exposes operations related to listing and retrieving details for Transactions.</p>
+<h5 id="listtransactions">ListTransactions<a class="headerlink" href="#listtransactions" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> ListTransactions(<a href="#thebaasco.tenant.coretransaction.v1.ListTransactionsRequest">ListTransactionsRequest</a>)
+<a href="#thebaasco.tenant.coretransaction.v1.ListTransactionsResponse">ListTransactionsResponse</a></p>
+</blockquote>
+<p>ListTransactions lists Transactions associated to the Account specified using pagination. The current user must be an authorized user of the Account to invoke this endpoint.
+Transactions are sorted in descending order of Transaction time. It is possible for this endpoint to return less than the number of items requested by the page_size field of
+the ListTransactionsRequest parameters ( including returning a page containing 0 items ). It is important that consumers of this API use the next_page_token field of the ListTransactionsResponse object
+to determine if more data is available or not, as such cases are not abnormal for this endpoint.</p>
+<!-- end services -->
+
+<h3 id="api-specific-types_1">API-specific types<a class="headerlink" href="#api-specific-types_1" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.coretransaction.v1.InternalAccountTransaction"></a></p>
+<h4 id="internalaccounttransaction">InternalAccountTransaction<a class="headerlink" href="#internalaccounttransaction" title="Permanent link">&para;</a></h4>
+<p>InternalAccountTransaction represents the elements common to any internal Transaction.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents this single financial transaction (operation). This ID is stable across all domains for a given transaction.</td>
+</tr>
+<tr>
+<td>lifecycle_transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the overarching Transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...). Note: there might be multiple unique "transaction_id" for a single "lifecycle_transaction_id".</td>
+</tr>
+<tr>
+<td>internal_account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID that correlates to the the Internal Account on which the Transaction occurred.</td>
+</tr>
+<tr>
+<td>transaction_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp at which the Transaction occurred.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td><a href="#thebaasco.types.Amount">thebaasco.types.Amount</a></td>
+<td></td>
+<td>The amount of the Transaction. If the amount is negative, then the transaction is a debit. If the amount if positive, the transaction is a credit.</td>
+</tr>
+<tr>
+<td>initiating_domain</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The name of the domain that can be queried for additional details regarding this Transaction (e.g. core-card, core-transfer or core-banking)</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.InternalAccountTransactionCreatedEvent"></a></p>
+<h4 id="internalaccounttransactioncreatedevent">InternalAccountTransactionCreatedEvent<a class="headerlink" href="#internalaccounttransactioncreatedevent" title="Permanent link">&para;</a></h4>
+<p>InternalAccountTransactionCreatedEvent is an event raised when a Transaction occurs on a given Internal Account.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>transaction</td>
+<td><a href="#thebaasco.tenant.coretransaction.v1.InternalAccountTransaction">InternalAccountTransaction</a></td>
+<td></td>
+<td>The InternalAccountTransaction that caused the event.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The tenant ID, to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.ListTransactionsRequest"></a></p>
+<h4 id="listtransactionsrequest">ListTransactionsRequest<a class="headerlink" href="#listtransactionsrequest" title="Permanent link">&para;</a></h4>
+<p>ListTransactionsRequest is a message passed as parameter to the ListTransactions operation. Refer to ListTransactions operation for more details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account to list Transactions for. This value must be a valid UUID, and user must have proper access to the Account.</td>
+</tr>
+<tr>
+<td>from</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp from which to list Transactions.</td>
+</tr>
+<tr>
+<td>to</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp until which to list Transactions.</td>
+</tr>
+<tr>
+<td>page_size</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The maximum number of Transactions to retrieve as part of this request. This value needs to be superior, or equal to 1.</td>
+</tr>
+<tr>
+<td>page_token</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>When retrieving page other than the initial page, the value for the page_token must be specified, and taken from the previous page's next_page_token value (see ListTransactionsResponse). When no value is specified, then the initial page will be returned.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.ListTransactionsResponse"></a></p>
+<h4 id="listtransactionsresponse">ListTransactionsResponse<a class="headerlink" href="#listtransactionsresponse" title="Permanent link">&para;</a></h4>
+<p>ListTransactionsResponse is a message returned in response to the ListTransactions operation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transactions</td>
+<td><a href="#thebaasco.tenant.coretransaction.v1.Transaction">Transaction</a></td>
+<td>repeated</td>
+<td>The requested list of Transactions.</td>
+</tr>
+<tr>
+<td>next_page_token</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The token to be used to retrieve the next page of data. Must be passed in the page_token field of the next request (see ListTransactionsRequest). When no value is returned in this field, then no further data exists to be listed.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.Transaction"></a></p>
+<h4 id="transaction">Transaction<a class="headerlink" href="#transaction" title="Permanent link">&para;</a></h4>
+<p>Transaction represents the elements common to any Transaction.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents this single financial transaction (operation). This ID is stable across all domains for a given transaction.</td>
+</tr>
+<tr>
+<td>lifecycle_transaction_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Unique identifier that represents the overarching Transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...). Note: there might be multiple unique "transaction_id" for a single "lifecycle_transaction_id".</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the Account on which the Transaction occurred. This will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>transaction_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp at which the Transaction was inserted to the postings ledger</td>
+</tr>
+<tr>
+<td>amount</td>
+<td><a href="#thebaasco.types.Amount">thebaasco.types.Amount</a></td>
+<td></td>
+<td>The amount of the Transaction. If the amount is negative, then the transaction is a debit. If the amount if positive, the transaction is a credit.</td>
+</tr>
+<tr>
+<td>balance</td>
+<td><a href="#thebaasco.types.Balance">thebaasco.types.Balance</a></td>
+<td></td>
+<td>The resulting Balance of the Account after the Transaction has been processed. Warning: This value does not reflect the current Balance of the Account, just the balance following the transaction (since more recent Transactions might have occurred that also impacted the Account's balance)</td>
+</tr>
+<tr>
+<td>account_domain</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The name of the domain that can be queried for additional details regarding the Account of this transaction (e.g. core-banking)</td>
+</tr>
+<tr>
+<td>initiating_domain</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The name of the domain that can be queried for additional details regarding this Transaction (e.g. core-card, core-transfer or core-banking)</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.coretransaction.v1.TransactionCreatedEvent"></a></p>
+<h4 id="transactioncreatedevent">TransactionCreatedEvent<a class="headerlink" href="#transactioncreatedevent" title="Permanent link">&para;</a></h4>
+<p>TransactionCreatedEvent is an event raised when a Transaction occurs on a given Account.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>transaction</td>
+<td><a href="#thebaasco.tenant.coretransaction.v1.Transaction">Transaction</a></td>
+<td></td>
+<td>The Transaction that caused the event.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The tenant ID, to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+</tbody>
+</table>
+<!-- end messages -->
+
+<h2 id="shared-types">Shared types<a class="headerlink" href="#shared-types" title="Permanent link">&para;</a></h2>
+<p><a name="thebaasco.types.Amount"></a></p>
+<h3 id="amount">Amount<a class="headerlink" href="#amount" title="Permanent link">&para;</a></h3>
+<p><a href="../Global-types/amount/#amount_1">Global types / Amount</a></p>
+<p><a name="thebaasco.types.Balance"></a></p>
+<h3 id="balance">Balance<a class="headerlink" href="#balance" title="Permanent link">&para;</a></h3>
+<p><a href="../Global-types/balance/#balance">Global types / Balance</a></p>
+<h2 id="scalar-value-types">Scalar Value Types<a class="headerlink" href="#scalar-value-types" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>.proto Type</th>
+<th>Notes</th>
+<th>C++</th>
+<th>Java</th>
+<th>Python</th>
+<th>Go</th>
+<th>C#</th>
+<th>PHP</th>
+<th>Ruby</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a name="double" /> double</td>
+<td></td>
+<td>double</td>
+<td>double</td>
+<td>float</td>
+<td>float64</td>
+<td>double</td>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td><a name="float" /> float</td>
+<td></td>
+<td>float</td>
+<td>float</td>
+<td>float</td>
+<td>float32</td>
+<td>float</td>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td><a name="int32" /> int32</td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="int64" /> int64</td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="uint32" /> uint32</td>
+<td>Uses variable-length encoding.</td>
+<td>uint32</td>
+<td>int</td>
+<td>int/long</td>
+<td>uint32</td>
+<td>uint</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="uint64" /> uint64</td>
+<td>Uses variable-length encoding.</td>
+<td>uint64</td>
+<td>long</td>
+<td>int/long</td>
+<td>uint64</td>
+<td>ulong</td>
+<td>integer/string</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sint32" /> sint32</td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sint64" /> sint64</td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="fixed32" /> fixed32</td>
+<td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+<td>uint32</td>
+<td>int</td>
+<td>int</td>
+<td>uint32</td>
+<td>uint</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="fixed64" /> fixed64</td>
+<td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+<td>uint64</td>
+<td>long</td>
+<td>int/long</td>
+<td>uint64</td>
+<td>ulong</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="sfixed32" /> sfixed32</td>
+<td>Always four bytes.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sfixed64" /> sfixed64</td>
+<td>Always eight bytes.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="bool" /> bool</td>
+<td></td>
+<td>bool</td>
+<td>boolean</td>
+<td>boolean</td>
+<td>bool</td>
+<td>bool</td>
+<td>boolean</td>
+<td>TrueClass/FalseClass</td>
+</tr>
+<tr>
+<td><a name="string" /> string</td>
+<td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+<td>string</td>
+<td>String</td>
+<td>str/unicode</td>
+<td>string</td>
+<td>string</td>
+<td>string</td>
+<td>String (UTF-8)</td>
+</tr>
+<tr>
+<td><a name="bytes" /> bytes</td>
+<td>May contain any arbitrary sequence of bytes.</td>
+<td>string</td>
+<td>ByteString</td>
+<td>str</td>
+<td>[]byte</td>
+<td>ByteString</td>
+<td>string</td>
+<td>String (ASCII-8BIT)</td>
+</tr>
+</tbody>
+</table>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../corecard/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Core Card API" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Core Card API
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../coretransfer/" class="md-footer__link md-footer__link--next" aria-label="Next: Core Transfers API" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Core Transfers API
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/finaptic" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+    
+  </body>
+</html>

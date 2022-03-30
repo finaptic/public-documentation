@@ -1,0 +1,6291 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.finaptic.dev/API-Specifications/onboarding/">
+      
+      <link rel="icon" href="../../images/logo.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
+    
+    
+      
+        <title>Onboarding API - Finaptic Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.644de097.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Assistant:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Assistant";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="finaptic" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#onboarding-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://finaptic.com" title="Finaptic Documentation" class="md-header__button md-logo" aria-label="Finaptic Documentation" data-md-component="logo">
+      
+  <img src="../../images/FinapticLogo_F_White.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Finaptic Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Onboarding API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Introduction & Overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../clientinformation/" class="md-tabs__link md-tabs__link--active">
+        API Specifications
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../FAQs/" class="md-tabs__link">
+        FAQs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Implementation-Guide/" class="md-tabs__link">
+        Implementation Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../SDK-Guide/" class="md-tabs__link">
+        SDK Guide
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Systems-and-Security/" class="md-tabs__link">
+        Systems and Security
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://finaptic.com" title="Finaptic Documentation" class="md-nav__button md-logo" aria-label="Finaptic Documentation" data-md-component="logo">
+      
+  <img src="../../images/FinapticLogo_F_White.png" alt="logo">
+
+    </a>
+    Finaptic Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Introduction & Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          API Specifications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API Specifications" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          API Specifications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clientinformation/" class="md-nav__link">
+        Client Profile API (Draft)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corebanking/" class="md-nav__link">
+        Core Banking API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corecard/" class="md-nav__link">
+        Core Card API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coretransaction/" class="md-nav__link">
+        Core Transaction API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coretransfer/" class="md-nav__link">
+        Core Transfers API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distribution/" class="md-nav__link">
+        Distribution API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Onboarding API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Onboarding API
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#authorizedusers_v1proto" class="md-nav__link">
+    authorizedusers_v1.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="authorizedusers_v1.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorizedusers" class="md-nav__link">
+    AuthorizedUsers
+  </a>
+  
+    <nav class="md-nav" aria-label="AuthorizedUsers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getinvitations" class="md-nav__link">
+    GetInvitations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums" class="md-nav__link">
+    Enums
+  </a>
+  
+    <nav class="md-nav" aria-label="Enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserinvitationstatus" class="md-nav__link">
+    AuthorizedUserInvitationStatus
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acceptauthorizeduserinvitationrequest" class="md-nav__link">
+    AcceptAuthorizedUserInvitationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceptauthorizeduserinvitationrequestinvitationmetadataentry" class="md-nav__link">
+    AcceptAuthorizedUserInvitationRequest.InvitationMetadataEntry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceptauthorizeduserinvitationresponse" class="md-nav__link">
+    AcceptAuthorizedUserInvitationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserinvitation" class="md-nav__link">
+    AuthorizedUserInvitation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserinvitationinvitationmetadataentry" class="md-nav__link">
+    AuthorizedUserInvitation.InvitationMetadataEntry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserinvitationacceptedordeclinedevent" class="md-nav__link">
+    AuthorizedUserInvitationAcceptedOrDeclinedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserinvitationconfirmedevent" class="md-nav__link">
+    AuthorizedUserInvitationConfirmedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserinvitationissuedevent" class="md-nav__link">
+    AuthorizedUserInvitationIssuedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmauthorizeduserinvitationrequest" class="md-nav__link">
+    ConfirmAuthorizedUserInvitationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmauthorizeduserinvitationresponse" class="md-nav__link">
+    ConfirmAuthorizedUserInvitationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declineauthorizeduserinvitationrequest" class="md-nav__link">
+    DeclineAuthorizedUserInvitationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declineauthorizeduserinvitationrequestinvitationmetadataentry" class="md-nav__link">
+    DeclineAuthorizedUserInvitationRequest.InvitationMetadataEntry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declineauthorizeduserinvitationresponse" class="md-nav__link">
+    DeclineAuthorizedUserInvitationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getauthorizeduserinvitationsrequest" class="md-nav__link">
+    GetAuthorizedUserInvitationsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getauthorizeduserinvitationsresponse" class="md-nav__link">
+    GetAuthorizedUserInvitationsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inviteauthorizeduserrequest" class="md-nav__link">
+    InviteAuthorizedUserRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inviteauthorizeduserrequestinvitationmetadataentry" class="md-nav__link">
+    InviteAuthorizedUserRequest.InvitationMetadataEntry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inviteauthorizeduserresponse" class="md-nav__link">
+    InviteAuthorizedUserResponse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onboarding_v1proto" class="md-nav__link">
+    onboarding_v1.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="onboarding_v1.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_1" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#onboarding" class="md-nav__link">
+    Onboarding
+  </a>
+  
+    <nav class="md-nav" aria-label="Onboarding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getapplicationstatus" class="md-nav__link">
+    GetApplicationStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createfileuploadurl" class="md-nav__link">
+    CreateFileUploadURL
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_1" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acceptapplicationrequest" class="md-nav__link">
+    AcceptApplicationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceptapplicationresponse" class="md-nav__link">
+    AcceptApplicationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accountusagedetails" class="md-nav__link">
+    AccountUsageDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address" class="md-nav__link">
+    Address
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancelapplicationrequest" class="md-nav__link">
+    CancelApplicationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancelapplicationresponse" class="md-nav__link">
+    CancelApplicationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communicationpreferencedetails" class="md-nav__link">
+    CommunicationPreferenceDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consent" class="md-nav__link">
+    Consent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contactdetails" class="md-nav__link">
+    ContactDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createfileuploadurlrequest" class="md-nav__link">
+    CreateFileUploadUrlRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createfileuploadurlresponse" class="md-nav__link">
+    CreateFileUploadUrlResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customerresidency" class="md-nav__link">
+    CustomerResidency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disclosure" class="md-nav__link">
+    Disclosure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentinfo" class="md-nav__link">
+    DocumentInfo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#employment" class="md-nav__link">
+    Employment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finalizeapplicationcreatecustomerrequest" class="md-nav__link">
+    FinalizeApplicationCreateCustomerRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finalizeapplicationcreatecustomerresponse" class="md-nav__link">
+    FinalizeApplicationCreateCustomerResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finalizeapplicationcreateproductrequest" class="md-nav__link">
+    FinalizeApplicationCreateProductRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finalizeapplicationcreateproductresponse" class="md-nav__link">
+    FinalizeApplicationCreateProductResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getapplicationstatusrequest" class="md-nav__link">
+    GetApplicationStatusRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getapplicationstatusresponse" class="md-nav__link">
+    GetApplicationStatusResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identificationdocument" class="md-nav__link">
+    IdentificationDocument
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initiateapplicationrequest" class="md-nav__link">
+    InitiateApplicationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initiateapplicationresponse" class="md-nav__link">
+    InitiateApplicationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardedproduct" class="md-nav__link">
+    OnboardedProduct
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplication" class="md-nav__link">
+    OnboardingApplication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplicationcanceledevent" class="md-nav__link">
+    OnboardingApplicationCanceledEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplicationcustomeronboardedevent" class="md-nav__link">
+    OnboardingApplicationCustomerOnboardedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplicationdataconfirmedevent" class="md-nav__link">
+    OnboardingApplicationDataConfirmedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplicationkycfailedevent" class="md-nav__link">
+    OnboardingApplicationKYCFailedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplicationproductonboardedevent" class="md-nav__link">
+    OnboardingApplicationProductOnboardedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplicationrejectedevent" class="md-nav__link">
+    OnboardingApplicationRejectedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingoperationresponsedetails" class="md-nav__link">
+    OnboardingOperationResponseDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingverification" class="md-nav__link">
+    OnboardingVerification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otherresidence" class="md-nav__link">
+    OtherResidence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#personaldetails" class="md-nav__link">
+    PersonalDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#termsandconditions" class="md-nav__link">
+    TermsAndConditions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateaccountdetailsrequest" class="md-nav__link">
+    UpdateAccountDetailsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateaccountdetailsresponse" class="md-nav__link">
+    UpdateAccountDetailsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateaddressesrequest" class="md-nav__link">
+    UpdateAddressesRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateaddressesresponse" class="md-nav__link">
+    UpdateAddressesResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecommunicationpreferencesrequest" class="md-nav__link">
+    UpdateCommunicationPreferencesRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecommunicationpreferencesresponse" class="md-nav__link">
+    UpdateCommunicationPreferencesResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateconsentsrequest" class="md-nav__link">
+    UpdateConsentsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateconsentsresponse" class="md-nav__link">
+    UpdateConsentsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecontactdetailsrequest" class="md-nav__link">
+    UpdateContactDetailsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecontactdetailsresponse" class="md-nav__link">
+    UpdateContactDetailsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecustomerresidencyrequest" class="md-nav__link">
+    UpdateCustomerResidencyRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecustomerresidencyresponse" class="md-nav__link">
+    UpdateCustomerResidencyResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatedisclosuresrequest" class="md-nav__link">
+    UpdateDisclosuresRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatedisclosuresresponse" class="md-nav__link">
+    UpdateDisclosuresResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateemploymentrequest" class="md-nav__link">
+    UpdateEmploymentRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateemploymentresponse" class="md-nav__link">
+    UpdateEmploymentResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatepersonaldetailsrequest" class="md-nav__link">
+    UpdatePersonalDetailsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatepersonaldetailsresponse" class="md-nav__link">
+    UpdatePersonalDetailsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validateapplicationrequest" class="md-nav__link">
+    ValidateApplicationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validateapplicationresponse" class="md-nav__link">
+    ValidateApplicationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validatedocumentsrequest" class="md-nav__link">
+    ValidateDocumentsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validatedocumentsresponse" class="md-nav__link">
+    ValidateDocumentsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validateselfierequest" class="md-nav__link">
+    ValidateSelfieRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validateselfieresponse" class="md-nav__link">
+    ValidateSelfieResponse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-types" class="md-nav__link">
+    Shared types
+  </a>
+  
+    <nav class="md-nav" aria-label="Shared types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#protectedblob" class="md-nav__link">
+    ProtectedBlob
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protecteddate" class="md-nav__link">
+    ProtectedDate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protectedstring" class="md-nav__link">
+    ProtectedString
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phonenumber" class="md-nav__link">
+    PhoneNumber
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalar-value-types" class="md-nav__link">
+    Scalar Value Types
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payments/" class="md-nav__link">
+        Payments API (Experimental)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persfinmngt/" class="md-nav__link">
+        Personal Finance Management API (Draft)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_10" type="checkbox" id="__nav_2_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_10">
+          Global types
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Global types" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          Global types
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/amount/" class="md-nav__link">
+        Amount
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/balance/" class="md-nav__link">
+        Balance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/errordetails/" class="md-nav__link">
+        Cross-domain error model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/phonenumber/" class="md-nav__link">
+        Phone Number
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Global-types/protectedtypes/" class="md-nav__link">
+        Protected types
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          FAQs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FAQs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          FAQs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQs/" class="md-nav__link">
+        Frequently Asked Questions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Interac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Interac" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Interac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQs/Interac/help/" class="md-nav__link">
+        Help
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Implementation Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Implementation Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Implementation Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/" class="md-nav__link">
+        Implementation Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Authentication
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Authentication" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Authentication
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Authentication/authentication/" class="md-nav__link">
+        Authentication Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Banking
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Banking" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Banking
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_1" type="checkbox" id="__nav_4_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_1">
+          Authorized User
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Authorized User" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Authorized User
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Banking/Authorized-User/AuthorizedUserDocumentation/" class="md-nav__link">
+        Authorized User Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_2" type="checkbox" id="__nav_4_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_2">
+          Deposit Accounts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Deposit Accounts" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Deposit Accounts
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Banking/Deposit-Accounts/DepositAccountGuide/" class="md-nav__link">
+        Deposits Account Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Cards
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cards" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Cards
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Cards/corecard/" class="md-nav__link">
+        Cards Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_5">
+          Client Profile
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Client Profile" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          Client Profile
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Client-Profile/ClientProfileGuide/" class="md-nav__link">
+        Client Profile Guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_6" type="checkbox" id="__nav_4_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_6">
+          Fraud And Customer Service
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Fraud And Customer Service" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_6">
+          <span class="md-nav__icon md-icon"></span>
+          Fraud And Customer Service
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/complaints/" class="md-nav__link">
+        Complaint Handling Policy and Procedures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/customer-service/" class="md-nav__link">
+        Customer Support Inquiry Flow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/customer_support_guide/" class="md-nav__link">
+        Customer Support Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Fraud-And-Customer-Service/disputes/" class="md-nav__link">
+        Customer Initiated Transaction Disputes
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_7" type="checkbox" id="__nav_4_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_7">
+          Legal And Regulatory Compliance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Legal And Regulatory Compliance" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          Legal And Regulatory Compliance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/" class="md-nav__link">
+        Legal and Regulatory Compliance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/financial_services_regulations/" class="md-nav__link">
+        Financial Services Regulations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_account_fee_guide_and_agreement/" class="md-nav__link">
+        Finaptic Account Fee Guide and Agreement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_app_terms_of_use/" class="md-nav__link">
+        Finaptic App Terms of Use
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_electronic_communications_agreement/" class="md-nav__link">
+        Finaptic electronic communications agreement
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/finaptic_privacy_policy/" class="md-nav__link">
+        Finaptic Privacy Policy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/legal_compliance_on_screen/" class="md-nav__link">
+        Legal and Compliance On Screen Requirements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Legal-And-Regulatory-Compliance/restricted_industries/" class="md-nav__link">
+        Restricted industries
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_8" type="checkbox" id="__nav_4_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_8">
+          Onboarding
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Onboarding" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_8">
+          <span class="md-nav__icon md-icon"></span>
+          Onboarding
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingDocumentation/" class="md-nav__link">
+        Onboarding Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingSequenceDoc/" class="md-nav__link">
+        Onboarding Sequence Diagram
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/OnboardingTestProfiles/" class="md-nav__link">
+        Test profiles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/" class="md-nav__link">
+        Productless Onboarding
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_9" type="checkbox" id="__nav_4_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_9">
+          Personal Financial Management
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Personal Financial Management" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_9">
+          <span class="md-nav__icon md-icon"></span>
+          Personal Financial Management
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Personal-Financial-Management/" class="md-nav__link">
+        PFM Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_10" type="checkbox" id="__nav_4_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_10">
+          Transactions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transactions" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_10">
+          <span class="md-nav__icon md-icon"></span>
+          Transactions
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transactions/transactions/" class="md-nav__link">
+        Transactions Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11" type="checkbox" id="__nav_4_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11">
+          Transfers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Transfers" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_11">
+          <span class="md-nav__icon md-icon"></span>
+          Transfers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_1" type="checkbox" id="__nav_4_11_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_1">
+          EFT
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="EFT" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_1">
+          <span class="md-nav__icon md-icon"></span>
+          EFT
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/EFT/electronicfundstransfer/" class="md-nav__link">
+        Electronic Funds Transfer
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_2" type="checkbox" id="__nav_4_11_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_2">
+          Interac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Interac" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_2">
+          <span class="md-nav__icon md-icon"></span>
+          Interac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/Interac/autodeposit/" class="md-nav__link">
+        Auto-Deposit Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_11_3" type="checkbox" id="__nav_4_11_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_11_3">
+          Internal Transfers
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Internal Transfers" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_11_3">
+          <span class="md-nav__icon md-icon"></span>
+          Internal Transfers
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Implementation-Guide/Transfers/Internal%20Transfers/Internal%20Transfers/" class="md-nav__link">
+        Internal Transfers Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          SDK Guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SDK Guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          SDK Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/" class="md-nav__link">
+        SDK Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/android-sdk/" class="md-nav__link">
+        Finaptic Android SDK
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../SDK-Guide/ios-sdk/" class="md-nav__link">
+        Finaptic iOS SDK
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Systems and Security
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Systems and Security" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Systems and Security
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/" class="md-nav__link">
+        Systems and Security Requirements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/partner_app_accreditation/" class="md-nav__link">
+        Partner Application Accreditation Process and App Security Checklist
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/security_requirements/" class="md-nav__link">
+        Security Requirements for Partners
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Systems-and-Security/vulnerability_disclosure/" class="md-nav__link">
+        Vulnerability Disclosure
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#authorizedusers_v1proto" class="md-nav__link">
+    authorizedusers_v1.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="authorizedusers_v1.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorizedusers" class="md-nav__link">
+    AuthorizedUsers
+  </a>
+  
+    <nav class="md-nav" aria-label="AuthorizedUsers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getinvitations" class="md-nav__link">
+    GetInvitations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enums" class="md-nav__link">
+    Enums
+  </a>
+  
+    <nav class="md-nav" aria-label="Enums">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserinvitationstatus" class="md-nav__link">
+    AuthorizedUserInvitationStatus
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acceptauthorizeduserinvitationrequest" class="md-nav__link">
+    AcceptAuthorizedUserInvitationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceptauthorizeduserinvitationrequestinvitationmetadataentry" class="md-nav__link">
+    AcceptAuthorizedUserInvitationRequest.InvitationMetadataEntry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceptauthorizeduserinvitationresponse" class="md-nav__link">
+    AcceptAuthorizedUserInvitationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserinvitation" class="md-nav__link">
+    AuthorizedUserInvitation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserinvitationinvitationmetadataentry" class="md-nav__link">
+    AuthorizedUserInvitation.InvitationMetadataEntry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserinvitationacceptedordeclinedevent" class="md-nav__link">
+    AuthorizedUserInvitationAcceptedOrDeclinedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserinvitationconfirmedevent" class="md-nav__link">
+    AuthorizedUserInvitationConfirmedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorizeduserinvitationissuedevent" class="md-nav__link">
+    AuthorizedUserInvitationIssuedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmauthorizeduserinvitationrequest" class="md-nav__link">
+    ConfirmAuthorizedUserInvitationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#confirmauthorizeduserinvitationresponse" class="md-nav__link">
+    ConfirmAuthorizedUserInvitationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declineauthorizeduserinvitationrequest" class="md-nav__link">
+    DeclineAuthorizedUserInvitationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declineauthorizeduserinvitationrequestinvitationmetadataentry" class="md-nav__link">
+    DeclineAuthorizedUserInvitationRequest.InvitationMetadataEntry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declineauthorizeduserinvitationresponse" class="md-nav__link">
+    DeclineAuthorizedUserInvitationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getauthorizeduserinvitationsrequest" class="md-nav__link">
+    GetAuthorizedUserInvitationsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getauthorizeduserinvitationsresponse" class="md-nav__link">
+    GetAuthorizedUserInvitationsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inviteauthorizeduserrequest" class="md-nav__link">
+    InviteAuthorizedUserRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inviteauthorizeduserrequestinvitationmetadataentry" class="md-nav__link">
+    InviteAuthorizedUserRequest.InvitationMetadataEntry
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inviteauthorizeduserresponse" class="md-nav__link">
+    InviteAuthorizedUserResponse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#onboarding_v1proto" class="md-nav__link">
+    onboarding_v1.proto
+  </a>
+  
+    <nav class="md-nav" aria-label="onboarding_v1.proto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services_1" class="md-nav__link">
+    Services
+  </a>
+  
+    <nav class="md-nav" aria-label="Services">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#onboarding" class="md-nav__link">
+    Onboarding
+  </a>
+  
+    <nav class="md-nav" aria-label="Onboarding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getapplicationstatus" class="md-nav__link">
+    GetApplicationStatus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createfileuploadurl" class="md-nav__link">
+    CreateFileUploadURL
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-specific-types_1" class="md-nav__link">
+    API-specific types
+  </a>
+  
+    <nav class="md-nav" aria-label="API-specific types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#acceptapplicationrequest" class="md-nav__link">
+    AcceptApplicationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceptapplicationresponse" class="md-nav__link">
+    AcceptApplicationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accountusagedetails" class="md-nav__link">
+    AccountUsageDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#address" class="md-nav__link">
+    Address
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancelapplicationrequest" class="md-nav__link">
+    CancelApplicationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancelapplicationresponse" class="md-nav__link">
+    CancelApplicationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communicationpreferencedetails" class="md-nav__link">
+    CommunicationPreferenceDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consent" class="md-nav__link">
+    Consent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contactdetails" class="md-nav__link">
+    ContactDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createfileuploadurlrequest" class="md-nav__link">
+    CreateFileUploadUrlRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createfileuploadurlresponse" class="md-nav__link">
+    CreateFileUploadUrlResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customerresidency" class="md-nav__link">
+    CustomerResidency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disclosure" class="md-nav__link">
+    Disclosure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentinfo" class="md-nav__link">
+    DocumentInfo
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#employment" class="md-nav__link">
+    Employment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finalizeapplicationcreatecustomerrequest" class="md-nav__link">
+    FinalizeApplicationCreateCustomerRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finalizeapplicationcreatecustomerresponse" class="md-nav__link">
+    FinalizeApplicationCreateCustomerResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finalizeapplicationcreateproductrequest" class="md-nav__link">
+    FinalizeApplicationCreateProductRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finalizeapplicationcreateproductresponse" class="md-nav__link">
+    FinalizeApplicationCreateProductResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getapplicationstatusrequest" class="md-nav__link">
+    GetApplicationStatusRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getapplicationstatusresponse" class="md-nav__link">
+    GetApplicationStatusResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identificationdocument" class="md-nav__link">
+    IdentificationDocument
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initiateapplicationrequest" class="md-nav__link">
+    InitiateApplicationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initiateapplicationresponse" class="md-nav__link">
+    InitiateApplicationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardedproduct" class="md-nav__link">
+    OnboardedProduct
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplication" class="md-nav__link">
+    OnboardingApplication
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplicationcanceledevent" class="md-nav__link">
+    OnboardingApplicationCanceledEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplicationcustomeronboardedevent" class="md-nav__link">
+    OnboardingApplicationCustomerOnboardedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplicationdataconfirmedevent" class="md-nav__link">
+    OnboardingApplicationDataConfirmedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplicationkycfailedevent" class="md-nav__link">
+    OnboardingApplicationKYCFailedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplicationproductonboardedevent" class="md-nav__link">
+    OnboardingApplicationProductOnboardedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingapplicationrejectedevent" class="md-nav__link">
+    OnboardingApplicationRejectedEvent
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingoperationresponsedetails" class="md-nav__link">
+    OnboardingOperationResponseDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onboardingverification" class="md-nav__link">
+    OnboardingVerification
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otherresidence" class="md-nav__link">
+    OtherResidence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#personaldetails" class="md-nav__link">
+    PersonalDetails
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#termsandconditions" class="md-nav__link">
+    TermsAndConditions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateaccountdetailsrequest" class="md-nav__link">
+    UpdateAccountDetailsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateaccountdetailsresponse" class="md-nav__link">
+    UpdateAccountDetailsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateaddressesrequest" class="md-nav__link">
+    UpdateAddressesRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateaddressesresponse" class="md-nav__link">
+    UpdateAddressesResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecommunicationpreferencesrequest" class="md-nav__link">
+    UpdateCommunicationPreferencesRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecommunicationpreferencesresponse" class="md-nav__link">
+    UpdateCommunicationPreferencesResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateconsentsrequest" class="md-nav__link">
+    UpdateConsentsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateconsentsresponse" class="md-nav__link">
+    UpdateConsentsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecontactdetailsrequest" class="md-nav__link">
+    UpdateContactDetailsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecontactdetailsresponse" class="md-nav__link">
+    UpdateContactDetailsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecustomerresidencyrequest" class="md-nav__link">
+    UpdateCustomerResidencyRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatecustomerresidencyresponse" class="md-nav__link">
+    UpdateCustomerResidencyResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatedisclosuresrequest" class="md-nav__link">
+    UpdateDisclosuresRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatedisclosuresresponse" class="md-nav__link">
+    UpdateDisclosuresResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateemploymentrequest" class="md-nav__link">
+    UpdateEmploymentRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updateemploymentresponse" class="md-nav__link">
+    UpdateEmploymentResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatepersonaldetailsrequest" class="md-nav__link">
+    UpdatePersonalDetailsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updatepersonaldetailsresponse" class="md-nav__link">
+    UpdatePersonalDetailsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validateapplicationrequest" class="md-nav__link">
+    ValidateApplicationRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validateapplicationresponse" class="md-nav__link">
+    ValidateApplicationResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validatedocumentsrequest" class="md-nav__link">
+    ValidateDocumentsRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validatedocumentsresponse" class="md-nav__link">
+    ValidateDocumentsResponse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validateselfierequest" class="md-nav__link">
+    ValidateSelfieRequest
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validateselfieresponse" class="md-nav__link">
+    ValidateSelfieResponse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-types" class="md-nav__link">
+    Shared types
+  </a>
+  
+    <nav class="md-nav" aria-label="Shared types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#protectedblob" class="md-nav__link">
+    ProtectedBlob
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protecteddate" class="md-nav__link">
+    ProtectedDate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protectedstring" class="md-nav__link">
+    ProtectedString
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phonenumber" class="md-nav__link">
+    PhoneNumber
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalar-value-types" class="md-nav__link">
+    Scalar Value Types
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="onboarding-api">Onboarding API<a class="headerlink" href="#onboarding-api" title="Permanent link">&para;</a></h1>
+<p><a name="top"></a></p>
+<p><a name="authorizedusers_v1.proto"></a></p>
+<h2 id="authorizedusers_v1proto">authorizedusers_v1.proto<a class="headerlink" href="#authorizedusers_v1proto" title="Permanent link">&para;</a></h2>
+<h3 id="services">Services<a class="headerlink" href="#services" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.onboarding.v1.AuthorizedUsers"></a></p>
+<h4 id="authorizedusers">AuthorizedUsers<a class="headerlink" href="#authorizedusers" title="Permanent link">&para;</a></h4>
+<p>AuthorizedUsers service provides a way to retrieve information on invitations sent or received to join an account as an authorized user.</p>
+<h5 id="getinvitations">GetInvitations<a class="headerlink" href="#getinvitations" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> GetInvitations(<a href="#thebaasco.tenant.onboarding.v1.GetAuthorizedUserInvitationsRequest">GetAuthorizedUserInvitationsRequest</a>)
+<a href="#thebaasco.tenant.onboarding.v1.GetAuthorizedUserInvitationsResponse">GetAuthorizedUserInvitationsResponse</a></p>
+</blockquote>
+<p>GetInvitations returns the list of invitations for the current user. This will include invitations issued by the current user, as well as invitations
+where the current user is the invited customer. This operation always return all invitations, including invitations that are pending, expired, have been accepted, declined, require confirmation or that have already been completed.
+Refer to GetAuthorizedUserInvitationsRequest and GetAuthorizedUserInvitationsResponse for details.</p>
+<!-- end services -->
+
+<h3 id="enums">Enums<a class="headerlink" href="#enums" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.onboarding.v1.AuthorizedUserInvitationStatus"></a></p>
+<h4 id="authorizeduserinvitationstatus">AuthorizedUserInvitationStatus<a class="headerlink" href="#authorizeduserinvitationstatus" title="Permanent link">&para;</a></h4>
+<p>AuthorizedUserInvitationStatus represents the state of the invitation for a customer to join an account as an Authorized User.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AUTHORIZED_USER_INVITATION_STATUS_UNSPECIFIED</td>
+<td>0</td>
+<td>AUTHORIZED_USER_INVITATION_STATUS_UNSPECIFIED is reserved for error detection purposes. It should not be used directly.</td>
+</tr>
+<tr>
+<td>PENDING</td>
+<td>1</td>
+<td>PENDING represents an invitation that is waiting for an accept or decline response from the invited user.</td>
+</tr>
+<tr>
+<td>ACCEPTED</td>
+<td>2</td>
+<td>ACCEPTED represents an invitation that was accepted by the invited user, and pending completion by the issuer of the invitation.</td>
+</tr>
+<tr>
+<td>DECLINED</td>
+<td>3</td>
+<td>DECLINED represents an invitation that was declined by the invited user. A declined invitation cannot be completed.</td>
+</tr>
+<tr>
+<td>COMPLETED</td>
+<td>4</td>
+<td>COMPLETED represents an invitation that was successfully completed by the issuer of the invitation. In this status, the invited customer has successfully joined the account as an Authorized User.</td>
+</tr>
+<tr>
+<td>EXPIRED</td>
+<td>5</td>
+<td>EXPIRED represents an invitation that wasn't accepted or declined within the allotted time. An expired invitation cannot be accepted or declined.</td>
+</tr>
+</tbody>
+</table>
+<!-- end enums -->
+
+<h3 id="api-specific-types">API-specific types<a class="headerlink" href="#api-specific-types" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.onboarding.v1.AcceptAuthorizedUserInvitationRequest"></a></p>
+<h4 id="acceptauthorizeduserinvitationrequest">AcceptAuthorizedUserInvitationRequest<a class="headerlink" href="#acceptauthorizeduserinvitationrequest" title="Permanent link">&para;</a></h4>
+<p>AcceptAuthorizedUserInvitationRequest is used to perform the asynchronous
+operation of accepting an invitation issued to the user to join an account as an authorized user.
+Performing this operation will generate an asynchronous
+response type of AcceptAuthorizedUserInvitationResponse on the response topic.</p>
+<p>Errors:
+- If the current user is not the user the invitation was issued to, then the operation will fail with a PERMISSION_DENIED status code,
+  and provide a message indicating the reason for the conflict.
+- If the invitation is not in the Pending status, the operation will fail with a FAILED_PRECONDITION status code,
+  and provide a message indicating that status was invalid.
+- If the invitation has expired, the operation will also fail with a FAILED_PRECONDITION status code,
+  and provide a message indicating that invitation has expired.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>invitation_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the invitation to accept. This must be a valid UUID, and represent a valid invitation that was issued to the current user.</td>
+</tr>
+<tr>
+<td>invitation_metadata</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.AcceptAuthorizedUserInvitationRequest.InvitationMetadataEntry">AcceptAuthorizedUserInvitationRequest.InvitationMetadataEntry</a></td>
+<td>repeated</td>
+<td>Optional. Additional metadata to attach to the response to the invitation, for the consumption by inviter before confirming the invitation.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.AcceptAuthorizedUserInvitationRequest.InvitationMetadataEntry"></a></p>
+<h4 id="acceptauthorizeduserinvitationrequestinvitationmetadataentry">AcceptAuthorizedUserInvitationRequest.InvitationMetadataEntry<a class="headerlink" href="#acceptauthorizeduserinvitationrequestinvitationmetadataentry" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.AcceptAuthorizedUserInvitationResponse"></a></p>
+<h4 id="acceptauthorizeduserinvitationresponse">AcceptAuthorizedUserInvitationResponse<a class="headerlink" href="#acceptauthorizeduserinvitationresponse" title="Permanent link">&para;</a></h4>
+<p>AcceptAuthorizedUserInvitationResponse is the response message for AcceptAuthorizedUserInvitationRequest.
+See AcceptAuthorizedUserInvitationRequest for details. Message intentionally left without fields.</p>
+<p><a name="thebaasco.tenant.onboarding.v1.AuthorizedUserInvitation"></a></p>
+<h4 id="authorizeduserinvitation">AuthorizedUserInvitation<a class="headerlink" href="#authorizeduserinvitation" title="Permanent link">&para;</a></h4>
+<p>AuthorizedUserInvitation is the message that provides information on invitations issued, or received by users.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>invitation_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique identifier of the invitation. This value is required to Accept, Decline, or Confirm invitations. This will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>issuer_customer_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The customer ID of the person that issued the invitation. This will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>invited_customer_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The customer ID of the person that was invited to join the account as an authorized user. This will always be a valid UUID. In the scenario where the identifier passed in the InviteAuthorizedUserRequest does not map to an existing customer ID, the value of this field will be generated randomly, and verified to not exist in system, as to prevent inferring that the identifier was invalid.</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The account ID for which an invitation was sent. This will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>status</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.AuthorizedUserInvitationStatus">AuthorizedUserInvitationStatus</a></td>
+<td></td>
+<td>The current status of the invitation. Refer to AuthorizedUserInvitationStatus enumeration for details on statuses and meaning.</td>
+</tr>
+<tr>
+<td>creation_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The time at which the invitation was issued.</td>
+</tr>
+<tr>
+<td>expiration_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>ExpirationTime is the time at which it will no longer be possible for the invited customer to Accept the invitation.</td>
+</tr>
+<tr>
+<td>invitation_metadata</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.AuthorizedUserInvitation.InvitationMetadataEntry">AuthorizedUserInvitation.InvitationMetadataEntry</a></td>
+<td>repeated</td>
+<td>Additional metadata that has been attached to the invitation. This will contain the metadata specified by the last operation on the invitation.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.AuthorizedUserInvitation.InvitationMetadataEntry"></a></p>
+<h4 id="authorizeduserinvitationinvitationmetadataentry">AuthorizedUserInvitation.InvitationMetadataEntry<a class="headerlink" href="#authorizeduserinvitationinvitationmetadataentry" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.AuthorizedUserInvitationAcceptedOrDeclinedEvent"></a></p>
+<h4 id="authorizeduserinvitationacceptedordeclinedevent">AuthorizedUserInvitationAcceptedOrDeclinedEvent<a class="headerlink" href="#authorizeduserinvitationacceptedordeclinedevent" title="Permanent link">&para;</a></h4>
+<p>AuthorizedUserInvitationAcceptedOrDeclinedEvent is the async event message sent when
+an authorized user invitation is accepted or declined by the invited customer.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>invitation</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.AuthorizedUserInvitation">AuthorizedUserInvitation</a></td>
+<td></td>
+<td>The details of the invitation that has been accepted or declined.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The ID to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.AuthorizedUserInvitationConfirmedEvent"></a></p>
+<h4 id="authorizeduserinvitationconfirmedevent">AuthorizedUserInvitationConfirmedEvent<a class="headerlink" href="#authorizeduserinvitationconfirmedevent" title="Permanent link">&para;</a></h4>
+<p>AuthorizedUserInvitationConfirmedEvent is the async event message sent when
+an authorized user invitation is confirmed by the issuer.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>invitation</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.AuthorizedUserInvitation">AuthorizedUserInvitation</a></td>
+<td></td>
+<td>The details of the invitation that has been confirmed.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The ID to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.AuthorizedUserInvitationIssuedEvent"></a></p>
+<h4 id="authorizeduserinvitationissuedevent">AuthorizedUserInvitationIssuedEvent<a class="headerlink" href="#authorizeduserinvitationissuedevent" title="Permanent link">&para;</a></h4>
+<p>AuthorizedUserInvitationIssuedEvent is the async event message sent when
+an authorized user invitation is issued to a customer.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>invitation</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.AuthorizedUserInvitation">AuthorizedUserInvitation</a></td>
+<td></td>
+<td>The details of the invitation that has been issued.</td>
+</tr>
+<tr>
+<td>invited_user_id_spoofed</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td>A flag indicating if the InvitedCustomerId was spoofed as to prevent attacks to determine who are users of our system. If the value is true, then the InvitedCustomerId as part of the Invitation field can be ignored.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The ID to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ConfirmAuthorizedUserInvitationRequest"></a></p>
+<h4 id="confirmauthorizeduserinvitationrequest">ConfirmAuthorizedUserInvitationRequest<a class="headerlink" href="#confirmauthorizeduserinvitationrequest" title="Permanent link">&para;</a></h4>
+<p>ConfirmAuthorizedUserInvitationRequest is used to perform the asynchronous
+operation of confirming an invitation that was accepted by the invited customer.
+This operation will result in the invited customer obtaining access to the account as
+an authorized user. Performing this operation will generate an asynchronous
+response type of ConfirmAuthorizedUserInvitationResponse on the response topic.</p>
+<p>Errors:
+- If the current user is not the issuer of the invitation, then the operation will fail with a PERMISSION_DENIED status code,
+  and provide a message indicating the reason for the conflict.
+- If the invitation is not in the Accepted status, the operation will fail with a FAILED_PRECONDITION status code,
+  and provide a message indicating that status was invalid.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>invitation_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the invitation to confirm. This must be a valid UUID, and represent a valid invitation that was issued by the current user.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ConfirmAuthorizedUserInvitationResponse"></a></p>
+<h4 id="confirmauthorizeduserinvitationresponse">ConfirmAuthorizedUserInvitationResponse<a class="headerlink" href="#confirmauthorizeduserinvitationresponse" title="Permanent link">&para;</a></h4>
+<p>ConfirmAuthorizedUserInvitationResponse is the response message for ConfirmAuthorizedUserInvitationRequest.
+See ConfirmAuthorizedUserInvitationRequest for details. Message intentionally left without fields.</p>
+<p><a name="thebaasco.tenant.onboarding.v1.DeclineAuthorizedUserInvitationRequest"></a></p>
+<h4 id="declineauthorizeduserinvitationrequest">DeclineAuthorizedUserInvitationRequest<a class="headerlink" href="#declineauthorizeduserinvitationrequest" title="Permanent link">&para;</a></h4>
+<p>DeclineAuthorizedUserInvitationRequest is used to perform the asynchronous
+operation of declining an invitation issued to the user to join an account as an authorized user.
+Performing this operation will generate an asynchronous
+response type of DeclineAuthorizedUserInvitationResponse on the response topic.</p>
+<p>Errors:
+- If the current user is not the user the invitation was issued to, then the operation will fail with a PERMISSION_DENIED status code,
+  and provide a message indicating the reason for the conflict.
+- If the invitation is not in the Pending status, the operation will fail with a FAILED_PRECONDITION status code,
+  and provide a message indicating that status was invalid.
+- If the invitation has expired, the operation will also fail with a FAILED_PRECONDITION status code,
+  and provide a message indicating that invitation has expired.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>invitation_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the invitation to decline. This must be a valid UUID, and represent a valid invitation that was issued to the current user.</td>
+</tr>
+<tr>
+<td>invitation_metadata</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.DeclineAuthorizedUserInvitationRequest.InvitationMetadataEntry">DeclineAuthorizedUserInvitationRequest.InvitationMetadataEntry</a></td>
+<td>repeated</td>
+<td>Optional. Additional metadata to attach to the response to the invitation, for the consumption by inviter when reviewing invitation status.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.DeclineAuthorizedUserInvitationRequest.InvitationMetadataEntry"></a></p>
+<h4 id="declineauthorizeduserinvitationrequestinvitationmetadataentry">DeclineAuthorizedUserInvitationRequest.InvitationMetadataEntry<a class="headerlink" href="#declineauthorizeduserinvitationrequestinvitationmetadataentry" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.DeclineAuthorizedUserInvitationResponse"></a></p>
+<h4 id="declineauthorizeduserinvitationresponse">DeclineAuthorizedUserInvitationResponse<a class="headerlink" href="#declineauthorizeduserinvitationresponse" title="Permanent link">&para;</a></h4>
+<p>DeclineAuthorizedUserInvitationResponse is the response message for DeclineAuthorizedUserInvitationRequest.
+See DeclineAuthorizedUserInvitationRequest for details. Message intentionally left without fields.</p>
+<p><a name="thebaasco.tenant.onboarding.v1.GetAuthorizedUserInvitationsRequest"></a></p>
+<h4 id="getauthorizeduserinvitationsrequest">GetAuthorizedUserInvitationsRequest<a class="headerlink" href="#getauthorizeduserinvitationsrequest" title="Permanent link">&para;</a></h4>
+<p>GetAuthorizedUserInvitationsRequest has been created to allow expanding the functionalities of the GetInvitations() operation in the future, without introducing breaking change.
+At this moment, there are no configurable options for this operation.</p>
+<p>Voluntarily left empty. This structure will be expanded as new features and capabilities are added to the GetInvitations() operation.</p>
+<p><a name="thebaasco.tenant.onboarding.v1.GetAuthorizedUserInvitationsResponse"></a></p>
+<h4 id="getauthorizeduserinvitationsresponse">GetAuthorizedUserInvitationsResponse<a class="headerlink" href="#getauthorizeduserinvitationsresponse" title="Permanent link">&para;</a></h4>
+<p>GetAuthorizedUserInvitationsResponse is the response for the GetInvitations() operation. It will contain all invitations for the current user, independently of their status. This will include
+invitations for which the current user is the issuer, as well as invitations for which the current user is the invited customer. If there are no invitations for the current user, then the response
+will contain zero items.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>invitations</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.AuthorizedUserInvitation">AuthorizedUserInvitation</a></td>
+<td>repeated</td>
+<td>The list of invitations for the current user.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.InviteAuthorizedUserRequest"></a></p>
+<h4 id="inviteauthorizeduserrequest">InviteAuthorizedUserRequest<a class="headerlink" href="#inviteauthorizeduserrequest" title="Permanent link">&para;</a></h4>
+<p>InviteAuthorizedUserRequest is used to perform the asynchronous
+operation of inviting a user to join an account as an authorized user. Performing this operation will generate an asynchronous
+response type of InviteAuthorizedUserResponse on the response topic.</p>
+<p>Errors:
+- If the customer mapping to this identifier is already an Owner or an Authorized User for the account, then the operation will fail with a ALREADY_EXISTS status code,
+  and provide a message indicating the reason for the conflict.
+- If there is already an invitation that was issued for this account,
+  for the invited user, the operation will fail with an ALREADY_EXISTS status code, and provide a message indicating the reason for the conflict.
+- If the customer issuing the request isn't an Owner, then the operation will fail with a PERMISSION_DENIED status code,
+  and provide a message indicating the reason.
+- If there is already an invitation that was issued for this account, for the invited customer, the operation will fail with a ALREADY_EXISTS status code,
+  and provide a message indicating the reason for the conflict.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>invited_customer_identifier</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The identifier to be used to lookup for the invited customer. This can either the username, or the email address of the customer to invite. If the identifier does not map to any known user, the operation will succeed, if this occurs the invitation will expire automatically after a period of time, without having been accepted or declined.</td>
+</tr>
+<tr>
+<td>account_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The ID of the account on which an authorized user is to be added. This must be a valid UUID, and represent an existing account. In addition, the customer issuing the request must be an Owner for the account.</td>
+</tr>
+<tr>
+<td>invitation_metadata</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.InviteAuthorizedUserRequest.InvitationMetadataEntry">InviteAuthorizedUserRequest.InvitationMetadataEntry</a></td>
+<td>repeated</td>
+<td>Optional. Additional metadata to attach to the invitation, to be consumed by the invited user before accepting the invitation.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.InviteAuthorizedUserRequest.InvitationMetadataEntry"></a></p>
+<h4 id="inviteauthorizeduserrequestinvitationmetadataentry">InviteAuthorizedUserRequest.InvitationMetadataEntry<a class="headerlink" href="#inviteauthorizeduserrequestinvitationmetadataentry" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>value</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.InviteAuthorizedUserResponse"></a></p>
+<h4 id="inviteauthorizeduserresponse">InviteAuthorizedUserResponse<a class="headerlink" href="#inviteauthorizeduserresponse" title="Permanent link">&para;</a></h4>
+<p>InviteAuthorizedUserResponse is the response message for InviteAuthorizedUserRequest.
+See InviteAuthorizedUserRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>invitation</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.AuthorizedUserInvitation">AuthorizedUserInvitation</a></td>
+<td></td>
+<td>The resulting invitation created by the InviteAuthorizedUserRequest. See AuthorizedUserInvitation for details.</td>
+</tr>
+</tbody>
+</table>
+<!-- end messages -->
+
+<p><a name="onboarding_v1.proto"></a></p>
+<h2 id="onboarding_v1proto">onboarding_v1.proto<a class="headerlink" href="#onboarding_v1proto" title="Permanent link">&para;</a></h2>
+<h3 id="services_1">Services<a class="headerlink" href="#services_1" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.onboarding.v1.Onboarding"></a></p>
+<h4 id="onboarding">Onboarding<a class="headerlink" href="#onboarding" title="Permanent link">&para;</a></h4>
+<p>Onboarding provides a way to upload documents and check the status of an
+onboarding application.</p>
+<h5 id="getapplicationstatus">GetApplicationStatus<a class="headerlink" href="#getapplicationstatus" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> GetApplicationStatus(<a href="#thebaasco.tenant.onboarding.v1.GetApplicationStatusRequest">GetApplicationStatusRequest</a>)
+<a href="#thebaasco.tenant.onboarding.v1.GetApplicationStatusResponse">GetApplicationStatusResponse</a></p>
+</blockquote>
+<p>GetApplicationStatus gets the current status of a given onboarding application.
+It provides a way to handle non-authenticated users' interrupted sessions.
+See GetApplicationStatusRequest for details.</p>
+<h5 id="createfileuploadurl">CreateFileUploadURL<a class="headerlink" href="#createfileuploadurl" title="Permanent link">&para;</a></h5>
+<blockquote>
+<p><strong>rpc</strong> CreateFileUploadURL(<a href="#thebaasco.tenant.onboarding.v1.CreateFileUploadUrlRequest">CreateFileUploadUrlRequest</a>)
+<a href="#thebaasco.tenant.onboarding.v1.CreateFileUploadUrlResponse">CreateFileUploadUrlResponse</a></p>
+</blockquote>
+<p>CreateFileUploadUrl is used as an initial step for the upload of a customer KYC document.
+1. The UI will call this operation to generate upload-ready url for each file needed.
+2. The UI will perform the upload of each file.
+3. The UI will call UploadValidateDocument including file_name of each document
+   along with its corresponding meta-data
+   The filename will be used to match the document's meta-data with the uploaded
+   content in step 2</p>
+<!-- end services -->
+
+<h3 id="api-specific-types_1">API-specific types<a class="headerlink" href="#api-specific-types_1" title="Permanent link">&para;</a></h3>
+<p><a name="thebaasco.tenant.onboarding.v1.AcceptApplicationRequest"></a></p>
+<h4 id="acceptapplicationrequest">AcceptApplicationRequest<a class="headerlink" href="#acceptapplicationrequest" title="Permanent link">&para;</a></h4>
+<p>AcceptApplicationRequest is used to perform the asynchronous
+operation of accepting the onboarding application received from the
+customer. Performing this operation will generate an asynchronous
+response type of AcceptApplicationResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to accept.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.AcceptApplicationResponse"></a></p>
+<h4 id="acceptapplicationresponse">AcceptApplicationResponse<a class="headerlink" href="#acceptapplicationresponse" title="Permanent link">&para;</a></h4>
+<p>AcceptApplicationResponse is the response message for AcceptApplicationRequest.
+See AcceptApplicationRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.AccountUsageDetails"></a></p>
+<h4 id="accountusagedetails">AccountUsageDetails<a class="headerlink" href="#accountusagedetails" title="Permanent link">&para;</a></h4>
+<p>AccountUsageDetails is a message for providing the source of funds and purpose for applying
+for an Account.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>account_purpose</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The intended purpose of the Account. This value is required. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'ACCOUNT_PURPOSE'. e.g. 'ACCOUNT_PURPOSE_EVERYDAY_TRANSACTIONS' or 'ACCOUNT_PURPOSE_TRAVELLING'</td>
+</tr>
+<tr>
+<td>primary_source_of_funds</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td>A collection of the primary sources of funds for the Account. At least one value is required. The values stored here are a collection of the code values retrieved from the ReferenceDataService with data_type set to 'SOURCE_OF_FUNDS'. e.g. 'PRIMARY_SOURCE_OF_FUNDS_LOANS' or 'PRIMARY_SOURCE_OF_FUNDS_GIFTS'</td>
+</tr>
+<tr>
+<td>authorized_third_party_usage</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td>Indicates wether or not the account will be used on behalf of third parties not otherwise identified as owners or authorized users. True means that account will be used on behalf of third parties while false means that account will not be used on behalf of third parties.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.Address"></a></p>
+<h4 id="address">Address<a class="headerlink" href="#address" title="Permanent link">&para;</a></h4>
+<p>Address is a message for providing a given Address for a customer.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The type of Address being represented. Must be either 'HOME' or 'WORK' (required). This field is validated based on the message this Address is used in. See OnboardingApplication and Employment for required values.</td>
+</tr>
+<tr>
+<td>organization</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The organization name associated with this Address. It is optional and has a maximum of 300 characters.</td>
+</tr>
+<tr>
+<td>line_1</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The first line of the Address. This value is required and has a maximum of 300 characters.</td>
+</tr>
+<tr>
+<td>line_2</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The second line of the Address. This value is optional, and has a maximum of 300 characters.</td>
+</tr>
+<tr>
+<td>line_3</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The third line of the Address. This value is optional, and has a maximum of 300 characters.</td>
+</tr>
+<tr>
+<td>line_4</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The fourth line of the Address. This value is optional, and has a maximum of 300 characters.</td>
+</tr>
+<tr>
+<td>line_5</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The fifth line of the Address. This value is optional, and has a maximum of 300 characters.</td>
+</tr>
+<tr>
+<td>line_6</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The sixth line of the Address. This value is optional, and has a maximum of 300 characters.</td>
+</tr>
+<tr>
+<td>line_7</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The seventh line of the Address. This value is optional, and has a maximum of 300 characters.</td>
+</tr>
+<tr>
+<td>line_8</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The eighth line of the Address. This value is optional, and has a maximum of 300 characters.</td>
+</tr>
+<tr>
+<td>locality</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The local sub administrative area such as the municipality or community name. In Canadian and US addresses, this corresponds to the city or town name. This value is optional and has a maximum of 150 characters. e.g. Toronto, Orlando.</td>
+</tr>
+<tr>
+<td>dependent_locality</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The municipality or community name of the major postal region address. For Canadian and US addresses, this can remain empty. This value is optional and has a maximum of 150 characters.</td>
+</tr>
+<tr>
+<td>double_dependent_locality</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The municipality or community name of the local postal region address. For Canadian and US addresses, this can remain empty. This value is optional and has a maximum of 150 characters.</td>
+</tr>
+<tr>
+<td>administrative_area</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The name of the first level administrative area. This value is optional and has a maximum of 150 characters. e.g. For US this would be 'State' and Canada this would be 'Province'</td>
+</tr>
+<tr>
+<td>sub_administrative_area</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The name of the second level administrative area. This value is optional and has a maximum of 150 characters. e.g. For a city use 'City', county use 'County', etc.</td>
+</tr>
+<tr>
+<td>area</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The name of country first level administrative subdivision area in the address. For Canada, this is name of the province and for the US this is the name of the State. This field is required and has a maximum of 150 characters. e.g. 'Ontario' or 'New York'.</td>
+</tr>
+<tr>
+<td>postal_code</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The local postal code for routing mail to the address and should contain the ZIP code for US addresses. This field is required and has a maximum of 150 characters.</td>
+</tr>
+<tr>
+<td>country</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The name of the country for the Address. This value is required and has a maximum of 50 characters.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.CancelApplicationRequest"></a></p>
+<h4 id="cancelapplicationrequest">CancelApplicationRequest<a class="headerlink" href="#cancelapplicationrequest" title="Permanent link">&para;</a></h4>
+<p>CancelApplicationRequest is used to perform the asynchronous
+operation of canceling the onboarding application. Performing
+this operation will generate an asynchronous response type of
+CancelApplicationResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to create a customer for.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.CancelApplicationResponse"></a></p>
+<h4 id="cancelapplicationresponse">CancelApplicationResponse<a class="headerlink" href="#cancelapplicationresponse" title="Permanent link">&para;</a></h4>
+<p>CancelApplicationResponse is the response message for
+CancelApplicationRequest.
+See CancelApplicationRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.CommunicationPreferenceDetails"></a></p>
+<h4 id="communicationpreferencedetails">CommunicationPreferenceDetails<a class="headerlink" href="#communicationpreferencedetails" title="Permanent link">&para;</a></h4>
+<p>CommunicationDetails is a message for providing communication preference details for a customer.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>customer_communication_language</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The language in which the customer prefers receiving his communications. The value stored here is one of the values retrieved from the ReferenceDataService with data_type set to 'LANGUAGE'. e.g. 'LANGUAGE_FR_CA'</td>
+</tr>
+<tr>
+<td>customer_communication_pref</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The preferred communication method chosen by the customer. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'COMMUNICATION_PREFERENCE'. e.g. 'COMMUNICATION_PREFERENCES_MOBILE' or 'COMMUNICATION_PREFERENCES_EMAIL'</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.Consent"></a></p>
+<h4 id="consent">Consent<a class="headerlink" href="#consent" title="Permanent link">&para;</a></h4>
+<p>Consent is a message indicating the receipt of a requested customer Consent.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>consent_type</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The type of Consent received from the customer. This value is required. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'CONSENT_TYPE'. e.g. ‘CONSENT_TYPE_TERMS_OF_USE_OF_APP’</td>
+</tr>
+<tr>
+<td>consent_timestamp</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when Consent was received from the customer.</td>
+</tr>
+<tr>
+<td>document_name_and_version</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The name and version of the document in URL format that the customer consented to.</td>
+</tr>
+<tr>
+<td>view_timestamp</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when the customer viewed the document.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ContactDetails"></a></p>
+<h4 id="contactdetails">ContactDetails<a class="headerlink" href="#contactdetails" title="Permanent link">&para;</a></h4>
+<p>ContactDetails is a message for providing the contact details for a customer.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>phone_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td><strong>Deprecated.</strong> The contact phone number. Deprecated in favor of ContactPhoneNumber. If both are specified in a request, preference will be given to ContactPhoneNumber. In responses and events, if only PhoneNumber was specified, ContactPhoneNumber will assume SMS compatible to be false.</td>
+</tr>
+<tr>
+<td>customer_email</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The contact email address. This value is required and must be in a valid email address format.</td>
+</tr>
+<tr>
+<td>contact_phone_number</td>
+<td><a href="#thebaasco.types.PhoneNumber">thebaasco.types.PhoneNumber</a></td>
+<td></td>
+<td>The contact phone number. See PhoneNumber type for more details.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.CreateFileUploadUrlRequest"></a></p>
+<h4 id="createfileuploadurlrequest">CreateFileUploadUrlRequest<a class="headerlink" href="#createfileuploadurlrequest" title="Permanent link">&para;</a></h4>
+<p>CreateFileUploadUrlRequest is the parameter to pass when calling CreateFileUploadURL.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID representing the onboarding application that requested a file upload URL.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.CreateFileUploadUrlResponse"></a></p>
+<h4 id="createfileuploadurlresponse">CreateFileUploadUrlResponse<a class="headerlink" href="#createfileuploadurlresponse" title="Permanent link">&para;</a></h4>
+<p>CreateFileUploadUrlResponse is the response returned by the CreateFileUploadURL</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filename</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The generated name for the file to upload.</td>
+</tr>
+<tr>
+<td>upload_url</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The URL to use to upload the file.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.CustomerResidency"></a></p>
+<h4 id="customerresidency">CustomerResidency<a class="headerlink" href="#customerresidency" title="Permanent link">&para;</a></h4>
+<p>CustomerResidency contains the residency status details of the customer.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>is_canadian_tax_resident</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td>The Canadian residency status. This is true if the customer is a Canadian resident, false otherwise.</td>
+</tr>
+<tr>
+<td>other_residences</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OtherResidence">OtherResidence</a></td>
+<td>repeated</td>
+<td>A collection of other countries where the customer has residence. At least one is required if not a Canadian resident.</td>
+</tr>
+<tr>
+<td>sin_token</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>A tokenized UUID representation of the customer SIN number.</td>
+</tr>
+<tr>
+<td>citizenship</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The primary or current citizenship of the customer. The format is an ISO 3166 Country alpha-2 code (e.g. US, CA, FR).</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.Disclosure"></a></p>
+<h4 id="disclosure">Disclosure<a class="headerlink" href="#disclosure" title="Permanent link">&para;</a></h4>
+<p>Disclosure is a message indicating customer receipt of a documented Disclosure.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>disclosure_type</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The type of Disclosure sent to the customer. This value is required. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'DISCLOSURE_TYPE'. e.g. 'DISCLOSURE_TYPE_DISCLOSURES_DURING_ISSUANCE_OF_PREPAID_CARD'</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when the customer viewed the document.</td>
+</tr>
+<tr>
+<td>document_name_and_version</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Name and version of the disclosure document in URL format that the customer viewed.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.DocumentInfo"></a></p>
+<h4 id="documentinfo">DocumentInfo<a class="headerlink" href="#documentinfo" title="Permanent link">&para;</a></h4>
+<p>DocumentInfo is a message containing the details of an onboarding document
+collected from the customer to prove identity.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>document_type</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The type of document used for identification. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'DOCUMENT_TYPE'. e.g. 'DOCUMENT_TYPE_CANADIAN_DRIVERS_LICENSE' or 'DOCUMENT_TYPE_CANADIAN_PASSPORT'</td>
+</tr>
+<tr>
+<td>document_country</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The country the document was issued for.</td>
+</tr>
+<tr>
+<td>front_image_file_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The cloud storage file nme of the image taken of the front of the document. (required, file size &lt;4MB)</td>
+</tr>
+<tr>
+<td>back_image_file_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The cloud storage file nme of the image taken of the back of the document. (file size &lt;4MB)</td>
+</tr>
+<tr>
+<td>document_state</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The state issuing the document used to identify the applicant. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'STATE_' concatenate with country code retrieved from data_type set to 'COUNTRY'. e.g. 'STATE_CA' will retrieve all states from Canada ('BC', 'AB', 'QC'...)</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.Employment"></a></p>
+<h4 id="employment">Employment<a class="headerlink" href="#employment" title="Permanent link">&para;</a></h4>
+<p>Employment defines the details of Employment for the customer being onboarded.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>employment_status</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The status of Employment for this entry. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'EMPLOYMENT_STATUS'. e.g. EMPLOYMENT_STATUS_EMPLOYED or EMPLOYMENT_STATUS_RETIRED.</td>
+</tr>
+<tr>
+<td>employer_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The full employer name. The value is required and has a maximum of 50 characters.</td>
+</tr>
+<tr>
+<td>industry</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The industry code the Employment is in. This value is required and has a maximum of 50 characters. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'INDUSTRY'. e.g. '236110' for Residential Construction.</td>
+</tr>
+<tr>
+<td>occupation</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The roles and duties the customer performs for the employer. This value is optional and has a maximum of 50 characters. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'OCCUPATION'. If the employment status is 'EMPLOYMENT_STATUS_UNEMPLOYED', 'EMPLOYMENT_STATUS_RETIRED', 'EMPLOYMENT_STATUS_STUDENT_UNEMPLOYED', or 'EMPLOYMENT_STATUS_HOMEMAKER' then the Occupation field must be left empty. e.g. 'OCCUPATION_8255_CONTRACTOR_AND_SUPERVISOR_LANDSCAPING'</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td><a href="#google.type.Date">google.type.Date</a></td>
+<td></td>
+<td>The month and year the customer started this position.</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td><a href="#google.type.Date">google.type.Date</a></td>
+<td></td>
+<td>The month and year the customer no longer held this position.</td>
+</tr>
+<tr>
+<td>work_address</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Address">Address</a></td>
+<td></td>
+<td>The Address of the employer. The 'type' field must be set to 'WORK'. Required.</td>
+</tr>
+<tr>
+<td>work_phone_number</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td><strong>Deprecated.</strong> The phone number of the employer. Deprecated in favor of PhoneNumber. If both are specified in a request, preference will be given to PhoneNumber. In responses and events, if only WorkPhoneNumber was specified, PhoneNumber will assume SMS compatible to be false.</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td><a href="#thebaasco.types.PhoneNumber">thebaasco.types.PhoneNumber</a></td>
+<td></td>
+<td>The phone number of the employer. See PhoneNumber for more details.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateCustomerRequest"></a></p>
+<h4 id="finalizeapplicationcreatecustomerrequest">FinalizeApplicationCreateCustomerRequest<a class="headerlink" href="#finalizeapplicationcreatecustomerrequest" title="Permanent link">&para;</a></h4>
+<p>FinalizeApplicationCreateCustomerRequest is used to perform the asynchronous
+operation of creating the customer for the onboarding application. Performing
+this operation will generate an asynchronous response type of
+FinalizeApplicationCreateCustomerResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to create a customer for.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateCustomerResponse"></a></p>
+<h4 id="finalizeapplicationcreatecustomerresponse">FinalizeApplicationCreateCustomerResponse<a class="headerlink" href="#finalizeapplicationcreatecustomerresponse" title="Permanent link">&para;</a></h4>
+<p>FinalizeApplicationCreateCustomerResponse is the response message for
+FinalizeApplicationCreateCustomerRequest.
+See FinalizeApplicationCreateCustomerRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID representing the newly created customer.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateProductRequest"></a></p>
+<h4 id="finalizeapplicationcreateproductrequest">FinalizeApplicationCreateProductRequest<a class="headerlink" href="#finalizeapplicationcreateproductrequest" title="Permanent link">&para;</a></h4>
+<p>FinalizeApplicationCreateProductRequest is used to perform the asynchronous
+operation of creating the product for the onboarding application. Performing
+this operation will generate an asynchronous response type of
+FinalizeApplicationCreateProductResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to create the product for.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.FinalizeApplicationCreateProductResponse"></a></p>
+<h4 id="finalizeapplicationcreateproductresponse">FinalizeApplicationCreateProductResponse<a class="headerlink" href="#finalizeapplicationcreateproductresponse" title="Permanent link">&para;</a></h4>
+<p>FinalizeApplicationCreateProductResponse is the response message for
+FinalizeApplicationCreateProductRequest.
+See FinalizeApplicationCreateProductRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+<tr>
+<td>products</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardedProduct">OnboardedProduct</a></td>
+<td>repeated</td>
+<td>The collection of products created. See OnboardedProduct. list of products will be empty for onboarding application without product associated</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.GetApplicationStatusRequest"></a></p>
+<h4 id="getapplicationstatusrequest">GetApplicationStatusRequest<a class="headerlink" href="#getapplicationstatusrequest" title="Permanent link">&para;</a></h4>
+<p>GetApplicationStatusRequest is used to retrieve the current status of
+the onboarding application.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to get the status of.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.GetApplicationStatusResponse"></a></p>
+<h4 id="getapplicationstatusresponse">GetApplicationStatusResponse<a class="headerlink" href="#getapplicationstatusresponse" title="Permanent link">&para;</a></h4>
+<p>GetApplicationStatusResponse is the response message for
+GetApplicationStatusRequest. See GetApplicationStatusRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.IdentificationDocument"></a></p>
+<h4 id="identificationdocument">IdentificationDocument<a class="headerlink" href="#identificationdocument" title="Permanent link">&para;</a></h4>
+<p>IdentificationDocument contains information about the ID document provided during application process.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id_number</td>
+<td><a href="#thebaasco.types.ProtectedString">thebaasco.types.ProtectedString</a></td>
+<td></td>
+<td>The number of the document used to identify the applicant, tokenized before being produced.</td>
+</tr>
+<tr>
+<td>expiry_date</td>
+<td><a href="#thebaasco.types.ProtectedDate">thebaasco.types.ProtectedDate</a></td>
+<td></td>
+<td>The expiry date of the document used to identify the applicant, tokenized before being produced. If expiration date could not be retrieved from the provided ID document, this field will be absent.</td>
+</tr>
+<tr>
+<td>document_type</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The type of document used for identification. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'DOCUMENT_TYPE'. e.g. 'DOCUMENT_TYPE_CANADIAN_DRIVERS_LICENSE' or 'DOCUMENT_TYPE_CANADIAN_PASSPORT'</td>
+</tr>
+<tr>
+<td>document_country</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The country issuing the document used to identify the applicant. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'COUNTRY'. e.g. 'CA'</td>
+</tr>
+<tr>
+<td>document_state</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The state issuing the document used to identify the applicant. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'STATE_' concatenate with country code retrieved from data_type set to 'COUNTRY'. e.g. 'STATE_CA' will retrieve all states from Canada ('BC', 'AB', 'QC'...)</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.InitiateApplicationRequest"></a></p>
+<h4 id="initiateapplicationrequest">InitiateApplicationRequest<a class="headerlink" href="#initiateapplicationrequest" title="Permanent link">&para;</a></h4>
+<p>InitiateApplicationRequest is used to perform the asynchronous
+operation of starting the onboarding application.
+Performing this operation will generate an asynchronous response
+type of InitiateApplicationResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bundle_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique identifier of the bundle being applied for.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.InitiateApplicationResponse"></a></p>
+<h4 id="initiateapplicationresponse">InitiateApplicationResponse<a class="headerlink" href="#initiateapplicationresponse" title="Permanent link">&para;</a></h4>
+<p>InitiateApplicationResponse is the response message for
+InitiateApplicationRequest.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+<tr>
+<td>is_kyc_needed</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td><strong>Deprecated.</strong> If true validation of customer data (KYC) is needed as part of this onboarding application. If false, customer data has already been validated, and needs to be bypassed ( go straight to AcceptApplicationRequest). Deprecated, use OnboardingOperationResponseDetails.verification_needed instead</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardedProduct"></a></p>
+<h4 id="onboardedproduct">OnboardedProduct<a class="headerlink" href="#onboardedproduct" title="Permanent link">&para;</a></h4>
+<p>OnboardedProduct is the message representing a single product in the
+onboarding application.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>product_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarded product.</td>
+</tr>
+<tr>
+<td>source_domain</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The source domain of the onboarded product (eg: core-banking).</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingApplication"></a></p>
+<h4 id="onboardingapplication">OnboardingApplication<a class="headerlink" href="#onboardingapplication" title="Permanent link">&para;</a></h4>
+<p>OnboardingApplication is the message containing all of the onboarding details
+collected from a customer required to apply for a product.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID representing a given application.</td>
+</tr>
+<tr>
+<td>customer_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID representing the onboarding customer.</td>
+</tr>
+<tr>
+<td>bundle_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique identifier of the bundled products being applied for.</td>
+</tr>
+<tr>
+<td>status</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The application status. The value here is one of the following. "UNDEFINED" is reserved for error detection purposes. It should not be used directly. "New Application" describes an Application that has just been created. "Data Collection" describes an Application that has successfully performed an Update call or failed a ValidateSelfieRequest or a ValidateDocumentsRequest. "KYC In Progress" describes an Application that has successfully performed a ValidateSelfieRequest or ValidateDocumentsRequest. "KYC Success" describes an Application that has successfully performed KYC checks as a result of a ValidateApplicationRequest. "KYC Failed" describes an Application that has failed KYC as a result of a ValidateApplicationRequest. "KYC Rejected" describes an Application that has no remaining KYC attempts. "Application Accepted" describes an application that has successfully completed an AcceptApplicationRequest. "Application Processed" describes an application that has been successfully completed. "Application Cancelled" describes an application that has been cancelled by the customer. "Application Rejected" describes an application that has been rejected and cannot be continued. This is used when a more descriptive rejection status is not available.</td>
+</tr>
+<tr>
+<td>customer_personal_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.PersonalDetails">PersonalDetails</a></td>
+<td></td>
+<td>The personal details about the customer. See PersonalDetails.</td>
+</tr>
+<tr>
+<td>customer_contact_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.ContactDetails">ContactDetails</a></td>
+<td></td>
+<td>The contact details about the customer. See ContactDetails.</td>
+</tr>
+<tr>
+<td>account_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.AccountUsageDetails">AccountUsageDetails</a></td>
+<td></td>
+<td>The Account usage intentions of the customer. See AccountUsageDetails.</td>
+</tr>
+<tr>
+<td>customer_employment</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Employment">Employment</a></td>
+<td>repeated</td>
+<td>The employment history for the customer. See Employment.</td>
+</tr>
+<tr>
+<td>customer_residency</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.CustomerResidency">CustomerResidency</a></td>
+<td></td>
+<td>The residency status of the customer. See CustomerResidency.</td>
+</tr>
+<tr>
+<td>consents</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Consent">Consent</a></td>
+<td>repeated</td>
+<td>The collection of consents received from the customer. See Consent.</td>
+</tr>
+<tr>
+<td>disclosures</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Disclosure">Disclosure</a></td>
+<td>repeated</td>
+<td>The collection of disclosures received from the customer. See Disclosure.</td>
+</tr>
+<tr>
+<td>customer_residence_address</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Address">Address</a></td>
+<td>repeated</td>
+<td>The collection of resident addresses owned/occupied by the customer. See Address.</td>
+</tr>
+<tr>
+<td>customer_identification_documents</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.DocumentInfo">DocumentInfo</a></td>
+<td>repeated</td>
+<td>The collection of documents collected to identify the customer in the KYC process.</td>
+</tr>
+<tr>
+<td>customer_communication_preference</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.CommunicationPreferenceDetails">CommunicationPreferenceDetails</a></td>
+<td></td>
+<td>The communication preference details about the customer. See CommunicationPreferenceDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationCanceledEvent"></a></p>
+<h4 id="onboardingapplicationcanceledevent">OnboardingApplicationCanceledEvent<a class="headerlink" href="#onboardingapplicationcanceledevent" title="Permanent link">&para;</a></h4>
+<p>OnboardingApplicationCanceledEvent is the async event message sent when
+a customer canceled the onboarding application before completion of the application.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The ID to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+<tr>
+<td>application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application connected to this event.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationCustomerOnboardedEvent"></a></p>
+<h4 id="onboardingapplicationcustomeronboardedevent">OnboardingApplicationCustomerOnboardedEvent<a class="headerlink" href="#onboardingapplicationcustomeronboardedevent" title="Permanent link">&para;</a></h4>
+<p>OnboardingApplicationCustomerOnboardedEvent is an event raised when a
+customer is created.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application connected to this event.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The ID to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationDataConfirmedEvent"></a></p>
+<h4 id="onboardingapplicationdataconfirmedevent">OnboardingApplicationDataConfirmedEvent<a class="headerlink" href="#onboardingapplicationdataconfirmedevent" title="Permanent link">&para;</a></h4>
+<p>OnboardingApplicationDataConfirmedEvent is the async event message sent when
+a new customer is onboarded. As part of PB-3330, this event will also occur
+when onboarding a new product for an existing customer.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>application</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingApplication">OnboardingApplication</a></td>
+<td></td>
+<td>The complete onboarding application for the onboarded customer. See OnboardingApplication.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The ID to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+<tr>
+<td>id_document</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.IdentificationDocument">IdentificationDocument</a></td>
+<td>repeated</td>
+<td>The de-identified information about the provided ID document if the application has one</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationKYCFailedEvent"></a></p>
+<h4 id="onboardingapplicationkycfailedevent">OnboardingApplicationKYCFailedEvent<a class="headerlink" href="#onboardingapplicationkycfailedevent" title="Permanent link">&para;</a></h4>
+<p>OnboardingApplicationKYCFailedEvent event is raised when a customer fails KYC validation.
+The event is published once for each failed validation until exceeding the remaining KYC retries allowed.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The ID to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+<tr>
+<td>failed_status_codes</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td>The reasons of KYC failure. The values stored here are a collection of the code values retrieved from the ReferenceDataService with data_type set to 'FAILURE_CODE'.</td>
+</tr>
+<tr>
+<td>image_selfie</td>
+<td><a href="#thebaasco.types.ProtectedBlob">thebaasco.types.ProtectedBlob</a></td>
+<td></td>
+<td>Selfie, tokenized before being produced. This field is only populated if applicant is part of a sanctions list</td>
+</tr>
+<tr>
+<td>document_image_front</td>
+<td><a href="#thebaasco.types.ProtectedBlob">thebaasco.types.ProtectedBlob</a></td>
+<td></td>
+<td>Front document image, tokenized before being produced. This field is only populated if applicant is part of a sanctions list</td>
+</tr>
+<tr>
+<td>document_image_back</td>
+<td><a href="#thebaasco.types.ProtectedBlob">thebaasco.types.ProtectedBlob</a></td>
+<td></td>
+<td>Back document image, tokenized before being produced. This field is only populated if applicant is part of a sanctions list</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationProductOnboardedEvent"></a></p>
+<h4 id="onboardingapplicationproductonboardedevent">OnboardingApplicationProductOnboardedEvent<a class="headerlink" href="#onboardingapplicationproductonboardedevent" title="Permanent link">&para;</a></h4>
+<p>OnboardingApplicationProductOnboardedEvent is the async event message sent
+when a product is created with the FinalizeApplicationCreateProductRequest.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application connected to this event.</td>
+</tr>
+<tr>
+<td>products</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardedProduct">OnboardedProduct</a></td>
+<td>repeated</td>
+<td>The collection of products onboarded. See OnboardedProduct.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The ID to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationRejectedEvent"></a></p>
+<h4 id="onboardingapplicationrejectedevent">OnboardingApplicationRejectedEvent<a class="headerlink" href="#onboardingapplicationrejectedevent" title="Permanent link">&para;</a></h4>
+<p>OnboardingApplicationRejectedEvent event is raised when an application is fully rejected.
+The event is published one time when the application exceed the remaining KYC retries allowed.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID.</td>
+</tr>
+<tr>
+<td>application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application.</td>
+</tr>
+<tr>
+<td>tenant_id</td>
+<td><a href="#int32">int32</a></td>
+<td></td>
+<td>The ID to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants.</td>
+</tr>
+<tr>
+<td>event_time</td>
+<td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp when this event was issued.</td>
+</tr>
+<tr>
+<td>rejection_status_codes</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td>The reasons of KYC rejection. The values stored here are a collection of the code values retrieved from the ReferenceDataService with data_type set to 'FAILURE_CODE'.</td>
+</tr>
+<tr>
+<td>image_selfie</td>
+<td><a href="#thebaasco.types.ProtectedBlob">thebaasco.types.ProtectedBlob</a></td>
+<td></td>
+<td>Selfie, tokenized before being produced. This field is only populated if applicant is part of a sanctions list</td>
+</tr>
+<tr>
+<td>document_image_front</td>
+<td><a href="#thebaasco.types.ProtectedBlob">thebaasco.types.ProtectedBlob</a></td>
+<td></td>
+<td>Front document image, tokenized before being produced. This field is only populated if applicant is part of a sanctions list</td>
+</tr>
+<tr>
+<td>document_image_back</td>
+<td><a href="#thebaasco.types.ProtectedBlob">thebaasco.types.ProtectedBlob</a></td>
+<td></td>
+<td>Back document image, tokenized before being produced. This field is only populated if applicant is part of a sanctions list</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails"></a></p>
+<h4 id="onboardingoperationresponsedetails">OnboardingOperationResponseDetails<a class="headerlink" href="#onboardingoperationresponsedetails" title="Permanent link">&para;</a></h4>
+<p>OnboardingOperationResponseDetails are the common response fields for an
+onboarding application create or update message.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the application the response is for.</td>
+</tr>
+<tr>
+<td>onboarding_application_status</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The updated application status. The value here is one of the following. "UNDEFINED" is reserved for error detection purposes. It should not be used directly. "New Application" describes an Application that has just been created. "Data Collection" describes an Application that has successfully performed an Update call or failed a ValidateSelfieRequest or a ValidateDocumentsRequest. "KYC In Progress" describes an Application that has successfully performed a ValidateSelfieRequest or ValidateDocumentsRequest. "KYC Success" describes an Application that has successfully performed KYC checks as a result of a ValidateApplicationRequest. "KYC Failed" describes an Application that has failed KYC as a result of a ValidateApplicationRequest. "KYC Rejected" describes an Application that has no remaining KYC attempts. "Application Accepted" describes an application that has successfully completed an AcceptApplicationRequest. "Application Processed" describes an application that has been successfully completed. "Application Cancelled" describes an application that has been cancelled by the customer. "Application Rejected" describes an application that has been rejected and cannot be continued. This is used when a more descriptive rejection status is not available.</td>
+</tr>
+<tr>
+<td>request_status</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The success status of the request.</td>
+</tr>
+<tr>
+<td>request_status_reason</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td><strong>Deprecated.</strong> The detailed reason for the request status. Deprecated: Use request_reason_codes instead.</td>
+</tr>
+<tr>
+<td>is_retry_operation_restricted</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td>This is for internal use only. Do not use.</td>
+</tr>
+<tr>
+<td>remaining_allowed_retries</td>
+<td><a href="#int64">int64</a></td>
+<td></td>
+<td>The remaining KYC retries allowed.</td>
+</tr>
+<tr>
+<td>failure_status_codes</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td>The list of codes explaining the reason of the request outcome. This list will only be populated when request status is "KYC Failed", "KYC Rejected", or "Application Rejected". The list will otherwise be empty. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'FAILURE_STATUS'.</td>
+</tr>
+<tr>
+<td>verification_needed</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingVerification">OnboardingVerification</a></td>
+<td>repeated</td>
+<td>The array of verifications that will be needed be performed in order to complete the application.</td>
+</tr>
+<tr>
+<td>Consents</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.TermsAndConditions">TermsAndConditions</a></td>
+<td>repeated</td>
+<td>The list of Consents required as part of this onboarding application. Requirement will be enforced as part of a future release.</td>
+</tr>
+<tr>
+<td>Disclosures</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.TermsAndConditions">TermsAndConditions</a></td>
+<td>repeated</td>
+<td>The list of Disclosures required as part of this onboarding application Requirement will be enforced as part of a future release.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OnboardingVerification"></a></p>
+<h4 id="onboardingverification">OnboardingVerification<a class="headerlink" href="#onboardingverification" title="Permanent link">&para;</a></h4>
+<p>OnboardingVerification is a Verification needed for an onboarding application</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The name of the OnboardingVerification 'KYC' means this application will perform KYC validation during the validate phase ( ValidateDocumentsRequest, ValidateSelfieRequest and ValidateApplicationRequest) before being able to complete onboarding application. 'ProfileCreation' means that this application requires input of basic customer information, without doing full KYC, before being able to complete onboarding application. 'AccountUsage' means that this application needs to collect Account Usage information using UpdateAccountDetailsRequest before being able to complete onboarding application.</td>
+</tr>
+<tr>
+<td>required_updates</td>
+<td><a href="#string">string</a></td>
+<td>repeated</td>
+<td>The list of all Update request that are required as part of this verification (eg : [UpdateAccountDetailsRequest, UpdateConsentsRequest])</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.OtherResidence"></a></p>
+<h4 id="otherresidence">OtherResidence<a class="headerlink" href="#otherresidence" title="Permanent link">&para;</a></h4>
+<p>OtherResidence is a message for providing alternate countries and places of residence.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>other_residence_country</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The country code of the other country of residence. The format is an ISO 3166 Country alpha-2 code (e.g. US, CA, FR).</td>
+</tr>
+<tr>
+<td>tin_token</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>A tokenized UUID representation of the unique TIN for the country of residence. Optional.</td>
+</tr>
+<tr>
+<td>citizenship</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The citizenship status in the country of residence. Required if residence country is US or Canada.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.PersonalDetails"></a></p>
+<h4 id="personaldetails">PersonalDetails<a class="headerlink" href="#personaldetails" title="Permanent link">&para;</a></h4>
+<p>PersonalDetails defines a message containing the customer's personal details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>first_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The customer first name. This value is required and has a maximum of 50 characters. Accepted characters: -, ', French accents, 0-9.</td>
+</tr>
+<tr>
+<td>middle_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The customer middle name. This value is optional and has a maximum of 50 characters. Accepted characters: -, ', French accents, 0-9.</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The customer last name. This value is required and has a maximum of 50 characters. Accepted characters: -, ', French accents, 0-9.</td>
+</tr>
+<tr>
+<td>date_of_birth</td>
+<td><a href="#google.type.Date">google.type.Date</a></td>
+<td></td>
+<td>The customer's date of birth.</td>
+</tr>
+<tr>
+<td>alias</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The customer alias. This value is optional and has a maximum of 20 characters. Accepts alphanumeric input without special characters.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.TermsAndConditions"></a></p>
+<h4 id="termsandconditions">TermsAndConditions<a class="headerlink" href="#termsandconditions" title="Permanent link">&para;</a></h4>
+<p>TermsAndConditions is either a consent or a disclosure.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>document_type</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The type of the terms and conditions. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'CONSENT_TYPE' or <code>DISCLOSURE_TYPE</code>.</td>
+</tr>
+<tr>
+<td>document_name_and_version</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The URL of the versioned terms and conditions document the customer needs to review and accept.</td>
+</tr>
+<tr>
+<td>needed_before_validation</td>
+<td><a href="#bool">bool</a></td>
+<td></td>
+<td>Whether or not the terms and conditions need to be accepted before calling any of the validate requests.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateAccountDetailsRequest"></a></p>
+<h4 id="updateaccountdetailsrequest">UpdateAccountDetailsRequest<a class="headerlink" href="#updateaccountdetailsrequest" title="Permanent link">&para;</a></h4>
+<p>UpdateAccountDetailsRequest is used to perform the asynchronous
+operation of updating the customer account details in the onboarding application.
+Performing this operation will generate an asynchronous response
+type of UpdateAccountDetailsResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to update.</td>
+</tr>
+<tr>
+<td>account_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.AccountUsageDetails">AccountUsageDetails</a></td>
+<td></td>
+<td>The updated account usage details. See AccountUsageDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateAccountDetailsResponse"></a></p>
+<h4 id="updateaccountdetailsresponse">UpdateAccountDetailsResponse<a class="headerlink" href="#updateaccountdetailsresponse" title="Permanent link">&para;</a></h4>
+<p>UpdateAccountDetailsResponse is the response message for UpdateAccountDetailsRequest.
+See UpdateAccountDetailsRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateAddressesRequest"></a></p>
+<h4 id="updateaddressesrequest">UpdateAddressesRequest<a class="headerlink" href="#updateaddressesrequest" title="Permanent link">&para;</a></h4>
+<p>UpdateAddressesRequest is used to perform the asynchronous
+operation of updating the addresses occupied by the customer in the
+onboarding application. Performing this operation will generate an asynchronous
+response type of UpdateAddressesResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to update.</td>
+</tr>
+<tr>
+<td>addresses</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Address">Address</a></td>
+<td>repeated</td>
+<td>The collection of addresses occupied by the customer. The address(es) provided cannot be that of a P.O. Box, military base, hospital, or prison. See Address.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateAddressesResponse"></a></p>
+<h4 id="updateaddressesresponse">UpdateAddressesResponse<a class="headerlink" href="#updateaddressesresponse" title="Permanent link">&para;</a></h4>
+<p>UpdateAddressesResponse is the response message for UpdateAddressesRequest.
+See UpdateAddressesRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateCommunicationPreferencesRequest"></a></p>
+<h4 id="updatecommunicationpreferencesrequest">UpdateCommunicationPreferencesRequest<a class="headerlink" href="#updatecommunicationpreferencesrequest" title="Permanent link">&para;</a></h4>
+<p>UpdateCommunicationPreferencesRequest is used to perform the asynchronous
+operation of updating the communication preferences of the customer in the
+onboarding application. Performing this operation will generate an asynchronous
+response type of UpdateCommunicationPreferencesResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to update.</td>
+</tr>
+<tr>
+<td>customer_communication_pref</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The customer communication preference. See CommunicationPrefenceDetails.</td>
+</tr>
+<tr>
+<td>customer_communication_language</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The customer communication language. See CommunicationPrefenceDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateCommunicationPreferencesResponse"></a></p>
+<h4 id="updatecommunicationpreferencesresponse">UpdateCommunicationPreferencesResponse<a class="headerlink" href="#updatecommunicationpreferencesresponse" title="Permanent link">&para;</a></h4>
+<p>UpdateCommunicationPreferencesResponse is the response message for
+UpdateCommunicationPreferencesRequest.
+See UpdateCommunicationPreferencesRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateConsentsRequest"></a></p>
+<h4 id="updateconsentsrequest">UpdateConsentsRequest<a class="headerlink" href="#updateconsentsrequest" title="Permanent link">&para;</a></h4>
+<p>UpdateConsentsRequest is used to perform the asynchronous
+operation of updating the consents received from the customer for the
+onboarding application. Performing this operation will generate an asynchronous
+response type of UpdateConsentsResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to update.</td>
+</tr>
+<tr>
+<td>consents</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Consent">Consent</a></td>
+<td>repeated</td>
+<td>The updated collection of consents. See Consent.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateConsentsResponse"></a></p>
+<h4 id="updateconsentsresponse">UpdateConsentsResponse<a class="headerlink" href="#updateconsentsresponse" title="Permanent link">&para;</a></h4>
+<p>UpdateConsentsResponse is the response message for UpdateConsentsRequest.
+See UpdateConsentsRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateContactDetailsRequest"></a></p>
+<h4 id="updatecontactdetailsrequest">UpdateContactDetailsRequest<a class="headerlink" href="#updatecontactdetailsrequest" title="Permanent link">&para;</a></h4>
+<p>UpdateContactDetailsRequest is used to perform the asynchronous
+operation of updating the customer contact details in the onboarding application.
+Performing this operation will generate an asynchronous response
+type of UpdateContactDetailsResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to update.</td>
+</tr>
+<tr>
+<td>customer_contact_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.ContactDetails">ContactDetails</a></td>
+<td></td>
+<td>The updated contact details. See ContactDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateContactDetailsResponse"></a></p>
+<h4 id="updatecontactdetailsresponse">UpdateContactDetailsResponse<a class="headerlink" href="#updatecontactdetailsresponse" title="Permanent link">&para;</a></h4>
+<p>UpdateContactDetailsResponse is the response message for UpdateContactDetailsRequest.
+See UpdateContactDetailsRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateCustomerResidencyRequest"></a></p>
+<h4 id="updatecustomerresidencyrequest">UpdateCustomerResidencyRequest<a class="headerlink" href="#updatecustomerresidencyrequest" title="Permanent link">&para;</a></h4>
+<p>UpdateCustomerResidencyRequest is used to perform the asynchronous
+operation of updating the customer residency status in the onboarding application.
+Performing this operation will generate an asynchronous response
+type of UpdateCustomerResidencyResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to update.</td>
+</tr>
+<tr>
+<td>residency</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.CustomerResidency">CustomerResidency</a></td>
+<td></td>
+<td>The customer residency status. See CustomerResidency.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateCustomerResidencyResponse"></a></p>
+<h4 id="updatecustomerresidencyresponse">UpdateCustomerResidencyResponse<a class="headerlink" href="#updatecustomerresidencyresponse" title="Permanent link">&para;</a></h4>
+<p>UpdateCustomerResidencyResponse is the response message for
+UpdateCustomerResidencyRequest. See UpdateCustomerResidencyRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateDisclosuresRequest"></a></p>
+<h4 id="updatedisclosuresrequest">UpdateDisclosuresRequest<a class="headerlink" href="#updatedisclosuresrequest" title="Permanent link">&para;</a></h4>
+<p>UpdateDisclosuresRequest is used to perform the asynchronous
+operation of updating the disclosures received by the customer in the
+onboarding application. Performing this operation will generate an asynchronous
+response type of UpdateDisclosuresResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to update.</td>
+</tr>
+<tr>
+<td>disclosures</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Disclosure">Disclosure</a></td>
+<td>repeated</td>
+<td>The updated collection of disclosures. See Disclosure.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateDisclosuresResponse"></a></p>
+<h4 id="updatedisclosuresresponse">UpdateDisclosuresResponse<a class="headerlink" href="#updatedisclosuresresponse" title="Permanent link">&para;</a></h4>
+<p>UpdateDisclosuresResponse is the response message for UpdateDisclosuresRequest.
+See UpdateDisclosuresRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateEmploymentRequest"></a></p>
+<h4 id="updateemploymentrequest">UpdateEmploymentRequest<a class="headerlink" href="#updateemploymentrequest" title="Permanent link">&para;</a></h4>
+<p>UpdateEmploymentRequest is used to perform the asynchronous
+operation of updating the customer employment information in the
+onboarding application. Performing this operation will generate an
+asynchronous response type of UpdateEmploymentResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to update.</td>
+</tr>
+<tr>
+<td>employment_info</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.Employment">Employment</a></td>
+<td></td>
+<td>The updated employment information. See Employment.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdateEmploymentResponse"></a></p>
+<h4 id="updateemploymentresponse">UpdateEmploymentResponse<a class="headerlink" href="#updateemploymentresponse" title="Permanent link">&para;</a></h4>
+<p>UpdateEmploymentResponse is the response message for UpdateEmploymentRequest.
+See UpdateEmploymentRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdatePersonalDetailsRequest"></a></p>
+<h4 id="updatepersonaldetailsrequest">UpdatePersonalDetailsRequest<a class="headerlink" href="#updatepersonaldetailsrequest" title="Permanent link">&para;</a></h4>
+<p>UpdatePersonalDetailsRequest is used to perform the asynchronous
+operation of updating the customer personal details in the onboarding application.
+Performing this operation will generate an asynchronous response
+type of UpdatePersonalDetailsResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to update.</td>
+</tr>
+<tr>
+<td>customer_personal_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.PersonalDetails">PersonalDetails</a></td>
+<td></td>
+<td>The updated personal details.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.UpdatePersonalDetailsResponse"></a></p>
+<h4 id="updatepersonaldetailsresponse">UpdatePersonalDetailsResponse<a class="headerlink" href="#updatepersonaldetailsresponse" title="Permanent link">&para;</a></h4>
+<p>UpdatePersonalDetailsResponse is the response message for UpdatePersonalDetailsRequest.
+See UpdatePersonalDetailsRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ValidateApplicationRequest"></a></p>
+<h4 id="validateapplicationrequest">ValidateApplicationRequest<a class="headerlink" href="#validateapplicationrequest" title="Permanent link">&para;</a></h4>
+<p>ValidateApplicationRequest is used to perform the asynchronous
+operation of validating the entire onboarding application and all documents
+received from the customer. Performing this operation will generate an
+asynchronous response type of ValidateApplicationResponse on the response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to validate.</td>
+</tr>
+<tr>
+<td>document_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.DocumentInfo">DocumentInfo</a></td>
+<td>repeated</td>
+<td>If documents are specified in this request and a previous ValidateDocumentsRequest was issued, then the values from this request are taken, and previous request values are ignored.</td>
+</tr>
+<tr>
+<td>selfie_file_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>If SelfieFileName is not empty and a previous ValidateSelfieRequest was issued, then the value from this request is taken, and previous request value is ignored.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ValidateApplicationResponse"></a></p>
+<h4 id="validateapplicationresponse">ValidateApplicationResponse<a class="headerlink" href="#validateapplicationresponse" title="Permanent link">&para;</a></h4>
+<p>ValidateApplicationResponse is the response message for
+ValidateApplicationRequest. See ValidateApplicationRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ValidateDocumentsRequest"></a></p>
+<h4 id="validatedocumentsrequest">ValidateDocumentsRequest<a class="headerlink" href="#validatedocumentsrequest" title="Permanent link">&para;</a></h4>
+<p>ValidateDocumentsRequest is used to perform the asynchronous
+operation of validating the identification documents received from the
+customer in the onboarding application. Performing this operation will
+generate an asynchronous response type of ValidateDocumentsResponse on the
+response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to validate.</td>
+</tr>
+<tr>
+<td>document_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.DocumentInfo">DocumentInfo</a></td>
+<td>repeated</td>
+<td>The collection of documents to validate. See DocumentInfo.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ValidateDocumentsResponse"></a></p>
+<h4 id="validatedocumentsresponse">ValidateDocumentsResponse<a class="headerlink" href="#validatedocumentsresponse" title="Permanent link">&para;</a></h4>
+<p>ValidateDocumentsResponse is the response message for ValidateDocumentsRequest.
+See ValidateDocumentsRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ValidateSelfieRequest"></a></p>
+<h4 id="validateselfierequest">ValidateSelfieRequest<a class="headerlink" href="#validateselfierequest" title="Permanent link">&para;</a></h4>
+<p>ValidateSelfieRequest is used to perform the asynchronous
+operation of validating the selfie pictures received from the
+customer in the onboarding application. Performing this operation will
+generate an asynchronous response type of ValidateSelfieResponse on the
+response topic.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onboarding_application_id</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The UUID of the onboarding application to validate.</td>
+</tr>
+<tr>
+<td>file_name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>The name of the selfie file to validate. See OnboardingApplication.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="thebaasco.tenant.onboarding.v1.ValidateSelfieResponse"></a></p>
+<h4 id="validateselfieresponse">ValidateSelfieResponse<a class="headerlink" href="#validateselfieresponse" title="Permanent link">&para;</a></h4>
+<p>ValidateSelfieResponse is the response message for ValidateSelfieRequest.
+See ValidateSelfieRequest for details.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic_details</td>
+<td><a href="#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails">OnboardingOperationResponseDetails</a></td>
+<td></td>
+<td>The basic details of the onboarding application response. See OnboardingOperationResponseDetails.</td>
+</tr>
+</tbody>
+</table>
+<!-- end messages -->
+
+<h2 id="shared-types">Shared types<a class="headerlink" href="#shared-types" title="Permanent link">&para;</a></h2>
+<p><a name="thebaasco.types.ProtectedBlob"></a></p>
+<h3 id="protectedblob">ProtectedBlob<a class="headerlink" href="#protectedblob" title="Permanent link">&para;</a></h3>
+<p><a href="../Global-types/protectedtypes/#protectedblob">Global types / Protected Blob</a></p>
+<p><a name="thebaasco.types.ProtectedDate"></a></p>
+<h3 id="protecteddate">ProtectedDate<a class="headerlink" href="#protecteddate" title="Permanent link">&para;</a></h3>
+<p><a href="../Global-types/protectedtypes/#protecteddate">Global types / Protected Date</a></p>
+<p><a name="thebaasco.types.ProtectedString"></a></p>
+<h3 id="protectedstring">ProtectedString<a class="headerlink" href="#protectedstring" title="Permanent link">&para;</a></h3>
+<p><a href="../Global-types/protectedtypes/#protectedstring">Global types / Protected String</a></p>
+<p><a name="thebaasco.types.PhoneNumber"></a></p>
+<h3 id="phonenumber">PhoneNumber<a class="headerlink" href="#phonenumber" title="Permanent link">&para;</a></h3>
+<p><a href="../Global-types/phonenumber/#phonenumber">Global types / Phone Number</a></p>
+<h2 id="scalar-value-types">Scalar Value Types<a class="headerlink" href="#scalar-value-types" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>.proto Type</th>
+<th>Notes</th>
+<th>C++</th>
+<th>Java</th>
+<th>Python</th>
+<th>Go</th>
+<th>C#</th>
+<th>PHP</th>
+<th>Ruby</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a name="double" /> double</td>
+<td></td>
+<td>double</td>
+<td>double</td>
+<td>float</td>
+<td>float64</td>
+<td>double</td>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td><a name="float" /> float</td>
+<td></td>
+<td>float</td>
+<td>float</td>
+<td>float</td>
+<td>float32</td>
+<td>float</td>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td><a name="int32" /> int32</td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="int64" /> int64</td>
+<td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="uint32" /> uint32</td>
+<td>Uses variable-length encoding.</td>
+<td>uint32</td>
+<td>int</td>
+<td>int/long</td>
+<td>uint32</td>
+<td>uint</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="uint64" /> uint64</td>
+<td>Uses variable-length encoding.</td>
+<td>uint64</td>
+<td>long</td>
+<td>int/long</td>
+<td>uint64</td>
+<td>ulong</td>
+<td>integer/string</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sint32" /> sint32</td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sint64" /> sint64</td>
+<td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="fixed32" /> fixed32</td>
+<td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+<td>uint32</td>
+<td>int</td>
+<td>int</td>
+<td>uint32</td>
+<td>uint</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="fixed64" /> fixed64</td>
+<td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+<td>uint64</td>
+<td>long</td>
+<td>int/long</td>
+<td>uint64</td>
+<td>ulong</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="sfixed32" /> sfixed32</td>
+<td>Always four bytes.</td>
+<td>int32</td>
+<td>int</td>
+<td>int</td>
+<td>int32</td>
+<td>int</td>
+<td>integer</td>
+<td>Bignum or Fixnum (as required)</td>
+</tr>
+<tr>
+<td><a name="sfixed64" /> sfixed64</td>
+<td>Always eight bytes.</td>
+<td>int64</td>
+<td>long</td>
+<td>int/long</td>
+<td>int64</td>
+<td>long</td>
+<td>integer/string</td>
+<td>Bignum</td>
+</tr>
+<tr>
+<td><a name="bool" /> bool</td>
+<td></td>
+<td>bool</td>
+<td>boolean</td>
+<td>boolean</td>
+<td>bool</td>
+<td>bool</td>
+<td>boolean</td>
+<td>TrueClass/FalseClass</td>
+</tr>
+<tr>
+<td><a name="string" /> string</td>
+<td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+<td>string</td>
+<td>String</td>
+<td>str/unicode</td>
+<td>string</td>
+<td>string</td>
+<td>string</td>
+<td>String (UTF-8)</td>
+</tr>
+<tr>
+<td><a name="bytes" /> bytes</td>
+<td>May contain any arbitrary sequence of bytes.</td>
+<td>string</td>
+<td>ByteString</td>
+<td>str</td>
+<td>[]byte</td>
+<td>ByteString</td>
+<td>string</td>
+<td>String (ASCII-8BIT)</td>
+</tr>
+</tbody>
+</table>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../distribution/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Distribution API" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Distribution API
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../payments/" class="md-footer__link md-footer__link--next" aria-label="Next: Payments API (Experimental)" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Payments API (Experimental)
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/finaptic" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.5e67fbfe.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c44cc438.min.js"></script>
+      
+    
+  </body>
+</html>
