@@ -1,5 +1,5 @@
 site_name: Finaptic Documentation
-site_url: https://docs.finaptic.com
+site_url: https://docs.finaptic.dev
 remote_branch: gh-pages
 theme:
   name: material

@@ -1,7 +1,5 @@
 # Productless Onboarding
 
-## 
-
 ## Guide Purpose
 
 **This guide will**
@@ -13,12 +11,13 @@
 1. [Onboarding Overview](/../../Implementation-Guide/Onboarding/OnboardingDocumentation/)
 2. [Onboarding Sequence Diagram](/../../Implementation-Guide/Onboarding/OnboardingSequenceDoc/)
 3. [Finaptic's Authorized User Policies](/../../Implementation-Guide/Banking/Authorized-User/AuthorizedUserDocumentation/)
+4. [Test profiles](/../../Implementation-Guide/Onboarding/OnboardingTestProfiles/) to test your onboarding flow
 
 ---
 
 #### What is a Productless Onboarding?
 
-Productless  Onboarding is the foundation on which an Authorized User is Onboarded to the platfomr without the actual creation of a product post the successful completion of onboarding.
+Productless  Onboarding is the foundation on which an Authorized User is Onboarded to the platform without the actual creation of a product post the successful completion of onboarding.
 
 Productless Onboarding will apply to applicants who may or may not require AML & KYC identity validation. 
 

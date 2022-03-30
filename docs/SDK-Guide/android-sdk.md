@@ -67,6 +67,7 @@ You can read their official documentation [here](https://github.com/Acuant/Andro
                 flatDir {
                     dirs 'libs'
                 }
+                maven { url 'https://jitpack.io' }
 
                 // Acuant
                 maven { url 'https://raw.githubusercontent.com/Acuant/AndroidSdkMaven/main/maven/' }
@@ -118,7 +119,14 @@ You can read their official documentation [here](https://github.com/Acuant/Andro
                    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.4.1'
                    implementation 'com.auth0.android:auth0:2.2.0'
                    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
-                   
+
+                   implementation 'com.amazonaws:aws-android-sdk-core:2.40.0'
+                   implementation 'com.amazonaws:aws-android-sdk-connect:2.40.0'
+                   implementation 'com.amazonaws:aws-android-sdk-connectparticipant:2.40.0'
+                   implementation 'com.amazonaws:aws-android-sdk-mobile-client:2.40.0'
+                   implementation "com.squareup.okhttp3:okhttp:4.9.0"
+                   implementation 'com.github.babbel:okhttp-aws-signer:1.0.1'
+
                    // Acuant dependencies
                    implementation 'com.acuant:acuantcommon:11.4.12'
                    implementation 'com.acuant:acuantcamera:11.4.12'
@@ -282,8 +290,10 @@ val response = sdk.onboardingClient.updatePersonalDetails(
        onboardingApplicationId = applicationId,
        customerPersonalDetails = PersonalDetails(
            firstName = "John",
+           middleName = null,
            lastName = "Miller",
-           dateOfBirth = LocalDate.of(1941, 5, 24)
+           dateOfBirth = LocalDate.of(1941, 5, 24),
+           alias = null
        )
    )
 )
@@ -308,6 +318,7 @@ Used to update the customer personal details in the onboarding application.
 - ***middleName***: The customer middle name. This value is optional and has a maximum of 50 characters. Accepted characters: -, ', French accents, 0-9.
 - ***lastName***: The customer last name. This value is required and has a maximum of 50 characters. Accepted characters: -, ', French accents, 0-9.
 - ***dateOfBirth***: The customer's date of birth.
+- ***alias***: The customer alias. This value is optional and has a maximum of 20 characters. Accepts alphanumeric input without special characters.
 
 ### updateContactDetails
  
@@ -912,6 +923,26 @@ Used to perform operation of creating the product for the onboarding application
 - ***basicDetails***: The basic details of the onboarding application response. See [OnboardingOperationResponseDetails](#onboardingoperationresponsedetails).
 - ***products***: Collection of products created. See [OnboardedProduct](#onboardedproduct).
 
+### cancelApplication
+
+Canceling the onboarding application.
+
+```
+val request = CancelApplicationRequest(onboardingApplicationId = applicationId)
+val response = sdk.onboardingClient.cancelApplication(request)
+
+if (response.basicDetails.requestStatus != "OK") {
+    // Could not process the request properly. You can retry the request.
+}
+```
+
+#### CancelApplicationRequest
+- ***onboardingApplicationId***: The UUID of the onboarding application to cancel.
+
+#### CancelApplicationResponse
+- ***basicDetails***: The basic details of the onboarding application response. See [OnboardingOperationResponseDetails](#onboardingoperationresponsedetails).
+
+
 #### OnboardedProduct
 - ***productId***: The UUID of the onboarded product.
 - ***sourceDomain***: The source domain of the onboarded product.
@@ -1147,6 +1178,7 @@ val credential = Credential(
        )
 try {
     sdk.authenticationClient.signUp(SignUpRequest(credential))
+    Log.d(TAG, "Sign up success. Proceed to sign in.")
 } catch (e: FinapticException) {
     Log.e(TAG, "Sign up error", e)
 }
@@ -1192,6 +1224,8 @@ Possible error codes:
       - The multi-factor authentication (MFA) code provided by the user is invalid/expired.
       - The administrator has required multi-factor authentication, but the user has not enrolled.
       - The user must provide the multi-factor authentication code to authenticate.
+- ***FinapticExceptionCode.SIGNIN_USER_BLOCKED***: 
+      - The account is blocked. You can ask the user to contact support.
 
 The ***message*** property of **FinapticException** will give more information about the error.
 
@@ -1221,7 +1255,7 @@ try {
     val email = "sample@finaptic.com"
     sdk.authenticationClient.resetPassword(request = ResetRequest(email = email))
 } catch (e: FinapticException) {
-    Log.d( TAG, "Reset Password error", e)
+    Log.d(TAG, "Reset Password error", e)
 }
 ```
  
@@ -1237,34 +1271,389 @@ val status = response.status
 val accruedInterest = response.accruedInterest
 ```
 
+#### AuthState
+- **accessToken**: Current access token.
+- **refreshToken**: Current refresh token.
+
+
 ## CoreCardClient
  
 ### getCard
 
+Retrieves generic details about a single [Card](#card). 
+
+
 ```
-val request = GetCardRequest(cardId = cardId)
-val response = sdk.coreCardClient.getCard(request)
+try {
+    val request = GetCardRequest(cardId = cardId)
+    val card = sdk.coreCardClient.getCard(request)
+     Log.d(TAG, "Get card success with id ${response.id}")
+} catch (e: FinapticException) {
+    Log.d(TAG, "Get card error", e)
+}
 ```
 
+#### GetCardRequest
+- ***cardId***: The ID of the Card to retrieve.
+  
 ### listCards
+
+Lists all [Cards](#card) associated to the current user.
+
 ```
-val request = ListCardsRequest(
+try {
+    val request = ListCardsRequest(
            pageSize = 10,
-           pageToken = null
-        )
-val response = sdk.coreCardClient.listCards(request)
-   
-val cards = response.cards
-val nextPageToken = response.nextPageToken
+           pageToken = null)
+    val response = sdk.coreCardClient.listCards(request)
+    Log.d(TAG, "List card success")
+} catch (e: FinapticException) {
+    Log.d(TAG, "List card error", e)
+}
 ```
 
-### createCardSDKSignOnToken
-```
-val request = CreateCardSDKSignOnTokenRequest(cardId)
-val response = sdk.coreCardClient.createCardSDKSignOnToken(request)
+#### ListCardsRequest
+- ***pageSize***: The maximum number of Cards to retrieve as part of this request. This value needs to be superior, or equal to 1.
+- ***pageToken***: When retrieving page other than the initial page, the value for the ***pageToken*** must be specified, and taken from the previous page's ***nextPageToken*** value (see [ListCardsResponse](#listcardsresponse)). When no value is specified, then the initial page will be returned.
 
-val token = response.token
+#### ListCardsResponse
+- ***cards***: The list of Cards requested.
+- ***nextPageToken***: The token to be used to retrieve the next page of data. Must be passed in the ***pageToken*** field of the next request (see [ListCardsRequest](#listcardsrequest)). When no value is returned in this field, then no further data exists to be listed.
+
+### revealCardInfo
+
+Reveals [card](#card) information to the user.
+
 ```
+try {
+    sdk.coreCardClient.revealCardInfo(cardId)
+    Log.d(TAG, "Reveal card info success")
+} catch (e: FinapticException) {
+    Log.d(TAG, "Reveal card info error", e)
+}
+```
+
+A user can reveal card info only if they have completed the step up authentication with a scope set to **"view:card_number"**.
+```
+try {
+    val request = SignInRequest(credential = credential, scope = "view:card_number")
+    sdk.authenticationClient.signIn(request)
+    Log.d(TAG, "You may call revealCardInfo")
+} catch (e: FinapticException) {
+    Log.d(TAG, "Sign in error", e)
+}
+```
+
+### createAuthorizedUserCard
+
+```
+try {
+    val card = AuthorizedUserCard(
+        cardType = CardType.CARD_TYPE_PREPAID,
+        accountId = accountId
+    )
+    val request = CreateAuthorizedUserCardRequest(
+        card = card,
+        authorizedUserId = authorizedUserId
+    )
+    val response = sdk.coreCardClient.createAuthorizedUserCard(request)
+    Log.d(TAG, "Create authorized user card success: ${response.card}")
+} catch (e: FinapticException) {
+    Log.d(TAG, "Create authorized user card error", e)
+}
+```
+
+#### CreateAuthorizedUserCardRequest
+- ***card***: Refer to [AuthorizedUserCard](#authorizedusercard) for details.
+- ***authorizedUserId***: The ID of the authorized user who will be the owner of the newly created card
+
+#### CreateAuthorizedUserCardResponse
+- ***card***: Refer to [Card](#card) for details.
+
+Possible error codes:
+
+- ***FinapticExceptionCode.CARDS_INVALID_ACCOUNT***: If the account passed as argument does not exist or is not owned by the current user.
+- ***FinapticExceptionCode.CARDS_INVALID_AUTH_USER***: If the user ID passed as argument does not exist or is not an authorized user of the account.
+
+#### AuthorizedUserCard
+- ***cardType***: The type of the Card. See [CardType](#cardtype-enum).
+- ***accountId***: The ID of the Account that will be linked to this Card.
+- ***description***: Optional description for this Card.
+
+
+### lockCard
+
+This feature allows customers to prevent transactions from getting authorized while they confirm if a card is effectively lost. After finding the card if it is the case, they can re-enable the card by using the unlock function, see [unlockCard](#unlockcard).
+
+```
+try {
+    val request = LockCardRequest(cardId = cardId)
+    sdk.coreCardClient.lockCard(request)
+    Log.d(TAG, "Lock card success")
+} catch (e: FinapticException) {
+    Log.d(TAG, "Lock card error", e)
+}
+```
+
+#### LockCardRequest
+- ***cardId***: The ID of the card to be locked.
+
+#### LockCardResponse
+- ***card***: The card in its current status as result of the operation. See [Card](#card).
+
+Errors
+
+- ***FinapticExceptionCode.CARDS_INVALID_CARD_ID***: If the card ID passed as argument does not resolve to a valid card or the card is not owned by the current user or the underlying account is not owned by the current user.
+
+### unlockCard
+
+This feature allows customers to re-enable transactions on the card if they find it after suspecting it lost.
+
+```
+try {
+    val request = UnlockCardRequest(cardId = cardId)
+    sdk.coreCardClient.unlockCard(request)
+    Log.d(TAG, "Unlock card success")
+} catch (e: FinapticException) {
+    Log.d(TAG, "Unlock card error", e)
+}
+```
+
+#### UnlockCardRequest
+- ***cardId***: The ID of the locked card to be unlocked.
+
+#### UnlockCardResponse
+- ***card***: The card in its current status as result of the operation. See [Card](#card).
+
+Errors
+
+- ***FinapticExceptionCode.CARDS_INVALID_CARD_ID***: If the card ID passed as argument does not resolve to a valid card or the card is not owned by the current user or the underlying account is not owned by the current user.
+
+#### Card
+- ***id***: The ID of this Card.
+- ***cardType***: The type of the Card. See [CardType](#cardtype-enum).
+- ***accountId***: The ID of the Account linked to this Card.
+- ***description***: The description for this Card.
+- ***state***: Describes the current state of the card. See [CardState](#cardstate-enum).
+- ***ownerId***: The user ID of the card owner.
+
+#### CardType enum
+- ***CARD_TYPE_UNSPECIFIED***: Should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes. 
+- ***CARD_TYPE_PREPAID***: Represents a Prepaid Card.
+
+#### CardState enum
+- ***CARD_STATE_UNSPECIFIED***: Should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes.
+- ***CARD_STATE_ACTIVE***: Indicates that the card is ready to be used.
+- ***CARD_STATE_LOCKED***: Indicates that the card is temporarily blocked for usage.
+
+## HelpCenter
+
+The help center adds the ability to connect a Finaptic Customer Service agent for L2+ escalations. We provide APIs to integrate existing customer service chat / threaded conversations into your client application. The expectation is that a new chat should be triggered by an L1 customer support agent, while customers should be able to resume existing threads to provide additional information or view responses from Finaptic.
+
+- Start customer support chat
+- List chat threads
+- Get a chat thread's history
+
+### startChat
+
+Create ***StartChatRequest***.
+
+- ***displayName*** can be username. You can get it from AuthenticationClient's [getUserInfo](#getuserinfo).
+- ***subject*** provided by the customer when starting a new chat or from [ChatThread](#chatthread).
+- ***contactCaseId*** is used to resume a thread. Use ***null*** to start a new one.
+
+```
+val request = StartChatRequest(displayName = displayName,
+                                subject = subject,
+                                contactCaseId = nil)
+```
+
+Calling **startChat** will try to connect and return [ChatClient](#chatclient).
+```
+try {
+    val chatClient = sdk.helpCenter.startChat(startChatRequest)
+} catch(e: FinapticException) {
+    Log.e(TAG, "Start chat error:", e)
+}
+```
+
+### listChatThreads
+
+**Note:** This method can be called after [Customer is created](#finalizeapplicationcreatecustomer).
+
+
+Create ***ListChatThreadsRequest***.
+
+- ***nextToken*** is provided by [ListChatThreadsResponse](#listchatthreadsresponse) and can be used to get next page. 
+
+```
+val request = ListChatThreadsRequest(nextToken = null)
+```
+
+On success, **listChatThreads** will return [ListChatThreadsResponse](#listchatthreadsresponse).
+```
+try {
+    val response = sdk.helpCenter.listChatThreads(request)
+    Log.d(TAG, "List chat threads success. Threads: ${response.items.count()}") 
+} catch(e: FinapticException) {
+    Log.e(TAG, "List chat threads error:", e)
+}
+```
+
+#### ListChatThreadsResponse
+
+- ***nextToken*** can be used to fetch next page.
+- ***items*** is an array of [ChatThread](#chatthread)
+
+#### ChatThread
+
+- ***id***
+- ***lastUpdated***
+- ***status*** is [ChatThreadStatus](#chatthreadstatus-enum).
+- ***subject*** provided by the customer when starting a new chat.
+- ***createdAt***
+- ***customerId***
+
+#### ChatThreadStatus enum
+
+- **WAITING_FOR_AGENT**
+- **WAITING_FOR_CUSTOMER** when an agent has responded and needs more information from the customer. Waiting for customer should indicate there is an unread message.
+- **RESOLVED**
+  
+### listChatHistory
+
+**Note:** This method can be called after [Customer is created](#finalizeapplicationcreatecustomer).
+
+
+Create ***ListChatHistoryRequest***.
+
+- ***contactId*** is the **id** of [ChatThread](#chatthread).
+- ***nextToken*** is provided by [ListChatHistoryResponse](#listchathistoryresponse) and can be used to get next page. 
+
+
+```
+val request = ListChatHistoryRequest(contactId = contactId, nextToken = nil)
+```
+
+
+On success, **listChatHistory** will return [ListChatHistoryResponse](#listchathistoryresponse).
+```
+try {
+    val response = sdk.helpCenter.listChatHistory(request)
+    Log.d(TAG, "List chat history success. Messages: ${response.items.count()}")
+} catch(e: FinapticException) {
+    Log.e(TAG, "List chat history error:", e)
+}
+```
+
+#### ListChatHistoryResponse
+
+- ***nextToken*** used to fetch next page.
+- ***items*** is an array of [ChatMessage](#chatmessage)
+
+## ChatClient
+
+### sendMessage
+```
+val request = SendMessageRequest(messageContent = "Text message")
+try {
+    chatClient.sendMessage(sendMessageRequest)
+    Log.d(TAG, "Chat message sent.")
+} catch(e: FinapticException) {
+    Log.e(TAG, "Send message error:", e)
+}
+```
+
+### messages
+
+Message history in **descending** order. It's a list of [ChatMessage](#chatmessage).
+
+### receiveMessage
+
+Deliver sequence of [ChatMessage](#chatmessage) over time.
+
+```
+GlobalScope.launch(Dispatchers.IO) {
+    chatClient.receiveMessage().collect {
+        Log.d(TAG, "Chat message: $it")
+    }
+}
+```
+
+### receiveEvent
+
+Deliver sequence of [ChatEvent](#chatevent) over time.
+
+```
+GlobalScope.launch(Dispatchers.IO) {
+    chatClient.receiveEvent().collect {
+        Log.d(TAG, "Chat events: $it")
+    }
+}
+```
+
+### connectionStatus
+
+Subscribing to **connectionStatus** publisher will deliver sequence of [ChatConnectionStatus](#chatconnectionstatus-enum) over time.
+
+```
+GlobalScope.launch(Dispatchers.IO) {
+    chatClient.connectionStatus().collect {
+        Log.d(TAG, "Chat client connection status: $it")
+    }
+}
+```
+
+You can get the current status at any time by calling connectionStatus().**value**.
+```
+val connectionStatus = chatClient.connectionStatus().value
+```
+
+### stopContact
+
+Stops the chat, but threads are not deleted. They will show up in the help center listChatHistory API call after ~3 minutes.
+
+```
+try {
+    chatClient.stopContact()
+    Log.d(TAG, "Stop contract success.")
+} catch(e: FinapticException) {
+    Log.e(TAG, "Stop contact error:", e)
+}
+```
+
+#### ChatConnectionStatus enum
+
+- ***CONNECTING*** when ChatClient is connecting or reconnecing after connection loss.
+- ***CONNECTED***
+- ***ENDED*** when [stopContact](#stopcontact) is called or agent closes the case.
+
+#### ChatMessage
+
+- ***id***
+- ***participantRole*** is [ParticipantRole](#participantrole-enum) enum.
+- ***displayName***
+- ***content*** is the text message.
+- ***timestamp***
+  
+#### ParticipantRole enum
+
+- ***CUSTOMER***
+- ***SYSTEM_MESSAGE***
+- ***AGENT***
+  
+#### ChatEvent
+
+- ***id***
+- **type** is [ChatEventType](#chateventtype-enum) enum.
+- **timestamp**
+- **displayName**
+
+#### ChatEventType enum
+
+- ***JOINED*** when agent joined the chat.
+- ***TYPING*** when agent is typing.
+
 
 ## DistributionClient
 
@@ -1472,6 +1861,97 @@ Errors:
 - **FinapticExceptionCode.UNAUTHORIZED**: if the registration ID passed as argument is not owned by the current user.
 - **FinapticExceptionCode.INTERNAL**: if there is an unexpected error while processing the request.
 
+### authenticateIncomingTransfer
+
+Used to authenticate an inbound Interac transfer. You can get the security question by calling [getIncomingTransferDetails](#getincomingtransferdetails). 
+
+Different errors can arise when authenticating an incoming transfer. For details see [incoming transfer error codes](#incoming-transfer-error-codes).
+
+```
+try {
+    val request = AuthenticateIncomingTransferRequest(
+        interacPaymentNumber,
+        securityAnswer = "string"
+    )
+    val response = sdk.interacClient.authenticateIncomingTransfer(request)
+    Log.d(TAG, "Authenticate incoming transfer success: $response")
+} catch (e: FinapticException) {
+    Log.e(TAG, "Authenticate incoming transfer error", e)
+}
+```
+
+#### AuthenticateIncomingTransferRequest
+- ***interacPaymentNumber***: The payment number, as provided by Interac, which this request authenticates.
+- ***securityAnswer***: The answer to the security question as provided by the customer.
+
+#### AuthenticateIncomingTransferResponse
+- ***interacPaymentNumber***: The payment number.
+- ***success***: Indicates if the provided response was correct.
+- ***retryAllowed***: In case of an incorrect response (success=false), indicates if the user can try again providing a new answer.
+
+
+### completeIncomingTransfer
+
+Used to complete the deposit of an inbound Interac transfer. Different errors can arise when completing an incoming transfer. For details see [incoming transfer error codes](#incoming-transfer-error-codes).
+
+```
+try {
+    val request = CompleteIncomingTransferRequest(
+        interacPaymentNumber,
+        targetAccountId = targetAccountId,
+        recipientMemo = "Optional memo"
+    )
+    val response = sdk.interacClient.completeIncomingTransfer(request)
+    Log.d(TAG, "Complete incoming transfer success: $response")
+} catch (e: FinapticException) {
+    Log.e(TAG, "Complete incoming transfer error", e)
+}
+```
+
+#### CompleteIncomingTransferRequest
+- ***interacPaymentNumber***: The payment number, as provided by Interac, for which the deposit is being completed.
+- ***targetAccountId***: Represents the target account ID. Current customer needs to be the owner or authorized user of the target account. Target account must be a deposit account.
+- ***recipientMemo***: An optional memo provided by the recipient. This memo will be sent to the sender.
+
+#### CompleteIncomingTransferResponse
+- ***interacPaymentNumber***: The payment number.
+- ***transactionId***: Represents this single financial transaction (operation).
+- ***lifecycleTransactionId***: Represents the overarching transaction, across all phases of its lifecycle.
+
+### declineIncomingTransfer
+
+Used to complete the deposit of an inbound Interac transfer. Different errors can arise when declining an incoming transfer. For details see [incoming transfer error codes](#incoming-transfer-error-codes).
+
+```
+try {
+    val request = DeclineIncomingTransferRequest(
+        interacPaymentNumber,
+        recipientMemo = "Optional memo"
+    )
+    val response = sdk.interacClient.declineIncomingTransfer(request)
+    Log.d(TAG, "Decline incoming transfer success: $response")
+} catch (e: FinapticException) {
+    Log.e(TAG, "Decline incoming transfer error", e)
+}
+```
+
+#### DeclineIncomingTransferRequest
+- ***interacPaymentNumber***: The payment number, as provided by Interac, for which the transfer is being declined.
+- ***recipientMemo***: An optional memo provided by the recipient. This memo will be sent to the sender.
+
+#### DeclineIncomingTransferResponse
+- ***interacPaymentNumber***: The payment number.
+
+#### Incoming Transfer Error Codes
+- ***FinapticExceptionCode.TRANS_INTERAC_INVALID_TRANSFER***: Transfer does not exist
+- ***FinapticExceptionCode.TRANS_INTERAC_ALREADY_CANCELLED***: Returned when attempting to authenticate a transfer that has already been canceled.
+- ***FinapticExceptionCode.TRANS_INTERAC_ALREADY_ACCEPTED***: Returned when attempting to authenticate a transfer that has already been accepted.
+- ***FinapticExceptionCode.TRANS_INTERAC_PREVIOUS_TRANSFER_IN_PROGRESS***: Returned when there already exists a transfer between sender and recipient that has not been completed or canceled.
+- ***FinapticExceptionCode.TRANS_INTERAC_INCONSISTENT_CUSTOMER***: Returned when performing any operation a transfer has been authenticated by different customer ID.
+- ***FinapticExceptionCode.TRANS_INTERAC_TRANSFER_LIMITS_EXCEEDED***: Rolling or per-transaction limits exceeded . 
+- ***FinapticExceptionCode.TRANS_INTERAC_AUTHENTICATION_REQUIRED***: Returned when attempting to complete an incoming Q&A transfer whose authentication step has not yet been completed successfully. E.g. the user has not provided the correct answer to the security question.
+
+
 ## CoreTransactionClient
 
 ### listAccounts
@@ -1600,6 +2080,39 @@ Errors
 - ***FinapticExceptionCode.TRANS_INVALID_TRANSACTION***: If a transaction ID is provided that is not found or resolves to an unauthorized account
 - ***FinapticExceptionCode.INTERNAL***: If an unexpected error occurs while processing the request. The error will include a RefNumber which Finaptic can use to investigate the cause.
 
+### listTargetAccounts
+
+Retrieves all accounts that can be used as recipient of funds for the intended type of transfer the current user wants to initiate/authorize. It is expected that after listing target accounts, one of the account IDs returned would be used by the customer for incoming transfer operations like creation of an Interac auto-deposit registration, depositing an incoming transfer or moving money between accounts.
+
+```
+try {
+    val request = ListTargetAccountsRequest(
+        transferType = TransferType.INTERNAL_ACCOUNT_TO_ACCOUNT,
+        pageSize = 10)
+    val response = sdk.coreTransferClient.listTargetAccounts(request)
+    Log.d(TAG, "List Target Accounts success: $response")
+} catch (e: Throwable) {
+    Log.d(TAG, "List Target Accounts failed", e)
+}
+```
+
+#### ListTargetAccountsRequest
+- ***transferType***: The type of the transfer the customer wants to initiate/authorize. See [TransferType](#transfertype-enum).
+- ***pageSize***: The maximum number of Accounts to retrieve as part of this request. This value needs to be superior, or equal to 1.
+- ***pageToken***: When retrieving a page other than the initial page, the value for the ***pageToken*** must be specified, and taken from the previous page's ***nextPageToken*** value (see [ListTargetAccountsResponse](#listtargetaccountsresponse)). When no value is specified, then the initial page will be returned.
+
+#### ListTargetAccountsResponse
+- ***accounts***: The resulting list of Account identifiers for selection. See [AccountIdentification](#accountidentification).
+- ***nextPageToken***: The token to be used to retrieve the next page of data. Must be passed in the page_token field of the next request (see [ListTargetAccountsRequest](#listtargetaccountsrequest)). When no value is returned in this field, then no further data exists to be listed.
+
+#### AccountIdentification
+
+Used to identify which accounts can be presented to the consumer for certain selections, e.g. for selection lists while trying to perform/authorize transfers.
+
+- ***id***: The unique ID of the Account as created by its source domain.
+- ***sourceDomain***: The source domain which created the Account (eg: core-banking).
+
+
 ### initiateTransfer
 
 Create a transfer fund request between accounts owned by current customer.
@@ -1638,7 +2151,7 @@ try {
 
 #### TransferTransactionDetails
 - ***transactionId***: Represents this single financial transaction (operation).
-- ***lifecycleTransactionId***: Represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...).
+- ***lifecycleTransactionId***: Represents the overarching transaction, across all phases of its lifecycle (e.g. authorization, settlement, reversal, ...).
 - ***status***: Status of the transfer. See [TransferStatus](#transferstatus-enum) enumeration for details on possible statuses.
 - ***customerRole***: The role played by our customer in this transaction. See [CustomerRole](#customerole-enum) for details on possible roles.
 - ***transferType***: The type of transfer for this transaction. See [TransferType](#transfertype-enum) for details on possible types.
@@ -1663,6 +2176,7 @@ try {
 - ***TRANSFER_STATUS_UNSPECIFIED***: It is returned when a value has not been specified, and is present by convention, for error-detection purposes. 
 - ***INTERNAL_ACCOUNT_TO_ACCOUNT***: Indicates that the transfer was an Account to Account transfer that did not transit through external systems ( stayed within the institution ).
 - ***INTERAC_AUTODEPOSIT***: Indicates that the transfer came through Interac systems, and used the Interac Autodeposit mechanism.
+- ***INTERAC_REGULAR_PAYMENT***: Indicates that the transfer came through Interac systems, and used the Interac Q&A mechanism.
   
 
 ### Structured and Unstructured Remittance Data
@@ -1832,6 +2346,52 @@ The structured remittance data is organized into the following groupings of info
 - ***PUOR***: Purchase Order
 - ***SCOR***: Structured Communication Reference
 
+### getIncomingTransferDetails
+
+Retrieves the details and state of an incoming Interac Q&A transfer.
+
+```
+try {
+    val request = GetIncomingTransferDetailsRequest(interacPaymentNumber)
+    val response = sdk.coreTransferClient.getIncomingTransferDetails(request)
+    Log.d(TAG, "Get incoming transfer details success: ${response.transferDetails}")
+} catch (e: FinapticException) {
+    Log.e(TAG, "Get incoming transfer details error", e)
+}
+```
+
+#### GetIncomingTransferDetailsRequest
+- ***interacPaymentNumber***: The payment id, as provided by custom url scheme. You need to register custom URL scheme that Finaptic will provide(e.g. finaptic://interac/deposit?lang=en&paymentid=000000000). You can find more information [here](https://developer.android.com/training/app-links/deep-linking).
+
+#### GetIncomingTransferDetailsResponse
+- ***transferDetails***: Contains details about a given inbound Interac transfer. See [IncomingTransferDetails](#incomingtransferdetails).
+
+Errors:
+
+- An error with error code **FinapticExceptionCode.TRANS_INTERAC_INVALID_TRANSFER** msg: "payment number is invalid" will be generated in the following scenarios:
+     - calls made with a non-existent ***interacPaymentNumber***
+  
+- An error with error code **FinapticExceptionCode.TRANS_INTERAC_INCONSISTENT_CUSTOMER** msg: "Transfer was previously authenticated with a different customer ID" will be generated when:
+     - calls made with a different customer than was previously authenticated
+
+#### IncomingTransferDetails
+- ***interacPaymentNumber***: The payment number, as provided by Interac, which the details of the transfer will be returned for.
+- ***transferStatus***: The current status of the transfer. See [IncomingTransferStatus](#incomingtransferstatus-enum).
+- ***transferAmount***: The amount of the transfer.
+- ***expiryDate***: The timestamp when this transfer will expire.
+- ***initiatorName***: The name of who initiated the transfer.
+- ***authenticationRequired***: Indicates if this transfer requires that the recipient provide a security answer before depositing the transfer into the account.
+- ***securityQuestion***: If ***authenticationRequired*** is true, the field contains the security question that the user must provide the answer to in order to deposit the transfer.
+- ***senderMemo***: An optional memo provided by the sender.
+
+#### IncomingTransferStatus enum
+- ***UNSPECIFIED***: Reserved for error detection purposes. It should not be used directly.
+- ***AVAILABLE***: Represents that a transfer has not been processed and is in a valid state to be authorized.
+- ***AUTHORIZED***: Represents that a transfer has been authorized and is in a valid state to be accepted or declined.
+- ***ACCEPTED***: Represents that a transfer has been accepted. The transfer is complete and deposited into the target account.
+- ***CANCELED***: Represents that a transfer is complete and not deposited to an account. Ways to achieve this state are: if the transfer is canceled by the sender, if the receiver declines the transfer, the transfer has expired, the receiver is unable to authenticate the transfer within the allotted attempts.
+
+
 ## Personal Finance Management
 
 ### getTransactions
@@ -1889,7 +2449,7 @@ try {
 
 #### Transaction
 - ***transactionId***:  Unique identifier that represents this single financial transaction.
-- ***lifecycleTransactionId***: Unique identifier that represents the overarching transaction, across all phases of it's lifecycle.
+- ***lifecycleTransactionId***: Unique identifier that represents the overarching transaction, across all phases of its lifecycle.
 - ***amount***: The Amount of the Transaction.
 - ***transactorName***: The name and location of the vendor where the payment was processed.
 - ***balance***: The resulting Balance of the Account after the Transaction has occurred.
@@ -1912,7 +2472,6 @@ try {
 - ***AUTHORIZED***: Represents a transaction type that is a purchase for which the merchant has received approval from the bank. An ***AUTHORIZED*** transaction will always have state ***PENDING***.
 - ***DEBIT***: Represents a transaction type when there is an addition to the amount in the customer's account.
 - ***REFUND***: Represents a transaction type when businesses and merchants issue a reversal of the transaction that had previously occurred (e.g. a previously credited transaction will be debited back into the customers account).
-- ***DECLINED***: Represents a transaction type when the transaction fails for any reason (e.g. fraud, operations).
 - ***CHARGEBACK***: Represents a transaction type that is returned to a payment card after a customer successfully disputes an item on their account statement or transactions report. A chargeback may occur on debit cards (and the underlying bank account) or on credit cards.
 - ***CREDIT***: Represents a transaction type when there is a deduction to the amount in the customer's account.
 - ***PRODUCT_NOT_DEFINED***: Represents a transaction state where available information is insufficient to determine TransactionType.

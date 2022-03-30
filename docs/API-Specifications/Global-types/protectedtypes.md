@@ -10,6 +10,22 @@
 
 
 
+<a name="thebaasco.types.ProtectedBlob"></a>
+
+### ProtectedBlob
+This message is designed to contain images/binary data that has to be protected
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| clear | [bytes](#bytes) |  | The source date to be protected with max value of 10MB |
+| protected | [string](#string) |  | The target field that will contain a freeform protected string |
+
+
+
+
+
+
 <a name="thebaasco.types.ProtectedDate"></a>
 
 ### ProtectedDate

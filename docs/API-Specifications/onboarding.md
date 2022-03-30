@@ -514,6 +514,41 @@ Address is a message for providing a given Address for a customer.
 
 
 
+<a name="thebaasco.tenant.onboarding.v1.CancelApplicationRequest"></a>
+
+#### CancelApplicationRequest
+CancelApplicationRequest is used to perform the asynchronous
+operation of canceling the onboarding application. Performing
+this operation will generate an asynchronous response type of
+CancelApplicationResponse on the response topic.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| onboarding_application_id | [string](#string) |  | The UUID of the onboarding application to create a customer for. |
+
+
+
+
+
+
+<a name="thebaasco.tenant.onboarding.v1.CancelApplicationResponse"></a>
+
+#### CancelApplicationResponse
+CancelApplicationResponse is the response message for
+CancelApplicationRequest.
+See CancelApplicationRequest for details.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| basic_details | [OnboardingOperationResponseDetails](#thebaasco.tenant.onboarding.v1.OnboardingOperationResponseDetails) |  | The basic details of the onboarding application response. See OnboardingOperationResponseDetails. |
+
+
+
+
+
+
 <a name="thebaasco.tenant.onboarding.v1.CommunicationPreferenceDetails"></a>
 
 #### CommunicationPreferenceDetails
@@ -878,6 +913,25 @@ collected from a customer required to apply for a product.
 
 
 
+<a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationCanceledEvent"></a>
+
+#### OnboardingApplicationCanceledEvent
+OnboardingApplicationCanceledEvent is the async event message sent when
+a customer canceled the onboarding application before completion of the application.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| event_id | [string](#string) |  | The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID. |
+| tenant_id | [int32](#int32) |  | The ID to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants. |
+| event_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The UTC timestamp when this event was issued. |
+| application_id | [string](#string) |  | The UUID of the onboarding application connected to this event. |
+
+
+
+
+
+
 <a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationCustomerOnboardedEvent"></a>
 
 #### OnboardingApplicationCustomerOnboardedEvent
@@ -918,6 +972,28 @@ when onboarding a new product for an existing customer.
 
 
 
+<a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationKYCFailedEvent"></a>
+#### OnboardingApplicationKYCFailedEvent
+OnboardingApplicationKYCFailedEvent event is raised when a customer fails KYC validation.
+The event is published once for each failed validation until exceeding the remaining KYC retries allowed.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| event_id | [string](#string) |  | The unique ID of this event. Can be used by consumers to determine if an event has already been processed or not. This ID will always be a valid UUID. |
+| application_id | [string](#string) |  | The UUID of the onboarding application. |
+| tenant_id | [int32](#int32) |  | The ID to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants. |
+| event_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The UTC timestamp when this event was issued. |
+| failed_status_codes | [string](#string) | repeated | The reasons of KYC failure. The values stored here are a collection of the code values retrieved from the ReferenceDataService with data_type set to 'FAILURE_CODE'. |
+| image_selfie | [thebaasco.types.ProtectedBlob](#thebaasco.types.ProtectedBlob) |  | Selfie, tokenized before being produced. This field is only populated if applicant is part of a sanctions list |
+| document_image_front | [thebaasco.types.ProtectedBlob](#thebaasco.types.ProtectedBlob) |  | Front document image, tokenized before being produced. This field is only populated if applicant is part of a sanctions list |
+| document_image_back | [thebaasco.types.ProtectedBlob](#thebaasco.types.ProtectedBlob) |  | Back document image, tokenized before being produced. This field is only populated if applicant is part of a sanctions list |
+
+
+
+
+
+
 <a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationProductOnboardedEvent"></a>
 
 #### OnboardingApplicationProductOnboardedEvent
@@ -941,7 +1017,8 @@ when a product is created with the FinalizeApplicationCreateProductRequest.
 <a name="thebaasco.tenant.onboarding.v1.OnboardingApplicationRejectedEvent"></a>
 
 #### OnboardingApplicationRejectedEvent
-
+OnboardingApplicationRejectedEvent event is raised when an application is fully rejected.
+The event is published one time when the application exceed the remaining KYC retries allowed.
 
 
 | Field | Type | Label | Description |
@@ -950,11 +1027,10 @@ when a product is created with the FinalizeApplicationCreateProductRequest.
 | application_id | [string](#string) |  | The UUID of the onboarding application. |
 | tenant_id | [int32](#int32) |  | The ID to identify the tenant on which the operation occurred. This can be used when processing events at the global scope to differentiate between tenants. |
 | event_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The UTC timestamp when this event was issued. |
-| rejection_status_codes | [string](#string) | repeated | Acuant's rejection reasons |
-| image_selfie | [thebaasco.types.ProtectedBlob](#thebaasco.types.ProtectedBlob) |  | Selfie, tokenized before being produced |
-| document_image_front | [thebaasco.types.ProtectedBlob](#thebaasco.types.ProtectedBlob) |  | Front document image, tokenized before being produced |
-| document_image_back | [thebaasco.types.ProtectedBlob](#thebaasco.types.ProtectedBlob) |  | Back document image, tokenized before being produced |
-
+| rejection_status_codes | [string](#string) | repeated | The reasons of KYC rejection. The values stored here are a collection of the code values retrieved from the ReferenceDataService with data_type set to 'FAILURE_CODE'. |
+| image_selfie | [thebaasco.types.ProtectedBlob](#thebaasco.types.ProtectedBlob) |  | Selfie, tokenized before being produced. This field is only populated if applicant is part of a sanctions list |
+| document_image_front | [thebaasco.types.ProtectedBlob](#thebaasco.types.ProtectedBlob) |  | Front document image, tokenized before being produced. This field is only populated if applicant is part of a sanctions list |
+| document_image_back | [thebaasco.types.ProtectedBlob](#thebaasco.types.ProtectedBlob) |  | Back document image, tokenized before being produced. This field is only populated if applicant is part of a sanctions list |
 
 
 
@@ -977,6 +1053,8 @@ onboarding application create or update message.
 | remaining_allowed_retries | [int64](#int64) |  | The remaining KYC retries allowed. |
 | failure_status_codes | [string](#string) | repeated | The list of codes explaining the reason of the request outcome. This list will only be populated when request status is "KYC Failed", "KYC Rejected", or "Application Rejected". The list will otherwise be empty. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'FAILURE_STATUS'. |
 | verification_needed | [OnboardingVerification](#thebaasco.tenant.onboarding.v1.OnboardingVerification) | repeated | The array of verifications that will be needed be performed in order to complete the application. |
+| Consents | [TermsAndConditions](#thebaasco.tenant.onboarding.v1.TermsAndConditions) | repeated | The list of Consents required as part of this onboarding application. Requirement will be enforced as part of a future release. |
+| Disclosures | [TermsAndConditions](#thebaasco.tenant.onboarding.v1.TermsAndConditions) | repeated | The list of Disclosures required as part of this onboarding application Requirement will be enforced as part of a future release. |
 
 
 
@@ -1007,7 +1085,7 @@ OtherResidence is a message for providing alternate countries and places of resi
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| other_residence_country | [string](#string) |  | The name of the other country of residence. |
+| other_residence_country | [string](#string) |  | The country code of the other country of residence. The format is an ISO 3166 Country alpha-2 code (e.g. US, CA, FR). |
 | tin_token | [string](#string) |  | A tokenized UUID representation of the unique TIN for the country of residence. Optional. |
 | citizenship | [string](#string) |  | The citizenship status in the country of residence. Required if residence country is US or Canada. |
 
@@ -1029,6 +1107,23 @@ PersonalDetails defines a message containing the customer's personal details.
 | last_name | [string](#string) |  | The customer last name. This value is required and has a maximum of 50 characters. Accepted characters: -, ', French accents, 0-9. |
 | date_of_birth | [google.type.Date](#google.type.Date) |  | The customer's date of birth. |
 | alias | [string](#string) |  | The customer alias. This value is optional and has a maximum of 20 characters. Accepts alphanumeric input without special characters. |
+
+
+
+
+
+
+<a name="thebaasco.tenant.onboarding.v1.TermsAndConditions"></a>
+
+#### TermsAndConditions
+TermsAndConditions is either a consent or a disclosure.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| document_type | [string](#string) |  | The type of the terms and conditions. The value stored here is one of the code values retrieved from the ReferenceDataService with data_type set to 'CONSENT_TYPE' or `DISCLOSURE_TYPE`. |
+| document_name_and_version | [string](#string) |  | The URL of the versioned terms and conditions document the customer needs to review and accept. |
+| needed_before_validation | [bool](#bool) |  | Whether or not the terms and conditions need to be accepted before calling any of the validate requests. |
 
 
 
@@ -1082,7 +1177,7 @@ response type of UpdateAddressesResponse on the response topic.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | onboarding_application_id | [string](#string) |  | The UUID of the onboarding application to update. |
-| addresses | [Address](#thebaasco.tenant.onboarding.v1.Address) | repeated | The collection of addresses occupied by the customer. See Address. |
+| addresses | [Address](#thebaasco.tenant.onboarding.v1.Address) | repeated | The collection of addresses occupied by the customer. The address(es) provided cannot be that of a P.O. Box, military base, hospital, or prison. See Address. |
 
 
 
@@ -1364,6 +1459,8 @@ asynchronous response type of ValidateApplicationResponse on the response topic.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | onboarding_application_id | [string](#string) |  | The UUID of the onboarding application to validate. |
+| document_details | [DocumentInfo](#thebaasco.tenant.onboarding.v1.DocumentInfo) | repeated | If documents are specified in this request and a previous ValidateDocumentsRequest was issued, then the values from this request are taken, and previous request values are ignored. |
+| selfie_file_name | [string](#string) |  | If SelfieFileName is not empty and a previous ValidateSelfieRequest was issued, then the value from this request is taken, and previous request value is ignored. |
 
 
 
@@ -1462,6 +1559,13 @@ See ValidateSelfieRequest for details.
 
 
 ## Shared types
+
+<a name="thebaasco.types.ProtectedBlob"></a>
+
+### ProtectedBlob
+
+[Global types / Protected Blob](../Global-types/protectedtypes/#protectedblob)
+
 
 <a name="thebaasco.types.ProtectedDate"></a>
 

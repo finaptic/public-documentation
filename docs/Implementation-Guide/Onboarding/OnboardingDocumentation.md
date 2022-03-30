@@ -14,6 +14,7 @@ Welcome to Finaptic's end-to-end Onboarding Service. We make it simple to build 
 1. [Onboarding Sequence Diagram](/../../Implementation-Guide/Onboarding/OnboardingSequenceDoc/)
 2. [Finaptic's Authorized User Policies](/../../Implementation-Guide/Banking/Authorized-User/AuthorizedUserDocumentation/)
 3. [Productless Onboarding Architecture](/../../Implementation-Guide/Onboarding/ProductlessOnboardingDoc/) to Onboard an Authorized User
+4. [Test profiles](/../../Implementation-Guide/Onboarding/OnboardingTestProfiles/) to test your onboarding flow 
 
 ---
 

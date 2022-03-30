@@ -30,11 +30,11 @@ You can read their official documentation [here](https://github.com/Acuant/iOSSD
      - Run `pod init && pod install`
      - Open {ProjectName}.xcworkspace
    
-2. Copy **Finaptic.xcframework**, **MCPSDK.xcframework**, **TrustKit.xcframework** and **gRPC-Swift.podspec** files to the root folder of your project.
+2. Copy **Finaptic.xcframework**, **MCPSDK.xcframework** and **gRPC-Swift.podspec** files to the root folder of your project.
  
-3. Drag **Finaptic.xcframework**, **MCPSDK.xcframework** and **TrustKit.xcframework** to your project's **{ProjectName}/Frameworks** group and select **Add to targets**.
+3. In XCode project navigator, select your project, go to **General** tab on the right side and select your project *Target*. Drag **Finaptic.xcframework** and **MCPSDK.xcframework** from **Finder** window and drop to ***Frameworks, Libraries, and Embedded Content***.  Select *Copy items if needed* and *Create groups*.
    
-4. Select **General** tab of your **Target** and under ***Frameworks, Libraries, and Embedded Content*** set **Embed Without Signing** for **MCPSDK.xcframework** and **TrustKit.xcframework**.
+4. Under ***Frameworks, Libraries, and Embedded Content*** set **Do Not Embed** for **Finaptic.xcframework**. **MCPSDK.xcframework** should be set to **Embed & Sign**.
  
 5. Add Finaptic dependencies to your **Podfile**.
  
@@ -291,7 +291,8 @@ let request = UpdatePersonalDetailsRequest(
        firstName: "COMPANY",
        middleName: nil,
        lastName: "SAMPLE",
-       dateOfBirth: Calendar.current.date(from: DateComponents(year: 2000, month: 3, day: 6))!)
+       dateOfBirth: Calendar.current.date(from: DateComponents(year: 2000, month: 3, day: 6))!,
+       alias: nil)
 )
 sdk.onboardingClient.updatePersonalDetails(request: request) { result in
    switch result {
@@ -321,6 +322,7 @@ Used to update the customer personal details in the onboarding application.
 - ***middleName***: The customer middle name. This value is optional and has a maximum of 50 characters. Accepted characters: -, ', French accents, 0-9.
 - ***lastName***: The customer last name. This value is required and has a maximum of 50 characters. Accepted characters: -, ', French accents, 0-9.
 - ***dateOfBirth***: The customer's date of birth.
+- ***alias***: The customer alias. This value is optional and has a maximum of 20 characters. Accepts alphanumeric input without special characters.
 
 ### updateContactDetails
 ```
@@ -981,6 +983,32 @@ Used to perform operation of creating the product for the onboarding application
 - ***productId***: The UUID of the onboarded product.
 - ***sourceDomain***: The source domain of the onboarded product.
 
+### cancelApplication
+
+Canceling the onboarding application.
+
+```
+let request = CancelApplicationRequest(onboardingApplicationId: applicationId)
+sdk.onboardingClient.cancelApplication(request: request) { [weak self] result in
+    switch result {
+    case .success(let response):
+        if (response.basicDetails.requestStatus != "OK") {
+           // Could not process the request properly. You can retry the request.
+        }
+        
+    case .failure(let error):
+        print("Cancel application error: \(error)")
+    }
+}
+```
+
+#### CancelApplicationRequest
+- ***onboardingApplicationId***: The UUID of the onboarding application to cancel.
+
+#### CancelApplicationResponse
+- ***basicDetails***: The basic details of the onboarding application response. See [OnboardingOperationResponseDetails](#onboardingoperationresponsedetails).
+
+
 ## Authorized Users 
 
 ### InviteAuthorizedUser
@@ -1254,8 +1282,8 @@ let credential = Credential(
 let request = SignUpRequest(credential: credential)
 sdk.authenticationClient.signUp(request: request) { result in
    switch result {
-   case .success(let response):
-       print(response)
+   case .success():
+       print("Sign up success. Proceed to sign in.")
   
    case .failure(let error):
        print("Sign up error: \(error)")
@@ -1314,6 +1342,8 @@ Possible error codes:
       - The multi-factor authentication (MFA) code provided by the user is invalid/expired.
       - The administrator has required multi-factor authentication, but the user has not enrolled.
       - The user must provide the multi-factor authentication code to authenticate.
+- ***signInUserBlocked***: 
+      - The account is blocked. You can ask the user to contact support.
 
 The ***message*** property of **FinapticError** will give more information about the error.
 
@@ -1409,23 +1439,36 @@ sdk.coreBankingClient.getAccountDetails(request: request) { result in
 }
 ```
 
+#### AuthState
+- **accessToken**: Current access token.
+- **refreshToken**: Current refresh token.
+
 ## CoreCardClient
  
 ### getCard
+
+Retrieves generic details about a single [Card](#card). 
+
 ```
 let request = GetCardRequest(cardId: cardId)
 sdk.coreCardClient.getCard(request: request) { result in
    switch result {
-   case .success(let response):
-       print(response.description)
+   case .success(let card):
+       print(card.description)
   
    case .failure(let error):
        print("Get card error: \(error)")
    }
 }
 ```
+
+#### GetCardRequest
+- ***cardId***: The ID of the Card to retrieve.
   
 ### listCards
+
+Lists all [Cards](#card) associated to the current user.
+
 ```
 let request = ListCardsRequest(
            pageSize: 10,
@@ -1443,19 +1486,150 @@ sdk.coreCardClient.listCards(request: request) { result in
 }
 ```
 
-### createCardSDKSignOnToken
+#### ListCardsRequest
+- ***pageSize***: The maximum number of Cards to retrieve as part of this request. This value needs to be superior, or equal to 1.
+- ***pageToken***: When retrieving page other than the initial page, the value for the ***pageToken*** must be specified, and taken from the previous page's ***nextPageToken*** value (see [ListCardsResponse](#listcardsresponse)). When no value is specified, then the initial page will be returned.
+
+#### ListCardsResponse
+- ***cards***: The list of Cards requested.
+- ***nextPageToken***: The token to be used to retrieve the next page of data. Must be passed in the ***pageToken*** field of the next request (see [ListCardsRequest](#listcardsrequest)). When no value is returned in this field, then no further data exists to be listed.
+
+### revealCardInfo
+
+Reveals [card](#card) information to the user.
+
 ```
-let request = CreateCardSDKSignOnTokenRequest(cardId: cardId)
-sdk.coreCardClient.createCardSDKSignOnToken(request: request) { result in
-   switch result {
-   case .success(let response):
-       print(response.token)
-  
-   case .failure(let error):
-       print("Create card SDK sign on token error: \(error)")
-   }
+sdk.coreCardClient.revealCardInfo(parentVC: viewController, cardId: cardId) { result in
+    switch result {
+    case .success():
+        print("Reveal card info success")
+    
+    case .failure(let error):
+        print("Reveal card info error: \(error)")
+    }
 }
 ```
+
+A user can reveal card info only if they have completed the step up authentication with a scope set to **"view:card_number"**.
+```
+let request = SignInRequest(credential: credential, scope: "view:card_number")
+sdk.authenticationClient.signIn(request: request) { result in
+    switch result {
+    case .success(_):
+        print("You may call revealCardInfo")
+    
+    case .failure(let error):
+        print("Sign in error: \(error)")
+    }
+}
+```
+
+### createAuthorizedUserCard
+
+```
+let card = AuthorizedUserCard(cardType: .cardTypePrepaid,
+                              accountId: accountId)
+let request = CreateAuthorizedUserCardRequest(card: card, 
+                                              authorizedUserId: authorizedUserId)
+self.sdk.coreCardClient.createAuthorizedUserCard(request: request) { result in
+    switch result {
+    case .success(let response):
+        print("Create authorized user card success: \(response.card)")
+        
+    case .failure(let error):
+        print("Create authorized user card error: \(error)")
+    }
+}
+```
+
+#### CreateAuthorizedUserCardRequest
+- ***card***: Refer to [AuthorizedUserCard](#authorizedusercard) for details.
+- ***authorizedUserId***: The ID of the authorized user who will be the owner of the newly created card
+
+#### CreateAuthorizedUserCardResponse
+- ***card***: Refer to [Card](#card) for details.
+
+Possible error codes:
+
+- ***FinapticErrorCode.cardsInvalidAccount***: If the account passed as argument does not exist or is not owned by the current user.
+- ***FinapticErrorCode.cardsInvalidAuthUser***: If the user ID passed as argument does not exist or is not an authorized user of the account.
+
+#### AuthorizedUserCard
+- ***cardType***: The type of the Card. See [CardType](#cardtype-enum).
+- ***accountId***: The ID of the Account that will be linked to this Card.
+- ***description***: Optional description for this Card.
+
+### lockCard
+
+This feature allows customers to prevent transactions from getting authorized while they confirm if a card is effectively lost. After finding the card if it is the case, they can re-enable the card by using the unlock function, see [unlockCard](#unlockcard).
+
+```
+let request = LockCardRequest(cardId: cardId)
+sdk.coreCardClient.lockCard(request: request) { result in
+    switch result {
+    case .success(let response):
+        print("Lock card success. Card state is \(response.card.state).")
+    
+    case .failure(let error):
+        print("Lock card error: \(error)")
+    }
+}
+```
+
+#### LockCardRequest
+- ***cardId***: The ID of the card to be locked.
+
+#### LockCardResponse
+- ***card***: The card in its current status as result of the operation. See [Card](#card).
+
+Errors
+
+- ***FinapticErrorCode.cardsInvalidCardId***: If the card ID passed as argument does not resolve to a valid card or the card is not owned by the current user or the underlying account is not owned by the current user.
+
+### unlockCard
+
+This feature allows customers to re-enable transactions on the card if they find it after suspecting it lost.
+
+```
+let request = UnlockCardRequest(cardId: cardId)
+sdk.coreCardClient.unlockCard(request: request) { result in
+    switch result {
+    case .success(let response):
+        print("Unlock card success. Card state is \(response.card.state).")
+    
+    case .failure(let error):
+        print("Unlock card error: \(error)")
+    }
+}
+```
+
+#### UnlockCardRequest
+- ***cardId***: The ID of the locked card to be unlocked.
+
+#### UnlockCardResponse
+- ***card***: The card in its current status as result of the operation. See [Card](#card).
+
+Errors
+
+- ***FinapticErrorCode.cardsInvalidCardId***: If the card ID passed as argument does not resolve to a valid card or the card is not owned by the current user or the underlying account is not owned by the current user.
+
+#### Card
+- ***id***: The ID of this Card.
+- ***cardType***: The type of the Card. See [CardType](#cardtype-enum).
+- ***accountId***: The ID of the Account linked to this Card.
+- ***description***: The description for this Card.
+- ***state***: Describes the current state of the card. See [CardState](#cardstate-enum).
+- ***ownerId***: The user ID of the card owner.
+
+#### CardType enum
+- ***cardTypeUnspecified***: Should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes. 
+- ***cardTypePrepaid***: Represents a Prepaid Card.
+
+#### CardState enum
+- ***unspecified***: Should never be used directly. It is returned when a value has not been specified, and is present by convention, for error-detection purposes.
+- ***active***: Indicates that the card is ready to be used.
+- ***locked***: Indicates that the card is temporarily blocked for usage.
+
 
 ## HelpCenter
 
@@ -1917,13 +2091,108 @@ Used to initiate the deletion/deactivation of an existing Interac account alias 
 
 - ***registrationId***: The ID of the Registration to delete.
 
-#### UpdateRegistrationResponse
+#### DeleteRegistrationResponse
 - ***registration***: See [Registration](#registration).
 
 Errors:
 
 - **FinapticErrorCode.unauthorized**: if the registration ID passed as argument is not owned by the current user.
 - **FinapticErrorCode.internal**: if there is an unexpected error while processing the request.
+
+### authenticateIncomingTransfer
+
+Used to authenticate an inbound Interac transfer. You can get the security question by calling [getIncomingTransferDetails](#getincomingtransferdetails). 
+
+Different errors can arise when authenticating an incoming transfer. For details see [incoming transfer error codes](#incoming-transfer-error-codes).
+
+```
+let request = AuthenticateIncomingTransferRequest(interacPaymentNumber: interacPaymentNumber,
+                                                          securityAnswer: "Security answer")
+sdk.interacClient.authenticateIncomingTransfer(request: request) { result in
+    switch result {
+    case .failure(let error):
+        print("Authenticate incoming transfer error: \(error)")
+        
+    case .success(let response):
+        print("Authenticate incoming transfer success: \(response)")
+    }
+}
+```
+
+#### AuthenticateIncomingTransferRequest
+- ***interacPaymentNumber***: The payment number, as provided by Interac, which this request authenticates.
+- ***securityAnswer***: The answer to the security question as provided by the customer.
+
+#### AuthenticateIncomingTransferResponse
+- ***interacPaymentNumber***: The payment number.
+- ***success***: Indicates if the provided response was correct.
+- ***retryAllowed***: In case of an incorrect response (success=false), indicates if the user can try again providing a new answer.
+
+
+### completeIncomingTransfer
+
+Used to complete the deposit of an inbound Interac transfer. Different errors can arise when completing an incoming transfer. For details see [incoming transfer error codes](#incoming-transfer-error-codes).
+
+```
+let request = CompleteIncomingTransferRequest(
+                            interacPaymentNumber: interacPaymentNumber,
+                            targetAccountId: accountId,
+                            recipientMemo: "Optional recipient memo")
+self?.sdk.interacClient.completeIncomingTransfer(request: request) { result in
+    switch result {
+    case .failure(let error):
+        print("Complete incoming transfer error: \(error)")
+        
+    case .success(let response):
+        print("Complete incoming transfer success: \(response)")
+    }
+}
+```
+
+#### CompleteIncomingTransferRequest
+- ***interacPaymentNumber***: The payment number, as provided by Interac, for which the deposit is being completed.
+- ***targetAccountId***: Represents the target account ID. Current customer needs to be the owner or authorized user of the target account. Target account must be a deposit account.
+- ***recipientMemo***: An optional memo provided by the recipient. This memo will be sent to the sender.
+
+#### CompleteIncomingTransferResponse
+- ***interacPaymentNumber***: The payment number.
+- ***transactionId***: Represents this single financial transaction (operation).
+- ***lifecycleTransactionId***: Represents the overarching transaction, across all phases of its lifecycle.
+
+### declineIncomingTransfer
+
+Used to complete the deposit of an inbound Interac transfer. Different errors can arise when declining an incoming transfer. For details see [incoming transfer error codes](#incoming-transfer-error-codes).
+
+```
+let request = DeclineIncomingTransferRequest(interacPaymentNumber: interacPaymentNumber,
+                                             recipientMemo: "Optional recipient memo")
+self?.sdk.interacClient.declineIncomingTransfer(request: request) { result in
+    switch result {
+    case .failure(let error):
+        print("Decline incoming transfer error: \(error)")
+        
+    case .success(let response):
+        print("Decline incoming transfer success: \(response)")
+    }
+}
+```
+
+#### DeclineIncomingTransferRequest
+- ***interacPaymentNumber***: The payment number, as provided by Interac, for which the transfer is being declined.
+- ***recipientMemo***: An optional memo provided by the recipient. This memo will be sent to the sender.
+
+#### DeclineIncomingTransferResponse
+- ***interacPaymentNumber***: The payment number.
+
+#### Incoming Transfer Error Codes
+- ***FinapticErrorCode.transInteracInvalidTransfer***: Transfer does not exist
+- ***FinapticErrorCode.transInteracAlreadyCancelled***: Returned when attempting to authenticate a transfer that has already been canceled.
+- ***FinapticErrorCode.transInteracAlreadyAccepted***: Returned when attempting to authenticate a transfer that has already been accepted.
+- ***FinapticErrorCode.transInteracPreviousTransferInProgress***: Returned when there already exists a transfer between sender and recipient that has not been completed or canceled.
+- ***FinapticErrorCode.transInteracInconsistentCustomer***: Returned when performing any operation a transfer has been authenticated by different customer ID.
+- ***FinapticErrorCode.transInteracTransferLimitsExceeded***: Rolling or per-transaction limits exceeded . 
+- ***FinapticErrorCode.transInteracAuthenticationRequired***: Returned when attempting to complete an incoming Q&A transfer whose authentication step has not yet been completed successfully. E.g. the user has not provided the correct answer to the security question.
+
 
 ## CoreTransactionClient
 
@@ -2071,6 +2340,42 @@ sdk.coreTransferClient.getTransferDetails(request: request) { result in
 #### GetTransferDetailsRequest
 - ***transactionId***: The ID of the transaction to get details for.
 
+### listTargetAccounts
+
+Retrieves all accounts that can be used as recipient of funds for the intended type of transfer the current user wants to initiate/authorize. It is expected that after listing target accounts, one of the account IDs returned would be used by the customer for incoming transfer operations like creation of an Interac auto-deposit registration, depositing an incoming transfer or moving money between accounts.
+
+```
+let request = ListTargetAccountsRequest(
+    transferType: .internalAccountToAccount,
+    pageSize: 10)
+self.sdk.coreTransferClient.listTargetAccounts(request: request) { result in
+    switch result {
+    case .success(let response):
+        print("List Target Accounts success: \(response)")
+    
+    case .failure(let error):
+        print("List Target Accounts error: \(error)")
+    }
+}
+```
+
+#### ListTargetAccountsRequest
+- ***transferType***: The type of the transfer the customer wants to initiate/authorize. See [TransferType](#transfertype-enum).
+- ***pageSize***: The maximum number of Accounts to retrieve as part of this request. This value needs to be superior, or equal to 1.
+- ***pageToken***: When retrieving a page other than the initial page, the value for the ***pageToken*** must be specified, and taken from the previous page's ***nextPageToken*** value (see [ListTargetAccountsResponse](#listtargetaccountsresponse)). When no value is specified, then the initial page will be returned.
+
+#### ListTargetAccountsResponse
+- ***accounts***: The resulting list of Account identifiers for selection. See [AccountIdentification](#accountidentification).
+- ***nextPageToken***: The token to be used to retrieve the next page of data. Must be passed in the page_token field of the next request (see [ListTargetAccountsRequest](#listtargetaccountsrequest)). When no value is returned in this field, then no further data exists to be listed.
+
+#### AccountIdentification
+
+Used to identify which accounts can be presented to the consumer for certain selections, e.g. for selection lists while trying to perform/authorize transfers.
+
+- ***id***: The unique ID of the Account as created by its source domain.
+- ***sourceDomain***: The source domain which created the Account (eg: core-banking).
+
+
 ### initiateTransfer
 
 Create a transfer fund request between accounts owned by current customer.
@@ -2107,7 +2412,7 @@ sdk.coreTransferClient.initiateTransfer(request: request) { result in
 
 #### TransferTransactionDetails
 - ***transactionId***: Represents this single financial transaction (operation).
-- ***lifecycleTransactionId***: Represents the overarching transaction, across all phases of it's lifecycle (e.g. authorization, settlement, reversal, ...).
+- ***lifecycleTransactionId***: Represents the overarching transaction, across all phases of its lifecycle (e.g. authorization, settlement, reversal, ...).
 - ***status***: Status of the transfer. See [TransferStatus](#transferstatus-enum) enumeration for details on possible statuses.
 - ***customerRole***: The role played by our customer in this transaction. See [CustomerRole](#customerole-enum) for details on possible roles.
 - ***transferType***: The type of transfer for this transaction. See [TransferType](#transfertype-enum) for details on possible types.
@@ -2132,6 +2437,7 @@ sdk.coreTransferClient.initiateTransfer(request: request) { result in
 - ***unspecified***: It is returned when a value has not been specified, and is present by convention, for error-detection purposes. 
 - ***internalAccountToAccount***: Indicates that the transfer was an Account to Account transfer that did not transit through external systems ( stayed within the institution ).
 - ***interacAutodeposit***: Indicates that the transfer came through Interac systems, and used the Interac Autodeposit mechanism.
+- ***interacRegularPayment***: Indicates that the transfer came through Interac systems, and used the Interac Q&A mechanism.
   
 
 ### Structured and Unstructured Remittance Data
@@ -2301,6 +2607,56 @@ The structured remittance data is organized into the following groupings of info
 - ***PUOR***: Purchase Order
 - ***SCOR***: Structured Communication Reference
 
+### getIncomingTransferDetails
+
+Retrieves the details and state of an incoming Interac Q&A transfer.
+
+```
+let request = GetIncomingTransferDetailsRequest(interacPaymentNumber: interacPaymentNumber)
+sdk.coreTransferClient.getIncomingTransferDetails(request: request) { result in
+    switch result {
+    case .failure(let error):
+        print("Get incoming transfer details error: \(error)")
+        
+    case .success(let response):
+        print("Get incoming transfer details success: \(response)")
+    }
+}
+```
+
+#### GetIncomingTransferDetailsRequest
+- ***interacPaymentNumber***: The payment id, as provided by custom url scheme. You need to register custom URL scheme that Finaptic will provide(e.g. finaptic://interac/deposit?lang=en&paymentid=000000000). You can find more information [here](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app).
+
+#### GetIncomingTransferDetailsResponse
+- ***transferDetails***: Contains details about a given inbound Interac transfer. See [IncomingTransferDetails](#incomingtransferdetails).
+
+Errors:
+
+- An error with error code **FinapticErrorCode.transInteracInvalidTransfer** msg: "payment number is invalid" will be generated in the following scenarios:
+     - calls made with a non-existent ***interacPaymentNumber***
+  
+- An error with error code **FinapticErrorCode.transInteracInconsistentCustomer** msg: "Transfer was previously authenticated with a different customer ID" will be generated when:
+     - calls made with a different customer than was previously authenticated
+
+
+#### IncomingTransferDetails
+- ***interacPaymentNumber***: The payment number, as provided by Interac, which the details of the transfer will be returned for.
+- ***transferStatus***: The current status of the transfer. See [IncomingTransferStatus](#incomingtransferstatus-enum).
+- ***transferAmount***: The amount of the transfer.
+- ***expiryDate***: The timestamp when this transfer will expire.
+- ***initiatorName***: The name of who initiated the transfer.
+- ***authenticationRequired***: Indicates if this transfer requires that the recipient provide a security answer before depositing the transfer into the account.
+- ***securityQuestion***: If ***authenticationRequired*** is true, the field contains the security question that the user must provide the answer to in order to deposit the transfer.
+- ***senderMemo***: An optional memo provided by the sender.
+
+#### IncomingTransferStatus enum
+- ***unspecified***: Reserved for error detection purposes. It should not be used directly.
+- ***available***: Represents that a transfer has not been processed and is in a valid state to be authorized.
+- ***authorized***: Represents that a transfer has been authorized and is in a valid state to be accepted or declined.
+- ***accepted***: Represents that a transfer has been accepted. The transfer is complete and deposited into the target account.
+- ***canceled***: Represents that a transfer is complete and not deposited to an account. Ways to achieve this state are: if the transfer is canceled by the sender, if the receiver declines the transfer, the transfer has expired, the receiver is unable to authenticate the transfer within the allotted attempts.
+
+
 ## Personal Finance Management
 
 ### getTransactions
@@ -2362,7 +2718,7 @@ sdk.personalFinanceManagementClient.getTransaction(request: request) { result in
 
 #### Transaction
 - ***transactionId***:  Unique identifier that represents this single financial transaction.
-- ***lifecycleTransactionId***: Unique identifier that represents the overarching transaction, across all phases of it's lifecycle.
+- ***lifecycleTransactionId***: Unique identifier that represents the overarching transaction, across all phases of its lifecycle.
 - ***amount***: The Amount of the Transaction.
 - ***transactorName***: The name and location of the vendor where the payment was processed.
 - ***balance***: The resulting Balance of the Account after the Transaction has occurred.
@@ -2385,7 +2741,6 @@ sdk.personalFinanceManagementClient.getTransaction(request: request) { result in
 - ***authorized***: Represents a transaction type that is a purchase for which the merchant has received approval from the bank. An ***authorized*** transaction will always have state ***pending***.
 - ***debit***: Represents a transaction type when there is an addition to the amount in the customer's account.
 - ***refund***: Represents a transaction type when businesses and merchants issue a reversal of the transaction that had previously occurred (e.g. a previously credited transaction will be debited back into the customers account).
-- ***declined***: Represents a transaction type when the transaction fails for any reason (e.g. fraud, operations).
 - ***chargeback***: Represents a transaction type that is returned to a payment card after a customer successfully disputes an item on their account statement or transactions report. A chargeback may occur on debit cards (and the underlying bank account) or on credit cards.
 - ***credit***: Represents a transaction type when there is a deduction to the amount in the customer's account.
 - ***productNotDefined***: Represents a transaction state where available information is insufficient to determine TransactionType.
